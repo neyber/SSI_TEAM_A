@@ -1,8 +1,6 @@
 package com.groupa.ssi.model.domain.catalog;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author Miguel Rojas
@@ -12,6 +10,7 @@ public class WorkItem {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer workItemId;
 
     @Column
