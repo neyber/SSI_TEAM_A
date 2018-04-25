@@ -18,7 +18,7 @@ public class DepartmentUpdateController extends DepartmentAbstractController{
 
     @ApiOperation(value = "Update Department")
     @RequestMapping(value = "/{departmentId}", method = RequestMethod.PUT)
-    public SuccessRestResponse updateDeparment(@PathVariable Long departmentId,
+    public SuccessRestResponse updateDeparment(@PathVariable Integer departmentId,
                                                @RequestBody DepartmentRequest departmentRequest,
                                                @RequestParam(value = "userId") Integer userId){
         return new SuccessRestResponse();
