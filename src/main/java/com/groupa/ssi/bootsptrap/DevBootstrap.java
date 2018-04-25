@@ -15,11 +15,6 @@ import java.util.Date;
 @Component
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private WorkItemRepository workItemRepository;
-    /*private SubCategoryRepository subCategoryRepository;
-    private ItemRepository itemRepository;
-    private EmployeeRepository employeeRepository;
-    private PositionRepository positionRepository;
-    private ContractRepository contractRepository;*/
 
     public DevBootstrap(WorkItemRepository workItemRepository) {
         this.workItemRepository = workItemRepository;
