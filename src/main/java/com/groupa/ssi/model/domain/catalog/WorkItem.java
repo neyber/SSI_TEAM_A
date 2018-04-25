@@ -21,9 +21,25 @@ public class WorkItem {
     @Column
     private String description;
 
+    @Column
     private String type;
+
+    @Column
     private String status;
+
+    @Column
     private Date  purchaseDate;
+
+    @Column
+    private Integer serieNo;
+
+    public Integer getSerieNo() {
+        return serieNo;
+    }
+
+    public void setSerieNo(Integer serieNo) {
+        this.serieNo = serieNo;
+    }
 
     public String getType() {
         return type;

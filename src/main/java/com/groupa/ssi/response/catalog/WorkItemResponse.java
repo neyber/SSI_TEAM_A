@@ -14,7 +14,15 @@ public class WorkItemResponse {
     private String type;
     private String status;
     private Date purchaseDate;
+    private Integer serieNo;
 
+    public Integer getSerieNo() {
+        return serieNo;
+    }
+
+    public void setSerieNo(Integer serieNo) {
+        this.serieNo = serieNo;
+    }
 
     public String getType() {
         return type;
