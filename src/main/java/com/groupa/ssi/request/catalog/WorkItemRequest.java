@@ -14,13 +14,13 @@ public class WorkItemRequest {
     private String type;
     private String status;
     private Date purchaseDate;
-    private Integer serieNo;
+    private String serieNo;
 
-    public Integer getSerieNo() {
+    public String getSerieNo() {
         return serieNo;
     }
 
-    public void setSerieNo(Integer serieNo) {
+    public void setSerieNo(String serieNo) {
         this.serieNo = serieNo;
     }
 

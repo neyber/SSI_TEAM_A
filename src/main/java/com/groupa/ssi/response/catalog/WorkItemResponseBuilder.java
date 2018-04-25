@@ -16,7 +16,7 @@ public final class WorkItemResponseBuilder {
     private String type;
     private String status;
     private Date purchaseDate;
-    private Integer serieNo;
+    private String serieNo;
 
 
 
@@ -60,7 +60,7 @@ public final class WorkItemResponseBuilder {
         return this;
     }
 
-    public WorkItemResponseBuilder setSerieNo(Integer serieNo){
+    public WorkItemResponseBuilder setSerieNo(String serieNo){
         this.serieNo=serieNo;
         return this;
     }
