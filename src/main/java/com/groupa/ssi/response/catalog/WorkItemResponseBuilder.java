@@ -17,6 +17,8 @@ public final class WorkItemResponseBuilder {
     private String status;
     private Date purchaseDate;
 
+
+
     private WorkItemResponseBuilder() {
     }
 
@@ -43,4 +45,18 @@ public final class WorkItemResponseBuilder {
         this.description = description;
         return this;
     }
+
+    public WorkItemResponseBuilder setType(String type){
+        this.type = type;
+        return this;
+    }
+    public WorkItemResponseBuilder setStatus(String status){
+        this.status = status;
+        return this;
+    }
+    public WorkItemResponseBuilder setPurchaseDate(Date purchaseDate){
+        this.purchaseDate=purchaseDate;
+        return this;
+    }
+
 }
