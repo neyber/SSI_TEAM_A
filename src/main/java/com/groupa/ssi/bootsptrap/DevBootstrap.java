@@ -3,8 +3,10 @@
  */
 package com.groupa.ssi.bootsptrap;
 
+import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
+import com.groupa.ssi.model.repository.catalog.PpeClassificationRepository;
 import com.groupa.ssi.model.repository.catalog.WorkItemRepository;
 import com.groupa.ssi.model.repository.personnel.DepartmentRepository;
 import org.springframework.context.ApplicationListener;
@@ -16,10 +18,13 @@ import java.util.Date;
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private WorkItemRepository workItemRepository;
     private DepartmentRepository departmentRepository;
+    private PpeClassificationRepository ppeClassificationRepository;
 
-    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository) {
+    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository,
+                        PpeClassificationRepository ppeClassificationRepository) {
         this.workItemRepository = workItemRepository;
         this.departmentRepository = departmentRepository;
+        this.ppeClassificationRepository = ppeClassificationRepository;
     }
 
     @Override
@@ -45,6 +50,12 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         admDepartment.setDescription("Departamento de Administracion");
         departmentRepository.save(admDepartment);
 
+        // Personal protection equiment (Epp)
+        PpeClassification skullProtection = new PpeClassification();
+        skullProtection.setName("Protección de cráneo");
+        skullProtection.setDescription("Son elementos que cubren totalmente el cráneo, protegiéndolo contra los" +
+                "efectos de golpes, sustancias químicas, riesgos eléctricos y térmicos.");
+        ppeClassificationRepository.save(skullProtection);
     }
 
 }
