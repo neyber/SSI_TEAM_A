@@ -7,7 +7,7 @@ import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
  * Created on April 25, 2018
  * @author Walker Colina
  */
-public class PpeResponseBuilder {
+public final class PpeResponseBuilder {
 
     private String name;
     private String description;

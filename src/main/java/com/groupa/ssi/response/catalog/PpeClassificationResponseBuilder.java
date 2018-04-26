@@ -6,7 +6,7 @@ import com.groupa.ssi.model.domain.catalog.PpeClassification;
  * Created on April 25, 2018
  * @author Walker Colina
  */
-public class PpeClassificationResponseBuilder {
+public final class PpeClassificationResponseBuilder {
 
     private String name;
     private String description;
