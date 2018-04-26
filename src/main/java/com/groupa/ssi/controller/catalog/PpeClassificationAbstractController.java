@@ -1,12 +1,13 @@
 package com.groupa.ssi.controller.catalog;
 
 import com.groupa.ssi.common.utils.Constants;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created on April 25, 2018
  * @author Walker Colina
  */
-
+@RequestMapping(value = PpeClassificationAbstractController.PATH)
 public class PpeClassificationAbstractController {
     public static final String PATH = Constants.SSI_BASE_PATH + "/ppeClassifications";
 
