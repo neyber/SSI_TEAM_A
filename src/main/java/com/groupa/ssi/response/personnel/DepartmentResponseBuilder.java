@@ -7,7 +7,7 @@ import com.groupa.ssi.model.domain.personnel.Department;
  * @author Lizeth Salazar
  */
 
-public class DepartmentResponseBuilder {
+public final class DepartmentResponseBuilder {
     private String name;
     private String description;
 
