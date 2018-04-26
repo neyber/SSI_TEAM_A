@@ -1,5 +1,6 @@
 package com.groupa.ssi.controller.catalog;
 
+import com.groupa.ssi.cmd.catalog.WorkItemUpdateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import com.groupa.ssi.request.catalog.WorkItemRequest;
 import io.swagger.annotations.Api;
@@ -18,6 +19,11 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class WorkItemUpdateController extends WorkItemAbstractController {
 
+    private WorkItemUpdateCmd cmd;
+
+    public WorkItemUpdateController(WorkItemUpdateCmd cmd) {
+        this.cmd = cmd;
+    }
 
     @ApiOperation(value = "Update work item")
     @RequestMapping(
@@ -27,7 +33,11 @@ public class WorkItemUpdateController extends WorkItemAbstractController {
     public SuccessRestResponse updateWorkItem(@PathVariable Integer workItemId,
                                               @RequestBody WorkItemRequest workItemRequest,
                                               @RequestParam(value = "userId") Integer userId) {
-        System.out.println(" Implementation pending... updateWorkItem" );
+
+        cmd.setWorkItemId(workItemId);
+        cmd.setWorkItemRequest(workItemRequest);
+        cmd.execute();
+
         return new SuccessRestResponse();
     }
 
