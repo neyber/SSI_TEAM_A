@@ -1,0 +1,578 @@
+Index: src/main/java/com/groupa/ssi/controller/usermanual/UserManualCreateController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/controller/usermanual/UserManualCreateController.java	(date 1524697402965)
++++ src/main/java/com/groupa/ssi/controller/usermanual/UserManualCreateController.java	(date 1524697402965)
+@@ -0,0 +1,26 @@
++package com.groupa.ssi.controller.usermanual;
++
++import com.groupa.ssi.common.response.rest.SuccessRestResponse;
++import com.groupa.ssi.request.usermanual.UserManualRequest;
++import io.swagger.annotations.Api;
++import io.swagger.annotations.ApiOperation;
++import org.springframework.web.bind.annotation.*;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++@Api(tags = UserManualAbstractController.TAG_NAME, description = UserManualAbstractController.DESCRIPTION)
++@RestController
++@RequestMapping
++public class UserManualCreateController extends UserManualAbstractController{
++
++    @ApiOperation(value = "Create Department")
++    @RequestMapping(
++            method = RequestMethod.POST
++    )
++    public SuccessRestResponse createDepartment(@RequestBody UserManualRequest userManualRequest,
++                                                @RequestParam(value = "userId") Integer userId) {
++        return new SuccessRestResponse();
++    }
++}
+Index: src/main/java/com/groupa/ssi/services/usermanual/UserManualService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/services/usermanual/UserManualService.java	(date 1524698563363)
++++ src/main/java/com/groupa/ssi/services/usermanual/UserManualService.java	(date 1524698563363)
+@@ -0,0 +1,40 @@
++package com.groupa.ssi.services.usermanual;
++
++import com.groupa.ssi.exception.DomainEntityNotFoundException;
++import com.groupa.ssi.model.domain.usermanual.UserManual;
++import com.groupa.ssi.model.repository.usermanual.UserManualRepository;
++import org.springframework.stereotype.Service;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++@Service
++public class UserManualService {
++
++    private UserManualRepository userManualRepository;
++
++    public UserManualService(UserManualRepository userManualRepository) {
++        this.userManualRepository = userManualRepository;
++    }
++
++    public List<UserManual> findAll(){
++        List<UserManual> userManuals = new ArrayList();
++        userManualRepository.findAll().forEach(userManuals::add);
++        return userManuals;
++    }
++
++    public UserManual findById(Integer userManualId){
++        return userManualRepository.findById(userManualId).orElseThrow(() -> new DomainEntityNotFoundException(UserManual.class));
++    }
++
++    public UserManual save(UserManual userManual){ return userManualRepository.save(userManual);
++    }
++
++    public void deleteById(Integer userManualId){
++        userManualRepository.deleteById(userManualId);
++    }
++}
+Index: src/main/java/com/groupa/ssi/controller/usermanual/UserManualReadController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/controller/usermanual/UserManualReadController.java	(date 1524697402825)
++++ src/main/java/com/groupa/ssi/controller/usermanual/UserManualReadController.java	(date 1524697402825)
+@@ -0,0 +1,24 @@
++package com.groupa.ssi.controller.usermanual;
++
++import com.groupa.ssi.common.response.rest.SingleRestResponse;
++import com.groupa.ssi.response.usermanual.UserManualResponse;
++import io.swagger.annotations.Api;
++import io.swagger.annotations.ApiOperation;
++import org.springframework.web.bind.annotation.*;
++import org.springframework.web.context.annotation.RequestScope;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++@Api(tags = UserManualAbstractController.TAG_NAME, description = UserManualAbstractController.DESCRIPTION)
++@RestController
++@RequestScope
++public class UserManualReadController extends UserManualAbstractController {
++
++    @ApiOperation(value = "Read/View Department")
++    @RequestMapping(value = "/{departmentId}", method = RequestMethod.GET)
++    public SingleRestResponse<UserManualResponse> readUseManual(@PathVariable Long userManualId, @RequestParam(value = "userId") Integer userId){
++        return new SingleRestResponse<>(new UserManualResponse());
++    }
++}
+Index: src/main/java/com/groupa/ssi/request/usermanual/UserManualRequest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/request/usermanual/UserManualRequest.java	(date 1524695621463)
++++ src/main/java/com/groupa/ssi/request/usermanual/UserManualRequest.java	(date 1524695621463)
+@@ -0,0 +1,67 @@
++package com.groupa.ssi.request.usermanual;
++
++/**
++ * @author Marcelo loayza
++ */
++
++public class UserManualRequest {
++
++    private String name;
++    private String position;
++    private String hierarchicalLever;
++    private String superiorBoss;
++    private String dependentPersonal;
++    private String internalRelation;
++    private String externalRelation;
++    private String activity;
++    private String generalActivity;
++    private String principalFunction;
++
++    public UserManualRequest() {
++    }
++
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getPosition() { return position;  }
++
++    public void setPosition(String position) { this.position = position; }
++
++    public String getHierarchicalLever() { return hierarchicalLever; }
++
++    public void setHierarchicalLever(String hierarchicalLever) { this.hierarchicalLever = hierarchicalLever; }
++
++    public String getSuperiorBoss() { return superiorBoss; }
++
++    public void setSuperiorBoss(String superiorBoss) { this.superiorBoss = superiorBoss; }
++
++    public String getDependentPersonal() { return dependentPersonal; }
++
++    public void setDependentPersonal(String dependentPersonal) { this.dependentPersonal = dependentPersonal; }
++
++    public String getInternalRelation() { return internalRelation; }
++
++    public void setInternalRelation(String internalRelation) { this.internalRelation = internalRelation; }
++
++    public String getExternalRelation() { return externalRelation; }
++
++    public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
++
++    public String getActivity() { return activity; }
++
++    public void setActivity(String activity) { this.activity = activity; }
++
++    public String getGeneralActivity() { return generalActivity; }
++
++    public void setGeneralActivity(String generalActivity) { this.generalActivity = generalActivity; }
++
++    public String getPrincipalFunction() { return principalFunction; }
++
++    public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
++}
+Index: src/main/java/com/groupa/ssi/response/usermanual/UserManualResponseBuilder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/response/usermanual/UserManualResponseBuilder.java	(date 1524697402787)
++++ src/main/java/com/groupa/ssi/response/usermanual/UserManualResponseBuilder.java	(date 1524697402787)
+@@ -0,0 +1,77 @@
++package com.groupa.ssi.response.usermanual;
++
++
++//import com.groupa.ssi.model.domain.personnel.Department;
++
++import com.groupa.ssi.model.domain.usermanual.UserManual;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++public class UserManualResponseBuilder {
++    private String name;
++    private String position;
++    private String hierarchicalLever;
++    private String superiorBoss;
++    private String dependentPersonal;
++    private String internalRelation;
++    private String externalRelation;
++    private String activity;
++    private String generalActivity;
++    private String principalFunction;
++
++    private UserManualResponseBuilder() {
++    }
++
++    public UserManualResponse build() {
++        UserManualResponse userManualResponse = new UserManualResponse();
++        userManualResponse.setName(name);
++        userManualResponse.setPosition(position);
++        userManualResponse.setHierarchicalLever(hierarchicalLever);
++        userManualResponse.setSuperiorBoss(superiorBoss);
++        userManualResponse.setDependentPersonal(dependentPersonal);
++        userManualResponse.setInternalRelation(internalRelation);
++        userManualResponse.setExternalRelation(externalRelation);
++        userManualResponse.setActivity(activity);
++        userManualResponse.setGeneralActivity(generalActivity);
++        userManualResponse.setPrincipalFunction(principalFunction);
++        return userManualResponse;
++    }
++
++    public static UserManualResponseBuilder getInstance(UserManual userManual){
++        UserManualResponseBuilder userManualResponseBuilder = new UserManualResponseBuilder();
++        userManualResponseBuilder.setName(userManual.getName());
++        userManualResponseBuilder.setPosition(userManual.getPosition());
++        userManualResponseBuilder.setHierarchicalLever(userManual.getHierarchicalLever());
++        userManualResponseBuilder.setSuperiorBoss(userManual.getSuperiorBoss());
++        userManualResponseBuilder.setDependentPersonal(userManual.getDependentPersonal());
++        userManualResponseBuilder.setInternalRelation(userManual.getInternalRelation());
++        userManualResponseBuilder.setExternalRelation(userManual.getExternalRelation());
++        userManualResponseBuilder.setActivity(userManual.getActivity());
++        userManualResponseBuilder.setGeneralActivity(userManual.getGeneralActivity());
++        userManualResponseBuilder.setPrincipalFunction(userManual.getPrincipalFunction());
++        return userManualResponseBuilder;
++    }
++
++    public void setName(String name) { this.name = name; }
++
++    public void setPosition(String position) { this.position = position; }
++
++    public void setHierarchicalLever(String hierarchicalLever) { this.hierarchicalLever = hierarchicalLever; }
++
++    public void setSuperiorBoss(String superiorBoss) { this.superiorBoss = superiorBoss; }
++
++
++    public void setDependentPersonal(String dependentPersonal) { this.dependentPersonal = dependentPersonal; }
++
++    public void setInternalRelation(String internalRelation) { this.internalRelation = internalRelation; }
++
++    public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
++
++    public void setActivity(String activity) { this.activity = activity; }
++
++    public void setGeneralActivity(String generalActivity) { this.generalActivity = generalActivity; }
++
++    public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
++}
+Index: src/main/java/com/groupa/ssi/response/usermanual/UserManualResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/response/usermanual/UserManualResponse.java	(date 1524697402896)
++++ src/main/java/com/groupa/ssi/response/usermanual/UserManualResponse.java	(date 1524697402896)
+@@ -0,0 +1,63 @@
++package com.groupa.ssi.response.usermanual;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++public class UserManualResponse {
++    private String name;
++    private String position;
++    private String hierarchicalLever;
++    private String superiorBoss;
++    private String dependentPersonal;
++    private String internalRelation;
++    private String externalRelation;
++    private String activity;
++    private String generalActivity;
++    private String principalFunction;
++
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getPosition() { return position;  }
++
++    public void setPosition(String position) { this.position = position; }
++
++    public String getHierarchicalLever() { return hierarchicalLever; }
++
++    public void setHierarchicalLever(String hierarchicalLever) { this.hierarchicalLever = hierarchicalLever; }
++
++    public String getSuperiorBoss() { return superiorBoss; }
++
++    public void setSuperiorBoss(String superiorBoss) { this.superiorBoss = superiorBoss; }
++
++    public String getDependentPersonal() { return dependentPersonal; }
++
++    public void setDependentPersonal(String dependentPersonal) { this.dependentPersonal = dependentPersonal; }
++
++    public String getInternalRelation() { return internalRelation; }
++
++    public void setInternalRelation(String internalRelation) { this.internalRelation = internalRelation; }
++
++    public String getExternalRelation() { return externalRelation; }
++
++    public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
++
++    public String getActivity() { return activity; }
++
++    public void setActivity(String activity) { this.activity = activity; }
++
++    public String getGeneralActivity() { return generalActivity; }
++
++    public void setGeneralActivity(String generalActivity) { this.generalActivity = generalActivity; }
++
++    public String getPrincipalFunction() { return principalFunction; }
++
++    public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
++}
+Index: src/main/java/com/groupa/ssi/controller/usermanual/UserManualDeleteController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/controller/usermanual/UserManualDeleteController.java	(date 1524697402861)
++++ src/main/java/com/groupa/ssi/controller/usermanual/UserManualDeleteController.java	(date 1524697402861)
+@@ -0,0 +1,24 @@
++package com.groupa.ssi.controller.usermanual;
++
++import com.groupa.ssi.common.response.rest.SuccessRestResponse;
++import io.swagger.annotations.Api;
++import io.swagger.annotations.ApiOperation;
++import org.springframework.web.bind.annotation.*;
++import org.springframework.web.context.annotation.RequestScope;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++@Api(tags = UserManualAbstractController.TAG_NAME, description = UserManualAbstractController.DESCRIPTION)
++@RestController
++@RequestScope
++public class UserManualDeleteController extends UserManualAbstractController {
++
++    @ApiOperation(value = "Delete UserManual")
++    @RequestMapping(value = "/{UserManualId}", method = RequestMethod.DELETE)
++    public SuccessRestResponse deleteUserManua(@PathVariable Long userManualId,
++                                                @RequestParam(value = "userId") Integer userId){
++        return new SuccessRestResponse();
++    }
++}
+Index: src/main/java/com/groupa/ssi/model/domain/usermanual/UserManual.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/model/domain/usermanual/UserManual.java	(date 1524698516825)
++++ src/main/java/com/groupa/ssi/model/domain/usermanual/UserManual.java	(date 1524698516825)
+@@ -0,0 +1,79 @@
++package com.groupa.ssi.model.domain.usermanual;
++
++import com.groupa.ssi.model.domain.ModelBase;
++
++import javax.persistence.Column;
++import javax.persistence.Entity;
++
++/**
++ * @author Lizeth Salazar
++ */
++
++@Entity
++public class UserManual extends ModelBase {
++
++    @Column
++    private String name;
++    @Column
++    private String position;
++    @Column
++    private String hierarchicalLever;
++    @Column
++    private String superiorBoss;
++    @Column
++    private String dependentPersonal;
++    @Column
++    private String internalRelation;
++    @Column
++    private String externalRelation;
++    @Column
++    private String activity;
++    @Column
++    private String generalActivity;
++    @Column
++    private String principalFunction;
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getPosition() { return position;  }
++
++    public void setPosition(String position) { this.position = position; }
++
++    public String getHierarchicalLever() { return hierarchicalLever; }
++
++    public void setHierarchicalLever(String hierarchicalLever) { this.hierarchicalLever = hierarchicalLever; }
++
++    public String getSuperiorBoss() { return superiorBoss; }
++
++    public void setSuperiorBoss(String superiorBoss) { this.superiorBoss = superiorBoss; }
++
++    public String getDependentPersonal() { return dependentPersonal; }
++
++    public void setDependentPersonal(String dependentPersonal) { this.dependentPersonal = dependentPersonal; }
++
++    public String getInternalRelation() { return internalRelation; }
++
++    public void setInternalRelation(String internalRelation) { this.internalRelation = internalRelation; }
++
++    public String getExternalRelation() { return externalRelation; }
++
++    public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
++
++    public String getActivity() { return activity; }
++
++    public void setActivity(String activity) { this.activity = activity; }
++
++    public String getGeneralActivity() { return generalActivity; }
++
++    public void setGeneralActivity(String generalActivity) { this.generalActivity = generalActivity; }
++
++    public String getPrincipalFunction() { return principalFunction; }
++
++    public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
++}
+Index: src/main/java/com/groupa/ssi/controller/usermanual/UserManualUpdateController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/controller/usermanual/UserManualUpdateController.java	(date 1524698516897)
++++ src/main/java/com/groupa/ssi/controller/usermanual/UserManualUpdateController.java	(date 1524698516897)
+@@ -0,0 +1,26 @@
++package com.groupa.ssi.controller.usermanual;
++
++import com.groupa.ssi.common.response.rest.SuccessRestResponse;
++import com.groupa.ssi.request.usermanual.UserManualRequest;
++import io.swagger.annotations.Api;
++import io.swagger.annotations.ApiOperation;
++import org.springframework.web.bind.annotation.*;
++import org.springframework.web.context.annotation.RequestScope;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++@Api(tags = UserManualAbstractController.TAG_NAME, description = UserManualAbstractController.DESCRIPTION)
++@RestController
++@RequestScope
++public class UserManualUpdateController extends UserManualAbstractController {
++
++    @ApiOperation(value = "Update UserManuals")
++    @RequestMapping(value = "/{userManualId}", method = RequestMethod.PUT)
++    public SuccessRestResponse updateUserManual(@PathVariable Long userManualId,
++                                               @RequestBody UserManualRequest userManualRequest,
++                                               @RequestParam(value = "userId") Integer userId){
++        return new SuccessRestResponse();
++    }
++}
+Index: src/main/java/com/groupa/ssi/controller/usermanual/UserManualAbstractController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/controller/usermanual/UserManualAbstractController.java	(date 1524697402741)
++++ src/main/java/com/groupa/ssi/controller/usermanual/UserManualAbstractController.java	(date 1524697402741)
+@@ -0,0 +1,18 @@
++package com.groupa.ssi.controller.usermanual;
++
++import com.groupa.ssi.common.utils.Constants;
++import org.springframework.web.bind.annotation.RequestMapping;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++@RequestMapping(value = UserManualAbstractController.PATH)
++public abstract class UserManualAbstractController {
++
++    public static final String PATH = Constants.SSI_BASE_PATH + "/userManuals";
++
++    public static final String TAG_NAME = "UserManuals";
++
++    public static final String DESCRIPTION = "Available operations for UserManuals";
++}
+Index: src/main/java/com/groupa/ssi/model/repository/usermanual/UserManualRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/model/repository/usermanual/UserManualRepository.java	(date 1524698516913)
++++ src/main/java/com/groupa/ssi/model/repository/usermanual/UserManualRepository.java	(date 1524698516913)
+@@ -0,0 +1,8 @@
++package com.groupa.ssi.model.repository.usermanual;
++
++
++import com.groupa.ssi.model.domain.usermanual.UserManual;
++import org.springframework.data.jpa.repository.JpaRepository;
++
++public interface UserManualRepository extends JpaRepository<UserManual, Integer> {
++}
+Index: src/main/java/com/groupa/ssi/controller/usermanual/UserManualListController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/groupa/ssi/controller/usermanual/UserManualListController.java	(date 1524697402932)
++++ src/main/java/com/groupa/ssi/controller/usermanual/UserManualListController.java	(date 1524697402932)
+@@ -0,0 +1,29 @@
++package com.groupa.ssi.controller.usermanual;
++
++import com.groupa.ssi.common.response.rest.ListRestResponse;
++import com.groupa.ssi.response.usermanual.UserManualResponse;
++import io.swagger.annotations.Api;
++import io.swagger.annotations.ApiOperation;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RequestMethod;
++import org.springframework.web.bind.annotation.RequestParam;
++import org.springframework.web.bind.annotation.RestController;
++import org.springframework.web.context.annotation.RequestScope;
++
++import java.util.ArrayList;
++
++/**
++ * @author Marcelo Loayza
++ */
++
++@Api(tags = UserManualAbstractController.TAG_NAME, description = UserManualAbstractController.DESCRIPTION)
++@RestController
++@RequestScope
++public class UserManualListController extends UserManualAbstractController {
++
++    @ApiOperation(value = "List UserManuals")
++    @RequestMapping(method = RequestMethod.GET)
++    public ListRestResponse<UserManualResponse> getUserManualList(@RequestParam(value="userId") Integer userId){
++        return new ListRestResponse<>(new ArrayList<>());
++    }
++}
+\ No newline at end of file
