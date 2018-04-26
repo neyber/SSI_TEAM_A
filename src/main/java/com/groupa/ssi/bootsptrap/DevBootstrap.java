@@ -3,9 +3,13 @@
  */
 package com.groupa.ssi.bootsptrap;
 
+import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Role;
+import com.groupa.ssi.model.domain.sickness.Sickness;
+import com.groupa.ssi.model.repository.SicknessRepository;
+import com.groupa.ssi.model.repository.accident.AccidentRepository;
 import com.groupa.ssi.model.repository.catalog.WorkItemRepository;
 import com.groupa.ssi.model.repository.personnel.DepartmentRepository;
 import com.groupa.ssi.model.repository.personnel.RoleRepository;
@@ -19,11 +23,16 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private WorkItemRepository workItemRepository;
     private DepartmentRepository departmentRepository;
     private RoleRepository roleRepository;
+    private AccidentRepository accidentRepository;
+    private SicknessRepository sicknessRepository;
 
-    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository, RoleRepository roleRepository) {
+
+    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository, RoleRepository roleRepository, AccidentRepository accidentRepository, SicknessRepository sicknessRepository) {
         this.workItemRepository = workItemRepository;
         this.departmentRepository = departmentRepository;
         this.roleRepository = roleRepository;
+        this.accidentRepository = accidentRepository;
+        this.sicknessRepository = sicknessRepository;
     }
 
     @Override
@@ -59,6 +68,23 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         admRole.setName("Administrador de Personal");
         admRole.setDescription("Administrador de personal");
         roleRepository.save(admRole);
+
+        //Accident
+
+        Accident accident = new Accident();
+        accident.setDateAccident(new Date());
+        accident.setDescription("this is a critical accident that will cost a lot to the enterprise");
+        accident.setWhereOccurr("It occurred during the revision under maquinary");
+        accidentRepository.save(accident);
+
+        //Sickness
+        Sickness sickness = new Sickness();
+        sickness.setDateSickness(new Date());
+        sickness.setDescription("during the night duty shift and with inadequate clothing is that the employee has a cold, and due to negligence");
+        sickness.setWhereOccurr("this happened on guard night shift");
+        sicknessRepository.save(sickness);
+
+
 
     }
 
