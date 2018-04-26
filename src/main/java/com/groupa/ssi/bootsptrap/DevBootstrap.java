@@ -5,6 +5,7 @@ package com.groupa.ssi.bootsptrap;
 
 
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
+import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
@@ -15,6 +16,7 @@ import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.usermanual.UserManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
+import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeAssignedRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
 import com.groupa.ssi.model.repository.sickness.SicknessRepository;
@@ -41,12 +43,14 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private SicknessRepository sicknessRepository;
     private PpeRepository ppeRepository;
     private ExistingPpeRepository existingPpeRepository;
+    private ExistingPpeAssignedRepository existingPpeAssignedRepository;
 
     public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository,
                         RoleRepository roleRepository, AccidentRepository accidentRepository,
                         SicknessRepository sicknessRepository, UserManualRepository userManualRepository,
                         PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository,
-                        PpeRepository ppeRepository, ExistingPpeRepository existingPpeRepository) {
+                        PpeRepository ppeRepository, ExistingPpeRepository existingPpeRepository,
+                        ExistingPpeAssignedRepository existingPpeAssignedRepository) {
             this.workItemRepository = workItemRepository;
             this.departmentRepository = departmentRepository;
             this.roleRepository = roleRepository;
@@ -57,6 +61,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             this.employeeRepository = employeeRepository;
             this.ppeRepository = ppeRepository;
             this.existingPpeRepository = existingPpeRepository;
+            this.existingPpeAssignedRepository = existingPpeAssignedRepository;
         }
 
         @Override
@@ -171,6 +176,15 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             constEmployee.setDepartmentEmployee(constDepartment);
             constEmployee.setHealthConditions("Good health");
             employeeRepository.save(constEmployee);
+
+            // Existing Personal protection equiment (Epp) assigned to employee
+            ExistingPpeAssigned existingPpeAssigned = new ExistingPpeAssigned();
+            existingPpeAssigned.setAssignedNotes("Asignado un casco en buen estado");
+            existingPpeAssigned.setAssignedDate(new Date());
+            existingPpeAssigned.setReturnNotes("");
+            existingPpeAssigned.setExistingPpe(existingPpe);
+            existingPpeAssigned.setEmployee(constEmployee);
+            existingPpeAssignedRepository.save(existingPpeAssigned);
 
         }
 
