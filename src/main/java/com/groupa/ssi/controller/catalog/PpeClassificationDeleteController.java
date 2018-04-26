@@ -33,7 +33,6 @@ public class PpeClassificationDeleteController extends PpeClassificationAbstract
     public SuccessRestResponse deletePpeClassification(@PathVariable Integer ppeClassificationId,
                                               @RequestParam(value = "userId") Integer userId) {
         service.deleteById(ppeClassificationId);
-
         return new SuccessRestResponse();
     }
 

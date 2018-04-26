@@ -1,7 +1,9 @@
 package com.groupa.ssi.controller.personalprotectionequipment;
 
 import com.groupa.ssi.common.response.rest.SingleRestResponse;
+import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.response.personalprotectionequipment.PpeResponse;
+import com.groupa.ssi.response.personalprotectionequipment.PpeResponseBuilder;
 import com.groupa.ssi.services.personalprotectionequipment.PpeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,12 +35,10 @@ public class PpeReadController extends PpeAbstractController {
     )
     public SingleRestResponse<PpeResponse> readPpe(@PathVariable Integer ppeId,
                                                                  @RequestParam(value = "userId") Integer userId) {
-        System.out.println(" Implementation pending... readPpe" );
-        return new SingleRestResponse<>(new PpeResponse());
-/*
+
         Ppe ppe = service.findById(ppeId);
         return new SingleRestResponse<>(PpeResponseBuilder.getInstance(ppe).build());
-*/
     }
+
 
 }

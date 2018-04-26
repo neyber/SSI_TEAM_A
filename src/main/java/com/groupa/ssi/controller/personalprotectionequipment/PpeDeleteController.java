@@ -1,6 +1,7 @@
 package com.groupa.ssi.controller.personalprotectionequipment;
 
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
+import com.groupa.ssi.services.personalprotectionequipment.PpeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,11 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class PpeDeleteController extends PpeAbstractController {
 
+    private PpeService service;
+
+    public PpeDeleteController(PpeService service){
+        this.service = service;
+    }
 
     @ApiOperation(value = "Delete personal protection equipment")
     @RequestMapping(
@@ -26,7 +32,7 @@ public class PpeDeleteController extends PpeAbstractController {
     )
     public SuccessRestResponse deletePpe(@PathVariable Integer ppeId,
                                               @RequestParam(value = "userId") Integer userId) {
-        System.out.println(" Implementation pending... deletePpe" );
+        service.deleteById(ppeId);
         return new SuccessRestResponse();
     }
 
