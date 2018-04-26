@@ -3,10 +3,17 @@
  */
 package com.groupa.ssi.bootsptrap;
 
+
+import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
+import com.groupa.ssi.model.repository.catalog.PpeClassificationRepository;
+import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.usermanual.UserManual;
+import com.groupa.ssi.model.domain.sickness.Sickness;
+import com.groupa.ssi.model.repository.sickness.SicknessRepository;
+import com.groupa.ssi.model.repository.accident.AccidentRepository;
 import com.groupa.ssi.model.repository.catalog.WorkItemRepository;
 import com.groupa.ssi.model.repository.personnel.DepartmentRepository;
 import com.groupa.ssi.model.repository.personnel.RoleRepository;
@@ -20,65 +27,104 @@ import java.util.Date;
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private WorkItemRepository workItemRepository;
     private DepartmentRepository departmentRepository;
+    private PpeClassificationRepository ppeClassificationRepository;
     private RoleRepository roleRepository;
+
     private UserManualRepository userManualRepository;
 
-    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository, RoleRepository roleRepository, UserManualRepository userManualRepository) {
-        this.workItemRepository = workItemRepository;
-        this.departmentRepository = departmentRepository;
-        this.roleRepository = roleRepository;
-        this.userManualRepository = userManualRepository;
+    private AccidentRepository accidentRepository;
+    private SicknessRepository sicknessRepository;
+
+    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository, RoleRepository roleRepository, AccidentRepository accidentRepository, SicknessRepository sicknessRepository, UserManualRepository userManualRepository,
+                PpeClassificationRepository ppeClassificationRepository) {
+            this.workItemRepository = workItemRepository;
+            this.departmentRepository = departmentRepository;
+            this.roleRepository = roleRepository;
+            this.accidentRepository = accidentRepository;
+            this.sicknessRepository = sicknessRepository;
+            this.ppeClassificationRepository = ppeClassificationRepository;
+            this.userManualRepository = userManualRepository;
+        }
+
+
+        @Override
+        public void onApplicationEvent(ContextRefreshedEvent applicationEvent) {
+            initData();
+        }
+
+        private void initData() {
+            // WorkItem
+            WorkItem workItem = new WorkItem();
+            workItem.setName("Casco");
+            workItem.setDescription("Casco de seguridad");
+            workItemRepository.save(workItem);
+
+            //Departments
+            Department constDepartment = new Department();
+            constDepartment.setName("Construccion");
+            constDepartment.setDescription("Departamento de trabajo de construccion y obras");
+            departmentRepository.save(constDepartment);
+
+            Department admDepartment = new Department();
+            admDepartment.setName("Administracion");
+            admDepartment.setDescription("Departamento de Administracion");
+            departmentRepository.save(admDepartment);
+
+            // Personal protection equiment (Epp)
+            PpeClassification skullProtection = new PpeClassification();
+            skullProtection.setName("Protección de cráneo");
+            skullProtection.setDescription("Son elementos que cubren totalmente el cráneo, protegiéndolo contra los" +
+                    "efectos de golpes, sustancias químicas, riesgos eléctricos y térmicos.");
+            ppeClassificationRepository.save(skullProtection);
+
+            //Roles
+            Role consRole = new Role();
+            consRole.setName("Constructor");
+            consRole.setDescription("Constructor de obra");
+            roleRepository.save(consRole);
+
+
+            Role admRole = new Role();
+            admRole.setName("Administrador de Personal");
+            admRole.setDescription("Administrador de personal");
+            roleRepository.save(admRole);
+
+            //Accident
+
+            Accident accident = new Accident();
+            accident.setDateAccident(new Date());
+            accident.setDescription("this is a critical accident that will cost a lot to the enterprise");
+            accident.setWhereOccurr("It occurred during the revision under maquinary");
+            accidentRepository.save(accident);
+
+            //Sickness
+            Sickness sickness = new Sickness();
+            sickness.setDateSickness(new Date());
+            sickness.setDescription("during the night duty shift and with inadequate clothing is that the employee has a cold, and due to negligence");
+            sickness.setWhereOccurr("this happened on guard night shift");
+            sicknessRepository.save(sickness);
+
+            //UserManual
+            UserManual constUserManual = new UserManual();
+            constUserManual.setName("Manual de seguridad1");
+            constUserManual.setPosition("Jefe de piso");
+            constUserManual.setHierarchicalLever("administrador");
+            constUserManual.setSuperiorBoss("gerente");
+            constUserManual.setDependentPersonal("empleados de planta");
+            constUserManual.setInternalRelation("relacion con gerencia");
+            constUserManual.setExternalRelation("relacion con el exterior");
+            constUserManual.setActivity("seguridad de planta");
+            constUserManual.setGeneralActivity("general activity");
+            constUserManual.setPrincipalFunction("seguridad de la empresa");
+            userManualRepository.save(constUserManual);
+
+
+
+
+
+        }
+
+
+
 
     }
-
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent applicationEvent) {
-        initData();
-    }
-
-    private void initData() {
-        // WorkItem
-        WorkItem workItem = new WorkItem();
-        workItem.setName("Casco");
-        workItem.setDescription("Casco de seguridad");
-        workItemRepository.save(workItem);
-
-        //Departments
-        Department constDepartment = new Department();
-        constDepartment.setName("Construccion");
-        constDepartment.setDescription("Departamento de trabajo de construccion y obras");
-        departmentRepository.save(constDepartment);
-
-        Department admDepartment = new Department();
-        admDepartment.setName("Administracion");
-        admDepartment.setDescription("Departamento de Administracion");
-        departmentRepository.save(admDepartment);
-
-        //Roles
-        Role consRole = new Role();
-        consRole.setName("Constructor");
-        consRole.setDescription("Constructor de obra");
-        roleRepository.save(consRole);
-
-        Role admRole = new Role();
-        admRole.setName("Administrador de Personal");
-        admRole.setDescription("Administrador de personal");
-        roleRepository.save(admRole);
-
-        //UserManual
-        UserManual constUserManual = new UserManual();
-        constUserManual.setName("Manual de seguridad1");
-        constUserManual.setPosition("Jefe de piso");
-        constUserManual.setHierarchicalLever("administrador");
-        constUserManual.setSuperiorBoss("gerente");
-        constUserManual.setDependentPersonal("empleados de planta");
-        constUserManual.setInternalRelation("relacion con gerencia");
-        constUserManual.setExternalRelation("relacion con el exterior");
-        constUserManual.setActivity("seguridad de planta");
-        constUserManual.setGeneralActivity("general activity");
-        constUserManual.setPrincipalFunction("seguridad de la empresa");
-        userManualRepository.save(constUserManual);
-
-    }
-
-}
