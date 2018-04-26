@@ -17,7 +17,7 @@ public class DepartmentDeleteController extends DepartmentAbstractController {
 
     @ApiOperation(value = "Delete Department")
     @RequestMapping(value = "/{departmentId}", method = RequestMethod.DELETE)
-    public SuccessRestResponse deleteDepartment(@PathVariable Long departmentId,
+    public SuccessRestResponse deleteDepartment(@PathVariable Integer departmentId,
                                                 @RequestParam(value = "userId") Integer userId){
         return new SuccessRestResponse();
     }
