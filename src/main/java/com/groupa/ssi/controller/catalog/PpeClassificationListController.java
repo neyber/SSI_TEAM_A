@@ -2,7 +2,6 @@ package com.groupa.ssi.controller.catalog;
 
 import com.groupa.ssi.common.response.rest.ListRestResponse;
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
-import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.response.catalog.PpeClassificationResponse;
 import com.groupa.ssi.services.catalog.PpeClassificationService;
 import io.swagger.annotations.Api;

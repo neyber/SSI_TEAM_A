@@ -2,7 +2,6 @@ package com.groupa.ssi.services.personalprotectionequipment;
 
 import com.groupa.ssi.exception.DomainEntityNotFoundException;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
-import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class PpeService {
     }
 
     public Ppe findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new DomainEntityNotFoundException(PpeClassification.class));
+        return repository.findById(id).orElseThrow(() -> new DomainEntityNotFoundException(Ppe.class));
     }
 
     public Ppe save(Ppe ppe) {
