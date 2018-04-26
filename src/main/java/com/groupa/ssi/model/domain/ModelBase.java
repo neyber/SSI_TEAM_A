@@ -18,6 +18,9 @@ public class ModelBase {
     @Column
     private Integer id;
 
+    @Column(nullable = false)
+    private Boolean isDeleted = false;
+
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column
@@ -38,6 +41,14 @@ public class ModelBase {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     public Date getCreatedOn() {
