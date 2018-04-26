@@ -1,4 +1,4 @@
-package com.groupa.ssi.model.repository;
+package com.groupa.ssi.model.repository.sickness;
 
 import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.sickness.Sickness;
