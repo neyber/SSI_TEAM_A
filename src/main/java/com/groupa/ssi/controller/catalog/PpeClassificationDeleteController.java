@@ -1,6 +1,7 @@
 package com.groupa.ssi.controller.catalog;
 
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
+import com.groupa.ssi.services.catalog.PpeClassificationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,11 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class PpeClassificationDeleteController extends PpeClassificationAbstractController {
 
+    private PpeClassificationService service;
+
+    public PpeClassificationDeleteController(PpeClassificationService ppeClassificationService){
+        this.service = ppeClassificationService;
+    }
 
     @ApiOperation(value = "Delete personal protection equipment classification")
     @RequestMapping(
@@ -26,7 +32,7 @@ public class PpeClassificationDeleteController extends PpeClassificationAbstract
     )
     public SuccessRestResponse deletePpeClassification(@PathVariable Integer ppeClassificationId,
                                               @RequestParam(value = "userId") Integer userId) {
-        System.out.println(" Implementation pending... deletePpeClassification" );
+        service.deleteById(ppeClassificationId);
         return new SuccessRestResponse();
     }
 
