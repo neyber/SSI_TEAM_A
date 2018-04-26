@@ -18,7 +18,7 @@ public class DepartmentReadController extends DepartmentAbstractController{
 
     @ApiOperation(value = "Read/View Department")
     @RequestMapping(value = "/{departmentId}", method = RequestMethod.GET)
-    public SingleRestResponse<DepartmentResponse> readWorkItem(@PathVariable Long departmentId, @RequestParam(value = "userId") Integer userId){
+    public SingleRestResponse<DepartmentResponse> readDepartment(@PathVariable Integer departmentId, @RequestParam(value = "userId") Integer userId){
         return new SingleRestResponse<>(new DepartmentResponse());
     }
 }
