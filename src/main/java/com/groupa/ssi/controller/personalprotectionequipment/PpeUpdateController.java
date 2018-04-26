@@ -32,7 +32,7 @@ public class PpeUpdateController extends PpeAbstractController {
             value = "/{ppeId}",
             method = RequestMethod.PUT
     )
-    public SuccessRestResponse updatePpeClassification(@PathVariable Integer ppeId,
+    public SuccessRestResponse updatePpe(@PathVariable Integer ppeId,
                                               @RequestBody PpeRequest ppeRequest,
                                               @RequestParam(value = "userId") Integer userId) {
         Ppe ppe = service.findById(ppeId);
