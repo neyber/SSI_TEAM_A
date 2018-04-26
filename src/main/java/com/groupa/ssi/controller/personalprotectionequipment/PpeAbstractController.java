@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Walker Colina
  */
 @RequestMapping(value = PpeAbstractController.PATH)
-public class PpeAbstractController {
+public abstract class PpeAbstractController {
     public static final String PATH = Constants.SSI_BASE_PATH + "/ppes";
 
     public static final String TAG_NAME = "Ppes";

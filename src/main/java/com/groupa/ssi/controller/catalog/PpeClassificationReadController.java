@@ -1,7 +1,9 @@
 package com.groupa.ssi.controller.catalog;
 
 import com.groupa.ssi.common.response.rest.SingleRestResponse;
+import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.response.catalog.PpeClassificationResponse;
+import com.groupa.ssi.response.catalog.PpeClassificationResponseBuilder;
 import com.groupa.ssi.services.catalog.PpeClassificationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,12 +35,8 @@ public class PpeClassificationReadController extends PpeClassificationAbstractCo
     )
     public SingleRestResponse<PpeClassificationResponse> readPpeClassification(@PathVariable Integer ppeClassificationId,
                                                                                @RequestParam(value = "userId") Integer userId) {
-        System.out.println(" Implementation pending... readPpeClassification" );
-        return new SingleRestResponse<>(new PpeClassificationResponse());
-/*
         PpeClassification ppeClassification = service.findById(ppeClassificationId);
-        return new SingleRestResponse<>(PpeClassificationResponseBuilder.getInstance(ppeClassification).build());
-*/
+        return new SingleRestResponse(PpeClassificationResponseBuilder.getInstance(ppeClassification).build());
     }
 
 }

@@ -1,7 +1,9 @@
 package com.groupa.ssi.controller.catalog;
 
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
+import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.request.catalog.PpeClassificationRequest;
+import com.groupa.ssi.services.catalog.PpeClassificationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,12 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class PpeClassificationUpdateController extends PpeClassificationAbstractController {
 
+    private PpeClassificationService service;
+
+    public PpeClassificationUpdateController(PpeClassificationService service) {
+        this.service = service;
+    }
+
 
     @ApiOperation(value = "Update personal protection equipment classification")
     @RequestMapping(
@@ -28,7 +36,11 @@ public class PpeClassificationUpdateController extends PpeClassificationAbstract
     public SuccessRestResponse updatePpeClassification(@PathVariable Integer ppeClassificationId,
                                               @RequestBody PpeClassificationRequest ppeClassificationRequest,
                                               @RequestParam(value = "userId") Integer userId) {
-        System.out.println(" Implementation pending... updatePpeClassification" );
+        PpeClassification ppeClassification = service.findById(ppeClassificationId);
+        ppeClassification.setName(ppeClassificationRequest.getName());
+        ppeClassification.setDescription(ppeClassificationRequest.getDescription());
+        service.save(ppeClassification);
+
         return new SuccessRestResponse();
     }
 
