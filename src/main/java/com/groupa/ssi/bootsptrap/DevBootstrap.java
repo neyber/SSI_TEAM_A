@@ -4,6 +4,9 @@
 package com.groupa.ssi.bootsptrap;
 
 
+import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
+import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
+import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
@@ -13,6 +16,9 @@ import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.usermanual.UserManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
+import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeAssignedRepository;
+import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRepository;
+import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
 import com.groupa.ssi.model.repository.sickness.SicknessRepository;
 import com.groupa.ssi.model.repository.accident.AccidentRepository;
 import com.groupa.ssi.model.repository.catalog.WorkItemRepository;
@@ -35,9 +41,16 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private UserManualRepository userManualRepository;
     private AccidentRepository accidentRepository;
     private SicknessRepository sicknessRepository;
+    private PpeRepository ppeRepository;
+    private ExistingPpeRepository existingPpeRepository;
+    private ExistingPpeAssignedRepository existingPpeAssignedRepository;
 
-    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository, RoleRepository roleRepository, AccidentRepository accidentRepository, SicknessRepository sicknessRepository, UserManualRepository userManualRepository,
-                PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository) {
+    public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository,
+                        RoleRepository roleRepository, AccidentRepository accidentRepository,
+                        SicknessRepository sicknessRepository, UserManualRepository userManualRepository,
+                        PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository,
+                        PpeRepository ppeRepository, ExistingPpeRepository existingPpeRepository,
+                        ExistingPpeAssignedRepository existingPpeAssignedRepository) {
             this.workItemRepository = workItemRepository;
             this.departmentRepository = departmentRepository;
             this.roleRepository = roleRepository;
@@ -46,6 +59,9 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             this.ppeClassificationRepository = ppeClassificationRepository;
             this.userManualRepository = userManualRepository;
             this.employeeRepository = employeeRepository;
+            this.ppeRepository = ppeRepository;
+            this.existingPpeRepository = existingPpeRepository;
+            this.existingPpeAssignedRepository = existingPpeAssignedRepository;
         }
 
         @Override
@@ -71,12 +87,28 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             admDepartment.setDescription("Departamento de Administracion");
             departmentRepository.save(admDepartment);
 
-            // Personal protection equiment (Epp)
+            // Classification Personal protection equiment (classification Epp)
             PpeClassification skullProtection = new PpeClassification();
             skullProtection.setName("Protección de cráneo");
             skullProtection.setDescription("Son elementos que cubren totalmente el cráneo, protegiéndolo contra los" +
                     "efectos de golpes, sustancias químicas, riesgos eléctricos y térmicos.");
             ppeClassificationRepository.save(skullProtection);
+
+            // Personal protection equiment (Epp)
+            Ppe headProtecction = new Ppe();
+            headProtecction.setName("Casco");
+            headProtecction.setDescription("Protege contra golpes en la cabeza.");
+            headProtecction.setPpeClassification(skullProtection);
+            ppeRepository.save(headProtecction);
+
+            // Existing Personal protection equiment (Epp)
+            ExistingPpe existingPpe = new ExistingPpe();
+            existingPpe.setDetail("10101-CA");
+            existingPpe.setLifeTimeDays(100);
+            existingPpe.setCurrentLifeTimeDays(100);
+            existingPpe.setPurchaseDate(new Date());
+            existingPpe.setPpe(headProtecction);
+            existingPpeRepository.save(existingPpe);
 
             //Roles
             Role consRole = new Role();
@@ -144,6 +176,15 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             constEmployee.setDepartmentEmployee(constDepartment);
             constEmployee.setHealthConditions("Good health");
             employeeRepository.save(constEmployee);
+
+            // Existing Personal protection equiment (Epp) assigned to employee
+            ExistingPpeAssigned existingPpeAssigned = new ExistingPpeAssigned();
+            existingPpeAssigned.setAssignedNotes("Asignado un casco en buen estado");
+            existingPpeAssigned.setAssignedDate(new Date());
+            existingPpeAssigned.setReturnNotes("");
+            existingPpeAssigned.setExistingPpe(existingPpe);
+            existingPpeAssigned.setEmployee(constEmployee);
+            existingPpeAssignedRepository.save(existingPpeAssigned);
 
         }
 

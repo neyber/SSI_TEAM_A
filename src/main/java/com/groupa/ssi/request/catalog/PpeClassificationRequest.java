@@ -1,5 +1,8 @@
 package com.groupa.ssi.request.catalog;
-
+/**
+ * Created on April 25, 2018
+ * @author Walker Colina
+ */
 public class PpeClassificationRequest {
 
     private String name;

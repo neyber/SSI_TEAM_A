@@ -2,7 +2,11 @@ package com.groupa.ssi.response.catalog;
 
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
 
-public class PpeClassificationResponseBuilder {
+/**
+ * Created on April 25, 2018
+ * @author Walker Colina
+ */
+public final class PpeClassificationResponseBuilder {
 
     private String name;
     private String description;

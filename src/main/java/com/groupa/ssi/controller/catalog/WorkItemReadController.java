@@ -1,5 +1,6 @@
 package com.groupa.ssi.controller.catalog;
 
+import com.groupa.ssi.cmd.catalog.WorkItemReadCmd;
 import com.groupa.ssi.common.response.rest.SingleRestResponse;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.response.catalog.WorkItemResponse;
@@ -21,10 +22,10 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class WorkItemReadController extends WorkItemAbstractController {
 
-    private WorkItemService service;
+    private WorkItemReadCmd cmd;
 
-    public WorkItemReadController(WorkItemService service) {
-        this.service = service;
+    public WorkItemReadController(WorkItemReadCmd cmd) {
+        this.cmd = cmd;
     }
 
     @ApiOperation(value = "Read a work item")
@@ -34,12 +35,11 @@ public class WorkItemReadController extends WorkItemAbstractController {
     )
     public SingleRestResponse<WorkItemResponse> readWorkItem(@PathVariable Integer workItemId,
                                                              @RequestParam(value = "userId") Integer userId) {
-        System.out.println(" Implementation pending... readWorkItem" );
-        return new SingleRestResponse<>(new WorkItemResponse());
-/*
-        WorkItem workItem = service.findById(workItemId);
-        return new SingleRestResponse<>(WorkItemResponseBuilder.getInstance(workItem).build());
-*/
+
+        cmd.setWorkItemId(workItemId);
+        cmd.execute();
+
+        return new SingleRestResponse<>(WorkItemResponseBuilder.getInstance(cmd.getWorkItem()).build());
     }
 
 }
