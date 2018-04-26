@@ -4,24 +4,30 @@ import java.util.Date;
 
 /**
  * @author Miguel Rojas
- * @Modified by Linet Torrico
  */
 public class WorkItemRequest {
 
     private String name;
     private String description;
-
     private String type;
     private String status;
     private Date purchaseDate;
     private String serieNo;
 
-    public String getSerieNo() {
-        return serieNo;
+    public String getName() {
+        return name;
     }
 
-    public void setSerieNo(String serieNo) {
-        this.serieNo = serieNo;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getType() {
@@ -48,19 +54,11 @@ public class WorkItemRequest {
         this.purchaseDate = purchaseDate;
     }
 
-    public String getName() {
-        return name;
+    public String getSerieNo() {
+        return serieNo;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSerieNo(String serieNo) {
+        this.serieNo = serieNo;
     }
 }

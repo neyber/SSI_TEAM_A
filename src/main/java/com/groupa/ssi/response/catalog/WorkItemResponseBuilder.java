@@ -6,35 +6,47 @@ import java.util.Date;
 
 /**
  * @author Miguel Rojas
- * @modified by Linet Torrico
  */
 public final class WorkItemResponseBuilder {
 
+    private Integer workItemId;
     private String name;
     private String description;
-
     private String type;
     private String status;
     private Date purchaseDate;
     private String serieNo;
-
-
 
     private WorkItemResponseBuilder() {
     }
 
     public WorkItemResponse build() {
         WorkItemResponse workItemResponse = new WorkItemResponse();
+        workItemResponse.setWorkItemId(workItemId);
         workItemResponse.setName(name);
         workItemResponse.setDescription(description);
+        workItemResponse.setType(type);
+        workItemResponse.setStatus(status);
+        workItemResponse.setPurchaseDate(purchaseDate);
+        workItemResponse.setSerieNo(serieNo);
 
         return workItemResponse;
     }
 
     public static WorkItemResponseBuilder getInstance(WorkItem workItem) {
         return new WorkItemResponseBuilder()
+                .setWorkItemId(workItem.getWorkItemId())
                 .setName(workItem.getName())
-                .setDescription(workItem.getDescription());
+                .setDescription(workItem.getDescription())
+                .setType(workItem.getType())
+                .setStatus(workItem.getStatus())
+                .setPurchaseDate(workItem.getPurchaseDate())
+                .setSerieNo(workItem.getSerieNo());
+    }
+
+    public WorkItemResponseBuilder setWorkItemId(Integer workItemId) {
+        this.workItemId = workItemId;
+        return this;
     }
 
     public WorkItemResponseBuilder setName(String name) {
