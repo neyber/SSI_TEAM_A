@@ -4,6 +4,7 @@
 package com.groupa.ssi.bootsptrap;
 
 
+import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
@@ -13,6 +14,7 @@ import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.usermanual.UserManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
+import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
 import com.groupa.ssi.model.repository.sickness.SicknessRepository;
 import com.groupa.ssi.model.repository.accident.AccidentRepository;
 import com.groupa.ssi.model.repository.catalog.WorkItemRepository;
@@ -35,9 +37,11 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private UserManualRepository userManualRepository;
     private AccidentRepository accidentRepository;
     private SicknessRepository sicknessRepository;
+    private PpeRepository ppeRepository;
 
     public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository, RoleRepository roleRepository, AccidentRepository accidentRepository, SicknessRepository sicknessRepository, UserManualRepository userManualRepository,
-                PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository) {
+                PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository,
+                        PpeRepository ppeRepository) {
             this.workItemRepository = workItemRepository;
             this.departmentRepository = departmentRepository;
             this.roleRepository = roleRepository;
@@ -46,6 +50,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             this.ppeClassificationRepository = ppeClassificationRepository;
             this.userManualRepository = userManualRepository;
             this.employeeRepository = employeeRepository;
+            this.ppeRepository = ppeRepository;
         }
 
         @Override
@@ -71,12 +76,19 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             admDepartment.setDescription("Departamento de Administracion");
             departmentRepository.save(admDepartment);
 
-            // Personal protection equiment (Epp)
+            // Classification Personal protection equiment (classification Epp)
             PpeClassification skullProtection = new PpeClassification();
             skullProtection.setName("Protección de cráneo");
             skullProtection.setDescription("Son elementos que cubren totalmente el cráneo, protegiéndolo contra los" +
                     "efectos de golpes, sustancias químicas, riesgos eléctricos y térmicos.");
             ppeClassificationRepository.save(skullProtection);
+
+            // Personal protection equiment (Epp)
+            Ppe headProtecction = new Ppe();
+            headProtecction.setName("Casco");
+            headProtecction.setDescription("Protege contra golpes en la cabeza.");
+            headProtecction.setPpeClassification(skullProtection);
+            ppeRepository.save(headProtecction);
 
             //Roles
             Role consRole = new Role();
