@@ -19,7 +19,7 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class PpeClassificationCreateController extends PpeClassificationAbstractController {
 
-    @ApiOperation(value = "Create personal protection equipment")
+    @ApiOperation(value = "Create personal protection equipment classification")
     @RequestMapping(
             method = RequestMethod.POST
     )

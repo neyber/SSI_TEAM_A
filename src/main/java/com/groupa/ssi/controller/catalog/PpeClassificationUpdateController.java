@@ -20,7 +20,7 @@ import org.springframework.web.context.annotation.RequestScope;
 public class PpeClassificationUpdateController extends PpeClassificationAbstractController {
 
 
-    @ApiOperation(value = "Update personal protection equipment")
+    @ApiOperation(value = "Update personal protection equipment classification")
     @RequestMapping(
             value = "/{ppeClassificationId}",
             method = RequestMethod.PUT
