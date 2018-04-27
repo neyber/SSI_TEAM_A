@@ -20,18 +20,15 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class WorkItemCreateController extends WorkItemAbstractController {
 
+    @Autowired
     private WorkItemCreateCmd cmd;
-
-    public WorkItemCreateController(WorkItemCreateCmd cmd) {
-        this.cmd = cmd;
-    }
 
     @ApiOperation(value = "Create work item")
     @RequestMapping(
             method = RequestMethod.POST
     )
     public SuccessRestResponse createWorkItem(@RequestBody WorkItemRequest workItemRequest,
-                                              @RequestParam(value = "userId") Integer userId) {
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
 
         cmd.setWorkItemRequest(workItemRequest);
         cmd.execute();
