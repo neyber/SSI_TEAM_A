@@ -8,6 +8,7 @@ import com.groupa.ssi.response.catalog.WorkItemResponseBuilder;
 import com.groupa.ssi.services.catalog.WorkItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -22,11 +23,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class WorkItemReadController extends WorkItemAbstractController {
 
+    @Autowired
     private WorkItemReadCmd cmd;
-
-    public WorkItemReadController(WorkItemReadCmd cmd) {
-        this.cmd = cmd;
-    }
 
     @ApiOperation(value = "Read a work item")
     @RequestMapping(
@@ -34,7 +32,7 @@ public class WorkItemReadController extends WorkItemAbstractController {
             method = RequestMethod.GET
     )
     public SingleRestResponse<WorkItemResponse> readWorkItem(@PathVariable Integer workItemId,
-                                                             @RequestParam(value = "userId") Integer userId) {
+                                                             @RequestParam(value = "userId", required = false) Integer userId) {
 
         cmd.setWorkItemId(workItemId);
         cmd.execute();

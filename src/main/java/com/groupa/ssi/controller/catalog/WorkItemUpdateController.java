@@ -5,6 +5,7 @@ import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import com.groupa.ssi.request.catalog.WorkItemRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -19,11 +20,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class WorkItemUpdateController extends WorkItemAbstractController {
 
+    @Autowired
     private WorkItemUpdateCmd cmd;
-
-    public WorkItemUpdateController(WorkItemUpdateCmd cmd) {
-        this.cmd = cmd;
-    }
 
     @ApiOperation(value = "Update work item")
     @RequestMapping(
@@ -32,7 +30,7 @@ public class WorkItemUpdateController extends WorkItemAbstractController {
     )
     public SuccessRestResponse updateWorkItem(@PathVariable Integer workItemId,
                                               @RequestBody WorkItemRequest workItemRequest,
-                                              @RequestParam(value = "userId") Integer userId) {
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
 
         cmd.setWorkItemId(workItemId);
         cmd.setWorkItemRequest(workItemRequest);
