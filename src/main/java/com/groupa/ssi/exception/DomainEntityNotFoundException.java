@@ -1,9 +1,11 @@
 package com.groupa.ssi.exception;
 
+import com.groupa.ssi.common.exception.DefaultSSIRuntimeException;
+
 /**
  * @author Miguel Rojas
  */
-public class DomainEntityNotFoundException extends RuntimeException {
+public class DomainEntityNotFoundException extends DefaultSSIRuntimeException {
 
     private Class entityClazz;
 
