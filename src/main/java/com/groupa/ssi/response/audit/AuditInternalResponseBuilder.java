@@ -5,7 +5,7 @@ import com.groupa.ssi.model.domain.audit.AuditInternal;
 /**
  * @author Neyber Rojas Zapata
  */
-public class AuditInternalResponseBuilder {
+public final class AuditInternalResponseBuilder {
 
     private String auditInternalName;
     private String auditInternalCode;

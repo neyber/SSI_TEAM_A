@@ -5,7 +5,7 @@ import com.groupa.ssi.model.domain.audit.AuditExternal;
 /**
  * @author Neyber Rojas Zapata
  */
-public class AuditExternalResponseBuilder {
+public final class AuditExternalResponseBuilder {
 
     private String auditExternalName;
     private String auditExternalCode;
