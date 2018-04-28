@@ -6,7 +6,7 @@ import com.groupa.ssi.model.domain.personnel.Role;
  * @author Lizeth Salazar
  */
 
-public class RoleResponseBuilder {
+public final class RoleResponseBuilder {
     private String name;
     private String description;
 
@@ -27,11 +27,13 @@ public class RoleResponseBuilder {
 
     }
 
-    public void setName(String name) {
+    public RoleResponseBuilder setName(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setDescription(String description) {
+    public RoleResponseBuilder setDescription(String description) {
         this.description = description;
+        return this;
     }
 }

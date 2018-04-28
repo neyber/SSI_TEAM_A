@@ -20,7 +20,8 @@ public class EmployeeResponse {
     private Role roleEmployee;
     private Employee supervisor;
     private Department departmentEmployee;
-    private String healthConditions;
+    private String healthConditionStartingAtCompany;
+    private Byte[] photo;
 
     public Long getIdentificationNumber() {
         return identificationNumber;
@@ -94,11 +95,19 @@ public class EmployeeResponse {
         this.departmentEmployee = departmentEmployee;
     }
 
-    public String getHealthConditions() {
-        return healthConditions;
+    public String getHealthConditionStartingAtCompany() {
+        return healthConditionStartingAtCompany;
     }
 
-    public void setHealthConditions(String healthConditions) {
-        this.healthConditions = healthConditions;
+    public void setHealthConditionStartingAtCompany(String healthConditionStartingAtCompany) {
+        this.healthConditionStartingAtCompany = healthConditionStartingAtCompany;
+    }
+
+    public Byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Byte[] photo) {
+        this.photo = photo;
     }
 }

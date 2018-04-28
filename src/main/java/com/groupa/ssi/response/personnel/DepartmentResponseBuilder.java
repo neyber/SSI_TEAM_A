@@ -28,11 +28,13 @@ public final class DepartmentResponseBuilder {
         return departmentResponseBuilder;
     }
 
-    public void setName(String name) {
+    public DepartmentResponseBuilder setName(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setDescription(String description) {
+    public DepartmentResponseBuilder setDescription(String description) {
         this.description = description;
+        return this;
     }
 }

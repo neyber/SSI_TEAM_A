@@ -3,6 +3,9 @@ package com.groupa.ssi.services.personnel;
 import com.groupa.ssi.exception.DomainEntityNotFoundException;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.repository.personnel.RoleRepository;
+import com.groupa.ssi.services.common.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,28 +16,11 @@ import java.util.List;
  */
 
 @Service
-public class RoleService {
+public class RoleService extends GenericService<Role> {
+
+    @Autowired
     private RoleRepository roleRepository;
 
-    public RoleService(RoleRepository roleRepository){
-        this.roleRepository = roleRepository;
-    }
-
-    public List<Role> findAll(){
-        List<Role> roles = new ArrayList();
-        roleRepository.findAll().forEach(roles::add);
-        return roles;
-    }
-
-    public Role findById(Integer roleId){
-        return roleRepository.findById(roleId).orElseThrow(() -> new DomainEntityNotFoundException(Role.class));
-    }
-
-    public Role save(Role role){
-        return roleRepository.save(role);
-    }
-
-    public void deleteById(Integer roleId){
-        roleRepository.deleteById(roleId);
-    }
+    @Override
+    protected JpaRepository<Role, Integer> getRepository() {return roleRepository;}
 }
