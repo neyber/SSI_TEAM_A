@@ -1,9 +1,11 @@
 package com.groupa.ssi.model.domain.audit;
 
 import com.groupa.ssi.model.domain.ModelBase;
+import com.groupa.ssi.model.domain.personnel.Employee;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Neyber Rojas Zapata
@@ -23,6 +25,8 @@ public class Audit extends ModelBase {
     private String auditObjective;
     @Column
     private String auditCriteria;
+    @ManyToOne
+    private Employee employee;
 
     public String getAuditName() {
         return auditName;
@@ -70,5 +74,13 @@ public class Audit extends ModelBase {
 
     public void setAuditCriteria(String auditCriteria) {
         this.auditCriteria = auditCriteria;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

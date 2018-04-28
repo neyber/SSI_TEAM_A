@@ -1,6 +1,7 @@
 package com.groupa.ssi.response.audit;
 
 import com.groupa.ssi.model.domain.audit.Audit;
+import com.groupa.ssi.model.domain.personnel.Employee;
 
 /**
  * @author Neyber Rojas Zapata
@@ -13,6 +14,7 @@ public final class AuditResponseBuilder {
     private String auditScope;
     private String auditObjective;
     private String auditCriteria;
+    private Employee employee;
 
     private AuditResponseBuilder() {
 
@@ -26,6 +28,7 @@ public final class AuditResponseBuilder {
         auditResponse.setAuditScope(auditScope);
         auditResponse.setAuditObjective(auditObjective);
         auditResponse.setAuditCriteria(auditCriteria);
+        auditResponse.setEmployee(employee);
 
         return auditResponse;
     }
@@ -37,7 +40,8 @@ public final class AuditResponseBuilder {
                 .setAuditType(audit.getAuditType())
                 .setAuditScope(audit.getAuditScope())
                 .setAuditObjective(audit.getAuditObjective())
-                .setAuditCriteria(audit.getAuditCriteria());
+                .setAuditCriteria(audit.getAuditCriteria())
+                .setEmployee(audit.getEmployee());
     }
 
     public AuditResponseBuilder setAuditName(String auditName) {
@@ -67,6 +71,11 @@ public final class AuditResponseBuilder {
 
     public AuditResponseBuilder setAuditCriteria(String auditCriteria) {
         this.auditCriteria = auditCriteria;
+        return this;
+    }
+
+    public AuditResponseBuilder setEmployee(Employee employee) {
+        this.employee = employee;
         return this;
     }
 }

@@ -1,9 +1,9 @@
 package com.groupa.ssi.controller.audit;
 
+import com.groupa.ssi.cmd.audit.AuditListCmd;
 import com.groupa.ssi.common.response.rest.ListRestResponse;
-import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.response.audit.AuditResponse;
-import com.groupa.ssi.services.audit.AuditService;
+import com.groupa.ssi.response.audit.AuditResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Neyber Rojas Zapata
@@ -25,10 +26,10 @@ import java.util.List;
 @RequestScope
 public class AuditListController extends AuditAbstractController {
 
-    private AuditService auditService;
+    private AuditListCmd auditListCmd;
 
-    public AuditListController(AuditService auditService) {
-        this.auditService = auditService;
+    public AuditListController(AuditListCmd auditListCmd) {
+        this.auditListCmd = auditListCmd;
     }
 
     @ApiOperation(value = "List of audits")
@@ -36,8 +37,12 @@ public class AuditListController extends AuditAbstractController {
             method = RequestMethod.GET
     )
     public ListRestResponse<AuditResponse> getAuditList(@RequestParam(value = "userId") Integer userId) {
-        List<Audit> auditList = auditService.findAll();
+        auditListCmd.execute();
 
-        return new ListRestResponse(auditList);
+        List<AuditResponse> auditResponses = auditListCmd.getAuditList().stream()
+                .map(instance -> AuditResponseBuilder.getInstance(instance).build())
+                .collect(Collectors.toList());
+
+        return new ListRestResponse<>(auditResponses);
     }
 }

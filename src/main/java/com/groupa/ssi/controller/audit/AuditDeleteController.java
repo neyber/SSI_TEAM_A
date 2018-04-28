@@ -1,7 +1,7 @@
 package com.groupa.ssi.controller.audit;
 
+import com.groupa.ssi.cmd.audit.AuditDeleteCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
-import com.groupa.ssi.services.audit.AuditService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +18,10 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class AuditDeleteController extends AuditAbstractController {
 
-    private AuditService auditService;
+    private AuditDeleteCmd auditDeleteCmd;
 
-    public AuditDeleteController(AuditService auditService) {
-        this.auditService = auditService;
+    public AuditDeleteController(AuditDeleteCmd auditDeleteCmd) {
+        this.auditDeleteCmd = auditDeleteCmd;
     }
 
     @ApiOperation(value = "Delete audit")
@@ -30,8 +30,8 @@ public class AuditDeleteController extends AuditAbstractController {
             method = RequestMethod.DELETE
     )
     public SuccessRestResponse deleteAudit(@PathVariable Integer auditId, @RequestParam(value = "userId") Integer userId) {
-        auditService.deletedById(auditId);
-
+        auditDeleteCmd.setAuditId(auditId);
+        auditDeleteCmd.execute();
         return new SuccessRestResponse();
     }
 }

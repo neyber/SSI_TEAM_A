@@ -1,5 +1,7 @@
 package com.groupa.ssi.response.audit;
 
+import com.groupa.ssi.model.domain.personnel.Employee;
+
 /**
  * @author Neyber Rojas Zapata
  */
@@ -11,6 +13,7 @@ public class AuditResponse {
     private String auditScope;
     private String auditObjective;
     private String auditCriteria;
+    private Employee employee;
 
     public String getAuditName() {
         return auditName;
@@ -58,5 +61,13 @@ public class AuditResponse {
 
     public void setAuditCriteria(String auditCriteria) {
         this.auditCriteria = auditCriteria;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

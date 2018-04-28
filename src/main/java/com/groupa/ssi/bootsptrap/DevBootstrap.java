@@ -4,6 +4,7 @@
 package com.groupa.ssi.bootsptrap;
 
 
+import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
@@ -11,6 +12,8 @@ import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
+import com.groupa.ssi.model.repository.audit.AuditRepository;
+import com.groupa.ssi.model.repository.audit.SafetyRuleRepository;
 import com.groupa.ssi.model.repository.catalog.PpeClassificationRepository;
 import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
@@ -44,13 +47,15 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private PpeRepository ppeRepository;
     private ExistingPpeRepository existingPpeRepository;
     private ExistingPpeAssignedRepository existingPpeAssignedRepository;
+    private AuditRepository auditRepository;
+    private SafetyRuleRepository safetyRuleRepository;
 
     public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository,
                         RoleRepository roleRepository, AccidentRepository accidentRepository,
                         SicknessRepository sicknessRepository, UserManualRepository userManualRepository,
                         PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository,
                         PpeRepository ppeRepository, ExistingPpeRepository existingPpeRepository,
-                        ExistingPpeAssignedRepository existingPpeAssignedRepository) {
+                        ExistingPpeAssignedRepository existingPpeAssignedRepository, AuditRepository auditRepository, SafetyRuleRepository safetyRuleRepository) {
             this.workItemRepository = workItemRepository;
             this.departmentRepository = departmentRepository;
             this.roleRepository = roleRepository;
@@ -62,6 +67,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             this.ppeRepository = ppeRepository;
             this.existingPpeRepository = existingPpeRepository;
             this.existingPpeAssignedRepository = existingPpeAssignedRepository;
+            this.auditRepository = auditRepository;
+            this.safetyRuleRepository = safetyRuleRepository;
         }
 
         @Override
@@ -186,6 +193,16 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             existingPpeAssigned.setEmployee(constEmployee);
             existingPpeAssignedRepository.save(existingPpeAssigned);
 
+            // Audit register by employee
+            Audit audit = new Audit();
+            audit.setAuditName("Auditoria Test 1");
+            audit.setAuditCode("AUD-INT-001");
+            audit.setAuditType("INTERNA");
+            audit.setAuditScope("Some scope");
+            audit.setAuditCriteria("Some criteria");
+            audit.setAuditObjective("Some objectives");
+            audit.setEmployee(constEmployee);
+            auditRepository.save(audit);
         }
 
 

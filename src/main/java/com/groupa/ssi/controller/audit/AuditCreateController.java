@@ -1,9 +1,8 @@
 package com.groupa.ssi.controller.audit;
 
+import com.groupa.ssi.cmd.audit.AuditCreateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
-import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.request.audit.AuditRequest;
-import com.groupa.ssi.services.audit.AuditService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +19,10 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class AuditCreateController extends AuditAbstractController {
 
-    private AuditService auditService;
+    private AuditCreateCmd auditCreateCmd;
 
-    public AuditCreateController(AuditService auditService) {
-        this.auditService = auditService;
+    public AuditCreateController(AuditCreateCmd auditCreateCmd) {
+        this.auditCreateCmd = auditCreateCmd;
     }
 
     @ApiOperation(value = "Create audit")
@@ -31,14 +30,8 @@ public class AuditCreateController extends AuditAbstractController {
             method = RequestMethod.POST
     )
     public SuccessRestResponse createAudit(@RequestBody AuditRequest auditRequest, @RequestParam(value = "userId") Integer userId) {
-        Audit audit = new Audit();
-        audit.setAuditName(auditRequest.getAuditName());
-        audit.setAuditCode(auditRequest.getAuditCode());
-        audit.setAuditType(auditRequest.getAuditType());
-        audit.setAuditScope(auditRequest.getAuditScope());
-        audit.setAuditObjective(auditRequest.getAuditObjective());
-        audit.setAuditCriteria(auditRequest.getAuditCriteria());
-
+        auditCreateCmd.setAuditRequest(auditRequest);
+        auditCreateCmd.execute();
         return new SuccessRestResponse();
     }
 }

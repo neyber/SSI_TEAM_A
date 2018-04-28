@@ -1,5 +1,6 @@
 package com.groupa.ssi.controller.audit;
 
+import com.groupa.ssi.cmd.audit.AuditUpdateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.request.audit.AuditRequest;
@@ -20,10 +21,10 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class AuditUpdateController extends AuditAbstractController {
 
-    private AuditService auditService;
+    private AuditUpdateCmd auditUpdateCmd;
 
-    public AuditUpdateController(AuditService auditService) {
-        this.auditService = auditService;
+    public AuditUpdateController(AuditUpdateCmd auditUpdateCmd) {
+        this.auditUpdateCmd = auditUpdateCmd;
     }
 
     @ApiOperation(value = "Update audit")
@@ -32,15 +33,9 @@ public class AuditUpdateController extends AuditAbstractController {
             method = RequestMethod.PUT
     )
     public SuccessRestResponse updateAudit(@PathVariable Integer auditId, @RequestBody AuditRequest auditRequest, @RequestParam(value = "userId") Integer userId) {
-        Audit audit = auditService.findById(auditId);
-        audit.setAuditName(auditRequest.getAuditName());
-        audit.setAuditCode(auditRequest.getAuditCode());
-        audit.setAuditType(auditRequest.getAuditType());
-        audit.setAuditScope(auditRequest.getAuditScope());
-        audit.setAuditObjective(auditRequest.getAuditObjective());
-        audit.setAuditCriteria(auditRequest.getAuditCriteria());
-        auditService.save(audit);
-
+        auditUpdateCmd.setAuditId(auditId);
+        auditUpdateCmd.setAuditRequest(auditRequest);
+        auditUpdateCmd.execute();
         return new SuccessRestResponse();
     }
 }

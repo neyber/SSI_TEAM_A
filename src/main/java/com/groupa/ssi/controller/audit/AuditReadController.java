@@ -1,5 +1,6 @@
 package com.groupa.ssi.controller.audit;
 
+import com.groupa.ssi.cmd.audit.AuditReadCmd;
 import com.groupa.ssi.common.response.rest.SingleRestResponse;
 import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.response.audit.AuditResponse;
@@ -21,10 +22,10 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class AuditReadController extends AuditAbstractController {
 
-    private AuditService auditService;
+    private AuditReadCmd auditReadCmd;
 
-    public AuditReadController(AuditService auditService) {
-        this.auditService = auditService;
+    public AuditReadController(AuditReadCmd auditReadCmd) {
+        this.auditReadCmd = auditReadCmd;
     }
 
     @ApiOperation(value = "Read an audit")
@@ -33,8 +34,8 @@ public class AuditReadController extends AuditAbstractController {
             method = RequestMethod.GET
     )
     public SingleRestResponse<AuditResponse> readAudit(@PathVariable Integer auditId, @RequestParam(value = "userId") Integer userId) {
-        Audit audit = auditService.findById(auditId);
-
-        return new SingleRestResponse<>(AuditResponseBuilder.getInstance(audit).build());
+        auditReadCmd.setAuditId(auditId);
+        auditReadCmd.execute();
+        return new SingleRestResponse<>(AuditResponseBuilder.getInstance(auditReadCmd.getAudit()).build());
     }
 }

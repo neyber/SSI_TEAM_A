@@ -34,7 +34,7 @@ public class AuditService {
         return auditRepository.save(audit);
     }
 
-    public void deletedById(Integer auditId) {
+    public void deleteById(Integer auditId) {
         auditRepository.deleteById(auditId);
     }
 }
