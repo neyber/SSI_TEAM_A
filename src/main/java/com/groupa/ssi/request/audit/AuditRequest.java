@@ -1,0 +1,62 @@
+package com.groupa.ssi.request.audit;
+
+/**
+ * @author Neyber Rojas Zapata
+ */
+public class AuditRequest {
+
+    private String auditName;
+    private String auditCode;
+    private String auditType;
+    private String auditScope;
+    private String auditObjective;
+    private String auditCriteria;
+
+    public String getAuditName() {
+        return auditName;
+    }
+
+    public void setAuditName(String auditName) {
+        this.auditName = auditName;
+    }
+
+    public String getAuditCode() {
+        return auditCode;
+    }
+
+    public void setAuditCode(String auditCode) {
+        this.auditCode = auditCode;
+    }
+
+    public String getAuditType() {
+        return auditType;
+    }
+
+    public void setAuditType(String auditType) {
+        this.auditType = auditType;
+    }
+
+    public String getAuditScope() {
+        return auditScope;
+    }
+
+    public void setAuditScope(String auditScope) {
+        this.auditScope = auditScope;
+    }
+
+    public String getAuditObjective() {
+        return auditObjective;
+    }
+
+    public void setAuditObjective(String auditObjective) {
+        this.auditObjective = auditObjective;
+    }
+
+    public String getAuditCriteria() {
+        return auditCriteria;
+    }
+
+    public void setAuditCriteria(String auditCriteria) {
+        this.auditCriteria = auditCriteria;
+    }
+}
