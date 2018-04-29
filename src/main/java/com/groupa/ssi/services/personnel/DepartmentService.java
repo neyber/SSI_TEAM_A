@@ -4,6 +4,9 @@ import com.groupa.ssi.exception.DomainEntityNotFoundException;
 import com.groupa.ssi.model.domain.catalog.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.repository.personnel.DepartmentRepository;
+import com.groupa.ssi.services.common.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,29 +17,12 @@ import java.util.List;
  */
 
 @Service
-public class DepartmentService {
+public class DepartmentService extends GenericService<Department> {
 
+    @Autowired
     private DepartmentRepository departmentRepository;
 
-    public DepartmentService(DepartmentRepository departmentRepository) {
-        this.departmentRepository = departmentRepository;
-    }
+    @Override
+    protected JpaRepository<Department, Integer> getRepository() {return departmentRepository;}
 
-    public List<Department> findAll(){
-        List<Department> departments = new ArrayList();
-        departmentRepository.findAll().forEach(departments::add);
-        return departments;
-    }
-
-    public Department findById(Integer departmentId){
-        return departmentRepository.findById(departmentId).orElseThrow(() -> new DomainEntityNotFoundException(Department.class));
-    }
-
-    public Department save(Department department){
-        return departmentRepository.save(department);
-    }
-
-    public void deleteById(Integer departmentId){
-        departmentRepository.deleteById(departmentId);
-    }
 }

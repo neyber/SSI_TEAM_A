@@ -5,6 +5,7 @@ package com.groupa.ssi.bootsptrap;
 
 
 import com.groupa.ssi.model.domain.audit.Audit;
+import com.groupa.ssi.model.domain.catalog.SaClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
@@ -19,6 +20,7 @@ import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
+import com.groupa.ssi.model.repository.catalog.SaClassificationRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeAssignedRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
@@ -49,13 +51,15 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private ExistingPpeAssignedRepository existingPpeAssignedRepository;
     private AuditRepository auditRepository;
     private SafetyRuleRepository safetyRuleRepository;
+    private SaClassificationRepository saClassificationRepository;
 
     public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository,
                         RoleRepository roleRepository, AccidentRepository accidentRepository,
                         SicknessRepository sicknessRepository, FunctionManualRepository functionManualRepository,
                         PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository,
                         PpeRepository ppeRepository, ExistingPpeRepository existingPpeRepository,
-                        ExistingPpeAssignedRepository existingPpeAssignedRepository, AuditRepository auditRepository, SafetyRuleRepository safetyRuleRepository) {
+                        ExistingPpeAssignedRepository existingPpeAssignedRepository, AuditRepository auditRepository, SafetyRuleRepository safetyRuleRepository
+                        , SaClassificationRepository saClassificationRepository) {
             this.workItemRepository = workItemRepository;
             this.departmentRepository = departmentRepository;
             this.roleRepository = roleRepository;
@@ -69,6 +73,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             this.existingPpeAssignedRepository = existingPpeAssignedRepository;
             this.auditRepository = auditRepository;
             this.safetyRuleRepository = safetyRuleRepository;
+            this.saClassificationRepository = saClassificationRepository;
         }
 
         @Override
@@ -129,12 +134,32 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             admRole.setDescription("Administrador de personal");
             roleRepository.save(admRole);
 
+
+            //Sickness and Accident classification
+            /*for accident*/
+            SaClassification accidentClassification = new SaClassification();
+            accidentClassification.setCategory("Trabajo restringido o transferido");
+            accidentClassification.setTotalDaysOutOfWork(2);
+            accidentClassification.setTotalDaysRestrictedTransferredWork(5);
+            accidentClassification.setType("Condicion respiratoria");
+            saClassificationRepository.save(accidentClassification);
+
+            /*for sickness*/
+            SaClassification sicknessClassification = new SaClassification();
+            sicknessClassification.setCategory("Permanecio en el trabajo");
+            sicknessClassification.setTotalDaysOutOfWork(3);
+            sicknessClassification.setTotalDaysRestrictedTransferredWork(0);
+            sicknessClassification.setType("Envenenamiento");
+            saClassificationRepository.save(sicknessClassification);
+
             //Accident
 
             Accident accident = new Accident();
             accident.setDateAccident(new Date());
             accident.setDescription("this is a critical accident that will cost a lot to the enterprise");
             accident.setWhereOccurr("It occurred during the revision under maquinary");
+            accident.setStatusRecord(Boolean.TRUE);
+            accident.setSaClassification(accidentClassification);
             accidentRepository.save(accident);
 
             //Sickness
@@ -142,6 +167,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             sickness.setDateSickness(new Date());
             sickness.setDescription("during the night duty shift and with inadequate clothing is that the employee has a cold, and due to negligence");
             sickness.setWhereOccurr("this happened on guard night shift");
+            sickness.setStatusRecord(Boolean.TRUE);
+            sickness.setSaClassification(sicknessClassification);
             sicknessRepository.save(sickness);
 
             //FunctionManual
@@ -168,7 +195,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             admEmployee.setStartDateInCompany(new Date(2012,02,02));
             admEmployee.setRoleEmployee(admRole);
             admEmployee.setDepartmentEmployee(admDepartment);
-            admEmployee.setHealthConditions("Uses wheel chair");
+            admEmployee.setHealthConditionStartingAtCompany("Uses wheel chair");
             employeeRepository.save(admEmployee);
 
             Employee constEmployee = new Employee();
@@ -181,7 +208,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             constEmployee.setRoleEmployee(consRole);
             constEmployee.setSupervisor(admEmployee);
             constEmployee.setDepartmentEmployee(constDepartment);
-            constEmployee.setHealthConditions("Good health");
+            constEmployee.setHealthConditionStartingAtCompany("Good health");
             employeeRepository.save(constEmployee);
 
             // Existing Personal protection equiment (Epp) assigned to employee

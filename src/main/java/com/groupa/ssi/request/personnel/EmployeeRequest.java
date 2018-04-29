@@ -17,10 +17,14 @@ public class EmployeeRequest {
     private Date dateOfBirth;
     private char gender;
     private Date startDateInCompany;
-    private Role roleEmployee;
+    /*private Role roleEmployee;
     private Employee supervisor;
-    private Department departmentEmployee;
-    private String healthConditions;
+    private Department departmentEmployee;*/
+    private Integer roleId;
+    private Integer supervisorId;
+    private Integer departmentId;
+    private String healthConditionStartingAtCompany;
+    private Byte[] photo;
 
     public Long getIdentificationNumber() {
         return identificationNumber;
@@ -70,35 +74,43 @@ public class EmployeeRequest {
         this.startDateInCompany = startDateInCompany;
     }
 
-    public Role getRoleEmployee() {
-        return roleEmployee;
+    public String getHealthConditionStartingAtCompany() {
+        return healthConditionStartingAtCompany;
     }
 
-    public void setRoleEmployee(Role roleEmployee) {
-        this.roleEmployee = roleEmployee;
+    public void setHealthConditionStartingAtCompany(String healthConditionStartingAtCompany) {
+        this.healthConditionStartingAtCompany = healthConditionStartingAtCompany;
     }
 
-    public Employee getSupervisor() {
-        return supervisor;
+    public Byte[] getPhoto() {
+        return photo;
     }
 
-    public void setSupervisor(Employee supervisor) {
-        this.supervisor = supervisor;
+    public void setPhoto(Byte[] photo) {
+        this.photo = photo;
     }
 
-    public Department getDepartmentEmployee() {
-        return departmentEmployee;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setDepartmentEmployee(Department departmentEmployee) {
-        this.departmentEmployee = departmentEmployee;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public String getHealthConditions() {
-        return healthConditions;
+    public Integer getSupervisorId() {
+        return supervisorId;
     }
 
-    public void setHealthConditions(String healthConditions) {
-        this.healthConditions = healthConditions;
+    public void setSupervisorId(Integer supervisorId) {
+        this.supervisorId = supervisorId;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 }
