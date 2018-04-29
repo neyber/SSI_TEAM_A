@@ -17,7 +17,7 @@ import com.groupa.ssi.model.repository.audit.SafetyRuleRepository;
 import com.groupa.ssi.model.repository.catalog.PpeClassificationRepository;
 import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
-import com.groupa.ssi.model.domain.usermanual.UserManual;
+import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeAssignedRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRepository;
@@ -28,7 +28,7 @@ import com.groupa.ssi.model.repository.catalog.WorkItemRepository;
 import com.groupa.ssi.model.repository.personnel.DepartmentRepository;
 import com.groupa.ssi.model.repository.personnel.EmployeeRepository;
 import com.groupa.ssi.model.repository.personnel.RoleRepository;
-import com.groupa.ssi.model.repository.usermanual.UserManualRepository;
+import com.groupa.ssi.model.repository.functionmanual.FunctionManualRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -41,7 +41,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private PpeClassificationRepository ppeClassificationRepository;
     private RoleRepository roleRepository;
     private EmployeeRepository employeeRepository;
-    private UserManualRepository userManualRepository;
+    private FunctionManualRepository functionManualRepository;
     private AccidentRepository accidentRepository;
     private SicknessRepository sicknessRepository;
     private PpeRepository ppeRepository;
@@ -52,7 +52,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     public DevBootstrap(WorkItemRepository workItemRepository, DepartmentRepository departmentRepository,
                         RoleRepository roleRepository, AccidentRepository accidentRepository,
-                        SicknessRepository sicknessRepository, UserManualRepository userManualRepository,
+                        SicknessRepository sicknessRepository, FunctionManualRepository functionManualRepository,
                         PpeClassificationRepository ppeClassificationRepository, EmployeeRepository employeeRepository,
                         PpeRepository ppeRepository, ExistingPpeRepository existingPpeRepository,
                         ExistingPpeAssignedRepository existingPpeAssignedRepository, AuditRepository auditRepository, SafetyRuleRepository safetyRuleRepository) {
@@ -62,7 +62,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             this.accidentRepository = accidentRepository;
             this.sicknessRepository = sicknessRepository;
             this.ppeClassificationRepository = ppeClassificationRepository;
-            this.userManualRepository = userManualRepository;
+            this.functionManualRepository = functionManualRepository;
             this.employeeRepository = employeeRepository;
             this.ppeRepository = ppeRepository;
             this.existingPpeRepository = existingPpeRepository;
@@ -144,19 +144,19 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             sickness.setWhereOccurr("this happened on guard night shift");
             sicknessRepository.save(sickness);
 
-            //UserManual
-            UserManual constUserManual = new UserManual();
-            constUserManual.setName("Manual de seguridad1");
-            constUserManual.setPosition("Jefe de piso");
-            constUserManual.setHierarchicalLever("administrador");
-            constUserManual.setSuperiorBoss("gerente");
-            constUserManual.setDependentPersonal("empleados de planta");
-            constUserManual.setInternalRelation("relacion con gerencia");
-            constUserManual.setExternalRelation("relacion con el exterior");
-            constUserManual.setActivity("seguridad de planta");
-            constUserManual.setGeneralActivity("general activity");
-            constUserManual.setPrincipalFunction("seguridad de la empresa");
-            userManualRepository.save(constUserManual);
+            //FunctionManual
+            FunctionManual constFunctionManual = new FunctionManual();
+            constFunctionManual.setName("administrador 1");
+            constFunctionManual.setPosition("Jefe de piso");
+            constFunctionManual.setHierarchicalLever("administrador");
+            constFunctionManual.setSuperiorBoss("gerente");
+            constFunctionManual.setDependentPersonal("empleados de planta");
+            constFunctionManual.setInternalRelation("relacion con gerencia");
+            constFunctionManual.setExternalRelation("relacion con el exterior");
+            constFunctionManual.setActivity("seguridad de planta");
+            constFunctionManual.setGeneralActivity("general activity");
+            constFunctionManual.setPrincipalFunction("seguridad de la empresa");
+            functionManualRepository.save(constFunctionManual);
 
             //Employees
             Employee admEmployee = new Employee();

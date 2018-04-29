@@ -1,9 +1,9 @@
-package com.groupa.ssi.response.usermanual;
+package com.groupa.ssi.response.functionmanual;
 
 
 //import com.groupa.ssi.model.domain.personnel.Department;
 
-import com.groupa.ssi.model.domain.usermanual.UserManual;
+import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 
 /**
  * @author Marcelo Loayza
@@ -39,18 +39,18 @@ public class UserManualResponseBuilder {
         return userManualResponse;
     }
 
-    public static UserManualResponseBuilder getInstance(UserManual userManual){
+    public static UserManualResponseBuilder getInstance(FunctionManual functionManual){
         UserManualResponseBuilder userManualResponseBuilder = new UserManualResponseBuilder();
-        userManualResponseBuilder.setName(userManual.getName());
-        userManualResponseBuilder.setPosition(userManual.getPosition());
-        userManualResponseBuilder.setHierarchicalLever(userManual.getHierarchicalLever());
-        userManualResponseBuilder.setSuperiorBoss(userManual.getSuperiorBoss());
-        userManualResponseBuilder.setDependentPersonal(userManual.getDependentPersonal());
-        userManualResponseBuilder.setInternalRelation(userManual.getInternalRelation());
-        userManualResponseBuilder.setExternalRelation(userManual.getExternalRelation());
-        userManualResponseBuilder.setActivity(userManual.getActivity());
-        userManualResponseBuilder.setGeneralActivity(userManual.getGeneralActivity());
-        userManualResponseBuilder.setPrincipalFunction(userManual.getPrincipalFunction());
+        userManualResponseBuilder.setName(functionManual.getName());
+        userManualResponseBuilder.setPosition(functionManual.getPosition());
+        userManualResponseBuilder.setHierarchicalLever(functionManual.getHierarchicalLever());
+        userManualResponseBuilder.setSuperiorBoss(functionManual.getSuperiorBoss());
+        userManualResponseBuilder.setDependentPersonal(functionManual.getDependentPersonal());
+        userManualResponseBuilder.setInternalRelation(functionManual.getInternalRelation());
+        userManualResponseBuilder.setExternalRelation(functionManual.getExternalRelation());
+        userManualResponseBuilder.setActivity(functionManual.getActivity());
+        userManualResponseBuilder.setGeneralActivity(functionManual.getGeneralActivity());
+        userManualResponseBuilder.setPrincipalFunction(functionManual.getPrincipalFunction());
         return userManualResponseBuilder;
     }
 
