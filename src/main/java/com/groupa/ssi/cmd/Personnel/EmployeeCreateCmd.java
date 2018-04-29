@@ -55,9 +55,6 @@ public class EmployeeCreateCmd extends AbstractCommand {
         employee.setDateOfBirth(employeeRequest.getDateOfBirth());
         employee.setGender(employeeRequest.getGender());
         employee.setStartDateInCompany(employeeRequest.getStartDateInCompany());
-        /*employee.setSupervisor(employeeRequest.getSupervisor());
-        employee.setDepartmentEmployee(employeeRequest.getDepartmentEmployee());
-        employee.setRoleEmployee(employeeRequest.getRoleEmployee());*/
         employee.setHealthConditionStartingAtCompany(employeeRequest.getHealthConditionStartingAtCompany());
         employee.setPhoto(employeeRequest.getPhoto());
         employee.setRoleEmployee(role);
