@@ -3,16 +3,14 @@
 */
 package com.groupa.ssi.model.domain.accident;
 
+import com.groupa.ssi.model.domain.ModelBase;
+import com.groupa.ssi.model.domain.catalog.SaClassification;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Accident {
-
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer accidentId;
+public class Accident extends ModelBase {
 
     @Column
     private String description;
@@ -23,13 +21,11 @@ public class Accident {
     @Column
     private String whereOccurr;
 
-    public Integer getAccidentId() {
-        return accidentId;
-    }
+    @Column
+    private Boolean statusRecord;
 
-    public void setAccidentId(Integer accidentId) {
-        this.accidentId = accidentId;
-    }
+    @ManyToOne
+    private SaClassification saClassification;
 
     public String getDescription() {
         return description;
@@ -53,5 +49,21 @@ public class Accident {
 
     public void setWhereOccurr(String whereOccurr) {
         this.whereOccurr = whereOccurr;
+    }
+
+    public Boolean getStatusRecord() {
+        return statusRecord;
+    }
+
+    public void setStatusRecord(Boolean statusRecord) {
+        this.statusRecord = statusRecord;
+    }
+
+    public SaClassification getSaClassification() {
+        return saClassification;
+    }
+
+    public void setSaClassification(SaClassification saClassification) {
+        this.saClassification = saClassification;
     }
 }

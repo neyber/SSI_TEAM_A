@@ -3,6 +3,9 @@
 */
 package com.groupa.ssi.request.accident;
 
+import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.request.catalog.SaClassificationRequest;
+
 import java.util.Date;
 
 public class AccidentRequest {
@@ -10,6 +13,8 @@ public class AccidentRequest {
     private String description;
     private Date dateAccident;
     private String whereOccurr;
+    private Boolean statusRecord;
+    private SaClassification saClassification;
 
     public String getDescription() {
         return description;
@@ -33,5 +38,21 @@ public class AccidentRequest {
 
     public void setWhereOccurr(String whereOccurr) {
         this.whereOccurr = whereOccurr;
+    }
+
+    public Boolean getStatusRecord() {
+        return statusRecord;
+    }
+
+    public void setStatusRecord(Boolean statusRecord) {
+        this.statusRecord = statusRecord;
+    }
+
+    public SaClassification getSaClassification() {
+        return saClassification;
+    }
+
+    public void setSaClassification(SaClassification saClassification) {
+        this.saClassification = saClassification;
     }
 }
