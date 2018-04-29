@@ -5,6 +5,7 @@ package com.groupa.ssi.bootsptrap;
 
 
 import com.groupa.ssi.model.domain.audit.Audit;
+import com.groupa.ssi.model.domain.audit.SafetyRule;
 import com.groupa.ssi.model.domain.catalog.SaClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
@@ -230,9 +231,12 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             audit.setAuditObjective("Some objectives");
             audit.setEmployee(constEmployee);
             auditRepository.save(audit);
+
+            // Safety rules by audit
+            SafetyRule safetyRule = new SafetyRule();
+            safetyRule.setRuleName("RULE 1");
+            safetyRule.setAccomplishment(true);
+            safetyRule.setAudit(audit);
+            safetyRuleRepository.save(safetyRule);
         }
-
-
-
-
     }

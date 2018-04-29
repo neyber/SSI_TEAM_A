@@ -29,7 +29,7 @@ public class SafetyRuleCreateController extends SafetyRuleAbstractController {
     @RequestMapping(
             method = RequestMethod.POST
     )
-    public SuccessRestResponse createSafetyRule(@RequestBody SafetyRuleRequest safetyRuleRequest, @RequestParam(value = "userId") Integer userId) {
+    public SuccessRestResponse createSafetyRule(@RequestBody SafetyRuleRequest safetyRuleRequest, @RequestParam(value = "userId", required = false) Integer userId) {
         safetyRuleCreateCmd.setSafetyRuleRequest(safetyRuleRequest);
         safetyRuleCreateCmd.execute();
         return new SuccessRestResponse();

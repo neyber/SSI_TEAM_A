@@ -1,7 +1,5 @@
 package com.groupa.ssi.request.audit;
 
-import com.groupa.ssi.model.domain.audit.Audit;
-
 /**
  * @author Neyber Rojas Zapata
  */
@@ -9,7 +7,7 @@ public class SafetyRuleRequest {
 
     private String ruleName;
     private Boolean accomplishment;
-    private Audit audit;
+    private Integer auditId;
 
     public String getRuleName() {
         return ruleName;
@@ -27,11 +25,11 @@ public class SafetyRuleRequest {
         this.accomplishment = accomplishment;
     }
 
-    public Audit getAudit() {
-        return audit;
+    public Integer getAuditId() {
+        return auditId;
     }
 
-    public void setAudit(Audit audit) {
-        this.audit = audit;
+    public void setAuditId(Integer auditId) {
+        this.auditId = auditId;
     }
 }

@@ -29,7 +29,7 @@ public class AuditCreateController extends AuditAbstractController {
     @RequestMapping(
             method = RequestMethod.POST
     )
-    public SuccessRestResponse createAudit(@RequestBody AuditRequest auditRequest, @RequestParam(value = "userId") Integer userId) {
+    public SuccessRestResponse createAudit(@RequestBody AuditRequest auditRequest, @RequestParam(value = "userId", required = false) Integer userId) {
         auditCreateCmd.setAuditRequest(auditRequest);
         auditCreateCmd.execute();
         return new SuccessRestResponse();
