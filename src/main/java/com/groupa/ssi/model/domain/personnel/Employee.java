@@ -26,9 +26,9 @@ public class Employee extends ModelBase {
     private char gender;
     @Column
     private Date startDateInCompany;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Role roleEmployee;
-    @OneToOne(optional = true)
+    @ManyToOne
     private Employee supervisor;
     @ManyToOne
     private Department departmentEmployee;

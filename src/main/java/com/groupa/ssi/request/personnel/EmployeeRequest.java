@@ -17,9 +17,12 @@ public class EmployeeRequest {
     private Date dateOfBirth;
     private char gender;
     private Date startDateInCompany;
-    private Role roleEmployee;
+    /*private Role roleEmployee;
     private Employee supervisor;
-    private Department departmentEmployee;
+    private Department departmentEmployee;*/
+    private Integer roleId;
+    private Integer supervisorId;
+    private Integer departmentId;
     private String healthConditionStartingAtCompany;
     private Byte[] photo;
 
@@ -71,30 +74,6 @@ public class EmployeeRequest {
         this.startDateInCompany = startDateInCompany;
     }
 
-    public Role getRoleEmployee() {
-        return roleEmployee;
-    }
-
-    public void setRoleEmployee(Role roleEmployee) {
-        this.roleEmployee = roleEmployee;
-    }
-
-    public Employee getSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(Employee supervisor) {
-        this.supervisor = supervisor;
-    }
-
-    public Department getDepartmentEmployee() {
-        return departmentEmployee;
-    }
-
-    public void setDepartmentEmployee(Department departmentEmployee) {
-        this.departmentEmployee = departmentEmployee;
-    }
-
     public String getHealthConditionStartingAtCompany() {
         return healthConditionStartingAtCompany;
     }
@@ -109,5 +88,29 @@ public class EmployeeRequest {
 
     public void setPhoto(Byte[] photo) {
         this.photo = photo;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public Integer getSupervisorId() {
+        return supervisorId;
+    }
+
+    public void setSupervisorId(Integer supervisorId) {
+        this.supervisorId = supervisorId;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 }

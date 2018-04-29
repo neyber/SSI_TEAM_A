@@ -36,9 +36,9 @@ public class EmployeeUpdateCmd extends AbstractCommand {
         employee.setStartDateInCompany(employeeRequest.getStartDateInCompany());
         employee.setHealthConditionStartingAtCompany(employeeRequest.getHealthConditionStartingAtCompany());
         employee.setPhoto(employeeRequest.getPhoto());
-        employee.setSupervisor(employeeRequest.getSupervisor());
+        /*employee.setSupervisor(employeeRequest.getSupervisor());
         employee.setRoleEmployee(employeeRequest.getRoleEmployee());
-        employee.setDepartmentEmployee(employeeRequest.getDepartmentEmployee());
+        employee.setDepartmentEmployee(employeeRequest.getDepartmentEmployee());*/
         return employee;
     }
 

@@ -11,6 +11,7 @@ import java.util.Date;
  */
 
 public final class EmployeeResponseBuilder {
+    private Integer employeeId;
     private Long identificationNumber;
     private String firstName;
     private String lastName;
@@ -27,6 +28,7 @@ public final class EmployeeResponseBuilder {
 
     public EmployeeResponse build(){
         EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.setEmployeeId(employeeId);
         employeeResponse.setIdentificationNumber(identificationNumber);
         employeeResponse.setFirstName(firstName);
         employeeResponse.setLastName(lastName);
@@ -43,6 +45,7 @@ public final class EmployeeResponseBuilder {
 
     public static EmployeeResponseBuilder getInstance(Employee employee){
         EmployeeResponseBuilder employeeResponseBuilder = new EmployeeResponseBuilder();
+        employeeResponseBuilder.setEmployeeId(employee.getId());
         employeeResponseBuilder.setIdentificationNumber(employee.getIdentificationNumber());
         employeeResponseBuilder.setFirstName(employee.getFirstName());
         employeeResponseBuilder.setLastName(employee.getLastName());
@@ -57,6 +60,10 @@ public final class EmployeeResponseBuilder {
         return employeeResponseBuilder;
     }
 
+    public EmployeeResponseBuilder setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+        return this;
+    }
 
     public EmployeeResponseBuilder setIdentificationNumber(Long identificationNumber) {
         this.identificationNumber = identificationNumber;

@@ -11,6 +11,7 @@ import java.util.Date;
  */
 
 public class EmployeeResponse {
+    private Integer employeeId;
     private Long identificationNumber;
     private String firstName;
     private String lastName;
@@ -22,6 +23,14 @@ public class EmployeeResponse {
     private Department departmentEmployee;
     private String healthConditionStartingAtCompany;
     private Byte[] photo;
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public Long getIdentificationNumber() {
         return identificationNumber;
