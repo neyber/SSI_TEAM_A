@@ -3,9 +3,16 @@
 */
 package com.groupa.ssi.controller.sickness;
 
+import com.groupa.ssi.cmd.sickness.SicknessCreateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
+import com.groupa.ssi.model.domain.accident.Accident;
+import com.groupa.ssi.model.domain.sickness.Sickness;
 import com.groupa.ssi.request.sickness.SicknessRequest;
+import com.groupa.ssi.services.accident.AccidentService;
+import com.groupa.ssi.services.sickness.SicknessService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -17,11 +24,17 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class SicknessCreateController extends SicknessAbstractController{
 
+    @Autowired
+    private SicknessCreateCmd cmd;
+
+    @ApiOperation(value = "create sickness ")
     @RequestMapping(
             method = RequestMethod.POST
     )
     public SuccessRestResponse createSicknessRecord(@RequestBody SicknessRequest sicknessRequest,
-                                                    @RequestParam(value = "userId") Integer userId){
+                                                    @RequestParam(value = "userId", required = false) Integer userId){
+        cmd.setSicknessRequest(sicknessRequest);
+        cmd.execute();
         return new SuccessRestResponse();
     }
 }
