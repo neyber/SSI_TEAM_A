@@ -1,10 +1,10 @@
-package com.groupa.ssi.response.usermanual;
+package com.groupa.ssi.response.functionmanual;
 
 /**
  * @author Marcelo Loayza
  */
 
-public class UserManualResponse {
+public class FunctionManualResponse {
     private String name;
     private String position;
     private String hierarchicalLever;
