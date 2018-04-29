@@ -4,6 +4,7 @@ import com.groupa.ssi.model.domain.ModelBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.util.Date;
 
@@ -29,10 +30,12 @@ public class Employee extends ModelBase {
     private Role roleEmployee;
     @OneToOne(optional = true)
     private Employee supervisor;
-    @OneToOne
+    @ManyToOne
     private Department departmentEmployee;
     @Column
-    private String healthConditions;
+    private String healthConditionStartingAtCompany;
+    @Column
+    private Byte[] photo;
 
     public Long getIdentificationNumber() {
         return identificationNumber;
@@ -106,11 +109,19 @@ public class Employee extends ModelBase {
         this.departmentEmployee = departmentEmployee;
     }
 
-    public String getHealthConditions() {
-        return healthConditions;
+    public String getHealthConditionStartingAtCompany() {
+        return healthConditionStartingAtCompany;
     }
 
-    public void setHealthConditions(String healthConditions) {
-        this.healthConditions = healthConditions;
+    public void setHealthConditionStartingAtCompany(String healthConditionStartingAtCompany) {
+        this.healthConditionStartingAtCompany = healthConditionStartingAtCompany;
+    }
+
+    public Byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Byte[] photo) {
+        this.photo = photo;
     }
 }

@@ -1,11 +1,13 @@
 package com.groupa.ssi.controller.personnel;
 
+import com.groupa.ssi.cmd.Personnel.DepartmentCreateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.request.personnel.DepartmentRequest;
 import com.groupa.ssi.services.personnel.DepartmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -18,23 +20,18 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class DepartmentCreateController extends DepartmentAbstractController{
 
-    private DepartmentService service;
-
-    public DepartmentCreateController(DepartmentService service) {
-        this.service = service;
-    }
+    @Autowired
+    private DepartmentCreateCmd departmentCreateCmd;
 
     @ApiOperation(value = "Create Department")
     @RequestMapping(
             method = RequestMethod.POST
     )
     public SuccessRestResponse createDepartment(@RequestBody DepartmentRequest departmentRequest,
-                                                @RequestParam(value = "userId") Integer userId) {
-        Department department = new Department();
-        department.setName(departmentRequest.getName());
-        department.setDescription(departmentRequest.getDescription());
-        service.save(department);
-        // TO DO ---- to UPDATE once we have Commands working
+                                                @RequestParam(value = "userId", required = false) Integer userId) {
+
+        departmentCreateCmd.setDepartmentRequest(departmentRequest);
+        departmentCreateCmd.execute();
         return new SuccessRestResponse();
     }
 }

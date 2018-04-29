@@ -195,7 +195,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             admEmployee.setStartDateInCompany(new Date(2012,02,02));
             admEmployee.setRoleEmployee(admRole);
             admEmployee.setDepartmentEmployee(admDepartment);
-            admEmployee.setHealthConditions("Uses wheel chair");
+            admEmployee.setHealthConditionStartingAtCompany("Uses wheel chair");
             employeeRepository.save(admEmployee);
 
             Employee constEmployee = new Employee();
@@ -208,7 +208,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             constEmployee.setRoleEmployee(consRole);
             constEmployee.setSupervisor(admEmployee);
             constEmployee.setDepartmentEmployee(constDepartment);
-            constEmployee.setHealthConditions("Good health");
+            constEmployee.setHealthConditionStartingAtCompany("Good health");
             employeeRepository.save(constEmployee);
 
             // Existing Personal protection equiment (Epp) assigned to employee
