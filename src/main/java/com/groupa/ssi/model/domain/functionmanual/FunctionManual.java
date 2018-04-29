@@ -1,16 +1,18 @@
-package com.groupa.ssi.model.domain.usermanual;
+package com.groupa.ssi.model.domain.functionmanual;
 
 import com.groupa.ssi.model.domain.ModelBase;
+import com.groupa.ssi.model.domain.personnel.Role;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
- * @author Lizeth Salazar
+ * @author Marcelo Loayza
  */
 
 @Entity
-public class UserManual extends ModelBase {
+public class FunctionManual extends ModelBase {
 
     @Column
     private String name;
@@ -41,7 +43,7 @@ public class UserManual extends ModelBase {
         this.name = name;
     }
 
-    public String getPosition() { return position;  }
+    public String getPosition() { return position; }
 
     public void setPosition(String position) { this.position = position; }
 
@@ -76,4 +78,6 @@ public class UserManual extends ModelBase {
     public String getPrincipalFunction() { return principalFunction; }
 
     public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
+
+
 }

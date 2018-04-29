@@ -1,10 +1,10 @@
-package com.groupa.ssi.request.usermanual;
+package com.groupa.ssi.request.functionmanual;
 
 /**
  * @author Marcelo loayza
  */
 
-public class UserManualRequest {
+public class FunctionManualRequest {
 
     private String name;
     private String position;
@@ -17,7 +17,7 @@ public class UserManualRequest {
     private String generalActivity;
     private String principalFunction;
 
-    public UserManualRequest() {
+    public FunctionManualRequest() {
     }
 
 
