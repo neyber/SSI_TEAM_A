@@ -2,33 +2,33 @@ package com.groupa.ssi.cmd.functionmanual;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
-import com.groupa.ssi.model.domain.catalog.WorkItem;
-import com.groupa.ssi.services.catalog.WorkItemService;
+import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
+import com.groupa.ssi.services.functionmanual.FunctionManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author Miguel Rojas
+ * @author Marcelo Loayza
  */
 @CommandScoped
-public class WorkItemReadCmd extends AbstractCommand {
+public class FunctionManualReadCmd extends AbstractCommand {
 
-    private Integer workItemId;
+    private Integer FunctionManualId;
 
     @Autowired
-    private WorkItemService service;
+    private FunctionManualService service;
 
-    private WorkItem workItem;
+    private FunctionManual functionManual;
 
     @Override
     protected void run() {
-        workItem = service.findById(workItemId);
+        functionManual = service.findById(FunctionManualId);
     }
 
-    public void setWorkItemId(Integer workItemId) {
-        this.workItemId = workItemId;
+    public void setFunctionManualId(Integer FunctionManualId) {
+        this.FunctionManualId = FunctionManualId;
     }
 
-    public WorkItem getWorkItem() {
-        return workItem;
+    public FunctionManual getFunctionManual() {
+        return functionManual;
     }
 }

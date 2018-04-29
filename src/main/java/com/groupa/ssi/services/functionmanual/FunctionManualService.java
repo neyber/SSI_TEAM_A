@@ -1,40 +1,28 @@
-package com.groupa.ssi.services.usermanual;
+package com.groupa.ssi.services.functionmanual;
 
-import com.groupa.ssi.exception.DomainEntityNotFoundException;
+
+
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 import com.groupa.ssi.model.repository.functionmanual.FunctionManualRepository;
+import com.groupa.ssi.services.common.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * @author Marcelo Loayza
  */
 
 @Service
-public class UserManualService {
+public class FunctionManualService extends GenericService<FunctionManual> {
 
+    @Autowired
     private FunctionManualRepository functionManualRepository;
 
-    public UserManualService(FunctionManualRepository functionManualRepository) {
-        this.functionManualRepository = functionManualRepository;
-    }
-
-    public List<FunctionManual> findAll(){
-        List<FunctionManual> functionManuals = new ArrayList();
-        functionManualRepository.findAll().forEach(functionManuals::add);
-        return functionManuals;
-    }
-
-    public FunctionManual findById(Integer userManualId){
-        return functionManualRepository.findById(userManualId).orElseThrow(() -> new DomainEntityNotFoundException(FunctionManual.class));
-    }
-
-    public FunctionManual save(FunctionManual functionManual){ return functionManualRepository.save(functionManual);
-    }
-
-    public void deleteById(Integer userManualId){
-        functionManualRepository.deleteById(userManualId);
+    @Override
+    protected JpaRepository<FunctionManual, Integer> getRepository() {
+        return functionManualRepository;
     }
 }

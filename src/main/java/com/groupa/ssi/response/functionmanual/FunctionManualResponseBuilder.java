@@ -1,15 +1,13 @@
 package com.groupa.ssi.response.functionmanual;
 
 
-//import com.groupa.ssi.model.domain.personnel.Department;
-
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 
 /**
  * @author Marcelo Loayza
  */
 
-public class UserManualResponseBuilder {
+public class FunctionManualResponseBuilder {
     private String name;
     private String position;
     private String hierarchicalLever;
@@ -21,37 +19,39 @@ public class UserManualResponseBuilder {
     private String generalActivity;
     private String principalFunction;
 
-    private UserManualResponseBuilder() {
+    private FunctionManualResponseBuilder() {
     }
 
-    public UserManualResponse build() {
-        UserManualResponse userManualResponse = new UserManualResponse();
-        userManualResponse.setName(name);
-        userManualResponse.setPosition(position);
-        userManualResponse.setHierarchicalLever(hierarchicalLever);
-        userManualResponse.setSuperiorBoss(superiorBoss);
-        userManualResponse.setDependentPersonal(dependentPersonal);
-        userManualResponse.setInternalRelation(internalRelation);
-        userManualResponse.setExternalRelation(externalRelation);
-        userManualResponse.setActivity(activity);
-        userManualResponse.setGeneralActivity(generalActivity);
-        userManualResponse.setPrincipalFunction(principalFunction);
-        return userManualResponse;
+    public FunctionManualResponse build() {
+        FunctionManualResponse functionManualResponse = new FunctionManualResponse();
+        functionManualResponse.setName(name);
+        functionManualResponse.setPosition(position);
+        functionManualResponse.setHierarchicalLever(hierarchicalLever);
+        functionManualResponse.setSuperiorBoss(superiorBoss);
+        functionManualResponse.setDependentPersonal(dependentPersonal);
+        functionManualResponse.setInternalRelation(internalRelation);
+        functionManualResponse.setExternalRelation(externalRelation);
+        functionManualResponse.setActivity(activity);
+        functionManualResponse.setGeneralActivity(generalActivity);
+        functionManualResponse.setPrincipalFunction(principalFunction);
+
+        return functionManualResponse;
     }
 
-    public static UserManualResponseBuilder getInstance(FunctionManual functionManual){
-        UserManualResponseBuilder userManualResponseBuilder = new UserManualResponseBuilder();
-        userManualResponseBuilder.setName(functionManual.getName());
-        userManualResponseBuilder.setPosition(functionManual.getPosition());
-        userManualResponseBuilder.setHierarchicalLever(functionManual.getHierarchicalLever());
-        userManualResponseBuilder.setSuperiorBoss(functionManual.getSuperiorBoss());
-        userManualResponseBuilder.setDependentPersonal(functionManual.getDependentPersonal());
-        userManualResponseBuilder.setInternalRelation(functionManual.getInternalRelation());
-        userManualResponseBuilder.setExternalRelation(functionManual.getExternalRelation());
-        userManualResponseBuilder.setActivity(functionManual.getActivity());
-        userManualResponseBuilder.setGeneralActivity(functionManual.getGeneralActivity());
-        userManualResponseBuilder.setPrincipalFunction(functionManual.getPrincipalFunction());
-        return userManualResponseBuilder;
+    public static FunctionManualResponseBuilder getInstance(FunctionManual functionManual){
+
+        FunctionManualResponseBuilder functionManualResponseBuilder = new FunctionManualResponseBuilder();
+        functionManualResponseBuilder.setName(functionManual.getName());
+        functionManualResponseBuilder.setPosition(functionManual.getPosition());
+        functionManualResponseBuilder.setHierarchicalLever(functionManual.getHierarchicalLever());
+        functionManualResponseBuilder.setSuperiorBoss(functionManual.getSuperiorBoss());
+        functionManualResponseBuilder.setDependentPersonal(functionManual.getDependentPersonal());
+        functionManualResponseBuilder.setInternalRelation(functionManual.getInternalRelation());
+        functionManualResponseBuilder.setExternalRelation(functionManual.getExternalRelation());
+        functionManualResponseBuilder.setActivity(functionManual.getActivity());
+        functionManualResponseBuilder.setGeneralActivity(functionManual.getGeneralActivity());
+        functionManualResponseBuilder.setPrincipalFunction(functionManual.getPrincipalFunction());
+        return functionManualResponseBuilder;
     }
 
     public void setName(String name) { this.name = name; }

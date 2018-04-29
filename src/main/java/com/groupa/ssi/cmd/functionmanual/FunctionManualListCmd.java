@@ -2,29 +2,29 @@ package com.groupa.ssi.cmd.functionmanual;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
-import com.groupa.ssi.model.domain.catalog.WorkItem;
-import com.groupa.ssi.services.catalog.WorkItemService;
+import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
+import com.groupa.ssi.services.functionmanual.FunctionManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 /**
- * @author Miguel Rojas
+ * @author Marcelo Loayza
  */
 @CommandScoped
-public class WorkItemListCmd extends AbstractCommand {
+public class FunctionManualListCmd extends AbstractCommand {
 
     @Autowired
-    private WorkItemService service;
+    private FunctionManualService service;
 
-    private List<WorkItem> workItemList;
+    private List<FunctionManual> functionManualList;
 
     @Override
     protected void run() {
-        workItemList = service.findAll();
+        functionManualList = service.findAll();
     }
 
-    public List<WorkItem> getWorkItemList() {
-        return workItemList;
+    public List<FunctionManual> getFunctionManualList() {
+        return functionManualList;
     }
 }

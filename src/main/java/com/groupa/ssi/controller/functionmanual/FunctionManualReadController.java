@@ -1,9 +1,12 @@
-package com.groupa.ssi.controller.usermanual;
+package com.groupa.ssi.controller.functionmanual;
 
+import com.groupa.ssi.cmd.functionmanual.FunctionManualReadCmd;
 import com.groupa.ssi.common.response.rest.SingleRestResponse;
-import com.groupa.ssi.response.usermanual.UserManualResponse;
+import com.groupa.ssi.response.functionmanual.FunctionManualResponse;
+import com.groupa.ssi.response.functionmanual.FunctionManualResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -11,14 +14,20 @@ import org.springframework.web.context.annotation.RequestScope;
  * @author Marcelo Loayza
  */
 
-@Api(tags = UserManualAbstractController.TAG_NAME, description = UserManualAbstractController.DESCRIPTION)
+@Api(tags = FunctionManualAbstractController.TAG_NAME, description = FunctionManualAbstractController.DESCRIPTION)
 @RestController
 @RequestScope
-public class UserManualReadController extends UserManualAbstractController {
+public class FunctionManualReadController extends FunctionManualAbstractController {
 
-    @ApiOperation(value = "Read/View UserManual")
-    @RequestMapping(value = "/{userManualId}", method = RequestMethod.GET)
-    public SingleRestResponse<UserManualResponse> readUseManual(@PathVariable Long userManualId, @RequestParam(value = "userId") Integer userId){
-        return new SingleRestResponse<>(new UserManualResponse());
+    @Autowired
+    private FunctionManualReadCmd cmd;
+
+    @ApiOperation(value = "Read/View FunctionManual")
+    @RequestMapping(value = "/{functionManualId}", method = RequestMethod.GET)
+    public SingleRestResponse<FunctionManualResponse> readFunctionManual(@PathVariable Integer functionManualId, @RequestParam(value = "userId", required = false) Integer userId){
+
+        cmd.setFunctionManualId(functionManualId);
+        cmd.execute();
+        return new SingleRestResponse<>(FunctionManualResponseBuilder.getInstance(cmd.getFunctionManual()).build());
     }
 }

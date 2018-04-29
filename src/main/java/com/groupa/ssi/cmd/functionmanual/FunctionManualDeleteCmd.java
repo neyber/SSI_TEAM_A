@@ -3,25 +3,26 @@ package com.groupa.ssi.cmd.functionmanual;
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
 import com.groupa.ssi.services.catalog.WorkItemService;
+import com.groupa.ssi.services.functionmanual.FunctionManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author Miguel Rojas
+ * @author Marcelo Loayza
  */
 @CommandScoped
-public class WorkItemDeleteCmd extends AbstractCommand {
+public class FunctionManualDeleteCmd extends AbstractCommand {
 
-    private Integer workItemId;
+    private Integer FunctionManulId;
 
     @Autowired
-    private WorkItemService service;
+    private FunctionManualService service;
 
     @Override
     protected void run() {
-        service.deleteById(workItemId);
+        service.deleteById(FunctionManulId);
     }
 
-    public void setWorkItemId(Integer workItemId) {
-        this.workItemId = workItemId;
+    public void setFunctionManulIdId(Integer FunctionManulId) {
+        this.FunctionManulId = FunctionManulId;
     }
 }

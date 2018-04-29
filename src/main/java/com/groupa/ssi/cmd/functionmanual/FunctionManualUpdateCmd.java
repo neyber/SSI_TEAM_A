@@ -2,48 +2,51 @@ package com.groupa.ssi.cmd.functionmanual;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
-import com.groupa.ssi.model.domain.catalog.WorkItem;
-import com.groupa.ssi.request.catalog.WorkItemRequest;
-import com.groupa.ssi.services.catalog.WorkItemService;
+//import com.groupa.ssi.model.domain.catalog.WorkItem;
+//import com.groupa.ssi.request.catalog.WorkItemRequest;
+//import com.groupa.ssi.services.catalog.WorkItemService;
+import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
+import com.groupa.ssi.request.functionmanual.FunctionManualRequest;
+import com.groupa.ssi.services.functionmanual.FunctionManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author Miguel Rojas
+ * @author Marcelo Loayza
  */
 @CommandScoped
-public class WorkItemUpdateCmd extends AbstractCommand {
+public class FunctionManualUpdateCmd extends AbstractCommand {
 
-    private Integer workItemId;
-    private WorkItemRequest workItemRequest;
+    private Integer functionManualId;
+    private FunctionManualRequest functionManualRequest;
 
     @Autowired
-    private WorkItemService service;
+    private FunctionManualService service;
 
     @Override
     protected void run() {
-        WorkItem workItem = composeWorkItem(workItemId, workItemRequest);
-        service.save(workItem);
+        FunctionManual functionManual = composeFunctionManual(functionManualId, functionManualRequest);
+        service.save(functionManual);
     }
 
-    public void setWorkItemId(Integer workItemId) {
-        this.workItemId = workItemId;
+    public void setFunctionManualId(Integer functionManualId) {
+        this.functionManualId = functionManualId;
     }
 
-    public void setWorkItemRequest(WorkItemRequest workItemRequest) {
-        this.workItemRequest = workItemRequest;
-    }
+    public void setWorkItemRequest(FunctionManualRequest functionManualRequest) { this.functionManualRequest = functionManualRequest; }
 
-    private WorkItem composeWorkItem(Integer workItemId, WorkItemRequest workItemRequest) {
-        WorkItem workItem = service.findById(workItemId);
-        workItem.setWorkItemId(workItemId);
-        workItem.setName(workItemRequest.getName());
-        workItem.setDescription(workItemRequest.getDescription());
-        workItem.setPurchaseDate(workItemRequest.getPurchaseDate());
-        workItem.setSerieNo(workItemRequest.getSerieNo());
-        workItem.setStatus(workItemRequest.getStatus());
-        workItem.setType(workItemRequest.getType());
-
-        return workItem;
+    private FunctionManual composeFunctionManual(Integer functionManualId, FunctionManualRequest functionManualRequest) {
+        FunctionManual functionManual = service.findById(functionManualId);
+        functionManual.setId(functionManualId);
+        functionManual.setName(functionManualRequest.getName());
+        functionManual.setPosition(functionManualRequest.getPosition());
+        functionManual.setHierarchicalLever(functionManualRequest.getHierarchicalLever());
+        functionManual.setSuperiorBoss(functionManualRequest.getSuperiorBoss());
+        functionManual.setDependentPersonal(functionManualRequest.getInternalRelation());
+        functionManual.setExternalRelation(functionManualRequest.getExternalRelation());
+        functionManual.setActivity(functionManualRequest.getActivity());
+        functionManual.setGeneralActivity(functionManualRequest.getGeneralActivity());
+        functionManual.setPrincipalFunction(functionManualRequest.getPrincipalFunction());
+        return functionManual;
     }
 
 }

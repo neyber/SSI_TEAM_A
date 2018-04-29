@@ -1,8 +1,8 @@
-package com.groupa.ssi.controller.catalog;
+package com.groupa.ssi.controller.functionmanual;
 
-import com.groupa.ssi.cmd.catalog.WorkItemUpdateCmd;
+import com.groupa.ssi.cmd.functionmanual.FunctionManualUpdateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
-import com.groupa.ssi.request.catalog.WorkItemRequest;
+import com.groupa.ssi.request.functionmanual.FunctionManualRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 /**
- * @author Miguel Rojas
+ * @author Marcelo Loayza
  */
 @Api(
-        tags = WorkItemAbstractController.TAG_NAME,
-        description = WorkItemAbstractController.DESCRIPTION
+        tags = FunctionManualAbstractController.TAG_NAME,
+        description = FunctionManualAbstractController.DESCRIPTION
 )
 @RestController
 @RequestScope
-public class WorkItemUpdateController extends WorkItemAbstractController {
+public class FunctionManualUpdateController extends FunctionManualAbstractController {
 
     @Autowired
-    private WorkItemUpdateCmd cmd;
+    private FunctionManualUpdateCmd cmd;
 
-    @ApiOperation(value = "Update work item")
+    @ApiOperation(value = "Update function Manual item")
     @RequestMapping(
-            value = "/{workItemId}",
+            value = "/{functionManualId}",
             method = RequestMethod.PUT
     )
-    public SuccessRestResponse updateWorkItem(@PathVariable Integer workItemId,
-                                              @RequestBody WorkItemRequest workItemRequest,
+    public SuccessRestResponse updateFunctionManual(@PathVariable Integer FunctionManualId,
+                                              @RequestBody FunctionManualRequest functionManualRequest,
                                               @RequestParam(value = "userId", required = false) Integer userId) {
 
-        cmd.setWorkItemId(workItemId);
-        cmd.setWorkItemRequest(workItemRequest);
+        cmd.setFunctionManualId(FunctionManualId);
+        cmd.setWorkItemRequest(functionManualRequest);
         cmd.execute();
 
         return new SuccessRestResponse();

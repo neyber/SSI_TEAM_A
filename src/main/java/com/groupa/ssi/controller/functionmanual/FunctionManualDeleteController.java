@@ -1,5 +1,6 @@
-package com.groupa.ssi.controller.usermanual;
+package com.groupa.ssi.controller.functionmanual;
 
+import com.groupa.ssi.cmd.functionmanual.FunctionManualDeleteCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,15 +11,19 @@ import org.springframework.web.context.annotation.RequestScope;
  * @author Marcelo Loayza
  */
 
-@Api(tags = UserManualAbstractController.TAG_NAME, description = UserManualAbstractController.DESCRIPTION)
+@Api(tags = FunctionManualAbstractController.TAG_NAME, description = FunctionManualAbstractController.DESCRIPTION)
 @RestController
 @RequestScope
-public class UserManualDeleteController extends UserManualAbstractController {
+public class FunctionManualDeleteController extends FunctionManualAbstractController {
 
-    @ApiOperation(value = "Delete UserManual")
-    @RequestMapping(value = "/{userManualId}", method = RequestMethod.DELETE)
-    public SuccessRestResponse deleteUserManua(@PathVariable Long userManualId,
-                                                @RequestParam(value = "userId") Integer userId){
+    private FunctionManualDeleteCmd cmd;
+
+    @ApiOperation(value = "Delete FunctionManual")
+    @RequestMapping(value = "/{functionManualId}", method = RequestMethod.DELETE)
+    public SuccessRestResponse deleteUserManual(@PathVariable Integer functionManualId,
+                                                @RequestParam(value = "userId", required = false) Integer userId){
+        cmd.setFunctionManulIdId(functionManualId);
+
         return new SuccessRestResponse();
     }
 }

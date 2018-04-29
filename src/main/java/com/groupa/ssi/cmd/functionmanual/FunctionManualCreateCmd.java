@@ -2,41 +2,43 @@ package com.groupa.ssi.cmd.functionmanual;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
-import com.groupa.ssi.model.domain.catalog.WorkItem;
-import com.groupa.ssi.request.catalog.WorkItemRequest;
-import com.groupa.ssi.services.catalog.WorkItemService;
+import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
+import com.groupa.ssi.request.functionmanual.FunctionManualRequest;
+import com.groupa.ssi.services.functionmanual.FunctionManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author Miguel Rojas
+ * @author Marcelo Loayza
  */
 @CommandScoped
-public class WorkItemCreateCmd extends AbstractCommand {
+public class FunctionManualCreateCmd extends AbstractCommand {
 
-    private WorkItemRequest workItemRequest;
+    private FunctionManualRequest functionManualRequest;
 
     @Autowired
-    private WorkItemService service;
+    private FunctionManualService service;
 
     @Override
     protected void run() {
-        WorkItem workItem = composeWorkItem(workItemRequest);
-        service.save(workItem);
+        FunctionManual functionManual = composeFunctionManual(functionManualRequest);
+        service.save(functionManual);
     }
 
-    public void setWorkItemRequest(WorkItemRequest workItemRequest) {
-        this.workItemRequest = workItemRequest;
+    public void setFunctionManualRequest(FunctionManualRequest functionManualRequest) {
+        this.functionManualRequest = functionManualRequest;
     }
 
-    private WorkItem composeWorkItem(WorkItemRequest workItemRequest) {
-        WorkItem workItem = new WorkItem();
-        workItem.setName(workItemRequest.getName());
-        workItem.setDescription(workItemRequest.getDescription());
-        workItem.setPurchaseDate(workItemRequest.getPurchaseDate());
-        workItem.setSerieNo(workItemRequest.getSerieNo());
-        workItem.setStatus(workItemRequest.getStatus());
-        workItem.setType(workItemRequest.getType());
-
-        return workItem;
+    private FunctionManual composeFunctionManual(FunctionManualRequest functionManualRequest) {
+        FunctionManual functionManual = new FunctionManual();
+        functionManual.setName(functionManualRequest.getName());
+        functionManual.setPosition(functionManualRequest.getPosition());
+        functionManual.setHierarchicalLever(functionManualRequest.getHierarchicalLever());
+        functionManual.setSuperiorBoss(functionManualRequest.getSuperiorBoss());
+        functionManual.setDependentPersonal(functionManualRequest.getInternalRelation());
+        functionManual.setExternalRelation(functionManualRequest.getExternalRelation());
+        functionManual.setActivity(functionManualRequest.getActivity());
+        functionManual.setGeneralActivity(functionManualRequest.getGeneralActivity());
+        functionManual.setPrincipalFunction(functionManualRequest.getPrincipalFunction());
+        return functionManual;
     }
 }
