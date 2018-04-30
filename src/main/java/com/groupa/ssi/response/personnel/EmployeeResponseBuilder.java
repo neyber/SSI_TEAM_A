@@ -18,13 +18,14 @@ public final class EmployeeResponseBuilder {
     private Date dateOfBirth;
     private char gender;
     private Date startDateInCompany;
-    private Role roleEmployee;
-    private Employee supervisor;
-    private Department departmentEmployee;
+    private RoleResponse roleEmployee;
+    private EmployeeResponse supervisor;
+    private DepartmentResponse departmentEmployee;
     private String healthConditionStartingAtCompany;
-    private Byte[] photo;
+    private Integer photoFileDocumentId;
 
-    public EmployeeResponseBuilder(){}
+
+    private EmployeeResponseBuilder(){}
 
     public EmployeeResponse build(){
         EmployeeResponse employeeResponse = new EmployeeResponse();
@@ -39,7 +40,7 @@ public final class EmployeeResponseBuilder {
         employeeResponse.setSupervisor(supervisor);
         employeeResponse.setDepartmentEmployee(departmentEmployee);
         employeeResponse.setHealthConditionStartingAtCompany(healthConditionStartingAtCompany);
-        employeeResponse.setPhoto(photo);
+        employeeResponse.setPhotoFileDocumentId(photoFileDocumentId);
         return employeeResponse;
     }
 
@@ -52,11 +53,25 @@ public final class EmployeeResponseBuilder {
         employeeResponseBuilder.setDateOfBirth(employee.getDateOfBirth());
         employeeResponseBuilder.setGender(employee.getGender());
         employeeResponseBuilder.setStartDateInCompany(employee.getStartDateInCompany());
-        employeeResponseBuilder.setRoleEmployee(employee.getRoleEmployee());
-        employeeResponseBuilder.setSupervisor(employee.getSupervisor());
-        employeeResponseBuilder.setDepartmentEmployee(employee.getDepartmentEmployee());
+
+        if (employee.getRoleEmployee() != null) {
+            employeeResponseBuilder.setRoleEmployee(RoleResponseBuilder.getInstance(employee.getRoleEmployee()).build());
+        }
+
+        if (employee.getSupervisor() != null) {
+            employeeResponseBuilder.setSupervisor(EmployeeResponseBuilder.getInstance(employee.getSupervisor()).build());
+        }
+
+        if (employee.getDepartmentEmployee() != null) {
+            employeeResponseBuilder.setDepartmentEmployee(DepartmentResponseBuilder.getInstance(employee.getDepartmentEmployee()).build());
+        }
+
         employeeResponseBuilder.setHealthConditionStartingAtCompany(employee.getHealthConditionStartingAtCompany());
-        employeeResponseBuilder.setPhoto(employee.getPhoto());
+
+        if (employee.getPhotoFileDocument() != null) {
+            employeeResponseBuilder.setPhotoFileDocumentId(employee.getPhotoFileDocument().getId());
+        }
+
         return employeeResponseBuilder;
     }
 
@@ -95,17 +110,17 @@ public final class EmployeeResponseBuilder {
         return this;
     }
 
-    public EmployeeResponseBuilder setRoleEmployee(Role roleEmployee) {
+    public EmployeeResponseBuilder setRoleEmployee(RoleResponse roleEmployee) {
         this.roleEmployee = roleEmployee;
         return this;
     }
 
-    public EmployeeResponseBuilder setSupervisor(Employee supervisor) {
+    public EmployeeResponseBuilder setSupervisor(EmployeeResponse supervisor) {
         this.supervisor = supervisor;
         return this;
     }
 
-    public EmployeeResponseBuilder setDepartmentEmployee(Department departmentEmployee) {
+    public EmployeeResponseBuilder setDepartmentEmployee(DepartmentResponse departmentEmployee) {
         this.departmentEmployee = departmentEmployee;
         return this;
     }
@@ -115,8 +130,8 @@ public final class EmployeeResponseBuilder {
         return this;
     }
 
-    public EmployeeResponseBuilder setPhoto(Byte[] photo) {
-        this.photo = photo;
+    public EmployeeResponseBuilder setPhotoFileDocumentId(Integer photoFileDocumentId) {
+        this.photoFileDocumentId = photoFileDocumentId;
         return this;
     }
 }

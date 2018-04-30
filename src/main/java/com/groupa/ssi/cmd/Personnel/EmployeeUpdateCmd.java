@@ -2,14 +2,21 @@ package com.groupa.ssi.cmd.Personnel;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
+import com.groupa.ssi.model.domain.common.FileDocument;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.request.personnel.EmployeeRequest;
+import com.groupa.ssi.services.common.FileDocumentService;
 import com.groupa.ssi.services.personnel.DepartmentService;
 import com.groupa.ssi.services.personnel.EmployeeService;
 import com.groupa.ssi.services.personnel.RoleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @author Lizeth Salazar
@@ -17,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @CommandScoped
 public class EmployeeUpdateCmd extends AbstractCommand {
+    private static Logger log = LoggerFactory.getLogger(EmployeeUpdateCmd.class);
+    private MultipartFile photoFile;
 
     @Autowired
     private EmployeeService employeeService;
@@ -44,11 +53,11 @@ public class EmployeeUpdateCmd extends AbstractCommand {
             supervisor = employeeService.findById(employeeRequest.getSupervisorId());
         }
 
-        Employee employee = composeEmployee(employeeId, employeeRequest, roleEmployee, department, supervisor);
+        Employee employee = composeEmployee(employeeId, employeeRequest, roleEmployee, department, supervisor, photoFile);
         employeeService.save(employee);
     }
 
-    private Employee composeEmployee(Integer employeeId, EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor) {
+    private Employee composeEmployee(Integer employeeId, EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, MultipartFile photoFile) {
         Employee employee = employeeService.findById(employeeId);
         employee.setIdentificationNumber(employeeRequest.getIdentificationNumber());
         employee.setFirstName(employeeRequest.getFirstName());
@@ -57,12 +66,33 @@ public class EmployeeUpdateCmd extends AbstractCommand {
         employee.setGender(employeeRequest.getGender());
         employee.setStartDateInCompany(employeeRequest.getStartDateInCompany());
         employee.setHealthConditionStartingAtCompany(employeeRequest.getHealthConditionStartingAtCompany());
-        employee.setPhoto(employeeRequest.getPhoto());
         employee.setRoleEmployee(role);
         employee.setDepartmentEmployee(department);
         employee.setSupervisor(supervisor);
+        employee.setPhotoFileDocument(processAndComposePhoto(employee, photoFile));
         return employee;
     }
+
+    private FileDocument processAndComposePhoto(Employee employee, MultipartFile file) {
+        FileDocument fileDocument = employee.getPhotoFileDocument();
+
+        if (file != null) {
+            if (fileDocument == null) {
+                fileDocument = new FileDocument();
+            }
+
+            try {
+                fileDocument.setFileName(file.getOriginalFilename());
+                fileDocument.setContentType(file.getContentType());
+                fileDocument.setSize(file.getSize());
+                fileDocument.setData(file.getBytes());
+            } catch (IOException e) {
+                log.debug("Error in recovery employee photo..", e);
+            }
+        }
+        return fileDocument;
+    }
+
 
     public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
@@ -70,5 +100,9 @@ public class EmployeeUpdateCmd extends AbstractCommand {
 
     public void setEmployeeRequest(EmployeeRequest employeeRequest) {
         this.employeeRequest = employeeRequest;
+    }
+
+    public void setPhotoFile(MultipartFile photoFile) {
+        this.photoFile = photoFile;
     }
 }

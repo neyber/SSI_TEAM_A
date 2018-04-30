@@ -18,11 +18,11 @@ public class EmployeeResponse {
     private Date dateOfBirth;
     private char gender;
     private Date startDateInCompany;
-    private Role roleEmployee;
-    private Employee supervisor;
-    private Department departmentEmployee;
+    private RoleResponse roleEmployee;
+    private EmployeeResponse supervisor;
+    private DepartmentResponse departmentEmployee;
     private String healthConditionStartingAtCompany;
-    private Byte[] photo;
+    private Integer photoFileDocumentId;
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -80,27 +80,27 @@ public class EmployeeResponse {
         this.startDateInCompany = startDateInCompany;
     }
 
-    public Role getRoleEmployee() {
+    public RoleResponse getRoleEmployee() {
         return roleEmployee;
     }
 
-    public void setRoleEmployee(Role roleEmployee) {
+    public void setRoleEmployee(RoleResponse roleEmployee) {
         this.roleEmployee = roleEmployee;
     }
 
-    public Employee getSupervisor() {
+    public EmployeeResponse getSupervisor() {
         return supervisor;
     }
 
-    public void setSupervisor(Employee supervisor) {
+    public void setSupervisor(EmployeeResponse supervisor) {
         this.supervisor = supervisor;
     }
 
-    public Department getDepartmentEmployee() {
+    public DepartmentResponse getDepartmentEmployee() {
         return departmentEmployee;
     }
 
-    public void setDepartmentEmployee(Department departmentEmployee) {
+    public void setDepartmentEmployee(DepartmentResponse departmentEmployee) {
         this.departmentEmployee = departmentEmployee;
     }
 
@@ -112,11 +112,11 @@ public class EmployeeResponse {
         this.healthConditionStartingAtCompany = healthConditionStartingAtCompany;
     }
 
-    public Byte[] getPhoto() {
-        return photo;
+    public Integer getPhotoFileDocumentId() {
+        return photoFileDocumentId;
     }
 
-    public void setPhoto(Byte[] photo) {
-        this.photo = photo;
+    public void setPhotoFileDocumentId(Integer photoFileDocumentId) {
+        this.photoFileDocumentId = photoFileDocumentId;
     }
 }
