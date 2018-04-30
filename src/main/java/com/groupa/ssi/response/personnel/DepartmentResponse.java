@@ -5,11 +5,20 @@ package com.groupa.ssi.response.personnel;
  */
 
 public class DepartmentResponse {
+    private Integer departmentId;
     private String name;
     private String description;
 
     public String getName() {
         return name;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
     public void setName(String name) {

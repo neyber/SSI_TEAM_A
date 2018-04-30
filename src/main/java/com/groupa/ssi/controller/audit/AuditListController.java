@@ -36,7 +36,7 @@ public class AuditListController extends AuditAbstractController {
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<AuditResponse> getAuditList(@RequestParam(value = "userId") Integer userId) {
+    public ListRestResponse<AuditResponse> getAuditList(@RequestParam(value = "userId", required = false) Integer userId) {
         auditListCmd.execute();
 
         List<AuditResponse> auditResponses = auditListCmd.getAuditList().stream()

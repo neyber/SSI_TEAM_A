@@ -2,9 +2,13 @@ package com.groupa.ssi.cmd.Personnel;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
+import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
+import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.request.personnel.EmployeeRequest;
+import com.groupa.ssi.services.personnel.DepartmentService;
 import com.groupa.ssi.services.personnel.EmployeeService;
+import com.groupa.ssi.services.personnel.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -16,17 +20,35 @@ public class EmployeeUpdateCmd extends AbstractCommand {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private DepartmentService departmentService;
 
     private Integer employeeId;
     private EmployeeRequest employeeRequest;
 
     @Override
     protected void run() {
-        Employee employee = composeEmployee(employeeId, employeeRequest);
+        Role roleEmployee = null;
+        Department department = null;
+        Employee supervisor = null;
+
+        if(employeeRequest.getRoleId() != null) {
+            roleEmployee = roleService.findById(employeeRequest.getRoleId());
+        }
+        if(employeeRequest.getDepartmentId() != null) {
+            department = departmentService.findById(employeeRequest.getDepartmentId());
+        }
+        if (employeeRequest.getSupervisorId() != null){
+            supervisor = employeeService.findById(employeeRequest.getSupervisorId());
+        }
+
+        Employee employee = composeEmployee(employeeId, employeeRequest, roleEmployee, department, supervisor);
         employeeService.save(employee);
     }
 
-    private Employee composeEmployee(Integer employeeId, EmployeeRequest employeeRequest) {
+    private Employee composeEmployee(Integer employeeId, EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor) {
         Employee employee = employeeService.findById(employeeId);
         employee.setIdentificationNumber(employeeRequest.getIdentificationNumber());
         employee.setFirstName(employeeRequest.getFirstName());
@@ -36,9 +58,9 @@ public class EmployeeUpdateCmd extends AbstractCommand {
         employee.setStartDateInCompany(employeeRequest.getStartDateInCompany());
         employee.setHealthConditionStartingAtCompany(employeeRequest.getHealthConditionStartingAtCompany());
         employee.setPhoto(employeeRequest.getPhoto());
-        /*employee.setSupervisor(employeeRequest.getSupervisor());
-        employee.setRoleEmployee(employeeRequest.getRoleEmployee());
-        employee.setDepartmentEmployee(employeeRequest.getDepartmentEmployee());*/
+        employee.setRoleEmployee(role);
+        employee.setDepartmentEmployee(department);
+        employee.setSupervisor(supervisor);
         return employee;
     }
 

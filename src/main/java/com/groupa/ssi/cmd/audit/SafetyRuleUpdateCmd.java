@@ -37,7 +37,7 @@ public class SafetyRuleUpdateCmd extends AbstractCommand {
         SafetyRule safetyRule = safetyRuleService.findById(safetyRuleId);
         safetyRule.setRuleName(safetyRuleRequest.getRuleName());
         safetyRule.setAccomplishment(safetyRuleRequest.getAccomplishment());
-        safetyRule.setAudit(safetyRuleRequest.getAudit());
+
         return safetyRule;
     }
 }

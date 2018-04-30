@@ -29,7 +29,7 @@ public class AuditDeleteController extends AuditAbstractController {
             value = "/{auditId}",
             method = RequestMethod.DELETE
     )
-    public SuccessRestResponse deleteAudit(@PathVariable Integer auditId, @RequestParam(value = "userId") Integer userId) {
+    public SuccessRestResponse deleteAudit(@PathVariable Integer auditId, @RequestParam(value = "userId", required = false) Integer userId) {
         auditDeleteCmd.setAuditId(auditId);
         auditDeleteCmd.execute();
         return new SuccessRestResponse();

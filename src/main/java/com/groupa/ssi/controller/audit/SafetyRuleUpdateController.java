@@ -30,7 +30,7 @@ public class SafetyRuleUpdateController extends SafetyRuleAbstractController {
             value = "/{safetyRuleId}",
             method = RequestMethod.PUT
     )
-    public SuccessRestResponse updateSafetyRule(@PathVariable Integer safetyRuleId, @RequestBody SafetyRuleRequest safetyRuleRequest, @RequestParam(value = "userId") Integer userId) {
+    public SuccessRestResponse updateSafetyRule(@PathVariable Integer safetyRuleId, @RequestBody SafetyRuleRequest safetyRuleRequest, @RequestParam(value = "userId", required = false) Integer userId) {
         safetyRuleUpdateCmd.setSafetyRuleId(safetyRuleId);
         safetyRuleUpdateCmd.setSafetyRuleRequest(safetyRuleRequest);
         safetyRuleUpdateCmd.execute();

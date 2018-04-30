@@ -8,6 +8,7 @@ import com.groupa.ssi.model.domain.personnel.Department;
  */
 
 public final class DepartmentResponseBuilder {
+    private Integer departmentId;
     private String name;
     private String description;
 
@@ -16,6 +17,7 @@ public final class DepartmentResponseBuilder {
 
     public DepartmentResponse build() {
         DepartmentResponse departmentResponse = new DepartmentResponse();
+        departmentResponse.setDepartmentId(departmentId);
         departmentResponse.setName(name);
         departmentResponse.setDescription(description);
         return departmentResponse;
@@ -23,9 +25,15 @@ public final class DepartmentResponseBuilder {
 
     public static DepartmentResponseBuilder getInstance(Department department){
         DepartmentResponseBuilder departmentResponseBuilder = new DepartmentResponseBuilder();
+        departmentResponseBuilder.setDepartmentId(department.getId());
         departmentResponseBuilder.setName(department.getName());
         departmentResponseBuilder.setDescription(department.getDescription());
         return departmentResponseBuilder;
+    }
+
+    public DepartmentResponseBuilder setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+        return this;
     }
 
     public DepartmentResponseBuilder setName(String name) {

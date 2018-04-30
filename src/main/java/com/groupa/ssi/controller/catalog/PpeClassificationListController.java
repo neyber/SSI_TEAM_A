@@ -1,19 +1,20 @@
 package com.groupa.ssi.controller.catalog;
 
+import com.groupa.ssi.cmd.catalog.PpeClassificationListCmd;
 import com.groupa.ssi.common.response.rest.ListRestResponse;
-import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.response.catalog.PpeClassificationResponse;
-import com.groupa.ssi.services.catalog.PpeClassificationService;
+import com.groupa.ssi.response.catalog.PpeClassificationResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created on April 25, 2018
@@ -27,19 +28,22 @@ import java.util.List;
 @RequestScope
 public class PpeClassificationListController extends PpeClassificationAbstractController {
 
-    private PpeClassificationService service;
-
-    public PpeClassificationListController(PpeClassificationService ppeClassificationService){
-        this.service = ppeClassificationService;
-    }
+    @Autowired
+    private PpeClassificationListCmd cmd;
 
     @ApiOperation(value = "List of personal protection equipment classifications")
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<PpeClassificationResponse> getPpeClassificationList(@RequestParam(value = "userId") Integer userId) {
-        List<PpeClassification> ppeClassificationList = service.findAll();
-        return new ListRestResponse(ppeClassificationList);
+    public ListRestResponse<PpeClassificationResponse> getPpeClassificationList(@RequestParam(value = "userId", required = false) Integer userId) {
+
+        cmd.execute();
+
+        List<PpeClassificationResponse> result = cmd.getPpeClassificationList().stream()
+                .map(instance -> PpeClassificationResponseBuilder.getInstance(instance).build())
+                .collect(Collectors.toList());
+
+        return new ListRestResponse<>(result);
     }
 
 }

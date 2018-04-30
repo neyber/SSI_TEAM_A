@@ -2,8 +2,10 @@ package com.groupa.ssi.cmd.audit;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
+import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.model.domain.audit.SafetyRule;
 import com.groupa.ssi.request.audit.SafetyRuleRequest;
+import com.groupa.ssi.services.audit.AuditService;
 import com.groupa.ssi.services.audit.SafetyRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,22 +19,31 @@ public class SafetyRuleCreateCmd extends AbstractCommand {
 
     @Autowired
     private SafetyRuleService safetyRuleService;
+    @Autowired
+    private AuditService auditService;
 
     @Override
     protected void run() {
-        SafetyRule safetyRule = composeSafetyRule(safetyRuleRequest);
+        Audit audit = null;
+
+        if (safetyRuleRequest.getAuditId() != null) {
+            audit = auditService.findById(safetyRuleRequest.getAuditId());
+        }
+
+        SafetyRule safetyRule = ComposeSafetyRule(safetyRuleRequest, audit);
         safetyRuleService.save(safetyRule);
+    }
+
+    private SafetyRule ComposeSafetyRule(SafetyRuleRequest safetyRuleRequest, Audit audit) {
+        SafetyRule safetyRule = new SafetyRule();
+        safetyRule.setRuleName(safetyRuleRequest.getRuleName());
+        safetyRule.setAccomplishment(safetyRuleRequest.getAccomplishment());
+        safetyRule.setAudit(audit);
+
+        return safetyRule;
     }
 
     public void setSafetyRuleRequest(SafetyRuleRequest safetyRuleRequest) {
         this.safetyRuleRequest = safetyRuleRequest;
-    }
-
-    private SafetyRule composeSafetyRule(SafetyRuleRequest safetyRuleRequest) {
-        SafetyRule safetyRule = new SafetyRule();
-        safetyRule.setRuleName(safetyRuleRequest.getRuleName());
-        safetyRule.setAccomplishment(safetyRuleRequest.getAccomplishment());
-        safetyRule.setAudit(safetyRuleRequest.getAudit());
-        return safetyRule;
     }
 }
