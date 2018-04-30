@@ -10,7 +10,8 @@ public class PpeRequest {
 
     private String name;
     private String description;
-    private PpeClassification ppeClassification;
+    private Byte[] image;
+    private Integer ppeClassificationID;
 
     public String getName() {
         return name;
@@ -28,11 +29,19 @@ public class PpeRequest {
         this.description = description;
     }
 
-    public PpeClassification getPpeClassification() {
-        return ppeClassification;
+    public Byte[] getImage() {
+        return image;
     }
 
-    public void setPpeClassification(PpeClassification ppeClassification) {
-        this.ppeClassification = ppeClassification;
+    public void setImage(Byte[] image) {
+        this.image = image;
+    }
+
+    public Integer getPpeClassificationID() {
+        return ppeClassificationID;
+    }
+
+    public void setPpeClassificationID(int ppeClassificationID) {
+        this.ppeClassificationID = ppeClassificationID;
     }
 }

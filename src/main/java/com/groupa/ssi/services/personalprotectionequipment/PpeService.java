@@ -1,40 +1,23 @@
 package com.groupa.ssi.services.personalprotectionequipment;
 
-import com.groupa.ssi.exception.DomainEntityNotFoundException;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
+import com.groupa.ssi.services.common.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created on April 25, 2018
  * @author Walker Colina
  */
 @Service
-public class PpeService {
+public class PpeService extends GenericService<Ppe> {
+    @Autowired
     private PpeRepository repository;
 
-    public PpeService(PpeRepository repository) {
-        this.repository = repository;
-    }
-
-    public List<Ppe> findAll() {
-        List<Ppe> results = new ArrayList<>();
-        repository.findAll().forEach(results::add);
-        return results;
-    }
-
-    public Ppe findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new DomainEntityNotFoundException(Ppe.class));
-    }
-
-    public Ppe save(Ppe ppe) {
-        return repository.save(ppe);
-    }
-
-    public void deleteById(Integer id) {
-        repository.deleteById(id);
+    @Override
+    protected JpaRepository<Ppe, Integer> getRepository() {
+        return repository;
     }
 }
