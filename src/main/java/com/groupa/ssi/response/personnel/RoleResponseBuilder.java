@@ -7,6 +7,7 @@ import com.groupa.ssi.model.domain.personnel.Role;
  */
 
 public final class RoleResponseBuilder {
+    private Integer roleId;
     private String name;
     private String description;
 
@@ -14,6 +15,7 @@ public final class RoleResponseBuilder {
 
     public RoleResponse build(){
         RoleResponse roleResponse = new RoleResponse();
+        roleResponse.setRoleId(roleId);
         roleResponse.setName(name);
         roleResponse.setDescription(description);
         return roleResponse;
@@ -21,10 +23,16 @@ public final class RoleResponseBuilder {
 
     public static RoleResponseBuilder getInstance(Role role){
         RoleResponseBuilder roleResponseBuilder = new RoleResponseBuilder();
+        roleResponseBuilder.setRoleId(role.getId());
         roleResponseBuilder.setName(role.getName());
         roleResponseBuilder.setDescription(role.getDescription());
         return roleResponseBuilder;
 
+    }
+
+    public RoleResponseBuilder setRoleId(Integer roleId) {
+        this.roleId = roleId;
+        return this;
     }
 
     public RoleResponseBuilder setName(String name) {

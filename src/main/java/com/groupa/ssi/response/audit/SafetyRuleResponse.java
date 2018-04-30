@@ -7,9 +7,18 @@ import com.groupa.ssi.model.domain.audit.Audit;
  */
 public class SafetyRuleResponse {
 
+    private Integer safetyRuleId;
     private String ruleName;
     private Boolean accomplishment;
     private Audit audit;
+
+    public Integer getSafetyRuleId() {
+        return safetyRuleId;
+    }
+
+    public void setSafetyRuleId(Integer safetyRuleId) {
+        this.safetyRuleId = safetyRuleId;
+    }
 
     public String getRuleName() {
         return ruleName;

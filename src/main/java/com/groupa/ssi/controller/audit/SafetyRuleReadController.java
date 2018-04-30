@@ -31,7 +31,7 @@ public class SafetyRuleReadController extends SafetyRuleAbstractController {
             value = "/{safetyRuleId}",
             method = RequestMethod.GET
     )
-    public SingleRestResponse<SafetyRuleResponse> readSafetyRule(@PathVariable Integer safetyRuleId, @RequestParam(value = "userId") Integer userId) {
+    public SingleRestResponse<SafetyRuleResponse> readSafetyRule(@PathVariable Integer safetyRuleId, @RequestParam(value = "userId", required = false) Integer userId) {
         safetyRuleReadCmd.setSafetyRuleId(safetyRuleId);
         safetyRuleReadCmd.execute();
         return new SingleRestResponse<>(SafetyRuleResponseBuilder.getInstance(safetyRuleReadCmd.getSafetyRule()).build());

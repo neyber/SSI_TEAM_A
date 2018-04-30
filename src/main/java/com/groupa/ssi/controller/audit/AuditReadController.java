@@ -33,7 +33,7 @@ public class AuditReadController extends AuditAbstractController {
             value = "/{auditId}",
             method = RequestMethod.GET
     )
-    public SingleRestResponse<AuditResponse> readAudit(@PathVariable Integer auditId, @RequestParam(value = "userId") Integer userId) {
+    public SingleRestResponse<AuditResponse> readAudit(@PathVariable Integer auditId, @RequestParam(value = "userId", required = false) Integer userId) {
         auditReadCmd.setAuditId(auditId);
         auditReadCmd.execute();
         return new SingleRestResponse<>(AuditResponseBuilder.getInstance(auditReadCmd.getAudit()).build());

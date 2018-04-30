@@ -8,9 +8,9 @@ import com.groupa.ssi.model.domain.audit.SafetyRule;
  */
 public final class SafetyRuleResponseBuilder {
 
+    private Integer safetyRuleId;
     private String ruleName;
     private Boolean accomplishment;
-    private Audit audit;
 
     public SafetyRuleResponseBuilder() {
 
@@ -18,18 +18,25 @@ public final class SafetyRuleResponseBuilder {
 
     public SafetyRuleResponse build() {
         SafetyRuleResponse safetyRuleResponse = new SafetyRuleResponse();
+        safetyRuleResponse.setSafetyRuleId(safetyRuleId);
         safetyRuleResponse.setRuleName(ruleName);
         safetyRuleResponse.setAccomplishment(accomplishment);
-        safetyRuleResponse.setAudit(audit);
 
         return safetyRuleResponse;
     }
 
     public static SafetyRuleResponseBuilder getInstance(SafetyRule safetyRule) {
-        return new SafetyRuleResponseBuilder()
-                .setRuleName(safetyRule.getRuleName())
-                .setAccomplishment(safetyRule.getAccomplishment())
-                .setAudit(safetyRule.getAudit());
+        SafetyRuleResponseBuilder safetyRuleResponseBuilder = new SafetyRuleResponseBuilder();
+        safetyRuleResponseBuilder.setSafetyRuleId(safetyRule.getId());
+        safetyRuleResponseBuilder.setRuleName(safetyRule.getRuleName());
+        safetyRuleResponseBuilder.setAccomplishment(safetyRule.getAccomplishment());
+
+        return safetyRuleResponseBuilder;
+    }
+
+    public SafetyRuleResponseBuilder setSafetyRuleId(Integer safetyRuleId) {
+        this.safetyRuleId = safetyRuleId;
+        return this;
     }
 
     public SafetyRuleResponseBuilder setRuleName(String ruleName) {
@@ -39,11 +46,6 @@ public final class SafetyRuleResponseBuilder {
 
     public SafetyRuleResponseBuilder setAccomplishment(Boolean accomplishment) {
         this.accomplishment = accomplishment;
-        return this;
-    }
-
-    public SafetyRuleResponseBuilder setAudit(Audit audit) {
-        this.audit = audit;
         return this;
     }
 }

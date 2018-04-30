@@ -5,6 +5,7 @@ package com.groupa.ssi.bootsptrap;
 
 
 import com.groupa.ssi.model.domain.audit.Audit;
+import com.groupa.ssi.model.domain.audit.SafetyRule;
 import com.groupa.ssi.model.domain.catalog.SaClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;

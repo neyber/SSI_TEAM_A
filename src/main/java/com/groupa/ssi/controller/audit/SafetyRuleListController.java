@@ -36,7 +36,7 @@ public class SafetyRuleListController extends SafetyRuleAbstractController {
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<SafetyRuleResponse> getSafetyRuleList(@RequestParam(value = "userId") Integer userId) {
+    public ListRestResponse<SafetyRuleResponse> getSafetyRuleList(@RequestParam(value = "userId", required = false) Integer userId) {
         safetyRuleListCmd.execute();
 
         List<SafetyRuleResponse> safetyRuleResponses = safetyRuleListCmd.getSafetyRuleList().stream()

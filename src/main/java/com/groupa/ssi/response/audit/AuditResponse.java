@@ -7,6 +7,7 @@ import com.groupa.ssi.model.domain.personnel.Employee;
  */
 public class AuditResponse {
 
+    private Integer auditId;
     private String auditName;
     private String auditCode;
     private String auditType;
@@ -14,6 +15,14 @@ public class AuditResponse {
     private String auditObjective;
     private String auditCriteria;
     private Employee employee;
+
+    public Integer getAuditId() {
+        return auditId;
+    }
+
+    public void setAuditId(Integer auditId) {
+        this.auditId = auditId;
+    }
 
     public String getAuditName() {
         return auditName;
