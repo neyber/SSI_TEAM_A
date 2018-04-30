@@ -6,7 +6,7 @@ package com.groupa.ssi.response.catalog;
  */
 public class PpeClassificationResponse {
 
-    private int id;
+    private Integer id;
     private String name;
     private String description;
 
@@ -14,7 +14,7 @@ public class PpeClassificationResponse {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

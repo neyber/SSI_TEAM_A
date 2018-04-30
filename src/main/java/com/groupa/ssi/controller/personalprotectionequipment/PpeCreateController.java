@@ -1,11 +1,11 @@
 package com.groupa.ssi.controller.personalprotectionequipment;
 
+import com.groupa.ssi.cmd.personalprotectionequipment.PpeCreateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
-import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.request.personalprotectionequipment.PpeRequest;
-import com.groupa.ssi.services.personalprotectionequipment.PpeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -21,23 +21,17 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class PpeCreateController extends PpeAbstractController {
 
-    private PpeService service;
-
-    public PpeCreateController(PpeService service){
-        this.service = service;
-    }
+    @Autowired
+    private PpeCreateCmd cmd;
 
     @ApiOperation(value = "Create personal protection equipment")
     @RequestMapping(
             method = RequestMethod.POST
     )
     public SuccessRestResponse createPpe(@RequestBody PpeRequest ppeRequest,
-                                              @RequestParam(value = "userId") Integer userId) {
-        Ppe ppe = new Ppe();
-        ppe.setName(ppeRequest.getName());
-        ppe.setDescription(ppeRequest.getDescription());
-        ppe.setPpeClassification(ppeRequest.getPpeClassification());
-        service.save(ppe);
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
+        cmd.setPpeRequest(ppeRequest);
+        cmd.execute();
 
         return new SuccessRestResponse();
     }

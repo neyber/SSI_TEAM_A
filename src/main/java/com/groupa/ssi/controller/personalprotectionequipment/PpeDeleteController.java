@@ -1,9 +1,10 @@
 package com.groupa.ssi.controller.personalprotectionequipment;
 
+import com.groupa.ssi.cmd.personalprotectionequipment.PpeDeleteCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
-import com.groupa.ssi.services.personalprotectionequipment.PpeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -19,11 +20,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class PpeDeleteController extends PpeAbstractController {
 
-    private PpeService service;
-
-    public PpeDeleteController(PpeService service){
-        this.service = service;
-    }
+    @Autowired
+    private PpeDeleteCmd cmd;
 
     @ApiOperation(value = "Delete personal protection equipment")
     @RequestMapping(
@@ -31,8 +29,10 @@ public class PpeDeleteController extends PpeAbstractController {
             method = RequestMethod.DELETE
     )
     public SuccessRestResponse deletePpe(@PathVariable Integer ppeId,
-                                              @RequestParam(value = "userId") Integer userId) {
-        service.deleteById(ppeId);
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
+        cmd.setPpeId(ppeId);
+        cmd.execute();
+
         return new SuccessRestResponse();
     }
 
