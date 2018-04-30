@@ -5,6 +5,7 @@ import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import com.groupa.ssi.request.personalprotectionequipment.ExistingPpeRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -20,20 +21,18 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class ExistingPpeCreateController extends ExistingPpeAbstractController {
 
+    @Autowired
     private ExistingPpeCreateCmd cmd;
-
-    public ExistingPpeCreateController(ExistingPpeCreateCmd cmd) {
-        this.cmd = cmd;
-    }
 
     @ApiOperation(value = "Create existing personal protection equipment")
     @RequestMapping(
             method = RequestMethod.POST
     )
     public SuccessRestResponse createExistingPpe(@RequestBody ExistingPpeRequest existingppeRequest,
-                                              @RequestParam(value = "userId") Integer userId) {
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
         cmd.setExistingPpeRequest(existingppeRequest);
         cmd.execute();
+
         return new SuccessRestResponse();
     }
 }

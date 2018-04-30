@@ -14,7 +14,7 @@ public class ExistingPpeRequest {
     private Date purchaseDate;
     private int lifeTimeDays;
     private int currentLifeTimeDays;
-    private Ppe ppe;
+    private Integer ppeId;
 
     public String getDetail() {
         return detail;
@@ -48,11 +48,11 @@ public class ExistingPpeRequest {
         this.currentLifeTimeDays = currentLifeTimeDays;
     }
 
-    public Ppe getPpe() {
-        return ppe;
+    public Integer getPpeId() {
+        return ppeId;
     }
 
-    public void setPpe(Ppe ppe) {
-        this.ppe = ppe;
+    public void setPpeId(Integer ppeId) {
+        this.ppeId = ppeId;
     }
 }
