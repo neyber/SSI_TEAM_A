@@ -8,6 +8,7 @@ import com.groupa.ssi.model.domain.catalog.PpeClassification;
  */
 public final class PpeClassificationResponseBuilder {
 
+    private int id;
     private String name;
     private String description;
 
@@ -16,6 +17,7 @@ public final class PpeClassificationResponseBuilder {
 
     public PpeClassificationResponse build() {
         PpeClassificationResponse ppeClassificationResponse = new PpeClassificationResponse();
+        ppeClassificationResponse.setId(id);
         ppeClassificationResponse.setName(name);
         ppeClassificationResponse.setDescription(description);
 
@@ -25,8 +27,14 @@ public final class PpeClassificationResponseBuilder {
 
     public static PpeClassificationResponseBuilder getInstance(PpeClassification ppeClassification) {
         return new PpeClassificationResponseBuilder()
+                .setId(ppeClassification.getId())
                 .setName(ppeClassification.getName())
                 .setDescription(ppeClassification.getDescription());
+    }
+
+    public PpeClassificationResponseBuilder setId(int id) {
+        this.id = id;
+        return this;
     }
 
     public PpeClassificationResponseBuilder setName(String name) {

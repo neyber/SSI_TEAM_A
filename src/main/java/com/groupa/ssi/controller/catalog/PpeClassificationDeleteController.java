@@ -17,7 +17,7 @@ import org.springframework.web.context.annotation.RequestScope;
 )
 @RestController
 @RequestScope
-public class PpeClassificationDeleteController extends PpeClassificationAbstractController {
+public class  PpeClassificationDeleteController extends PpeClassificationAbstractController {
 
     private PpeClassificationService service;
 
@@ -31,7 +31,7 @@ public class PpeClassificationDeleteController extends PpeClassificationAbstract
             method = RequestMethod.DELETE
     )
     public SuccessRestResponse deletePpeClassification(@PathVariable Integer ppeClassificationId,
-                                              @RequestParam(value = "userId") Integer userId) {
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
         service.deleteById(ppeClassificationId);
         return new SuccessRestResponse();
     }
