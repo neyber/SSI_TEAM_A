@@ -10,11 +10,20 @@ import java.util.Date;
  */
 public class ExistingPpeResponse {
 
+    private Integer existingPpeId;
     private String detail;
     private Date purchaseDate;
     private int lifeTimeDays;
     private int currentLifeTimeDays;
     private Ppe ppe;
+
+    public Integer getExistingPpeId() {
+        return existingPpeId;
+    }
+
+    public void setExistingPpeId(Integer existingPpeId) {
+        this.existingPpeId = existingPpeId;
+    }
 
     public String getDetail() {
         return detail;

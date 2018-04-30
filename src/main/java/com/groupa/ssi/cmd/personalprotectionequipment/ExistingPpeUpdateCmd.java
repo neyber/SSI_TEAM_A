@@ -3,8 +3,10 @@ package com.groupa.ssi.cmd.personalprotectionequipment;
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
+import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.request.personalprotectionequipment.ExistingPpeRequest;
 import com.groupa.ssi.services.personalprotectionequipment.ExistingPpeService;
+import com.groupa.ssi.services.personalprotectionequipment.PpeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -18,12 +20,19 @@ public class ExistingPpeUpdateCmd extends AbstractCommand {
     private ExistingPpeRequest existingPpeRequest;
 
     @Autowired
-    private ExistingPpeService service;
+    private ExistingPpeService existingPpeService;
+
+    @Autowired
+    private PpeService ppeService;
 
     @Override
     protected void run() {
-        ExistingPpe existingPpe = composeExistingPpe(existingPpeId, existingPpeRequest);
-        service.save(existingPpe);
+        Ppe ppe = null;
+        if(existingPpeRequest.getPpeId() != null){
+            ppe = ppeService.findById(existingPpeRequest.getPpeId());
+        }
+        ExistingPpe existingPpe = composeExistingPpe(existingPpeId, existingPpeRequest, ppe);
+        existingPpeService.save(existingPpe);
     }
 
     public void setExistingPpeId(Integer existingPpeId) {
@@ -34,13 +43,13 @@ public class ExistingPpeUpdateCmd extends AbstractCommand {
         this.existingPpeRequest = existingPpeRequest;
     }
 
-    private ExistingPpe composeExistingPpe(Integer existingPpeId, ExistingPpeRequest existingPpeRequest){
-        ExistingPpe existingPpe = service.findById(existingPpeId);
+    private ExistingPpe composeExistingPpe(Integer existingPpeId, ExistingPpeRequest existingPpeRequest, Ppe ppe){
+        ExistingPpe existingPpe = existingPpeService.findById(existingPpeId);
         existingPpe.setDetail(existingPpeRequest.getDetail());
         existingPpe.setPurchaseDate(existingPpeRequest.getPurchaseDate());
         existingPpe.setLifeTimeDays(existingPpeRequest.getLifeTimeDays());
         existingPpe.setCurrentLifeTimeDays(existingPpeRequest.getCurrentLifeTimeDays());
-        existingPpe.setPpe(existingPpeRequest.getPpe());
+        existingPpe.setPpe(ppe);
 
         return existingPpe;
     }
