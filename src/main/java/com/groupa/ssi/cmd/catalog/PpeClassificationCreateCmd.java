@@ -21,7 +21,7 @@ public class PpeClassificationCreateCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        PpeClassification ppeClassification = composeWorkItem(ppeClassificationRequest);
+        PpeClassification ppeClassification = composePpeClassification(ppeClassificationRequest);
         service.save(ppeClassification);
     }
 
@@ -29,7 +29,7 @@ public class PpeClassificationCreateCmd extends AbstractCommand {
         this.ppeClassificationRequest = ppeClassificationRequest;
     }
 
-    private PpeClassification composeWorkItem(PpeClassificationRequest ppeClassificationRequest) {
+    private PpeClassification composePpeClassification(PpeClassificationRequest ppeClassificationRequest) {
         PpeClassification ppeClassification = new PpeClassification();
         ppeClassification.setName(ppeClassificationRequest.getName());
         ppeClassification.setDescription(ppeClassificationRequest.getDescription());

@@ -21,6 +21,9 @@ public class Ppe extends ModelBase {
     @Column
     private String description;
 
+    @Column
+    private Byte[] image;
+
     @ManyToOne
     private PpeClassification ppeClassification;
 
@@ -38,6 +41,14 @@ public class Ppe extends ModelBase {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 
     public PpeClassification getPpeClassification() {
