@@ -35,7 +35,7 @@ public class ExistingPpeListController extends ExistingPpeAbstractController {
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<ExistingPpeResponse> getPpeList(@RequestParam(value = "userId", required = false) Integer userId) {
+    public ListRestResponse<ExistingPpeResponse> getExistingPpeList(@RequestParam(value = "userId", required = false) Integer userId) {
         cmd.execute();
 
         List<ExistingPpeResponse> result = cmd.getExistingPpeList().stream()
