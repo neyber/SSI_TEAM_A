@@ -1,4 +1,4 @@
-package com.groupa.ssi.request.catalog;
+package com.groupa.ssi.request.workitem;
 
 import java.util.Date;
 

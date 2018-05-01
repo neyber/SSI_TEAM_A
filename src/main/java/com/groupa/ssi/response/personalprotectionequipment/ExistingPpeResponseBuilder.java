@@ -35,14 +35,14 @@ public final class ExistingPpeResponseBuilder {
     }
 
 
-    public static ExistingPpeResponseBuilder getInstance(ExistingPpe existinPpe) {
+    public static ExistingPpeResponseBuilder getInstance(ExistingPpe existingPpe) {
         return new ExistingPpeResponseBuilder()
-                .setExistingPpeId(existinPpe.getId())
-                .setDetail(existinPpe.getDetail())
-                .setPurchaseDate(existinPpe.getPurchaseDate())
-                .setLifeTimeDays(existinPpe.getLifeTimeDays())
-                .setCurrentLifeTimeDays(existinPpe.getCurrentLifeTimeDays())
-                .setPpe(existinPpe.getPpe());
+                .setExistingPpeId(existingPpe.getId())
+                .setDetail(existingPpe.getDetail())
+                .setPurchaseDate(existingPpe.getPurchaseDate())
+                .setLifeTimeDays(existingPpe.getLifeTimeDays())
+                .setCurrentLifeTimeDays(existingPpe.getCurrentLifeTimeDays())
+                .setPpe(existingPpe.getPpe());
     }
 
     public ExistingPpeResponseBuilder setExistingPpeId(Integer existingPpeId) {

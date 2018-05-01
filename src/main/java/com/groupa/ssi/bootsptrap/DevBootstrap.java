@@ -5,14 +5,14 @@ package com.groupa.ssi.bootsptrap;
 
 
 import com.groupa.ssi.model.domain.audit.Audit;
-import com.groupa.ssi.model.domain.audit.SafetyRule;
 import com.groupa.ssi.model.domain.catalog.SaClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItemClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
-import com.groupa.ssi.model.domain.catalog.WorkItem;
+import com.groupa.ssi.model.domain.workitem.ExistingWorkItem;
+import com.groupa.ssi.model.domain.workitem.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
 import com.groupa.ssi.model.repository.audit.AuditRepository;
@@ -29,7 +29,8 @@ import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRe
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
 import com.groupa.ssi.model.repository.sickness.SicknessRepository;
 import com.groupa.ssi.model.repository.accident.AccidentRepository;
-import com.groupa.ssi.model.repository.catalog.WorkItemRepository;
+import com.groupa.ssi.model.repository.workitem.ExistingWorkItemRepository;
+import com.groupa.ssi.model.repository.workitem.WorkItemRepository;
 import com.groupa.ssi.model.repository.personnel.DepartmentRepository;
 import com.groupa.ssi.model.repository.personnel.EmployeeRepository;
 import com.groupa.ssi.model.repository.personnel.RoleRepository;
@@ -72,6 +73,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private SaClassificationRepository saClassificationRepository;
     @Autowired
     private WorkItemClassificationRepository workItemClassificationRepository;
+    @Autowired
+    private ExistingWorkItemRepository existingWorkItemRepository;
 
     public DevBootstrap() {
     }
@@ -234,5 +237,12 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         manual.setName("Herramienta manual");
         manual.setDescription("Son impulsados manualmente.");
         workItemClassificationRepository.save(manual);
+
+        // Existing work item
+        ExistingWorkItem existingWorkItem = new ExistingWorkItem();
+        existingWorkItem.setDetail("10101-CA");
+        existingWorkItem.setPurchaseDate(new Date());
+        existingWorkItem.setWorkItem(workItem);
+        existingWorkItemRepository.save(existingWorkItem);
     }
 }

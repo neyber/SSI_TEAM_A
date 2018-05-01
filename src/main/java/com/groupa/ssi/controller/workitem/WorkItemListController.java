@@ -1,9 +1,9 @@
-package com.groupa.ssi.controller.catalog;
+package com.groupa.ssi.controller.workitem;
 
-import com.groupa.ssi.cmd.catalog.WorkItemListCmd;
+import com.groupa.ssi.cmd.workitem.WorkItemListCmd;
 import com.groupa.ssi.common.response.rest.ListRestResponse;
-import com.groupa.ssi.response.catalog.WorkItemResponse;
-import com.groupa.ssi.response.catalog.WorkItemResponseBuilder;
+import com.groupa.ssi.response.workitem.WorkItemResponse;
+import com.groupa.ssi.response.workitem.WorkItemResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

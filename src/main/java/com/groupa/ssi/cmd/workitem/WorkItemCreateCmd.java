@@ -1,19 +1,18 @@
-package com.groupa.ssi.cmd.catalog;
+package com.groupa.ssi.cmd.workitem;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
-import com.groupa.ssi.model.domain.catalog.WorkItem;
-import com.groupa.ssi.request.catalog.WorkItemRequest;
-import com.groupa.ssi.services.catalog.WorkItemService;
+import com.groupa.ssi.model.domain.workitem.WorkItem;
+import com.groupa.ssi.request.workitem.WorkItemRequest;
+import com.groupa.ssi.services.workitem.WorkItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Miguel Rojas
  */
 @CommandScoped
-public class WorkItemUpdateCmd extends AbstractCommand {
+public class WorkItemCreateCmd extends AbstractCommand {
 
-    private Integer workItemId;
     private WorkItemRequest workItemRequest;
 
     @Autowired
@@ -21,21 +20,16 @@ public class WorkItemUpdateCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        WorkItem workItem = composeWorkItem(workItemId, workItemRequest);
+        WorkItem workItem = composeWorkItem(workItemRequest);
         service.save(workItem);
-    }
-
-    public void setWorkItemId(Integer workItemId) {
-        this.workItemId = workItemId;
     }
 
     public void setWorkItemRequest(WorkItemRequest workItemRequest) {
         this.workItemRequest = workItemRequest;
     }
 
-    private WorkItem composeWorkItem(Integer workItemId, WorkItemRequest workItemRequest) {
-        WorkItem workItem = service.findById(workItemId);
-        workItem.setWorkItemId(workItemId);
+    private WorkItem composeWorkItem(WorkItemRequest workItemRequest) {
+        WorkItem workItem = new WorkItem();
         workItem.setName(workItemRequest.getName());
         workItem.setDescription(workItemRequest.getDescription());
         workItem.setPurchaseDate(workItemRequest.getPurchaseDate());
@@ -45,5 +39,4 @@ public class WorkItemUpdateCmd extends AbstractCommand {
 
         return workItem;
     }
-
 }

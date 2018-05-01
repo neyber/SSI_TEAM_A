@@ -1,6 +1,6 @@
-package com.groupa.ssi.response.catalog;
+package com.groupa.ssi.response.workitem;
 
-import com.groupa.ssi.model.domain.catalog.WorkItem;
+import com.groupa.ssi.model.domain.workitem.WorkItem;
 
 import java.util.Date;
 
