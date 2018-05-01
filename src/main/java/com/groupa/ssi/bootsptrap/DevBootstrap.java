@@ -7,6 +7,7 @@ package com.groupa.ssi.bootsptrap;
 import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.model.domain.audit.SafetyRule;
 import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.model.domain.catalog.WorkItemClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
@@ -22,6 +23,7 @@ import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.usermanual.UserManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
 import com.groupa.ssi.model.repository.catalog.SaClassificationRepository;
+import com.groupa.ssi.model.repository.catalog.WorkItemClassificationRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeAssignedRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
@@ -68,6 +70,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private SafetyRuleRepository safetyRuleRepository;
     @Autowired
     private SaClassificationRepository saClassificationRepository;
+    @Autowired
+    private WorkItemClassificationRepository workItemClassificationRepository;
 
     public DevBootstrap() {
     }
@@ -224,5 +228,11 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         audit.setAuditObjective("Some objectives");
         audit.setEmployee(constEmployee);
         auditRepository.save(audit);
+
+        // Classification work item
+        WorkItemClassification manual = new WorkItemClassification();
+        manual.setName("Herramienta manual");
+        manual.setDescription("Son impulsados manualmente.");
+        workItemClassificationRepository.save(manual);
     }
 }
