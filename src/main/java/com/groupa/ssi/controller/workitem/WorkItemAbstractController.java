@@ -1,4 +1,4 @@
-package com.groupa.ssi.controller.catalog;
+package com.groupa.ssi.controller.workitem;
 
 import com.groupa.ssi.common.utils.Constants;
 import org.springframework.web.bind.annotation.RequestMapping;

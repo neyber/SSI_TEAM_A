@@ -1,4 +1,4 @@
-package com.groupa.ssi.model.domain.catalog;
+package com.groupa.ssi.model.domain.workitem;
 
 import javax.persistence.*;
 import java.util.Date;

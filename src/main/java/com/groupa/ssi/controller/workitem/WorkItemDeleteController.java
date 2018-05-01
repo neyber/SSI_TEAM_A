@@ -1,7 +1,6 @@
-package com.groupa.ssi.controller.catalog;
+package com.groupa.ssi.controller.workitem;
 
-import com.groupa.ssi.cmd.catalog.WorkItemCreateCmd;
-import com.groupa.ssi.cmd.catalog.WorkItemDeleteCmd;
+import com.groupa.ssi.cmd.workitem.WorkItemDeleteCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

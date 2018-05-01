@@ -1,8 +1,8 @@
-package com.groupa.ssi.controller.catalog;
+package com.groupa.ssi.controller.workitem;
 
-import com.groupa.ssi.cmd.catalog.WorkItemUpdateCmd;
+import com.groupa.ssi.cmd.workitem.WorkItemUpdateCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
-import com.groupa.ssi.request.catalog.WorkItemRequest;
+import com.groupa.ssi.request.workitem.WorkItemRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

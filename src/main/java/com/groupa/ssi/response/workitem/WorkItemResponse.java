@@ -1,4 +1,4 @@
-package com.groupa.ssi.response.catalog;
+package com.groupa.ssi.response.workitem;
 
 import java.util.Date;
 

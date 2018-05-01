@@ -1,9 +1,9 @@
-package com.groupa.ssi.cmd.catalog;
+package com.groupa.ssi.cmd.workitem;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
-import com.groupa.ssi.model.domain.catalog.WorkItem;
-import com.groupa.ssi.services.catalog.WorkItemService;
+import com.groupa.ssi.model.domain.workitem.WorkItem;
+import com.groupa.ssi.services.workitem.WorkItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

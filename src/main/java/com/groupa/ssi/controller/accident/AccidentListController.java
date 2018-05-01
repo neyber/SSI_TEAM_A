@@ -4,13 +4,10 @@
 package com.groupa.ssi.controller.accident;
 
 
-import com.groupa.ssi.cmd.accident.AccidentCreateCmd;
 import com.groupa.ssi.cmd.accident.AccidentListCmd;
 import com.groupa.ssi.common.response.rest.ListRestResponse;
 import com.groupa.ssi.response.accident.AccidentResponse;
 import com.groupa.ssi.response.accident.AccidentResponseBuilder;
-import com.groupa.ssi.response.catalog.WorkItemResponse;
-import com.groupa.ssi.response.catalog.WorkItemResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

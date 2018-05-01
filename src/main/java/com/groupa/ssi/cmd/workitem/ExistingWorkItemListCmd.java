@@ -1,0 +1,31 @@
+package com.groupa.ssi.cmd.workitem;
+
+import com.groupa.ssi.common.cmd.AbstractCommand;
+import com.groupa.ssi.common.context.CommandScoped;
+import com.groupa.ssi.model.domain.workitem.ExistingWorkItem;
+import com.groupa.ssi.services.workitem.ExistingWorkItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+/**
+ * Created on May 1, 2018
+ * @author Walker Colina
+ */
+@CommandScoped
+public class ExistingWorkItemListCmd extends AbstractCommand {
+
+    @Autowired
+    private ExistingWorkItemService service;
+
+    private List<ExistingWorkItem> existingWorkItemList;
+
+    @Override
+    protected void run() {
+        existingWorkItemList = service.findAll();
+    }
+
+    public List<ExistingWorkItem> getExistingWorkItemList() {
+        return existingWorkItemList;
+    }
+}
