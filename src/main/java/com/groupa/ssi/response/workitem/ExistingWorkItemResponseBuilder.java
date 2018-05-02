@@ -1,7 +1,6 @@
 package com.groupa.ssi.response.workitem;
 
 import com.groupa.ssi.model.domain.workitem.ExistingWorkItem;
-import com.groupa.ssi.model.domain.workitem.WorkItem;
 
 import java.util.Date;
 
@@ -14,7 +13,8 @@ public final class ExistingWorkItemResponseBuilder {
     private Integer existingWorkItemId;
     private String detail;
     private Date purchaseDate;
-    private WorkItem workItem;
+    private String serieNo;
+    private WorkItemResponse workItem;
 
     private ExistingWorkItemResponseBuilder() {
     }
@@ -24,6 +24,7 @@ public final class ExistingWorkItemResponseBuilder {
         existingWorkItemResponse.setExistingWorkItemId(existingWorkItemId);
         existingWorkItemResponse.setDetail(detail);
         existingWorkItemResponse.setPurchaseDate(purchaseDate);
+        existingWorkItemResponse.setSerieNo(serieNo);
         existingWorkItemResponse.setWorkItem(workItem);
 
         return existingWorkItemResponse;
@@ -31,11 +32,17 @@ public final class ExistingWorkItemResponseBuilder {
 
 
     public static ExistingWorkItemResponseBuilder getInstance(ExistingWorkItem existingWorkItem) {
-        return new ExistingWorkItemResponseBuilder()
-                .setExistingWorkItemId(existingWorkItem.getId())
-                .setDetail(existingWorkItem.getDetail())
-                .setPurchaseDate(existingWorkItem.getPurchaseDate())
-                .setWorkItem(existingWorkItem.getWorkItem());
+        ExistingWorkItemResponseBuilder existingWorkItemResponseBuilder =new ExistingWorkItemResponseBuilder();
+        existingWorkItemResponseBuilder.setExistingWorkItemId(existingWorkItem.getId());
+        existingWorkItemResponseBuilder.setDetail(existingWorkItem.getDetail());
+        existingWorkItemResponseBuilder.setPurchaseDate(existingWorkItem.getPurchaseDate());
+        existingWorkItemResponseBuilder.setSerieNo(existingWorkItem.getSerieNo());
+
+        if(existingWorkItem.getWorkItem() != null){
+            existingWorkItemResponseBuilder.setWorkItem(WorkItemResponseBuilder.getInstance(existingWorkItem.getWorkItem()).build());
+        }
+
+        return existingWorkItemResponseBuilder;
     }
 
     public ExistingWorkItemResponseBuilder setExistingWorkItemId(Integer existingWorkItemId) {
@@ -53,7 +60,12 @@ public final class ExistingWorkItemResponseBuilder {
         return this;
     }
 
-    public ExistingWorkItemResponseBuilder setWorkItem(WorkItem workItem) {
+    public ExistingWorkItemResponseBuilder setSerieNo(String serieNo) {
+        this.serieNo = serieNo;
+        return this;
+    }
+
+    public ExistingWorkItemResponseBuilder setWorkItem(WorkItemResponse workItem) {
         this.workItem = workItem;
         return this;
     }

@@ -1,7 +1,5 @@
 package com.groupa.ssi.response.workitem;
 
-import com.groupa.ssi.model.domain.workitem.WorkItem;
-
 import java.util.Date;
 
 /**
@@ -13,7 +11,8 @@ public class ExistingWorkItemResponse {
     private Integer existingWorkItemId;
     private String detail;
     private Date purchaseDate;
-    private WorkItem workItem;
+    private String serieNo;
+    private WorkItemResponse workItem;
 
     public Integer getExistingWorkItemId() {
         return existingWorkItemId;
@@ -39,11 +38,19 @@ public class ExistingWorkItemResponse {
         this.purchaseDate = purchaseDate;
     }
 
-    public WorkItem getWorkItem() {
+    public String getSerieNo() {
+        return serieNo;
+    }
+
+    public void setSerieNo(String serieNo) {
+        this.serieNo = serieNo;
+    }
+
+    public WorkItemResponse getWorkItem() {
         return workItem;
     }
 
-    public void setWorkItem(WorkItem workItem) {
+    public void setWorkItem(WorkItemResponse workItem) {
         this.workItem = workItem;
     }
 }

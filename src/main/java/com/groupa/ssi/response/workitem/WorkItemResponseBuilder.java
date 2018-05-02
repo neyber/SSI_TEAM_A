@@ -1,8 +1,8 @@
 package com.groupa.ssi.response.workitem;
 
 import com.groupa.ssi.model.domain.workitem.WorkItem;
-
-import java.util.Date;
+import com.groupa.ssi.response.catalog.WorkItemClassificationResponse;
+import com.groupa.ssi.response.catalog.WorkItemClassificationResponseBuilder;
 
 /**
  * @author Miguel Rojas
@@ -12,10 +12,7 @@ public final class WorkItemResponseBuilder {
     private Integer workItemId;
     private String name;
     private String description;
-    private String type;
-    private String status;
-    private Date purchaseDate;
-    private String serieNo;
+    private WorkItemClassificationResponse workItemClassification;
 
     private WorkItemResponseBuilder() {
     }
@@ -25,23 +22,20 @@ public final class WorkItemResponseBuilder {
         workItemResponse.setWorkItemId(workItemId);
         workItemResponse.setName(name);
         workItemResponse.setDescription(description);
-        workItemResponse.setType(type);
-        workItemResponse.setStatus(status);
-        workItemResponse.setPurchaseDate(purchaseDate);
-        workItemResponse.setSerieNo(serieNo);
+        workItemResponse.setWorkItemClassification(workItemClassification);
 
         return workItemResponse;
     }
 
     public static WorkItemResponseBuilder getInstance(WorkItem workItem) {
-        return new WorkItemResponseBuilder()
-                .setWorkItemId(workItem.getWorkItemId())
-                .setName(workItem.getName())
-                .setDescription(workItem.getDescription())
-                .setType(workItem.getType())
-                .setStatus(workItem.getStatus())
-                .setPurchaseDate(workItem.getPurchaseDate())
-                .setSerieNo(workItem.getSerieNo());
+        WorkItemResponseBuilder workItemResponseBuilder = new WorkItemResponseBuilder();
+        workItemResponseBuilder.setWorkItemId(workItem.getId());
+        workItemResponseBuilder.setName(workItem.getName());
+        workItemResponseBuilder.setDescription(workItem.getDescription());
+        if(workItem.getWorkItemClassification() != null) {
+            workItemResponseBuilder.setWorkItemClassification(WorkItemClassificationResponseBuilder.getInstance(workItem.getWorkItemClassification()).build());
+        }
+        return workItemResponseBuilder;
     }
 
     public WorkItemResponseBuilder setWorkItemId(Integer workItemId) {
@@ -59,21 +53,8 @@ public final class WorkItemResponseBuilder {
         return this;
     }
 
-    public WorkItemResponseBuilder setType(String type){
-        this.type = type;
-        return this;
-    }
-    public WorkItemResponseBuilder setStatus(String status){
-        this.status = status;
-        return this;
-    }
-    public WorkItemResponseBuilder setPurchaseDate(Date purchaseDate){
-        this.purchaseDate=purchaseDate;
-        return this;
-    }
-
-    public WorkItemResponseBuilder setSerieNo(String serieNo){
-        this.serieNo=serieNo;
+    public WorkItemResponseBuilder setWorkItemClassification(WorkItemClassificationResponse workItemClassification){
+        this.workItemClassification = workItemClassification;
         return this;
     }
 }

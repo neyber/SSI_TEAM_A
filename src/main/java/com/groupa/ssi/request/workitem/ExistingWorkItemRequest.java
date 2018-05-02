@@ -10,6 +10,7 @@ public class ExistingWorkItemRequest {
 
     private String detail;
     private Date purchaseDate;
+    private String serieNo;
     private Integer workItemId;
 
     public String getDetail() {
@@ -26,6 +27,14 @@ public class ExistingWorkItemRequest {
 
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
+    }
+
+    public String getSerieNo() {
+        return serieNo;
+    }
+
+    public void setSerieNo(String serieNo) {
+        this.serieNo = serieNo;
     }
 
     public Integer getWorkItemId() {

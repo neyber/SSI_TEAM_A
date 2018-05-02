@@ -7,6 +7,8 @@ import com.groupa.ssi.model.domain.workitem.WorkItem;
 import com.groupa.ssi.request.workitem.ExistingWorkItemRequest;
 import com.groupa.ssi.services.workitem.ExistingWorkItemService;
 import com.groupa.ssi.services.workitem.WorkItemService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -15,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @CommandScoped
 public class ExistingWorkItemUpdateCmd extends AbstractCommand {
+
+    private static Logger log = LoggerFactory.getLogger(ExistingWorkItemUpdateCmd.class);
 
     private Integer existingWorkItemId;
     private ExistingWorkItemRequest existingWorkItemRequest;
@@ -47,6 +51,7 @@ public class ExistingWorkItemUpdateCmd extends AbstractCommand {
         ExistingWorkItem existingWorkItem = existingWorkItemService.findById(existingPpeId);
         existingWorkItem.setDetail(existingWorkItemRequest.getDetail());
         existingWorkItem.setPurchaseDate(existingWorkItemRequest.getPurchaseDate());
+        existingWorkItem.setSerieNo(existingWorkItemRequest.getSerieNo());
         existingWorkItem.setWorkItem(workItem);
 
         return existingWorkItem;

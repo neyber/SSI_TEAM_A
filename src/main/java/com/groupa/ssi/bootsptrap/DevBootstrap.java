@@ -85,10 +85,17 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     }
 
     private void initData() {
+        // Classification work item
+        WorkItemClassification manualWorkItem = new WorkItemClassification();
+        manualWorkItem.setName("Herramienta manual");
+        manualWorkItem.setDescription("Son impulsados manualmente.");
+        workItemClassificationRepository.save(manualWorkItem);
+
         // WorkItem
         WorkItem workItem = new WorkItem();
         workItem.setName("Casco");
         workItem.setDescription("Casco de seguridad");
+        workItem.setWorkItemClassification(manualWorkItem);
         workItemRepository.save(workItem);
 
         //Departments
@@ -232,16 +239,11 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         audit.setEmployee(constEmployee);
         auditRepository.save(audit);
 
-        // Classification work item
-        WorkItemClassification manual = new WorkItemClassification();
-        manual.setName("Herramienta manual");
-        manual.setDescription("Son impulsados manualmente.");
-        workItemClassificationRepository.save(manual);
-
         // Existing work item
         ExistingWorkItem existingWorkItem = new ExistingWorkItem();
-        existingWorkItem.setDetail("10101-CA");
+        existingWorkItem.setDetail("Adicionando stock de casco");
         existingWorkItem.setPurchaseDate(new Date());
+        existingWorkItem.setSerieNo("111-CA");
         existingWorkItem.setWorkItem(workItem);
         existingWorkItemRepository.save(existingWorkItem);
     }

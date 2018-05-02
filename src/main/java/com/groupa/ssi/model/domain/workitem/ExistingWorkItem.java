@@ -21,6 +21,9 @@ public class ExistingWorkItem extends ModelBase {
     @Column
     private Date purchaseDate;
 
+    @Column
+    private String serieNo;
+
     @ManyToOne
     private WorkItem workItem;
 
@@ -38,6 +41,14 @@ public class ExistingWorkItem extends ModelBase {
 
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
+    }
+
+    public String getSerieNo() {
+        return serieNo;
+    }
+
+    public void setSerieNo(String serieNo) {
+        this.serieNo = serieNo;
     }
 
     public WorkItem getWorkItem() {

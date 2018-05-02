@@ -27,5 +27,6 @@ public class RestConfig {
         config.addAllowedMethod("DELETE");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
+
     }
 }
