@@ -1,6 +1,6 @@
 package com.groupa.ssi.response.workitem;
 
-import java.util.Date;
+import com.groupa.ssi.response.catalog.WorkItemClassificationResponse;
 
 /**
  * @author Miguel Rojas
@@ -10,10 +10,7 @@ public class WorkItemResponse {
     private Integer workItemId;
     private String name;
     private String description;
-    private String type;
-    private String status;
-    private Date purchaseDate;
-    private String serieNo;
+    private WorkItemClassificationResponse workItemClassification;
 
     public Integer getWorkItemId() {
         return workItemId;
@@ -39,35 +36,11 @@ public class WorkItemResponse {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
+    public WorkItemClassificationResponse getWorkItemClassification() {
+        return workItemClassification;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
-    public String getSerieNo() {
-        return serieNo;
-    }
-
-    public void setSerieNo(String serieNo) {
-        this.serieNo = serieNo;
+    public void setWorkItemClassification(WorkItemClassificationResponse workItemClassification) {
+        this.workItemClassification = workItemClassification;
     }
 }
