@@ -10,6 +10,7 @@ import org.hibernate.cache.internal.SimpleCacheKeysFactory;
 import java.util.Date;
 
 public class SicknessResponseBuilder {
+    private Integer sicknessId;
     private String description;
     private Date dateSickness;
     private String whereOccurr;
@@ -20,6 +21,7 @@ public class SicknessResponseBuilder {
 
     public SicknessResponse build(){
         SicknessResponse sicknessResponse = new SicknessResponse();
+        sicknessResponse.setSicknessId(sicknessId);
         sicknessResponse.setDescription(description);
         sicknessResponse.setDateSickness(dateSickness);
         sicknessResponse.setWhereOccurr(whereOccurr);
@@ -31,11 +33,18 @@ public class SicknessResponseBuilder {
 
     public static SicknessResponseBuilder getInstance(Sickness sickness){
         return new SicknessResponseBuilder()
+                .setSicknessId(sickness.getId())
                 .setDescription(sickness.getDescription())
                 .setDateSickness(sickness.getDateSickness())
                 .setWhereOccurr(sickness.getWhereOccurr())
                 .setStatusRecord(sickness.getStatusRecord())
                 .setSaClassification(sickness.getSaClassification());
+    }
+
+
+    public SicknessResponseBuilder setSicknessId(Integer sicknessId) {
+        this.sicknessId = sicknessId;
+        return this;
     }
 
     public SicknessResponseBuilder setDescription(String description) {

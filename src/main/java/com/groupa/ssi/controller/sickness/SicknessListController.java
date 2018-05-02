@@ -37,7 +37,7 @@ public class SicknessListController extends SicknessAbstractController{
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<SicknessResponse> getSicknessList(@RequestParam(value = "userId") Integer userId){
+    public ListRestResponse<SicknessResponse> getSicknessList(@RequestParam(value = "userId", required = false) Integer userId){
         cmd.execute();
 
         List<SicknessResponse> result = cmd.getSicknessList().stream()

@@ -30,7 +30,7 @@ public class AccidentReadController extends AccidentAbstractController{
             method = RequestMethod.GET
     )
     public SingleRestResponse<AccidentResponse> readAccident(@PathVariable Integer accidentId,
-                                                        @RequestParam(value = "userId") Integer userId){
+                                                        @RequestParam(value = "userId", required = false) Integer userId){
         cmd.setAccidentId(accidentId);
         cmd.execute();
         return new SingleRestResponse(AccidentResponseBuilder.getInstance(cmd.getAccident()).build());

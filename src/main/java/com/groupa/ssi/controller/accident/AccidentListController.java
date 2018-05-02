@@ -35,7 +35,7 @@ public class AccidentListController extends AccidentAbstractController{
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<AccidentResponse> getAccidentList(@RequestParam(value = "userId") Integer userId){
+    public ListRestResponse<AccidentResponse> getAccidentList(@RequestParam(value = "userId", required = false) Integer userId){
         cmd.execute();
 
         List<AccidentResponse> result = cmd.getAccidentList().stream()

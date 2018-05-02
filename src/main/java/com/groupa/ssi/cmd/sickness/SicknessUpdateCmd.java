@@ -39,7 +39,6 @@ public class SicknessUpdateCmd extends AbstractCommand {
         sickness.setDateSickness(sicknessRequest.getDateSickness());
         sickness.setWhereOccurr(sicknessRequest.getWhereOccurr());
         sickness.setStatusRecord(sicknessRequest.getStatusRecord());
-        sickness.setSaClassification(sicknessRequest.getSaClassification());
         return sickness;
     }
 

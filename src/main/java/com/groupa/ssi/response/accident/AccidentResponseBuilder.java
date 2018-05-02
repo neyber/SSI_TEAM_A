@@ -9,6 +9,7 @@ import com.groupa.ssi.model.domain.catalog.SaClassification;
 import java.util.Date;
 
 public class AccidentResponseBuilder {
+    private Integer accidentId;
     private String description;
     private Date dateAccident;
     private String whereOccurr;
@@ -19,6 +20,7 @@ public class AccidentResponseBuilder {
 
     public AccidentResponse build(){
         AccidentResponse accidentResponse = new AccidentResponse();
+        accidentResponse.setAccidentId(accidentId);
         accidentResponse.setDescription(description);
         accidentResponse.setDateAccident(dateAccident);
         accidentResponse.setWhereOccurr(whereOccurr);
@@ -30,11 +32,17 @@ public class AccidentResponseBuilder {
 
     public static AccidentResponseBuilder getInstance(Accident accident){
         return new AccidentResponseBuilder()
+                .setAccidentId(accident.getId())
                 .setDescription(accident.getDescription())
                 .setDateAccident(accident.getDateAccident())
                 .setWhereOccurr(accident.getWhereOccurr())
                 .setStatusRecord(accident.getStatusRecord())
                 .setSaClassification(accident.getSaClassification());
+    }
+
+    public AccidentResponseBuilder setAccidentId(Integer accidentId) {
+        this.accidentId = accidentId;
+        return this;
     }
 
     public AccidentResponseBuilder setDescription(String description){
