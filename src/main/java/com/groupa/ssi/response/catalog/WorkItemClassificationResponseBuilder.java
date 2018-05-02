@@ -17,7 +17,7 @@ public final class WorkItemClassificationResponseBuilder {
 
     public WorkItemClassificationResponse build() {
         WorkItemClassificationResponse workItemClassificationResponse = new WorkItemClassificationResponse();
-        workItemClassificationResponse.setId(id);
+        workItemClassificationResponse.setWorkItemClassificationId(id);
         workItemClassificationResponse.setName(name);
         workItemClassificationResponse.setDescription(description);
 

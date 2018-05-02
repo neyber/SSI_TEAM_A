@@ -3,6 +3,8 @@ package com.groupa.ssi.response.personalprotectionequipment;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
 import com.groupa.ssi.model.domain.personnel.Employee;
+import com.groupa.ssi.response.personnel.EmployeeResponse;
+import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
 
 import java.util.Date;
 
@@ -17,8 +19,8 @@ public final class ExistingPpeAssignedResponseBuilder {
     private Date assignedDate;
     private String returnNotes;
     private Date returnDate;
-    private ExistingPpe existingPpe;
-    private Employee employee;
+    private ExistingPpeResponse existingPpe;
+    private EmployeeResponse employee;
 
     private ExistingPpeAssignedResponseBuilder() {
     }
@@ -38,14 +40,20 @@ public final class ExistingPpeAssignedResponseBuilder {
 
 
     public static ExistingPpeAssignedResponseBuilder getInstance(ExistingPpeAssigned existingPpeAssigned) {
-        return new ExistingPpeAssignedResponseBuilder()
-                .setExistingPpeAssignedId(existingPpeAssigned.getId())
-                .setAssignedNotes(existingPpeAssigned.getAssignedNotes())
-                .setAssignedDate(existingPpeAssigned.getAssignedDate())
-                .setReturnNotes(existingPpeAssigned.getReturnNotes())
-                .setReturnDate(existingPpeAssigned.getReturnDate())
-                .setExistingPpe(existingPpeAssigned.getExistingPpe())
-                .setEmployee(existingPpeAssigned.getEmployee());
+        ExistingPpeAssignedResponseBuilder existingPpeAssignedResponseBuilder = new ExistingPpeAssignedResponseBuilder();
+        existingPpeAssignedResponseBuilder.setExistingPpeAssignedId(existingPpeAssigned.getId());
+        existingPpeAssignedResponseBuilder.setAssignedNotes(existingPpeAssigned.getAssignedNotes());
+        existingPpeAssignedResponseBuilder.setAssignedDate(existingPpeAssigned.getAssignedDate());
+        existingPpeAssignedResponseBuilder.setReturnNotes(existingPpeAssigned.getReturnNotes());
+        existingPpeAssignedResponseBuilder.setReturnDate(existingPpeAssigned.getReturnDate());
+        if(existingPpeAssigned.getExistingPpe() != null) {
+            existingPpeAssignedResponseBuilder.setExistingPpe(ExistingPpeResponseBuilder.getInstance(existingPpeAssigned.getExistingPpe()).build());
+        }
+        if(existingPpeAssigned.getEmployee() != null) {
+            existingPpeAssignedResponseBuilder.setEmployee(EmployeeResponseBuilder.getInstance(existingPpeAssigned.getEmployee()).build());
+        }
+
+        return existingPpeAssignedResponseBuilder;
     }
 
     public ExistingPpeAssignedResponseBuilder setExistingPpeAssignedId(Integer existingPpeAssignedId) {
@@ -73,12 +81,12 @@ public final class ExistingPpeAssignedResponseBuilder {
         return this;
     }
 
-    public ExistingPpeAssignedResponseBuilder setExistingPpe(ExistingPpe existingPpe) {
+    public ExistingPpeAssignedResponseBuilder setExistingPpe(ExistingPpeResponse existingPpe) {
         this.existingPpe = existingPpe;
         return this;
     }
 
-    public ExistingPpeAssignedResponseBuilder setEmployee(Employee employee) {
+    public ExistingPpeAssignedResponseBuilder setEmployee(EmployeeResponse employee) {
         this.employee = employee;
         return this;
     }

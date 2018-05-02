@@ -1,7 +1,5 @@
 package com.groupa.ssi.request.personalprotectionequipment;
 
-import com.groupa.ssi.model.domain.catalog.PpeClassification;
-
 /**
  * Created on April 25, 2018
  * @author Walker Colina
@@ -10,8 +8,8 @@ public class PpeRequest {
 
     private String name;
     private String description;
-    private Byte[] image;
-    private Integer ppeClassificationID;
+    //private Byte[] image;
+    private Integer ppeClassificationId;
 
     public String getName() {
         return name;
@@ -29,19 +27,19 @@ public class PpeRequest {
         this.description = description;
     }
 
-    public Byte[] getImage() {
+    /*public Byte[] getImage() {
         return image;
     }
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }*/
+
+    public Integer getPpeClassificationId() {
+        return ppeClassificationId;
     }
 
-    public Integer getPpeClassificationID() {
-        return ppeClassificationID;
-    }
-
-    public void setPpeClassificationID(int ppeClassificationID) {
-        this.ppeClassificationID = ppeClassificationID;
+    public void setPpeClassificationId(int ppeClassificationId) {
+        this.ppeClassificationId = ppeClassificationId;
     }
 }
