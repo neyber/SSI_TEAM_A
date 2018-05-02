@@ -34,6 +34,9 @@ public class FunctionManual extends ModelBase {
     private String generalActivity;
     @Column
     private String principalFunction;
+    @OneToOne
+    private Role roleFunction;
+
 
     public String getName() {
         return name;
@@ -79,5 +82,7 @@ public class FunctionManual extends ModelBase {
 
     public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
 
+    public Role getRoleFunction() { return roleFunction; }
 
+    public void setRoleFunction(Role roleFunction) { this.roleFunction = roleFunction; }
 }

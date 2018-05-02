@@ -3,8 +3,10 @@ package com.groupa.ssi.cmd.functionmanual;
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
+import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.request.functionmanual.FunctionManualRequest;
 import com.groupa.ssi.services.functionmanual.FunctionManualService;
+import com.groupa.ssi.services.personnel.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -16,11 +18,19 @@ public class FunctionManualCreateCmd extends AbstractCommand {
     private FunctionManualRequest functionManualRequest;
 
     @Autowired
+    private RoleService roleService;
+    @Autowired
     private FunctionManualService service;
 
     @Override
     protected void run() {
-        FunctionManual functionManual = composeFunctionManual(functionManualRequest);
+        Role roleFunction = null;
+
+        if(functionManualRequest.getRoleId() != null){
+            roleFunction = roleService.findById(functionManualRequest.getRoleId());
+        }
+
+        FunctionManual functionManual = composeFunctionManual(functionManualRequest, roleFunction);
         service.save(functionManual);
     }
 
@@ -28,7 +38,7 @@ public class FunctionManualCreateCmd extends AbstractCommand {
         this.functionManualRequest = functionManualRequest;
     }
 
-    private FunctionManual composeFunctionManual(FunctionManualRequest functionManualRequest) {
+    private FunctionManual composeFunctionManual(FunctionManualRequest functionManualRequest, Role roleFunction) {
         FunctionManual functionManual = new FunctionManual();
         functionManual.setName(functionManualRequest.getName());
         functionManual.setPosition(functionManualRequest.getPosition());
@@ -39,6 +49,7 @@ public class FunctionManualCreateCmd extends AbstractCommand {
         functionManual.setActivity(functionManualRequest.getActivity());
         functionManual.setGeneralActivity(functionManualRequest.getGeneralActivity());
         functionManual.setPrincipalFunction(functionManualRequest.getPrincipalFunction());
+        functionManual.setRoleFunction(roleFunction);
         return functionManual;
     }
 }

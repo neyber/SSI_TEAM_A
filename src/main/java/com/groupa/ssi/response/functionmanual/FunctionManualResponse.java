@@ -15,6 +15,7 @@ public class FunctionManualResponse {
     private String activity;
     private String generalActivity;
     private String principalFunction;
+    private Integer roleFunction;
 
 
     public String getName() {
@@ -60,4 +61,8 @@ public class FunctionManualResponse {
     public String getPrincipalFunction() { return principalFunction; }
 
     public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
+
+    public Integer getRoleFunction() { return roleFunction; }
+
+    public void setRoleFunction(Integer roleFunction) { this.roleFunction = roleFunction; }
 }

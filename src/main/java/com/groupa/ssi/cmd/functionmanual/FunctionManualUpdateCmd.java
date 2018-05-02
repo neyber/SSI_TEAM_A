@@ -6,8 +6,10 @@ import com.groupa.ssi.common.context.CommandScoped;
 //import com.groupa.ssi.request.catalog.WorkItemRequest;
 //import com.groupa.ssi.services.catalog.WorkItemService;
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
+import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.request.functionmanual.FunctionManualRequest;
 import com.groupa.ssi.services.functionmanual.FunctionManualService;
+import com.groupa.ssi.services.personnel.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -20,11 +22,18 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
     private FunctionManualRequest functionManualRequest;
 
     @Autowired
+    private RoleService roleService;
+    @Autowired
     private FunctionManualService service;
 
     @Override
     protected void run() {
-        FunctionManual functionManual = composeFunctionManual(functionManualId, functionManualRequest);
+        Role roleFunction = null;
+
+        if(functionManualRequest.getRoleId() != null){
+            roleFunction = roleService.findById(functionManualRequest.getRoleId());
+        }
+        FunctionManual functionManual = composeFunctionManual(functionManualId, functionManualRequest, roleFunction);
         service.save(functionManual);
     }
 
@@ -34,7 +43,7 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
 
     public void setWorkItemRequest(FunctionManualRequest functionManualRequest) { this.functionManualRequest = functionManualRequest; }
 
-    private FunctionManual composeFunctionManual(Integer functionManualId, FunctionManualRequest functionManualRequest) {
+    private FunctionManual composeFunctionManual(Integer functionManualId, FunctionManualRequest functionManualRequest, Role roleFunction) {
         FunctionManual functionManual = service.findById(functionManualId);
         functionManual.setId(functionManualId);
         functionManual.setName(functionManualRequest.getName());
@@ -46,6 +55,7 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
         functionManual.setActivity(functionManualRequest.getActivity());
         functionManual.setGeneralActivity(functionManualRequest.getGeneralActivity());
         functionManual.setPrincipalFunction(functionManualRequest.getPrincipalFunction());
+        functionManual.setRoleFunction(roleFunction);
         return functionManual;
     }
 

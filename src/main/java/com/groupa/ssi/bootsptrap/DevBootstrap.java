@@ -183,6 +183,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
             constFunctionManual.setActivity("seguridad de planta");
             constFunctionManual.setGeneralActivity("general activity");
             constFunctionManual.setPrincipalFunction("seguridad de la empresa");
+            constFunctionManual.setRoleFunction(consRole);
             functionManualRepository.save(constFunctionManual);
 
             //Employees

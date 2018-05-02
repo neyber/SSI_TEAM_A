@@ -16,6 +16,7 @@ public class FunctionManualRequest {
     private String activity;
     private String generalActivity;
     private String principalFunction;
+    private Integer roleId;
 
     public FunctionManualRequest() {
     }
@@ -64,4 +65,8 @@ public class FunctionManualRequest {
     public String getPrincipalFunction() { return principalFunction; }
 
     public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
+
+    public Integer getRoleId() { return roleId; }
+
+    public void setRoleId(Integer roleId) { this.roleId = roleId; }
 }
