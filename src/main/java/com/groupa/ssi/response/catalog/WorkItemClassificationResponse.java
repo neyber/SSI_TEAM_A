@@ -6,16 +6,16 @@ package com.groupa.ssi.response.catalog;
  */
 public class WorkItemClassificationResponse {
 
-    private Integer id;
+    private Integer workItemClassificationId;
     private String name;
     private String description;
 
-    public int getId() {
-        return id;
+    public int getWorkItemClassificationId() {
+        return workItemClassificationId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setWorkItemClassificationId(Integer workItemClassificationId) {
+        this.workItemClassificationId = workItemClassificationId;
     }
 
     public String getName() {

@@ -17,7 +17,7 @@ public final class PpeClassificationResponseBuilder {
 
     public PpeClassificationResponse build() {
         PpeClassificationResponse ppeClassificationResponse = new PpeClassificationResponse();
-        ppeClassificationResponse.setId(id);
+        ppeClassificationResponse.setPpeClassificationId(id);
         ppeClassificationResponse.setName(name);
         ppeClassificationResponse.setDescription(description);
 

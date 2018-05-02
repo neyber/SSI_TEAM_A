@@ -28,8 +28,8 @@ public class PpeUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         PpeClassification ppeClassification = null;
-        if(ppeRequest.getPpeClassificationID() != null){
-            ppeClassification = ppeClassificationService.findById(ppeRequest.getPpeClassificationID());
+        if(ppeRequest.getPpeClassificationId() != null){
+            ppeClassification = ppeClassificationService.findById(ppeRequest.getPpeClassificationId());
         }
         Ppe ppe = composePpe(ppeId, ppeRequest, ppeClassification);
         ppeService.save(ppe);
@@ -47,7 +47,7 @@ public class PpeUpdateCmd extends AbstractCommand {
         Ppe ppe = ppeService.findById(ppeId);
         ppe.setName(ppeRequest.getName());
         ppe.setDescription(ppeRequest.getDescription());
-        ppe.setImage(ppeRequest.getImage());
+        //ppe.setImage(ppeRequest.getImage());
         ppe.setPpeClassification(ppeClassification);
 
         return ppe;

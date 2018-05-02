@@ -1,6 +1,5 @@
 package com.groupa.ssi.response.personalprotectionequipment;
 
-import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.response.catalog.PpeClassificationResponse;
 
 /**
@@ -9,18 +8,18 @@ import com.groupa.ssi.response.catalog.PpeClassificationResponse;
  */
 public class PpeResponse {
 
-    private Integer ppeResponseId;
+    private Integer ppeId;
     private String name;
     private String description;
-    private Byte[] image;
-    private PpeClassification ppeClassification;
+    //private Byte[] image;
+    private PpeClassificationResponse ppeClassification;
 
-    public Integer getPpeResponseId() {
-        return ppeResponseId;
+    public Integer getPpeId() {
+        return ppeId;
     }
 
-    public void setPpeResponseId(Integer ppeResponseId) {
-        this.ppeResponseId = ppeResponseId;
+    public void setPpeId(Integer ppeId) {
+        this.ppeId = ppeId;
     }
 
     public String getName() {
@@ -39,19 +38,19 @@ public class PpeResponse {
         this.description = description;
     }
 
-    public Byte[] getImage() {
+    /*public Byte[] getImage() {
         return image;
     }
 
     public void setImage(Byte[] image) {
         this.image = image;
-    }
+    }*/
 
-    public PpeClassification getPpeClassification() {
+    public PpeClassificationResponse getPpeClassification() {
         return ppeClassification;
     }
 
-    public void setPpeClassification(PpeClassification ppeClassification) {
+    public void setPpeClassification(PpeClassificationResponse ppeClassification) {
         this.ppeClassification = ppeClassification;
     }
 }

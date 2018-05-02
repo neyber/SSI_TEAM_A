@@ -6,16 +6,16 @@ package com.groupa.ssi.response.catalog;
  */
 public class PpeClassificationResponse {
 
-    private Integer id;
+    private Integer ppeClassificationId;
     private String name;
     private String description;
 
-    public int getId() {
-        return id;
+    public int getPpeClassificationId() {
+        return ppeClassificationId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPpeClassificationId(Integer ppeClassificationId) {
+        this.ppeClassificationId = ppeClassificationId;
     }
 
     public String getName() {

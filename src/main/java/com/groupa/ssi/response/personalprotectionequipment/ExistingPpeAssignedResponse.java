@@ -2,6 +2,7 @@ package com.groupa.ssi.response.personalprotectionequipment;
 
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personnel.Employee;
+import com.groupa.ssi.response.personnel.EmployeeResponse;
 
 import java.util.Date;
 
@@ -16,8 +17,8 @@ public class ExistingPpeAssignedResponse {
     private Date assignedDate;
     private String returnNotes;
     private Date returnDate;
-    private ExistingPpe existingPpe;
-    private Employee employee;
+    private ExistingPpeResponse existingPpe;
+    private EmployeeResponse employee;
 
     public Integer getExistingPpeAssignedId() {
         return existingPpeAssignedId;
@@ -59,19 +60,19 @@ public class ExistingPpeAssignedResponse {
         this.returnDate = returnDate;
     }
 
-    public ExistingPpe getExistingPpe() {
+    public ExistingPpeResponse getExistingPpe() {
         return existingPpe;
     }
 
-    public void setExistingPpe(ExistingPpe existingPpe) {
+    public void setExistingPpe(ExistingPpeResponse existingPpe) {
         this.existingPpe = existingPpe;
     }
 
-    public Employee getEmployee() {
+    public EmployeeResponse getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeResponse employee) {
         this.employee = employee;
     }
 }
