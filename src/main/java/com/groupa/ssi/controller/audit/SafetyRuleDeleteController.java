@@ -29,7 +29,7 @@ public class SafetyRuleDeleteController extends SafetyRuleAbstractController {
             value = "/{safetyRuleId}",
             method = RequestMethod.DELETE
     )
-    public SuccessRestResponse deleteSafetyRule(@PathVariable Integer safetyRuleId, @RequestParam(value = "userId") Integer userId) {
+    public SuccessRestResponse deleteSafetyRule(@PathVariable Integer safetyRuleId, @RequestParam(value = "userId", required = false) Integer userId) {
         safetyRuleDeleteCmd.setSafetyRuleId(safetyRuleId);
         safetyRuleDeleteCmd.execute();
         return new SuccessRestResponse();

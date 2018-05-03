@@ -8,11 +8,20 @@ import com.groupa.ssi.model.domain.catalog.SaClassification;
 import java.util.Date;
 
 public class SicknessResponse {
+    private Integer sicknessId;
     private String description;
     private Date dateSickness;
     private String whereOccurr;
     private Boolean statusRecord;
     private SaClassification saClassification;
+
+    public Integer getSicknessId() {
+        return sicknessId;
+    }
+
+    public void setSicknessId(Integer sicknessId) {
+        this.sicknessId = sicknessId;
+    }
 
     public String getDescription() {
         return description;

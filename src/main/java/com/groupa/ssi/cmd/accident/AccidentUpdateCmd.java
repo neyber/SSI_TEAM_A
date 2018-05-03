@@ -41,7 +41,6 @@ public class AccidentUpdateCmd extends AbstractCommand {
         accident.setDateAccident(accidentRequest.getDateAccident());
         accident.setWhereOccurr(accidentRequest.getWhereOccurr());
         accident.setStatusRecord(accidentRequest.getStatusRecord());
-        accident.setSaClassification(accidentRequest.getSaClassification());
 
         return accident;
     }

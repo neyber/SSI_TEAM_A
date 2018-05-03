@@ -10,11 +10,20 @@ import java.util.Date;
 
 public class AccidentResponse {
 
+    private Integer accidentId;
     private String description;
     private Date dateAccident;
     private String whereOccurr;
     private Boolean statusRecord;
     private SaClassification saClassification;
+
+    public Integer getAccidentId() {
+        return accidentId;
+    }
+
+    public void setAccidentId(Integer accidentId) {
+        this.accidentId = accidentId;
+    }
 
     public String getDescription() {
         return description;

@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public final class ExistingPpeResponseBuilder {
 
+    private Integer existingPpeId;
     private String detail;
     private Date purchaseDate;
     private int lifeTimeDays;
@@ -23,6 +24,7 @@ public final class ExistingPpeResponseBuilder {
 
     public ExistingPpeResponse build() {
         ExistingPpeResponse existingPpeResponse = new ExistingPpeResponse();
+        existingPpeResponse.setExistingPpeId(existingPpeId);
         existingPpeResponse.setDetail(detail);
         existingPpeResponse.setPurchaseDate(purchaseDate);
         existingPpeResponse.setLifeTimeDays(lifeTimeDays);
@@ -33,13 +35,19 @@ public final class ExistingPpeResponseBuilder {
     }
 
 
-    public static ExistingPpeResponseBuilder getInstance(ExistingPpe existinPpe) {
+    public static ExistingPpeResponseBuilder getInstance(ExistingPpe existingPpe) {
         return new ExistingPpeResponseBuilder()
-                .setDetail(existinPpe.getDetail())
-                .setPurchaseDate(existinPpe.getPurchaseDate())
-                .setLifeTimeDays(existinPpe.getLifeTimeDays())
-                .setCurrentLifeTimeDays(existinPpe.getCurrentLifeTimeDays())
-                .setPpe(existinPpe.getPpe());
+                .setExistingPpeId(existingPpe.getId())
+                .setDetail(existingPpe.getDetail())
+                .setPurchaseDate(existingPpe.getPurchaseDate())
+                .setLifeTimeDays(existingPpe.getLifeTimeDays())
+                .setCurrentLifeTimeDays(existingPpe.getCurrentLifeTimeDays())
+                .setPpe(existingPpe.getPpe());
+    }
+
+    public ExistingPpeResponseBuilder setExistingPpeId(Integer existingPpeId) {
+        this.existingPpeId = existingPpeId;
+        return this;
     }
 
     public ExistingPpeResponseBuilder setDetail(String detail) {

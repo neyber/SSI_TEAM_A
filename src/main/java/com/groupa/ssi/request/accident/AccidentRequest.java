@@ -14,7 +14,7 @@ public class AccidentRequest {
     private Date dateAccident;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassification saClassification;
+    private Integer saClassificationId;
 
     public String getDescription() {
         return description;
@@ -48,11 +48,11 @@ public class AccidentRequest {
         this.statusRecord = statusRecord;
     }
 
-    public SaClassification getSaClassification() {
-        return saClassification;
+    public Integer getSaClassificationId() {
+        return saClassificationId;
     }
 
-    public void setSaClassification(SaClassification saClassification) {
-        this.saClassification = saClassification;
+    public void setSaClassificationId(Integer saClassificationId) {
+        this.saClassificationId = saClassificationId;
     }
 }

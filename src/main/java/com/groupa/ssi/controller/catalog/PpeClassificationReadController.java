@@ -1,12 +1,12 @@
 package com.groupa.ssi.controller.catalog;
 
+import com.groupa.ssi.cmd.catalog.PpeClassificationReadCmd;
 import com.groupa.ssi.common.response.rest.SingleRestResponse;
-import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.response.catalog.PpeClassificationResponse;
 import com.groupa.ssi.response.catalog.PpeClassificationResponseBuilder;
-import com.groupa.ssi.services.catalog.PpeClassificationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -22,11 +22,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class PpeClassificationReadController extends PpeClassificationAbstractController {
 
-    private PpeClassificationService service;
-
-    public PpeClassificationReadController(PpeClassificationService service) {
-        this.service = service;
-    }
+    @Autowired
+    private PpeClassificationReadCmd cmd;
 
     @ApiOperation(value = "Read a personal protection equipment classification")
     @RequestMapping(
@@ -34,9 +31,11 @@ public class PpeClassificationReadController extends PpeClassificationAbstractCo
             method = RequestMethod.GET
     )
     public SingleRestResponse<PpeClassificationResponse> readPpeClassification(@PathVariable Integer ppeClassificationId,
-                                                                               @RequestParam(value = "userId") Integer userId) {
-        PpeClassification ppeClassification = service.findById(ppeClassificationId);
-        return new SingleRestResponse(PpeClassificationResponseBuilder.getInstance(ppeClassification).build());
+                                                                               @RequestParam(value = "userId", required = false) Integer userId) {
+        cmd.setPpeClassificationId(ppeClassificationId);
+        cmd.execute();
+
+        return new SingleRestResponse<>(PpeClassificationResponseBuilder.getInstance(cmd.getPpeClassification()).build());
     }
 
 }

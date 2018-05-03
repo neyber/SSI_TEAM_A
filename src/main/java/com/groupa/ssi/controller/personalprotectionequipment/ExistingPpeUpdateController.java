@@ -8,6 +8,7 @@ import com.groupa.ssi.request.personalprotectionequipment.PpeRequest;
 import com.groupa.ssi.services.personalprotectionequipment.PpeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -23,11 +24,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class ExistingPpeUpdateController extends ExistingPpeAbstractController {
 
+    @Autowired
     private ExistingPpeUpdateCmd cmd;
-
-    public ExistingPpeUpdateController(ExistingPpeUpdateCmd cmd) {
-        this.cmd = cmd;
-    }
 
     @ApiOperation(value = "Update existing personal protection equipment")
     @RequestMapping(
@@ -36,7 +34,7 @@ public class ExistingPpeUpdateController extends ExistingPpeAbstractController {
     )
     public SuccessRestResponse updateExistingPpe(@PathVariable Integer existingPpeId,
                                               @RequestBody ExistingPpeRequest existingPpeRequest,
-                                              @RequestParam(value = "userId") Integer userId) {
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
         cmd.setExistingPpeId(existingPpeId);
         cmd.setExistingPpeRequest(existingPpeRequest);
         cmd.execute();

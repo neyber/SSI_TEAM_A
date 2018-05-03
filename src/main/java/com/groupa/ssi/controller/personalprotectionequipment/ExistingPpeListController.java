@@ -6,6 +6,7 @@ import com.groupa.ssi.response.personalprotectionequipment.ExistingPpeResponse;
 import com.groupa.ssi.response.personalprotectionequipment.ExistingPpeResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,17 +28,14 @@ import java.util.stream.Collectors;
 @RequestScope
 public class ExistingPpeListController extends ExistingPpeAbstractController {
 
+    @Autowired
     private ExistingPpeListCmd cmd;
-
-    public ExistingPpeListController(ExistingPpeListCmd cmd) {
-        this.cmd = cmd;
-    }
 
     @ApiOperation(value = "List of existing personal protection equipment")
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<ExistingPpeResponse> getPpeList(@RequestParam(value = "userId") Integer userId) {
+    public ListRestResponse<ExistingPpeResponse> getExistingPpeList(@RequestParam(value = "userId", required = false) Integer userId) {
         cmd.execute();
 
         List<ExistingPpeResponse> result = cmd.getExistingPpeList().stream()

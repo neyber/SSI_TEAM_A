@@ -32,7 +32,7 @@ public class AuditUpdateController extends AuditAbstractController {
             value = "/{auditId}",
             method = RequestMethod.PUT
     )
-    public SuccessRestResponse updateAudit(@PathVariable Integer auditId, @RequestBody AuditRequest auditRequest, @RequestParam(value = "userId") Integer userId) {
+    public SuccessRestResponse updateAudit(@PathVariable Integer auditId, @RequestBody AuditRequest auditRequest, @RequestParam(value = "userId", required = false) Integer userId) {
         auditUpdateCmd.setAuditId(auditId);
         auditUpdateCmd.setAuditRequest(auditRequest);
         auditUpdateCmd.execute();

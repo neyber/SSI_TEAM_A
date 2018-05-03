@@ -30,7 +30,7 @@ public class SicknessReadController extends SicknessAbstractController {
             method = RequestMethod.GET
     )
     public SingleRestResponse<SicknessResponse> readSickness(@PathVariable Integer sicknessId,
-                                                             @RequestParam(value = "userId") Integer userId){
+                                                             @RequestParam(value = "userId", required = false) Integer userId){
         cmd.setSicknessId(sicknessId);
         cmd.execute();
         return new SingleRestResponse(SicknessResponseBuilder.getInstance(cmd.getSickness()).build());

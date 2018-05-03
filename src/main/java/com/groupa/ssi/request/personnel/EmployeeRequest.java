@@ -17,9 +17,6 @@ public class EmployeeRequest {
     private Date dateOfBirth;
     private char gender;
     private Date startDateInCompany;
-    /*private Role roleEmployee;
-    private Employee supervisor;
-    private Department departmentEmployee;*/
     private Integer roleId;
     private Integer supervisorId;
     private Integer departmentId;

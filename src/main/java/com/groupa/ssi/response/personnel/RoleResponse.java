@@ -5,8 +5,17 @@ package com.groupa.ssi.response.personnel;
  */
 
 public class RoleResponse {
+    private Integer roleId;
     private String name;
     private String description;
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
 
     public String getName() {
         return name;

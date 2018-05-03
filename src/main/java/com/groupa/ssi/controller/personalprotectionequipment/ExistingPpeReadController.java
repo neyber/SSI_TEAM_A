@@ -6,6 +6,7 @@ import com.groupa.ssi.response.personalprotectionequipment.ExistingPpeResponse;
 import com.groupa.ssi.response.personalprotectionequipment.ExistingPpeResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -21,11 +22,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class ExistingPpeReadController extends ExistingPpeAbstractController {
 
+    @Autowired
     private ExistingPpeReadCmd cmd;
-
-    public ExistingPpeReadController(ExistingPpeReadCmd cmd) {
-        this.cmd = cmd;
-    }
 
     @ApiOperation(value = "Read an existing personal protection equipment")
     @RequestMapping(
@@ -33,7 +31,7 @@ public class ExistingPpeReadController extends ExistingPpeAbstractController {
             method = RequestMethod.GET
     )
     public SingleRestResponse<ExistingPpeResponse> readExistingPpe(@PathVariable Integer existingPpeId,
-                                                           @RequestParam(value = "userId") Integer userId) {
+                                                           @RequestParam(value = "userId", required = false) Integer userId) {
 
         cmd.setExistingPpeId(existingPpeId);
         cmd.execute();

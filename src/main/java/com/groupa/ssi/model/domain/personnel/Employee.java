@@ -1,6 +1,7 @@
 package com.groupa.ssi.model.domain.personnel;
 
 import com.groupa.ssi.model.domain.ModelBase;
+import com.groupa.ssi.model.domain.common.FileDocument;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +35,9 @@ public class Employee extends ModelBase {
     private Department departmentEmployee;
     @Column
     private String healthConditionStartingAtCompany;
-    @Column
-    private Byte[] photo;
+
+    @ManyToOne
+    private FileDocument photoFileDocument;
 
     public Long getIdentificationNumber() {
         return identificationNumber;
@@ -117,11 +119,11 @@ public class Employee extends ModelBase {
         this.healthConditionStartingAtCompany = healthConditionStartingAtCompany;
     }
 
-    public Byte[] getPhoto() {
-        return photo;
+    public FileDocument getPhotoFileDocument() {
+        return photoFileDocument;
     }
 
-    public void setPhoto(Byte[] photo) {
-        this.photo = photo;
+    public void setPhotoFileDocument(FileDocument photoFileDocument) {
+        this.photoFileDocument = photoFileDocument;
     }
 }
