@@ -25,7 +25,6 @@ import java.io.IOException;
 @CommandScoped
 public class EmployeeUpdateCmd extends AbstractCommand {
     private static Logger log = LoggerFactory.getLogger(EmployeeUpdateCmd.class);
-    private MultipartFile photoFile;
 
     @Autowired
     private EmployeeService employeeService;
@@ -33,6 +32,9 @@ public class EmployeeUpdateCmd extends AbstractCommand {
     private RoleService roleService;
     @Autowired
     private DepartmentService departmentService;
+
+    @Autowired
+    private FileDocumentService fileDocumentService;
 
     private Integer employeeId;
     private EmployeeRequest employeeRequest;
@@ -42,6 +44,7 @@ public class EmployeeUpdateCmd extends AbstractCommand {
         Role roleEmployee = null;
         Department department = null;
         Employee supervisor = null;
+        FileDocument photoFileDocument = null;
 
         if(employeeRequest.getRoleId() != null) {
             roleEmployee = roleService.findById(employeeRequest.getRoleId());
@@ -52,12 +55,16 @@ public class EmployeeUpdateCmd extends AbstractCommand {
         if (employeeRequest.getSupervisorId() != null){
             supervisor = employeeService.findById(employeeRequest.getSupervisorId());
         }
+        if (employeeRequest.getPhotoFileDocumentId() != null) {
+            photoFileDocument = fileDocumentService.findById(employeeRequest.getPhotoFileDocumentId());
+        }
 
-        Employee employee = composeEmployee(employeeId, employeeRequest, roleEmployee, department, supervisor, photoFile);
+
+        Employee employee = composeEmployee(employeeId, employeeRequest, roleEmployee, department, supervisor, photoFileDocument);
         employeeService.save(employee);
     }
 
-    private Employee composeEmployee(Integer employeeId, EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, MultipartFile photoFile) {
+    private Employee composeEmployee(Integer employeeId, EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, FileDocument photoFileDocument) {
         Employee employee = employeeService.findById(employeeId);
         employee.setIdentificationNumber(employeeRequest.getIdentificationNumber());
         employee.setFirstName(employeeRequest.getFirstName());
@@ -69,7 +76,7 @@ public class EmployeeUpdateCmd extends AbstractCommand {
         employee.setRoleEmployee(role);
         employee.setDepartmentEmployee(department);
         employee.setSupervisor(supervisor);
-        employee.setPhotoFileDocument(processAndComposePhoto(employee, photoFile));
+        employee.setPhotoFileDocument(photoFileDocument);
         return employee;
     }
 
@@ -102,7 +109,4 @@ public class EmployeeUpdateCmd extends AbstractCommand {
         this.employeeRequest = employeeRequest;
     }
 
-    public void setPhotoFile(MultipartFile photoFile) {
-        this.photoFile = photoFile;
-    }
 }

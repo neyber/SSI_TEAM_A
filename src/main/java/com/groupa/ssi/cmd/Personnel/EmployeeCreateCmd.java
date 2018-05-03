@@ -3,11 +3,13 @@ package com.groupa.ssi.cmd.Personnel;
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
 import com.groupa.ssi.controller.common.FileDocumentDownloadController;
+import com.groupa.ssi.exception.DomainEntityNotFoundException;
 import com.groupa.ssi.model.domain.common.FileDocument;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.request.personnel.EmployeeRequest;
+import com.groupa.ssi.services.common.FileDocumentService;
 import com.groupa.ssi.services.personnel.DepartmentService;
 import com.groupa.ssi.services.personnel.EmployeeService;
 import com.groupa.ssi.services.personnel.RoleService;
@@ -26,7 +28,6 @@ import java.io.IOException;
 public class EmployeeCreateCmd extends AbstractCommand {
     private static Logger log = LoggerFactory.getLogger(EmployeeCreateCmd.class);
     private EmployeeRequest employeeRequest;
-    private MultipartFile photoFile;
 
     @Autowired
     private EmployeeService employeeService;
@@ -35,11 +36,15 @@ public class EmployeeCreateCmd extends AbstractCommand {
     @Autowired
     private DepartmentService departmentService;
 
+    @Autowired
+    private FileDocumentService fileDocumentService;
+
     @Override
     protected void run() {
         Role roleEmployee = null;
         Department department = null;
         Employee supervisor = null;
+        FileDocument photoFileDocument = null;
 
         if(employeeRequest.getRoleId() != null) {
             roleEmployee = roleService.findById(employeeRequest.getRoleId());
@@ -50,13 +55,16 @@ public class EmployeeCreateCmd extends AbstractCommand {
         if (employeeRequest.getSupervisorId() != null){
             supervisor = employeeService.findById(employeeRequest.getSupervisorId());
         }
+        if (employeeRequest.getPhotoFileDocumentId() != null) {
+            photoFileDocument = fileDocumentService.findById(employeeRequest.getPhotoFileDocumentId());
+        }
 
-        Employee employee = ComposeEmployee(employeeRequest, roleEmployee, department, supervisor, photoFile);
+        Employee employee = ComposeEmployee(employeeRequest, roleEmployee, department, supervisor, photoFileDocument);
 
         employeeService.save(employee);
     }
 
-    private Employee ComposeEmployee(EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, MultipartFile photoFile) {
+    private Employee ComposeEmployee(EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, FileDocument photoFileDocument) {
         Employee employee = new Employee();
         employee.setIdentificationNumber(employeeRequest.getIdentificationNumber());
         employee.setFirstName(employeeRequest.getFirstName());
@@ -68,7 +76,7 @@ public class EmployeeCreateCmd extends AbstractCommand {
         employee.setRoleEmployee(role);
         employee.setDepartmentEmployee(department);
         employee.setSupervisor(supervisor);
-        employee.setPhotoFileDocument(composeFileDocument(photoFile));
+        employee.setPhotoFileDocument(photoFileDocument);
 
         return employee;
     }
@@ -94,7 +102,4 @@ public class EmployeeCreateCmd extends AbstractCommand {
         this.employeeRequest = employeeRequest;
     }
 
-    public void setPhotoFile(MultipartFile photoFile) {
-        this.photoFile = photoFile;
-    }
 }
