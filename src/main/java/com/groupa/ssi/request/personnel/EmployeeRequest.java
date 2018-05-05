@@ -1,9 +1,5 @@
 package com.groupa.ssi.request.personnel;
 
-import com.groupa.ssi.model.domain.personnel.Department;
-import com.groupa.ssi.model.domain.personnel.Employee;
-import com.groupa.ssi.model.domain.personnel.Role;
-
 import java.util.Date;
 
 /**
@@ -21,7 +17,7 @@ public class EmployeeRequest {
     private Integer supervisorId;
     private Integer departmentId;
     private String healthConditionStartingAtCompany;
-    private Byte[] photo;
+    private Integer photoFileDocumentId;
 
     public Long getIdentificationNumber() {
         return identificationNumber;
@@ -79,14 +75,6 @@ public class EmployeeRequest {
         this.healthConditionStartingAtCompany = healthConditionStartingAtCompany;
     }
 
-    public Byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Byte[] photo) {
-        this.photo = photo;
-    }
-
     public Integer getRoleId() {
         return roleId;
     }
@@ -109,5 +97,13 @@ public class EmployeeRequest {
 
     public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
+    }
+
+    public Integer getPhotoFileDocumentId() {
+        return photoFileDocumentId;
+    }
+
+    public void setPhotoFileDocumentId(Integer photoFileDocumentId) {
+        this.photoFileDocumentId = photoFileDocumentId;
     }
 }
