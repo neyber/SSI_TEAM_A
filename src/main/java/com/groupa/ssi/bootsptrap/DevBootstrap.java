@@ -242,7 +242,6 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         constFunctionManual.setDependentPersonal("empleados de planta");
         constFunctionManual.setInternalRelation("relacion con gerencia");
         constFunctionManual.setExternalRelation("relacion con el exterior");
-        constFunctionManual.setActivity("seguridad de planta");
         constFunctionManual.setGeneralActivity("general activity");
         constFunctionManual.setPrincipalFunction("seguridad de la empresa");
         constFunctionManual.setRoleFunction(consRole);

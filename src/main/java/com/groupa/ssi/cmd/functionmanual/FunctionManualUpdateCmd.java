@@ -30,8 +30,8 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
     protected void run() {
         Role roleFunction = null;
 
-        if(functionManualRequest.getRoleId() != null){
-            roleFunction = roleService.findById(functionManualRequest.getRoleId());
+        if(functionManualRequest.getRoleFunction() != null){
+            roleFunction = roleService.findById(functionManualRequest.getRoleFunction());
         }
         FunctionManual functionManual = composeFunctionManual(functionManualId, functionManualRequest, roleFunction);
         service.save(functionManual);
@@ -50,9 +50,9 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
         functionManual.setPosition(functionManualRequest.getPosition());
         functionManual.setHierarchicalLever(functionManualRequest.getHierarchicalLever());
         functionManual.setSuperiorBoss(functionManualRequest.getSuperiorBoss());
-        functionManual.setDependentPersonal(functionManualRequest.getInternalRelation());
+        functionManual.setDependentPersonal(functionManualRequest.getDependentPersonal());
         functionManual.setExternalRelation(functionManualRequest.getExternalRelation());
-        functionManual.setActivity(functionManualRequest.getActivity());
+        functionManual.setInternalRelation(functionManualRequest.getInternalRelation());
         functionManual.setGeneralActivity(functionManualRequest.getGeneralActivity());
         functionManual.setPrincipalFunction(functionManualRequest.getPrincipalFunction());
         functionManual.setRoleFunction(roleFunction);

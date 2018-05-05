@@ -15,9 +15,9 @@ public class FunctionManualResponseBuilder {
     private String dependentPersonal;
     private String internalRelation;
     private String externalRelation;
-    private String activity;
     private String generalActivity;
     private String principalFunction;
+    private Integer roleFunction;
 
     private FunctionManualResponseBuilder() {
     }
@@ -31,9 +31,9 @@ public class FunctionManualResponseBuilder {
         functionManualResponse.setDependentPersonal(dependentPersonal);
         functionManualResponse.setInternalRelation(internalRelation);
         functionManualResponse.setExternalRelation(externalRelation);
-        functionManualResponse.setActivity(activity);
         functionManualResponse.setGeneralActivity(generalActivity);
         functionManualResponse.setPrincipalFunction(principalFunction);
+        functionManualResponse.setRoleFunction(roleFunction);
 
         return functionManualResponse;
     }
@@ -48,9 +48,9 @@ public class FunctionManualResponseBuilder {
         functionManualResponseBuilder.setDependentPersonal(functionManual.getDependentPersonal());
         functionManualResponseBuilder.setInternalRelation(functionManual.getInternalRelation());
         functionManualResponseBuilder.setExternalRelation(functionManual.getExternalRelation());
-        functionManualResponseBuilder.setActivity(functionManual.getActivity());
         functionManualResponseBuilder.setGeneralActivity(functionManual.getGeneralActivity());
         functionManualResponseBuilder.setPrincipalFunction(functionManual.getPrincipalFunction());
+        functionManualResponseBuilder.setRoleFunction(functionManual.getRoleFunction().getId());
         return functionManualResponseBuilder;
     }
 
@@ -62,16 +62,15 @@ public class FunctionManualResponseBuilder {
 
     public void setSuperiorBoss(String superiorBoss) { this.superiorBoss = superiorBoss; }
 
-
     public void setDependentPersonal(String dependentPersonal) { this.dependentPersonal = dependentPersonal; }
 
     public void setInternalRelation(String internalRelation) { this.internalRelation = internalRelation; }
 
     public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
 
-    public void setActivity(String activity) { this.activity = activity; }
-
     public void setGeneralActivity(String generalActivity) { this.generalActivity = generalActivity; }
 
     public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
+
+    public void setRoleFunction(Integer roleFunction) { this.roleFunction = roleFunction; }
 }

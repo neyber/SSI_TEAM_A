@@ -4,6 +4,7 @@ import com.groupa.ssi.cmd.functionmanual.FunctionManualDeleteCmd;
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -16,6 +17,7 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class FunctionManualDeleteController extends FunctionManualAbstractController {
 
+    @Autowired
     private FunctionManualDeleteCmd cmd;
 
     @ApiOperation(value = "Delete FunctionManual")

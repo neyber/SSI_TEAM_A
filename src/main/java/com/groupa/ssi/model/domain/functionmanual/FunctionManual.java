@@ -29,8 +29,6 @@ public class FunctionManual extends ModelBase {
     @Column
     private String externalRelation;
     @Column
-    private String activity;
-    @Column
     private String generalActivity;
     @Column
     private String principalFunction;
@@ -69,10 +67,6 @@ public class FunctionManual extends ModelBase {
     public String getExternalRelation() { return externalRelation; }
 
     public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
-
-    public String getActivity() { return activity; }
-
-    public void setActivity(String activity) { this.activity = activity; }
 
     public String getGeneralActivity() { return generalActivity; }
 

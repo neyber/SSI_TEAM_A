@@ -13,10 +13,9 @@ public class FunctionManualRequest {
     private String dependentPersonal;
     private String internalRelation;
     private String externalRelation;
-    private String activity;
     private String generalActivity;
     private String principalFunction;
-    private Integer roleId;
+    private Integer roleFunction;
 
     public FunctionManualRequest() {
     }
@@ -54,10 +53,6 @@ public class FunctionManualRequest {
 
     public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
 
-    public String getActivity() { return activity; }
-
-    public void setActivity(String activity) { this.activity = activity; }
-
     public String getGeneralActivity() { return generalActivity; }
 
     public void setGeneralActivity(String generalActivity) { this.generalActivity = generalActivity; }
@@ -66,7 +61,7 @@ public class FunctionManualRequest {
 
     public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
 
-    public Integer getRoleId() { return roleId; }
+    public Integer getRoleFunction() { return roleFunction; }
 
-    public void setRoleId(Integer roleId) { this.roleId = roleId; }
+    public void setRoleFunction(Integer roleFunction) { this.roleFunction = roleFunction; }
 }

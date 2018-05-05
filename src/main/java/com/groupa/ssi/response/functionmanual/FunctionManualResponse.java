@@ -12,7 +12,6 @@ public class FunctionManualResponse {
     private String dependentPersonal;
     private String internalRelation;
     private String externalRelation;
-    private String activity;
     private String generalActivity;
     private String principalFunction;
     private Integer roleFunction;
@@ -49,10 +48,6 @@ public class FunctionManualResponse {
     public String getExternalRelation() { return externalRelation; }
 
     public void setExternalRelation(String externalRelation) { this.externalRelation = externalRelation; }
-
-    public String getActivity() { return activity; }
-
-    public void setActivity(String activity) { this.activity = activity; }
 
     public String getGeneralActivity() { return generalActivity; }
 
