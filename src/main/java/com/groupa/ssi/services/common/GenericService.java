@@ -1,6 +1,8 @@
 package com.groupa.ssi.services.common;
 
+import com.groupa.ssi.exception.DeleteEntityNotFoundException;
 import com.groupa.ssi.exception.DomainEntityNotFoundException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +32,11 @@ public abstract class GenericService<T> {
     }
 
     public void deleteById(Integer id) {
-        getRepository().deleteById(id);
+        try {
+            getRepository().deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new DeleteEntityNotFoundException(getGenericTypeClass());
+        }
     }
 
     protected abstract JpaRepository<T, Integer> getRepository();

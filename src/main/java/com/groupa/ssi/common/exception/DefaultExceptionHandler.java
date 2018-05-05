@@ -1,8 +1,10 @@
 package com.groupa.ssi.common.exception;
 
 import com.groupa.ssi.common.response.rest.ErrorRestResponse;
+import com.groupa.ssi.exception.DeleteEntityConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,6 +34,14 @@ public class DefaultExceptionHandler {
         return new ResponseEntity<>(errorRestResponse, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorRestResponse> handleConstraintViolationException(DataIntegrityViolationException e) {
+        log.info("handled DataIntegrityViolationException error...... ", e);
+        DeleteEntityConstraintViolationException constraintViolationException = new DeleteEntityConstraintViolationException();
+        ErrorRestResponse errorRestResponse = new ErrorRestResponse(HttpStatus.BAD_REQUEST.value(), constraintViolationException.getMessage());
+        return new ResponseEntity<>(errorRestResponse, HttpStatus.BAD_REQUEST);
+    }
+
     /**
      * Common Exception handler, if a exception is not handled, this manage the error
      * the result is an rest response with error message
@@ -41,6 +51,7 @@ public class DefaultExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorRestResponse> handleGeneralException(Exception e) {
+        log.info("Exception name..... " + e);
         log.info("handled Exception error...... ", e);
         ErrorRestResponse errorRestResponse = new ErrorRestResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
         return new ResponseEntity<>(errorRestResponse, HttpStatus.INTERNAL_SERVER_ERROR);
