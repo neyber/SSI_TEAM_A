@@ -143,42 +143,6 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         admRole.setDescription("Administrador de personal");
         roleRepository.save(admRole);
 
-
-        //Sickness and Accident classification
-        /*for accident*/
-        SaClassification accidentClassification = new SaClassification();
-        accidentClassification.setCategory("Trabajo restringido o transferido");
-        accidentClassification.setTotalDaysOutOfWork(2);
-        accidentClassification.setTotalDaysRestrictedTransferredWork(5);
-        accidentClassification.setType("Condicion respiratoria");
-        saClassificationRepository.save(accidentClassification);
-
-        /*for sickness*/
-        SaClassification sicknessClassification = new SaClassification();
-        sicknessClassification.setCategory("Permanecio en el trabajo");
-        sicknessClassification.setTotalDaysOutOfWork(3);
-        sicknessClassification.setTotalDaysRestrictedTransferredWork(0);
-        sicknessClassification.setType("Envenenamiento");
-        saClassificationRepository.save(sicknessClassification);
-
-        //Accident
-        Accident accident = new Accident();
-        accident.setDateAccident(new Date());
-        accident.setDescription("this is a critical accident that will cost a lot to the enterprise");
-        accident.setWhereOccurr("It occurred during the revision under maquinary");
-        accident.setStatusRecord(Boolean.TRUE);
-        accident.setSaClassification(accidentClassification);
-        accidentRepository.save(accident);
-
-        //Sickness
-        Sickness sickness = new Sickness();
-        sickness.setDateSickness(new Date());
-        sickness.setDescription("during the night duty shift and with inadequate clothing is that the employee has a cold, and due to negligence");
-        sickness.setWhereOccurr("this happened on guard night shift");
-        sickness.setStatusRecord(Boolean.TRUE);
-        sickness.setSaClassification(sicknessClassification);
-        sicknessRepository.save(sickness);
-
         //Employees
         Employee admEmployee = new Employee();
         admEmployee.setIdentificationNumber(new Long(234234));
@@ -247,6 +211,77 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         constFunctionManual.setPrincipalFunction("seguridad de la empresa");
         constFunctionManual.setRoleFunction(consRole);
         functionManualRepository.save(constFunctionManual);
+
+        //Sickness and Accident classification
+        /*for accident*/
+        SaClassification accidentClassification = new SaClassification();
+        accidentClassification.setCategory("Trabajo restringido o transferido");
+        accidentClassification.setTotalDaysOutOfWork(2);
+        accidentClassification.setTotalDaysRestrictedTransferredWork(5);
+        accidentClassification.setType("Condicion respiratoria");
+        saClassificationRepository.save(accidentClassification);
+
+        SaClassification accidentClassification2 = new SaClassification();
+        accidentClassification2.setCategory("Trabajo restringido");
+        accidentClassification2.setTotalDaysOutOfWork(2);
+        accidentClassification2.setTotalDaysRestrictedTransferredWork(5);
+        accidentClassification2.setType("envene");
+        saClassificationRepository.save(accidentClassification2);
+
+        /*for sickness*/
+        SaClassification sicknessClassification = new SaClassification();
+        sicknessClassification.setCategory("Permanecio en el trabajo");
+        sicknessClassification.setTotalDaysOutOfWork(3);
+        sicknessClassification.setTotalDaysRestrictedTransferredWork(0);
+        sicknessClassification.setType("Envenenamiento");
+        saClassificationRepository.save(sicknessClassification);
+
+
+        SaClassification sicknessClassification2 = new SaClassification();
+        sicknessClassification2.setCategory("a la salda del trabajo");
+        sicknessClassification2.setTotalDaysOutOfWork(1);
+        sicknessClassification2.setTotalDaysRestrictedTransferredWork(0);
+        sicknessClassification2.setType("problemas en el ojo");
+        saClassificationRepository.save(sicknessClassification2);
+
+        //Accident
+        Accident accident = new Accident();
+        accident.setDateAccident(new Date());
+        accident.setDescription("this is a critical accident that will cost a lot to the enterprise");
+        accident.setWhereOccurr("It occurred during the revision under maquinary");
+        accident.setStatusRecord(Boolean.TRUE);
+        accident.setSaClassification(accidentClassification);
+        accident.setEmployee(constEmployee);
+        accidentRepository.save(accident);
+
+
+        Accident accident2 = new Accident();
+        accident2.setDateAccident(new Date());
+        accident2.setDescription("el accidente occurrio cuando el admin no estaba sando proteccion");
+        accident2.setWhereOccurr("It occurred during the revision under maquinary");
+        accident2.setStatusRecord(Boolean.TRUE);
+        accident2.setSaClassification(accidentClassification2);
+        accident2.setEmployee(admEmployee);
+        accidentRepository.save(accident2);
+
+        //Sickness
+        Sickness sickness = new Sickness();
+        sickness.setDateSickness(new Date());
+        sickness.setDescription("during the night duty shift and with inadequate clothing is that the employee has a cold, and due to negligence");
+        sickness.setWhereOccurr("this happened on guard night shift");
+        sickness.setStatusRecord(Boolean.TRUE);
+        sickness.setSaClassification(sicknessClassification);
+        sickness.setEmployee(admEmployee);
+        sicknessRepository.save(sickness);
+
+        Sickness sicknessAdmin = new Sickness();
+        sicknessAdmin.setDateSickness(new Date());
+        sicknessAdmin.setDescription("problema de salud por la noche, duranto turno de guardia");
+        sicknessAdmin.setWhereOccurr("en la empresa");
+        sicknessAdmin.setStatusRecord(Boolean.TRUE);
+        sicknessAdmin.setSaClassification(sicknessClassification2);
+        sicknessAdmin.setEmployee(constEmployee);
+        sicknessRepository.save(sicknessAdmin);
 
     }
 }

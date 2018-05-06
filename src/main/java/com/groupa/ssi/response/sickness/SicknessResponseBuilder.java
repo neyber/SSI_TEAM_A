@@ -4,7 +4,12 @@
 package com.groupa.ssi.response.sickness;
 
 import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.model.domain.personnel.Employee;
 import com.groupa.ssi.model.domain.sickness.Sickness;
+import com.groupa.ssi.response.catalog.SaClassificationResponse;
+import com.groupa.ssi.response.catalog.SaClassificationResponseBuilder;
+import com.groupa.ssi.response.personnel.EmployeeResponse;
+import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
 import org.hibernate.cache.internal.SimpleCacheKeysFactory;
 
 import java.util.Date;
@@ -15,7 +20,8 @@ public class SicknessResponseBuilder {
     private Date dateSickness;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassification saClassification;
+    private SaClassificationResponse saClassification;
+    private EmployeeResponse employee;
 
     public SicknessResponseBuilder(){}
 
@@ -27,18 +33,29 @@ public class SicknessResponseBuilder {
         sicknessResponse.setWhereOccurr(whereOccurr);
         sicknessResponse.setStatusRecord(statusRecord);
         sicknessResponse.setSaClassification(saClassification);
+        sicknessResponse.setEmployee(employee);
 
         return sicknessResponse;
     }
 
     public static SicknessResponseBuilder getInstance(Sickness sickness){
-        return new SicknessResponseBuilder()
-                .setSicknessId(sickness.getId())
-                .setDescription(sickness.getDescription())
-                .setDateSickness(sickness.getDateSickness())
-                .setWhereOccurr(sickness.getWhereOccurr())
-                .setStatusRecord(sickness.getStatusRecord())
-                .setSaClassification(sickness.getSaClassification());
+        SicknessResponseBuilder sicknessResponseBuilder = new SicknessResponseBuilder();
+
+        sicknessResponseBuilder.setSicknessId(sickness.getId());
+        sicknessResponseBuilder.setDescription(sickness.getDescription());
+        sicknessResponseBuilder.setDateSickness(sickness.getDateSickness());
+        sicknessResponseBuilder.setWhereOccurr(sickness.getWhereOccurr());
+        sicknessResponseBuilder.setStatusRecord(sickness.getStatusRecord());
+        if (null != sickness.getSaClassification()) {
+            sicknessResponseBuilder.setSaClassification(SaClassificationResponseBuilder.getInstance(sickness.getSaClassification()).build());
+        }
+
+        if(null != sickness.getEmployee()) {
+            sicknessResponseBuilder.setEmployee(EmployeeResponseBuilder.getInstance(sickness.getEmployee()).build());
+        }
+
+        return sicknessResponseBuilder;
+
     }
 
 
@@ -67,8 +84,13 @@ public class SicknessResponseBuilder {
         return this;
     }
 
-    public SicknessResponseBuilder setSaClassification(SaClassification saClassification){
+    public SicknessResponseBuilder setSaClassification(SaClassificationResponse saClassification){
         this.saClassification = saClassification;
+        return this;
+    }
+
+    public SicknessResponseBuilder setEmployee(EmployeeResponse employee) {
+        this.employee = employee;
         return this;
     }
 }

@@ -4,6 +4,8 @@
 package com.groupa.ssi.response.sickness;
 
 import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.response.catalog.SaClassificationResponse;
+import com.groupa.ssi.response.personnel.EmployeeResponse;
 
 import java.util.Date;
 
@@ -13,7 +15,8 @@ public class SicknessResponse {
     private Date dateSickness;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassification saClassification;
+    private SaClassificationResponse saClassification;
+    private EmployeeResponse employee;
 
     public Integer getSicknessId() {
         return sicknessId;
@@ -55,11 +58,19 @@ public class SicknessResponse {
         this.statusRecord = statusRecord;
     }
 
-    public SaClassification getSaClassification() {
+    public SaClassificationResponse getSaClassification() {
         return saClassification;
     }
 
-    public void setSaClassification(SaClassification saClassification) {
+    public void setSaClassification(SaClassificationResponse saClassification) {
         this.saClassification = saClassification;
+    }
+
+    public EmployeeResponse getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(EmployeeResponse employee) {
+        this.employee = employee;
     }
 }

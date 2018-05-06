@@ -5,6 +5,10 @@ package com.groupa.ssi.response.accident;
 
 import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.response.catalog.SaClassificationResponse;
+import com.groupa.ssi.response.catalog.SaClassificationResponseBuilder;
+import com.groupa.ssi.response.personnel.EmployeeResponse;
+import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
 
 import java.util.Date;
 
@@ -14,7 +18,8 @@ public class AccidentResponseBuilder {
     private Date dateAccident;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassification saClassification;
+    private SaClassificationResponse saClassification;
+    private EmployeeResponse employee;
 
     private AccidentResponseBuilder(){}
 
@@ -26,18 +31,28 @@ public class AccidentResponseBuilder {
         accidentResponse.setWhereOccurr(whereOccurr);
         accidentResponse.setStatusRecord(statusRecord);
         accidentResponse.setSaClassification(saClassification);
+        accidentResponse.setEmployee(employee);
 
         return accidentResponse;
     }
 
     public static AccidentResponseBuilder getInstance(Accident accident){
-        return new AccidentResponseBuilder()
-                .setAccidentId(accident.getId())
-                .setDescription(accident.getDescription())
-                .setDateAccident(accident.getDateAccident())
-                .setWhereOccurr(accident.getWhereOccurr())
-                .setStatusRecord(accident.getStatusRecord())
-                .setSaClassification(accident.getSaClassification());
+        AccidentResponseBuilder accidentResponseBuilder = new AccidentResponseBuilder();
+        accidentResponseBuilder.setAccidentId(accident.getId());
+        accidentResponseBuilder.setDescription(accident.getDescription());
+        accidentResponseBuilder.setDateAccident(accident.getDateAccident());
+        accidentResponseBuilder.setWhereOccurr(accident.getWhereOccurr());
+        accidentResponseBuilder.setStatusRecord(accident.getStatusRecord());
+        if (null != accident.getSaClassification()) {
+            accidentResponseBuilder.setSaClassification(SaClassificationResponseBuilder.getInstance(accident.getSaClassification()).build());
+        }
+
+        if (null != accident.getEmployee()) {
+            accidentResponseBuilder.setEmployee(EmployeeResponseBuilder.getInstance(accident.getEmployee()).build());
+        }
+
+        return accidentResponseBuilder;
+
     }
 
     public AccidentResponseBuilder setAccidentId(Integer accidentId) {
@@ -65,8 +80,13 @@ public class AccidentResponseBuilder {
         return this;
     }
 
-    public AccidentResponseBuilder setSaClassification(SaClassification saClassification){
+    public AccidentResponseBuilder setSaClassification(SaClassificationResponse saClassification){
         this.saClassification = saClassification;
+        return this;
+    }
+
+    public AccidentResponseBuilder setEmployee(EmployeeResponse employee) {
+        this.employee = employee;
         return this;
     }
 }
