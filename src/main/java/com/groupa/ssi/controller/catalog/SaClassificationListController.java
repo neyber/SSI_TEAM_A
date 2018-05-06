@@ -37,7 +37,7 @@ public class SaClassificationListController extends SaClassificationAbstractCont
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public ListRestResponse<SaClassificationResponse> getSaClassificationList(@RequestParam(value = "userId") Integer userId){
+    public ListRestResponse<SaClassificationResponse> getSaClassificationList(@RequestParam(value = "userId", required = false) Integer userId){
         List<SaClassification> saClassificationsList = service.findAll();
         return new ListRestResponse(saClassificationsList);
     }
