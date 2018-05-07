@@ -8,6 +8,8 @@ import com.groupa.ssi.model.domain.catalog.SaClassification;
 
 public class SaClassificationResponseBuilder {
 
+    private Integer saClassificationId;
+
     private String category;
 
     private Integer totalDaysOutOfWork;
@@ -19,6 +21,7 @@ public class SaClassificationResponseBuilder {
 
     public SaClassificationResponse build() {
         SaClassificationResponse saClassificationResponse = new SaClassificationResponse();
+        saClassificationResponse.setSaClassificationId(saClassificationId);
         saClassificationResponse.setCategory(category);
         saClassificationResponse.setTotalDaysOutOfWork(totalDaysOutOfWork);
         saClassificationResponse.setTotalDaysRestrictedTransferredWork(totalDaysRestrictedTransferredWork);
@@ -29,10 +32,16 @@ public class SaClassificationResponseBuilder {
 
     public static SaClassificationResponseBuilder getInstance(SaClassification saClassification){
         return new SaClassificationResponseBuilder()
+                .setSaClassificationId(saClassification.getId())
                 .setCategory(saClassification.getCategory())
                 .setTotalDaysOutOfWork(saClassification.getTotalDaysOutOfWork())
                 .setTotalDaysRestrictedTransferredWork(saClassification.getTotalDaysRestrictedTransferredWork())
                 .setType(saClassification.getType());
+    }
+
+    public SaClassificationResponseBuilder setSaClassificationId(Integer saClassificationId) {
+        this.saClassificationId = saClassificationId;
+        return this;
     }
 
     public SaClassificationResponseBuilder setCategory(String category){

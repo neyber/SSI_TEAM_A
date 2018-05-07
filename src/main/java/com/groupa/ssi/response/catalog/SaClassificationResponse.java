@@ -6,6 +6,8 @@ Created on 28/4/18
 
 public class SaClassificationResponse {
 
+    private Integer saClassificationId;
+
     private String category;
 
     private Integer totalDaysOutOfWork;
@@ -13,6 +15,14 @@ public class SaClassificationResponse {
     private Integer totalDaysRestrictedTransferredWork;
 
     private String type;
+
+    public Integer getSaClassificationId() {
+        return saClassificationId;
+    }
+
+    public void setSaClassificationId(Integer saClassificationId) {
+        this.saClassificationId = saClassificationId;
+    }
 
     public String getCategory() {
         return category;
