@@ -5,6 +5,7 @@ package com.groupa.ssi.response.accident;
 
 import com.groupa.ssi.model.domain.catalog.SaClassification;
 import com.groupa.ssi.response.catalog.SaClassificationResponse;
+import com.groupa.ssi.response.personnel.EmployeeResponse;
 
 import java.util.Date;
 
@@ -15,7 +16,8 @@ public class AccidentResponse {
     private Date dateAccident;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassification saClassification;
+    private SaClassificationResponse saClassification;
+    private EmployeeResponse employee;
 
     public Integer getAccidentId() {
         return accidentId;
@@ -57,11 +59,19 @@ public class AccidentResponse {
         this.statusRecord = statusRecord;
     }
 
-    public SaClassification getSaClassification() {
+    public SaClassificationResponse getSaClassification() {
         return saClassification;
     }
 
-    public void setSaClassification(SaClassification saClassification) {
+    public void setSaClassification(SaClassificationResponse saClassification) {
         this.saClassification = saClassification;
+    }
+
+    public EmployeeResponse getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(EmployeeResponse employee) {
+        this.employee = employee;
     }
 }

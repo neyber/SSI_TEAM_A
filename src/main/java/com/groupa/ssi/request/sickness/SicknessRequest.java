@@ -13,6 +13,7 @@ public class SicknessRequest {
     private String whereOccurr;
     private Boolean statusRecord;
     private Integer saClassificationId;
+    private Integer employeeId;
 
     public String getDescription() {
         return description;
@@ -52,5 +53,13 @@ public class SicknessRequest {
 
     public void setSaClassificationId(Integer saClassificationId) {
         this.saClassificationId = saClassificationId;
+    }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 }
