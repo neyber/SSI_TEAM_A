@@ -12,6 +12,7 @@ import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssign
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
 import com.groupa.ssi.model.domain.workitem.ExistingWorkItem;
+import com.groupa.ssi.model.domain.workitem.ExistingWorkItemAssigned;
 import com.groupa.ssi.model.domain.workitem.WorkItem;
 import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
@@ -29,6 +30,7 @@ import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRe
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
 import com.groupa.ssi.model.repository.sickness.SicknessRepository;
 import com.groupa.ssi.model.repository.accident.AccidentRepository;
+import com.groupa.ssi.model.repository.workitem.ExistingWorkItemAssignedRepository;
 import com.groupa.ssi.model.repository.workitem.ExistingWorkItemRepository;
 import com.groupa.ssi.model.repository.workitem.WorkItemRepository;
 import com.groupa.ssi.model.repository.personnel.DepartmentRepository;
@@ -75,6 +77,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private WorkItemClassificationRepository workItemClassificationRepository;
     @Autowired
     private ExistingWorkItemRepository existingWorkItemRepository;
+    @Autowired
+    private ExistingWorkItemAssignedRepository existingWorkItemAssignedRepository;
 
     public DevBootstrap() {
     }
@@ -191,7 +195,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
         // Existing work item
         ExistingWorkItem existingWorkItem = new ExistingWorkItem();
-        existingWorkItem.setDetail("Adicionando stock de casco");
+        existingWorkItem.setDetail("Adicionando stock de moledora");
         existingWorkItem.setPurchaseDate(new Date());
         existingWorkItem.setSerieNo("111-CA");
         existingWorkItem.setWorkItem(workItem);
@@ -281,6 +285,14 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         sicknessAdmin.setSaClassification(sicknessClassification2);
         sicknessAdmin.setEmployee(constEmployee);
         sicknessRepository.save(sicknessAdmin);
+
+        ExistingWorkItemAssigned existingWorkItemAssigned = new ExistingWorkItemAssigned();
+        existingWorkItemAssigned.setAssignedNotes("Asignado una moledora en buen estado");
+        existingWorkItemAssigned.setAssignedDate(new Date());
+        existingWorkItemAssigned.setReturnNotes("");
+        existingWorkItemAssigned.setExistingWorkItem(existingWorkItem);
+        existingWorkItemAssigned.setEmployee(constEmployee);
+        existingWorkItemAssignedRepository.save(existingWorkItemAssigned);
 
     }
 }
