@@ -1,0 +1,34 @@
+package com.groupa.ssi.controller.personnel;
+
+import com.groupa.ssi.cmd.Personnel.RoleCreateCmd;
+import com.groupa.ssi.common.response.rest.SuccessRestResponse;
+import com.groupa.ssi.request.personnel.RoleRequest;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
+
+/**
+ * @author Lizeth Salazar
+ */
+
+@Api(tags = RoleAbstractController.TAG_NAME, description = RoleAbstractController.DESCRIPTION)
+@RestController
+@RequestScope
+public class RoleCreateController extends RoleAbstractController{
+
+    @Autowired
+    private RoleCreateCmd roleCreateCmd;
+
+    @ApiOperation(value = "Create Role")
+    @RequestMapping(
+            method = RequestMethod.POST
+    )
+    public SuccessRestResponse createRole(@RequestBody RoleRequest roleRequest, @RequestParam(value = "userId", required = false) Integer userId) {
+
+        roleCreateCmd.setRoleRequest(roleRequest);
+        roleCreateCmd.execute();
+        return new SuccessRestResponse();
+    }
+}
