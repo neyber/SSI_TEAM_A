@@ -30,7 +30,7 @@ public class SicknessDeleteController extends SicknessAbstractController {
             method = RequestMethod.DELETE
     )
     public SuccessRestResponse deleteSickness(@PathVariable Integer sicknessId,
-                                              @RequestParam(value = "userId") Integer userId) {
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
         cmd.setSicknessId(sicknessId);
         cmd.execute();
         return new SuccessRestResponse();

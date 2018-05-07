@@ -30,7 +30,7 @@ public class AccidentDeleteController extends AccidentAbstractController {
             method = RequestMethod.DELETE
     )
     public SuccessRestResponse deleteAccident(@PathVariable Integer accidentId,
-                                              @RequestParam(value = "userId") Integer userId) {
+                                              @RequestParam(value = "userId", required = false) Integer userId) {
 
         cmd.setAccidentId(accidentId);
         cmd.execute();

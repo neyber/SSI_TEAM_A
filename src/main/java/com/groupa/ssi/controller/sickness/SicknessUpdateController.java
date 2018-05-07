@@ -33,7 +33,7 @@ public class SicknessUpdateController extends SicknessAbstractController {
     )
     public SuccessRestResponse updateSickness(@PathVariable Integer sicknessId,
                                               @RequestBody SicknessRequest sicknessRequest,
-                                              @RequestParam(value = "userId") Integer userId){
+                                              @RequestParam(value = "userId", required = false) Integer userId){
         cmd.setSicknessId(sicknessId);
         cmd.setSicknessRequest(sicknessRequest);
         return new SuccessRestResponse();

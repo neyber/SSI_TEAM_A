@@ -26,7 +26,7 @@ public class AccidentCreateController extends AccidentAbstractController {
             method = RequestMethod.POST
     )
     public SuccessRestResponse createAccidentRecord(@RequestBody AccidentRequest accidentRequest,
-                                                    @RequestParam(value = "userId") Integer userId) {
+                                                    @RequestParam(value = "userId", required = false) Integer userId) {
         cmd.setAccidentRequest(accidentRequest);
         cmd.execute();
         return new SuccessRestResponse();
