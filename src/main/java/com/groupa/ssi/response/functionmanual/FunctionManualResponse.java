@@ -5,6 +5,7 @@ package com.groupa.ssi.response.functionmanual;
  */
 
 public class FunctionManualResponse {
+    private Integer id;
     private String name;
     private String position;
     private String hierarchicalLever;
@@ -16,6 +17,9 @@ public class FunctionManualResponse {
     private String principalFunction;
     private Integer roleFunction;
 
+    public Integer getId() { return id; }
+
+    public void setId(Integer id) { this.id = id; }
 
     public String getName() {
         return name;
@@ -60,4 +64,6 @@ public class FunctionManualResponse {
     public Integer getRoleFunction() { return roleFunction; }
 
     public void setRoleFunction(Integer roleFunction) { this.roleFunction = roleFunction; }
+
+
 }

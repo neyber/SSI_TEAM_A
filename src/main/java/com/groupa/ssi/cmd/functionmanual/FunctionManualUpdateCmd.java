@@ -2,9 +2,6 @@ package com.groupa.ssi.cmd.functionmanual;
 
 import com.groupa.ssi.common.cmd.AbstractCommand;
 import com.groupa.ssi.common.context.CommandScoped;
-//import com.groupa.ssi.model.domain.catalog.WorkItem;
-//import com.groupa.ssi.request.catalog.WorkItemRequest;
-//import com.groupa.ssi.services.catalog.WorkItemService;
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.request.functionmanual.FunctionManualRequest;

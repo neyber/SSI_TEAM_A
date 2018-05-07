@@ -28,11 +28,11 @@ public class FunctionManualUpdateController extends FunctionManualAbstractContro
             value = "/{functionManualId}",
             method = RequestMethod.PUT
     )
-    public SuccessRestResponse updateFunctionManual(@PathVariable Integer FunctionManualId,
+    public SuccessRestResponse updateFunctionManual(@PathVariable Integer functionManualId,
                                               @RequestBody FunctionManualRequest functionManualRequest,
                                               @RequestParam(value = "userId", required = false) Integer userId) {
 
-        cmd.setFunctionManualId(FunctionManualId);
+        cmd.setFunctionManualId(functionManualId);
         cmd.setWorkItemRequest(functionManualRequest);
         cmd.execute();
 

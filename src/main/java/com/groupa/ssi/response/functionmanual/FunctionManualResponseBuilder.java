@@ -8,6 +8,7 @@ import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
  */
 
 public class FunctionManualResponseBuilder {
+    private Integer id;
     private String name;
     private String position;
     private String hierarchicalLever;
@@ -24,6 +25,7 @@ public class FunctionManualResponseBuilder {
 
     public FunctionManualResponse build() {
         FunctionManualResponse functionManualResponse = new FunctionManualResponse();
+        functionManualResponse.setId(id);
         functionManualResponse.setName(name);
         functionManualResponse.setPosition(position);
         functionManualResponse.setHierarchicalLever(hierarchicalLever);
@@ -41,6 +43,7 @@ public class FunctionManualResponseBuilder {
     public static FunctionManualResponseBuilder getInstance(FunctionManual functionManual){
 
         FunctionManualResponseBuilder functionManualResponseBuilder = new FunctionManualResponseBuilder();
+        functionManualResponseBuilder.setId(functionManual.getId());
         functionManualResponseBuilder.setName(functionManual.getName());
         functionManualResponseBuilder.setPosition(functionManual.getPosition());
         functionManualResponseBuilder.setHierarchicalLever(functionManual.getHierarchicalLever());
@@ -53,6 +56,8 @@ public class FunctionManualResponseBuilder {
         functionManualResponseBuilder.setRoleFunction(functionManual.getRoleFunction().getId());
         return functionManualResponseBuilder;
     }
+
+    public void setId(Integer id) { this.id = id; }
 
     public void setName(String name) { this.name = name; }
 
@@ -73,4 +78,6 @@ public class FunctionManualResponseBuilder {
     public void setPrincipalFunction(String principalFunction) { this.principalFunction = principalFunction; }
 
     public void setRoleFunction(Integer roleFunction) { this.roleFunction = roleFunction; }
+
+
 }

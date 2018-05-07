@@ -24,7 +24,7 @@ public class FunctionManualReadController extends FunctionManualAbstractControll
 
     @ApiOperation(value = "Read/View FunctionManual")
     @RequestMapping(value = "/{functionManualId}", method = RequestMethod.GET)
-    public SingleRestResponse<FunctionManualResponse> readFunctionManual(@PathVariable Integer functionManualId, @RequestParam(value = "userId", required = false) Integer userId){
+    public SingleRestResponse<FunctionManualResponse> readManual(@PathVariable Integer functionManualId, @RequestParam(value = "userId", required = false) Integer userId){
 
         cmd.setFunctionManualId(functionManualId);
         cmd.execute();

@@ -33,7 +33,7 @@ public class FunctionManualListController extends FunctionManualAbstractControll
     @ApiOperation(value = "List UserManuals")
     @RequestMapping(method = RequestMethod.GET)
 
-    public ListRestResponse<FunctionManualResponse> getUserManualList(@RequestParam(value="userId", required = false) Integer userId){
+    public ListRestResponse<FunctionManualResponse> getManualList(@RequestParam(value="userId", required = false) Integer userId){
 
         cmd.execute();
 

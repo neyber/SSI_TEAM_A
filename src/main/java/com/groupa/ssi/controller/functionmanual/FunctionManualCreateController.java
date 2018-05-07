@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 /**
  * @author Marcelo Loayza
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = FunctionManualAbstractController.TAG_NAME, description = FunctionManualAbstractController.DESCRIPTION)
 @RestController
-@RequestMapping
+@RequestScope
 public class FunctionManualCreateController extends FunctionManualAbstractController {
 
     @Autowired
@@ -24,8 +25,7 @@ public class FunctionManualCreateController extends FunctionManualAbstractContro
     @RequestMapping(
             method = RequestMethod.POST
     )
-    public SuccessRestResponse createDepartment(@RequestBody FunctionManualRequest functionManualRequest,
-                                                @RequestParam(value = "userId", required = false) Integer userId) {
+    public SuccessRestResponse createManual(@RequestBody FunctionManualRequest functionManualRequest, @RequestParam(value = "userId", required = false) Integer userId) {
         cmd.setFunctionManualRequest(functionManualRequest);
         cmd.execute();
 

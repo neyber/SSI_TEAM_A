@@ -22,10 +22,10 @@ public class FunctionManualDeleteController extends FunctionManualAbstractContro
 
     @ApiOperation(value = "Delete FunctionManual")
     @RequestMapping(value = "/{functionManualId}", method = RequestMethod.DELETE)
-    public SuccessRestResponse deleteUserManual(@PathVariable Integer functionManualId,
+    public SuccessRestResponse deleteManual(@PathVariable Integer functionManualId,
                                                 @RequestParam(value = "userId", required = false) Integer userId){
         cmd.setFunctionManulIdId(functionManualId);
-
+        cmd.execute();
         return new SuccessRestResponse();
     }
 }
