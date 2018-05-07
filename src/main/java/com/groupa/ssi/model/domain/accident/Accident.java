@@ -25,7 +25,7 @@ public class Accident extends ModelBase {
     @Column
     private Boolean statusRecord;
 
-    @ManyToOne
+    @OneToOne
     private SaClassification saClassification;
 
     @ManyToOne

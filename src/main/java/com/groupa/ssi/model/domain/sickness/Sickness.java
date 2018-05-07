@@ -25,7 +25,7 @@ public class Sickness extends ModelBase {
     @Column
     private Boolean statusRecord;
 
-    @ManyToOne
+    @OneToOne
     private SaClassification saClassification;
 
     @ManyToOne
