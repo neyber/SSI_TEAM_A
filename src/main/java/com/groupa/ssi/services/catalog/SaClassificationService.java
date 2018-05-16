@@ -4,7 +4,7 @@ Created on 28/4/18
 */
 
 import com.groupa.ssi.exception.DomainEntityNotFoundException;
-import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.model.domain.saClassification.SaClassification;
 import com.groupa.ssi.model.repository.catalog.SaClassificationRepository;
 import org.springframework.stereotype.Service;
 

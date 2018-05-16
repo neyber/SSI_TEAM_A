@@ -4,7 +4,7 @@ Created on 28/4/18
 @author: HENRYBC
 */
 
-import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.model.domain.saClassification.SaClassification;
 
 public class SaClassificationResponseBuilder {
 

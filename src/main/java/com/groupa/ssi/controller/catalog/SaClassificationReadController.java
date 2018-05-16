@@ -6,7 +6,7 @@ Created on 28/4/18
 */
 
 import com.groupa.ssi.common.response.rest.SingleRestResponse;
-import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.model.domain.saClassification.SaClassification;
 import com.groupa.ssi.response.catalog.SaClassificationResponse;
 import com.groupa.ssi.response.catalog.SaClassificationResponseBuilder;
 import com.groupa.ssi.services.catalog.SaClassificationService;

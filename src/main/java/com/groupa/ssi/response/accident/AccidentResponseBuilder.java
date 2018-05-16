@@ -4,11 +4,12 @@
 package com.groupa.ssi.response.accident;
 
 import com.groupa.ssi.model.domain.accident.Accident;
-import com.groupa.ssi.model.domain.catalog.SaClassification;
-import com.groupa.ssi.response.catalog.SaClassificationResponse;
-import com.groupa.ssi.response.catalog.SaClassificationResponseBuilder;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
+import com.groupa.ssi.response.saClassification.SaCategoryResponse;
+import com.groupa.ssi.response.saClassification.SaCategoryResponseBuilder;
+import com.groupa.ssi.response.saClassification.SaTypeResponse;
+import com.groupa.ssi.response.saClassification.SaTypeResponseBuilder;
 
 import java.util.Date;
 
@@ -18,7 +19,10 @@ public class AccidentResponseBuilder {
     private Date dateAccident;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassificationResponse saClassification;
+    private Integer totalDaysOutOfWork;
+    private Integer totalDaysRestrictedTransferredWork;
+    private SaCategoryResponse saCategoryResponse;
+    private SaTypeResponse saTypeResponse;
     private EmployeeResponse employee;
 
     private AccidentResponseBuilder(){}
@@ -30,7 +34,10 @@ public class AccidentResponseBuilder {
         accidentResponse.setDateAccident(dateAccident);
         accidentResponse.setWhereOccurr(whereOccurr);
         accidentResponse.setStatusRecord(statusRecord);
-        accidentResponse.setSaClassification(saClassification);
+        accidentResponse.setTotalDaysOutOfWork(totalDaysOutOfWork);
+        accidentResponse.setTotalDaysRestrictedTransferredWork(totalDaysRestrictedTransferredWork);
+        accidentResponse.setSaCategoryResponse(saCategoryResponse);
+        accidentResponse.setSaTypeResponse(saTypeResponse);
         accidentResponse.setEmployee(employee);
 
         return accidentResponse;
@@ -43,8 +50,14 @@ public class AccidentResponseBuilder {
         accidentResponseBuilder.setDateAccident(accident.getDateAccident());
         accidentResponseBuilder.setWhereOccurr(accident.getWhereOccurr());
         accidentResponseBuilder.setStatusRecord(accident.getStatusRecord());
-        if (null != accident.getSaClassification()) {
-            accidentResponseBuilder.setSaClassification(SaClassificationResponseBuilder.getInstance(accident.getSaClassification()).build());
+        accidentResponseBuilder.setTotalDaysOutOfWork(accident.getTotalDaysOutOfWork());
+        accidentResponseBuilder.setTotalDaysRestrictedTransferredWork(accident.getTotalDaysRestrictedTransferredWork());
+        if (null != accident.getSaCategory()) {
+            accidentResponseBuilder.setSaCategoryResponse(SaCategoryResponseBuilder.getInstance(accident.getSaCategory()).build());
+        }
+
+        if (null != accident.getSaType()) {
+            accidentResponseBuilder.setSaTypeResponse(SaTypeResponseBuilder.getIsntance(accident.getSaType()).build());
         }
 
         if (null != accident.getEmployee()) {
@@ -80,8 +93,23 @@ public class AccidentResponseBuilder {
         return this;
     }
 
-    public AccidentResponseBuilder setSaClassification(SaClassificationResponse saClassification){
-        this.saClassification = saClassification;
+    public AccidentResponseBuilder setTotalDaysOutOfWork(Integer totalDaysOutOfWork) {
+        this.totalDaysOutOfWork = totalDaysOutOfWork;
+        return this;
+    }
+
+    public AccidentResponseBuilder setTotalDaysRestrictedTransferredWork(Integer totalDaysRestrictedTransferredWork) {
+        this.totalDaysRestrictedTransferredWork = totalDaysRestrictedTransferredWork;
+        return this;
+    }
+
+    public AccidentResponseBuilder setSaCategoryResponse(SaCategoryResponse saCategoryResponse) {
+        this.saCategoryResponse = saCategoryResponse;
+        return this;
+    }
+
+    public AccidentResponseBuilder setSaTypeResponse(SaTypeResponse saTypeResponse) {
+        this.saTypeResponse = saTypeResponse;
         return this;
     }
 
