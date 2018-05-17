@@ -65,7 +65,7 @@ public class AccidentUpdateCmd extends AbstractCommand {
     }
 
     private Accident composeAccident(AccidentRequest accidentRequest, SaCategory saCategory, SaType saType, Employee employee) {
-        Accident accident = new Accident();
+        Accident accident = service.findById(accidentId);
         accident.setDescription(accidentRequest.getDescription());
         accident.setDateAccident(accidentRequest.getDateAccident());
         accident.setWhereOccurr(accidentRequest.getWhereOccurr());

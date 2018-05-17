@@ -63,7 +63,7 @@ public class SicknessUpdateCmd extends AbstractCommand {
     }
 
     private Sickness composeSickness(SicknessRequest sicknessRequest, SaCategory saCategory, SaType saType, Employee employee) {
-        Sickness sickness = new Sickness();
+        Sickness sickness = service.findById(sicknessId);
         sickness.setDescription(sicknessRequest.getDescription());
         sickness.setDateSickness(sicknessRequest.getDateSickness());
         sickness.setWhereOccurr(sicknessRequest.getWhereOccurr());
