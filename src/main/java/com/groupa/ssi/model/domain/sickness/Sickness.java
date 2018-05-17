@@ -4,10 +4,14 @@
 package com.groupa.ssi.model.domain.sickness;
 
 import com.groupa.ssi.model.domain.ModelBase;
-import com.groupa.ssi.model.domain.catalog.SaClassification;
 import com.groupa.ssi.model.domain.personnel.Employee;
+import com.groupa.ssi.model.domain.saClassification.SaCategory;
+import com.groupa.ssi.model.domain.saClassification.SaType;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 @Entity
@@ -25,8 +29,17 @@ public class Sickness extends ModelBase {
     @Column
     private Boolean statusRecord;
 
+    @Column
+    private Integer totalDaysOutOfWork;
+
+    @Column
+    private Integer totalDaysRestrictedTransferredWork;
+
     @OneToOne
-    private SaClassification saClassification;
+    private SaCategory saCategory;
+
+    @OneToOne
+    private SaType saType;
 
     @ManyToOne
     private Employee employee;
@@ -63,12 +76,36 @@ public class Sickness extends ModelBase {
         this.statusRecord = statusRecord;
     }
 
-    public SaClassification getSaClassification() {
-        return saClassification;
+    public Integer getTotalDaysOutOfWork() {
+        return totalDaysOutOfWork;
     }
 
-    public void setSaClassification(SaClassification saClassification) {
-        this.saClassification = saClassification;
+    public void setTotalDaysOutOfWork(Integer totalDaysOutOfWork) {
+        this.totalDaysOutOfWork = totalDaysOutOfWork;
+    }
+
+    public Integer getTotalDaysRestrictedTransferredWork() {
+        return totalDaysRestrictedTransferredWork;
+    }
+
+    public void setTotalDaysRestrictedTransferredWork(Integer totalDaysRestrictedTransferredWork) {
+        this.totalDaysRestrictedTransferredWork = totalDaysRestrictedTransferredWork;
+    }
+
+    public SaCategory getSaCategory() {
+        return saCategory;
+    }
+
+    public void setSaCategory(SaCategory saCategory) {
+        this.saCategory = saCategory;
+    }
+
+    public SaType getSaType() {
+        return saType;
+    }
+
+    public void setSaType(SaType saType) {
+        this.saType = saType;
     }
 
     public Employee getEmployee() {

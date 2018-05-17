@@ -3,9 +3,6 @@
 */
 package com.groupa.ssi.request.accident;
 
-import com.groupa.ssi.model.domain.catalog.SaClassification;
-import com.groupa.ssi.request.catalog.SaClassificationRequest;
-
 import java.util.Date;
 
 public class AccidentRequest {
@@ -14,7 +11,10 @@ public class AccidentRequest {
     private Date dateAccident;
     private String whereOccurr;
     private Boolean statusRecord;
-    private Integer saClassificationId;
+    private Integer totalDaysOutOfWork;
+    private Integer totalDaysRestrictedTransferredWork;
+    private Integer saCategoryId;
+    private Integer saTypeId;
     private Integer employeeId;
 
     public String getDescription() {
@@ -49,12 +49,36 @@ public class AccidentRequest {
         this.statusRecord = statusRecord;
     }
 
-    public Integer getSaClassificationId() {
-        return saClassificationId;
+    public Integer getTotalDaysOutOfWork() {
+        return totalDaysOutOfWork;
     }
 
-    public void setSaClassificationId(Integer saClassificationId) {
-        this.saClassificationId = saClassificationId;
+    public void setTotalDaysOutOfWork(Integer totalDaysOutOfWork) {
+        this.totalDaysOutOfWork = totalDaysOutOfWork;
+    }
+
+    public Integer getTotalDaysRestrictedTransferredWork() {
+        return totalDaysRestrictedTransferredWork;
+    }
+
+    public void setTotalDaysRestrictedTransferredWork(Integer totalDaysRestrictedTransferredWork) {
+        this.totalDaysRestrictedTransferredWork = totalDaysRestrictedTransferredWork;
+    }
+
+    public Integer getSaCategoryId() {
+        return saCategoryId;
+    }
+
+    public void setSaCategoryId(Integer saCategoryId) {
+        this.saCategoryId = saCategoryId;
+    }
+
+    public Integer getSaTypeId() {
+        return saTypeId;
+    }
+
+    public void setSaTypeId(Integer saTypeId) {
+        this.saTypeId = saTypeId;
     }
 
     public Integer getEmployeeId() {

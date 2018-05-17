@@ -6,7 +6,7 @@ Created on 28/4/18
 */
 
 import com.groupa.ssi.common.response.rest.SuccessRestResponse;
-import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.model.domain.saClassification.SaClassification;
 import com.groupa.ssi.request.catalog.SaClassificationRequest;
 import com.groupa.ssi.services.catalog.SaClassificationService;
 import io.swagger.annotations.Api;

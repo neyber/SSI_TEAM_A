@@ -1,7 +1,7 @@
 /*
 @author: HENRYBC
 */
-package com.groupa.ssi.model.domain.catalog;
+package com.groupa.ssi.model.domain.saClassification;
 
 import com.groupa.ssi.model.domain.ModelBase;
 

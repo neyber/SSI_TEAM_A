@@ -32,7 +32,7 @@ public class AccidentUpdateController extends AccidentAbstractController{
     )
     public SuccessRestResponse updateAccident(@PathVariable Integer accidentId,
                                              @RequestBody AccidentRequest accidentRequest,
-                                             @RequestParam(value = "userId") Integer userId){
+                                             @RequestParam(value = "userId", required = false) Integer userId){
         cmd.setAccidentId(accidentId);
         cmd.setAccidentRequest(accidentRequest);
         cmd.execute();
