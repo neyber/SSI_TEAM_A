@@ -25,14 +25,14 @@ public class FunctionManualUpdateController extends FunctionManualAbstractContro
 
     @ApiOperation(value = "Update function Manual item")
     @RequestMapping(
-            value = "/{functionManualId}",
+            value = "/{id}",
             method = RequestMethod.PUT
     )
-    public SuccessRestResponse updateFunctionManual(@PathVariable Integer functionManualId,
+    public SuccessRestResponse updateFunctionManual(@PathVariable Integer id,
                                               @RequestBody FunctionManualRequest functionManualRequest,
                                               @RequestParam(value = "userId", required = false) Integer userId) {
 
-        cmd.setFunctionManualId(functionManualId);
+        cmd.setFunctionManualId(id);
         cmd.setWorkItemRequest(functionManualRequest);
         cmd.execute();
 

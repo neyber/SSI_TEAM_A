@@ -1,5 +1,6 @@
 package com.groupa.ssi.response.audit;
 
+import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
 
 /**
@@ -14,7 +15,9 @@ public class AuditResponse {
     private String auditScope;
     private String auditObjective;
     private String auditCriteria;
+    private String periodicity;
     private Employee employee;
+    private Department department;
 
     public Integer getAuditId() {
         return auditId;
@@ -72,11 +75,27 @@ public class AuditResponse {
         this.auditCriteria = auditCriteria;
     }
 
+    public String getPeriodicity() {
+        return periodicity;
+    }
+
+    public void setPeriodicity(String periodicity) {
+        this.periodicity = periodicity;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

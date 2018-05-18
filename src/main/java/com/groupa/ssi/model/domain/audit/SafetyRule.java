@@ -13,18 +13,48 @@ import javax.persistence.ManyToOne;
 public class SafetyRule extends ModelBase {
 
     @Column
-    private String ruleName;
+    private String policyCode;
+    @Column
+    private String policyName;
+    @Column
+    private Integer complianceParameter;
+    @Column
+    private Integer complianceMetric;
     @Column
     private Boolean accomplishment;
     @ManyToOne
     private Audit audit;
 
-    public String getRuleName() {
-        return ruleName;
+    public String getPolicyCode() {
+        return policyCode;
     }
 
-    public void setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public void setPolicyCode(String policyCode) {
+        this.policyCode = policyCode;
+    }
+
+    public String getPolicyName() {
+        return policyName;
+    }
+
+    public void setPolicyName(String policyName) {
+        this.policyName = policyName;
+    }
+
+    public Integer getComplianceParameter() {
+        return complianceParameter;
+    }
+
+    public void setComplianceParameter(Integer complianceParameter) {
+        this.complianceParameter = complianceParameter;
+    }
+
+    public Integer getComplianceMetric() {
+        return complianceMetric;
+    }
+
+    public void setComplianceMetric(Integer complianceMetric) {
+        this.complianceMetric = complianceMetric;
     }
 
     public Boolean getAccomplishment() {

@@ -3,9 +3,9 @@
 */
 package com.groupa.ssi.response.accident;
 
-import com.groupa.ssi.model.domain.catalog.SaClassification;
-import com.groupa.ssi.response.catalog.SaClassificationResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
+import com.groupa.ssi.response.saClassification.SaCategoryResponse;
+import com.groupa.ssi.response.saClassification.SaTypeResponse;
 
 import java.util.Date;
 
@@ -16,7 +16,10 @@ public class AccidentResponse {
     private Date dateAccident;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassificationResponse saClassification;
+    private Integer totalDaysOutOfWork;
+    private Integer totalDaysRestrictedTransferredWork;
+    private SaCategoryResponse saCategoryResponse;
+    private SaTypeResponse saTypeResponse;
     private EmployeeResponse employee;
 
     public Integer getAccidentId() {
@@ -59,12 +62,36 @@ public class AccidentResponse {
         this.statusRecord = statusRecord;
     }
 
-    public SaClassificationResponse getSaClassification() {
-        return saClassification;
+    public Integer getTotalDaysOutOfWork() {
+        return totalDaysOutOfWork;
     }
 
-    public void setSaClassification(SaClassificationResponse saClassification) {
-        this.saClassification = saClassification;
+    public void setTotalDaysOutOfWork(Integer totalDaysOutOfWork) {
+        this.totalDaysOutOfWork = totalDaysOutOfWork;
+    }
+
+    public Integer getTotalDaysRestrictedTransferredWork() {
+        return totalDaysRestrictedTransferredWork;
+    }
+
+    public void setTotalDaysRestrictedTransferredWork(Integer totalDaysRestrictedTransferredWork) {
+        this.totalDaysRestrictedTransferredWork = totalDaysRestrictedTransferredWork;
+    }
+
+    public SaCategoryResponse getSaCategoryResponse() {
+        return saCategoryResponse;
+    }
+
+    public void setSaCategoryResponse(SaCategoryResponse saCategoryResponse) {
+        this.saCategoryResponse = saCategoryResponse;
+    }
+
+    public SaTypeResponse getSaTypeResponse() {
+        return saTypeResponse;
+    }
+
+    public void setSaTypeResponse(SaTypeResponse saTypeResponse) {
+        this.saTypeResponse = saTypeResponse;
     }
 
     public EmployeeResponse getEmployee() {

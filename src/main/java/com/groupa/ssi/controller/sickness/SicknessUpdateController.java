@@ -36,6 +36,7 @@ public class SicknessUpdateController extends SicknessAbstractController {
                                               @RequestParam(value = "userId", required = false) Integer userId){
         cmd.setSicknessId(sicknessId);
         cmd.setSicknessRequest(sicknessRequest);
+        cmd.execute();
         return new SuccessRestResponse();
     }
 }

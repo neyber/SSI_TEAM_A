@@ -8,7 +8,10 @@ import com.groupa.ssi.model.domain.audit.Audit;
 public class SafetyRuleResponse {
 
     private Integer safetyRuleId;
-    private String ruleName;
+    private String policyCode;
+    private String policyName;
+    private Integer complianceParameter;
+    private Integer complianceMetric;
     private Boolean accomplishment;
     private Audit audit;
 
@@ -20,12 +23,36 @@ public class SafetyRuleResponse {
         this.safetyRuleId = safetyRuleId;
     }
 
-    public String getRuleName() {
-        return ruleName;
+    public String getPolicyCode() {
+        return policyCode;
     }
 
-    public void setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public void setPolicyCode(String policyCode) {
+        this.policyCode = policyCode;
+    }
+
+    public String getPolicyName() {
+        return policyName;
+    }
+
+    public void setPolicyName(String policyName) {
+        this.policyName = policyName;
+    }
+
+    public Integer getComplianceParameter() {
+        return complianceParameter;
+    }
+
+    public void setComplianceParameter(Integer complianceParameter) {
+        this.complianceParameter = complianceParameter;
+    }
+
+    public Integer getComplianceMetric() {
+        return complianceMetric;
+    }
+
+    public void setComplianceMetric(Integer complianceMetric) {
+        this.complianceMetric = complianceMetric;
     }
 
     public Boolean getAccomplishment() {

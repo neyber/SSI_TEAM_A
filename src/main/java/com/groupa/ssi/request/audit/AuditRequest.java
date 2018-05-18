@@ -11,7 +11,9 @@ public class AuditRequest {
     private String auditScope;
     private String auditObjective;
     private String auditCriteria;
+    private String periodicity;
     private Integer employeeId;
+    private Integer departmentId;
 
     public String getAuditName() {
         return auditName;
@@ -61,11 +63,27 @@ public class AuditRequest {
         this.auditCriteria = auditCriteria;
     }
 
+    public String getPeriodicity() {
+        return periodicity;
+    }
+
+    public void setPeriodicity(String periodicity) {
+        this.periodicity = periodicity;
+    }
+
     public Integer getEmployeeId() {
         return employeeId;
     }
 
     public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 }

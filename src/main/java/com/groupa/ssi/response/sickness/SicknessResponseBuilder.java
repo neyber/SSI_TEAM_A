@@ -3,14 +3,13 @@
 */
 package com.groupa.ssi.response.sickness;
 
-import com.groupa.ssi.model.domain.catalog.SaClassification;
-import com.groupa.ssi.model.domain.personnel.Employee;
 import com.groupa.ssi.model.domain.sickness.Sickness;
-import com.groupa.ssi.response.catalog.SaClassificationResponse;
-import com.groupa.ssi.response.catalog.SaClassificationResponseBuilder;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
-import org.hibernate.cache.internal.SimpleCacheKeysFactory;
+import com.groupa.ssi.response.saClassification.SaCategoryResponse;
+import com.groupa.ssi.response.saClassification.SaCategoryResponseBuilder;
+import com.groupa.ssi.response.saClassification.SaTypeResponse;
+import com.groupa.ssi.response.saClassification.SaTypeResponseBuilder;
 
 import java.util.Date;
 
@@ -20,7 +19,10 @@ public class SicknessResponseBuilder {
     private Date dateSickness;
     private String whereOccurr;
     private Boolean statusRecord;
-    private SaClassificationResponse saClassification;
+    private Integer totalDaysOutOfWork;
+    private Integer totalDaysRestrictedTransferredWork;
+    private SaCategoryResponse saCategoryResponse;
+    private SaTypeResponse saTypeResponse;
     private EmployeeResponse employee;
 
     public SicknessResponseBuilder(){}
@@ -32,7 +34,10 @@ public class SicknessResponseBuilder {
         sicknessResponse.setDateSickness(dateSickness);
         sicknessResponse.setWhereOccurr(whereOccurr);
         sicknessResponse.setStatusRecord(statusRecord);
-        sicknessResponse.setSaClassification(saClassification);
+        sicknessResponse.setTotalDaysOutOfWork(totalDaysOutOfWork);
+        sicknessResponse.setTotalDaysRestrictedTransferredWork(totalDaysRestrictedTransferredWork);
+        sicknessResponse.setSaCategoryResponse(saCategoryResponse);
+        sicknessResponse.setSaTypeResponse(saTypeResponse);
         sicknessResponse.setEmployee(employee);
 
         return sicknessResponse;
@@ -46,8 +51,14 @@ public class SicknessResponseBuilder {
         sicknessResponseBuilder.setDateSickness(sickness.getDateSickness());
         sicknessResponseBuilder.setWhereOccurr(sickness.getWhereOccurr());
         sicknessResponseBuilder.setStatusRecord(sickness.getStatusRecord());
-        if (null != sickness.getSaClassification()) {
-            sicknessResponseBuilder.setSaClassification(SaClassificationResponseBuilder.getInstance(sickness.getSaClassification()).build());
+        sicknessResponseBuilder.setTotalDaysOutOfWork(sickness.getTotalDaysOutOfWork());
+        sicknessResponseBuilder.setTotalDaysRestrictedTransferredWork(sickness.getTotalDaysRestrictedTransferredWork());
+        if (null != sickness.getSaCategory()) {
+            sicknessResponseBuilder.setSaCategoryResponse(SaCategoryResponseBuilder.getInstance(sickness.getSaCategory()).build());
+        }
+
+        if (null != sickness.getSaType()) {
+            sicknessResponseBuilder.setSaTypeResponse(SaTypeResponseBuilder.getIsntance(sickness.getSaType()).build());
         }
 
         if(null != sickness.getEmployee()) {
@@ -84,8 +95,23 @@ public class SicknessResponseBuilder {
         return this;
     }
 
-    public SicknessResponseBuilder setSaClassification(SaClassificationResponse saClassification){
-        this.saClassification = saClassification;
+    public SicknessResponseBuilder setTotalDaysOutOfWork(Integer totalDaysOutOfWork) {
+        this.totalDaysOutOfWork = totalDaysOutOfWork;
+        return this;
+    }
+
+    public SicknessResponseBuilder setTotalDaysRestrictedTransferredWork(Integer totalDaysRestrictedTransferredWork) {
+        this.totalDaysRestrictedTransferredWork = totalDaysRestrictedTransferredWork;
+        return this;
+    }
+
+    public SicknessResponseBuilder setSaCategoryResponse(SaCategoryResponse saCategoryResponse) {
+        this.saCategoryResponse = saCategoryResponse;
+        return this;
+    }
+
+    public SicknessResponseBuilder setSaTypeResponse(SaTypeResponse saTypeResponse) {
+        this.saTypeResponse = saTypeResponse;
         return this;
     }
 

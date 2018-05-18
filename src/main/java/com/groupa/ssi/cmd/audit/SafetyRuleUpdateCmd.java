@@ -35,9 +35,20 @@ public class SafetyRuleUpdateCmd extends AbstractCommand {
 
     private SafetyRule composeSafetyRule(Integer safetyRuleId, SafetyRuleRequest safetyRuleRequest) {
         SafetyRule safetyRule = safetyRuleService.findById(safetyRuleId);
-        safetyRule.setRuleName(safetyRuleRequest.getRuleName());
-        safetyRule.setAccomplishment(safetyRuleRequest.getAccomplishment());
+        safetyRule.setPolicyCode(safetyRuleRequest.getPolicyCode());
+        safetyRule.setPolicyName(safetyRuleRequest.getPolicyName());
+        safetyRule.setComplianceParameter(safetyRuleRequest.getComplianceParameter());
+        safetyRule.setComplianceMetric(safetyRuleRequest.getComplianceMetric());
+        safetyRule.setAccomplishment(accomplishmentByCompliance(safetyRuleRequest));
 
         return safetyRule;
+    }
+
+    private Boolean accomplishmentByCompliance(SafetyRuleRequest safetyRuleRequest) {
+        if (safetyRuleRequest.getComplianceMetric() >= safetyRuleRequest.getComplianceParameter()) {
+            return true;
+        }
+
+        return false;
     }
 }

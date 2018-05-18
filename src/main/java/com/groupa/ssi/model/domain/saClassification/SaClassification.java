@@ -1,28 +1,27 @@
-package com.groupa.ssi.response.catalog;
 /*
-Created on 28/4/18
 @author: HENRYBC
 */
+package com.groupa.ssi.model.domain.saClassification;
 
-public class SaClassificationResponse {
+import com.groupa.ssi.model.domain.ModelBase;
 
-    private Integer saClassificationId;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+@Entity
+public class SaClassification extends ModelBase {
+
+    @Column
     private String category;
 
+    @Column
     private Integer totalDaysOutOfWork;
 
+    @Column
     private Integer totalDaysRestrictedTransferredWork;
 
+    @Column
     private String type;
-
-    public Integer getSaClassificationId() {
-        return saClassificationId;
-    }
-
-    public void setSaClassificationId(Integer saClassificationId) {
-        this.saClassificationId = saClassificationId;
-    }
 
     public String getCategory() {
         return category;

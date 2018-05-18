@@ -4,13 +4,16 @@
 package com.groupa.ssi.bootsptrap;
 
 
+import com.groupa.ssi.common.constant.EnumSaCategory;
+import com.groupa.ssi.common.constant.EnumSaType;
 import com.groupa.ssi.model.domain.audit.Audit;
-import com.groupa.ssi.model.domain.catalog.SaClassification;
+import com.groupa.ssi.model.domain.saClassification.SaCategory;
 import com.groupa.ssi.model.domain.catalog.WorkItemClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
+import com.groupa.ssi.model.domain.saClassification.SaType;
 import com.groupa.ssi.model.domain.workitem.ExistingWorkItem;
 import com.groupa.ssi.model.domain.workitem.ExistingWorkItemAssigned;
 import com.groupa.ssi.model.domain.workitem.WorkItem;
@@ -23,11 +26,12 @@ import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
-import com.groupa.ssi.model.repository.catalog.SaClassificationRepository;
 import com.groupa.ssi.model.repository.catalog.WorkItemClassificationRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeAssignedRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.PpeRepository;
+import com.groupa.ssi.model.repository.saclassification.SaCategoryRepository;
+import com.groupa.ssi.model.repository.saclassification.SaTypeRepository;
 import com.groupa.ssi.model.repository.sickness.SicknessRepository;
 import com.groupa.ssi.model.repository.accident.AccidentRepository;
 import com.groupa.ssi.model.repository.workitem.ExistingWorkItemAssignedRepository;
@@ -72,13 +76,15 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     @Autowired
     private SafetyRuleRepository safetyRuleRepository;
     @Autowired
-    private SaClassificationRepository saClassificationRepository;
-    @Autowired
     private WorkItemClassificationRepository workItemClassificationRepository;
     @Autowired
     private ExistingWorkItemRepository existingWorkItemRepository;
     @Autowired
     private ExistingWorkItemAssignedRepository existingWorkItemAssignedRepository;
+    @Autowired
+    private SaCategoryRepository saCategoryRepository;
+    @Autowired
+    private SaTypeRepository saTypeRepository;
 
     public DevBootstrap() {
     }
@@ -190,7 +196,9 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         audit.setAuditScope("Some scope");
         audit.setAuditCriteria("Some criteria");
         audit.setAuditObjective("Some objectives");
+        audit.setPeriodicity("Anual");
         audit.setEmployee(constEmployee);
+        audit.setDepartment(constDepartment);
         auditRepository.save(audit);
 
         // Existing work item
@@ -217,35 +225,50 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
         //Sickness and Accident classification
         /*for accident*/
-        SaClassification accidentClassification = new SaClassification();
-        accidentClassification.setCategory("Trabajo restringido o transferido");
-        accidentClassification.setTotalDaysOutOfWork(2);
-        accidentClassification.setTotalDaysRestrictedTransferredWork(5);
-        accidentClassification.setType("Condicion respiratoria");
-        saClassificationRepository.save(accidentClassification);
+        SaCategory accidentCategory = new com.groupa.ssi.model.domain.saClassification.SaCategory();
+        accidentCategory.setCategory(EnumSaCategory.DAYS_OUT_OF_WORK.getCode());
+        accidentCategory.setDescription("this category is follow the OSHA documentation");
+        accidentCategory.setReference("Formulario OSHA - 300");
+        saCategoryRepository.save(accidentCategory);
 
-        SaClassification accidentClassification2 = new SaClassification();
-        accidentClassification2.setCategory("Trabajo restringido");
-        accidentClassification2.setTotalDaysOutOfWork(2);
-        accidentClassification2.setTotalDaysRestrictedTransferredWork(5);
-        accidentClassification2.setType("envene");
-        saClassificationRepository.save(accidentClassification2);
+        SaType saType = new SaType();
+        saType.setType(EnumSaType.INJURY.getCode());
+        saType.setDescription("this type was includes by osha rules normative");
+        saTypeRepository.save(saType);
+
+        SaCategory accidentCategory2 = new com.groupa.ssi.model.domain.saClassification.SaCategory();
+        accidentCategory2.setCategory(EnumSaCategory.RESTRICTED_TRANSFERRED_WORK.getCode());
+        accidentCategory2.setDescription("this category is follow the OSHA documentation");
+        accidentCategory2.setReference("Formulario OSHA - 300");
+        saCategoryRepository.save(accidentCategory2);
+
+        SaType saType2 = new SaType();
+        saType2.setType(EnumSaType.INJURY.getCode());
+        saType2.setDescription("this type was includes by osha rules normative");
+        saTypeRepository.save(saType2);
 
         /*for sickness*/
-        SaClassification sicknessClassification = new SaClassification();
-        sicknessClassification.setCategory("Permanecio en el trabajo");
-        sicknessClassification.setTotalDaysOutOfWork(3);
-        sicknessClassification.setTotalDaysRestrictedTransferredWork(0);
-        sicknessClassification.setType("Envenenamiento");
-        saClassificationRepository.save(sicknessClassification);
+        SaCategory sicknessCategory = new com.groupa.ssi.model.domain.saClassification.SaCategory();
+        sicknessCategory.setCategory(EnumSaCategory.OTHER_RECORDABLE_CASES.getCode());
+        sicknessCategory.setDescription("this category is follow the OSHA documentation");
+        sicknessCategory.setReference(null);
+        saCategoryRepository.save(sicknessCategory);
 
+        SaType sicknessSaType = new SaType();
+        sicknessSaType.setType(EnumSaType.POISONING.getCode());
+        sicknessSaType.setDescription("this type was includes by osha rules normative");
+        saTypeRepository.save(sicknessSaType);
 
-        SaClassification sicknessClassification2 = new SaClassification();
-        sicknessClassification2.setCategory("a la salda del trabajo");
-        sicknessClassification2.setTotalDaysOutOfWork(1);
-        sicknessClassification2.setTotalDaysRestrictedTransferredWork(0);
-        sicknessClassification2.setType("problemas en el ojo");
-        saClassificationRepository.save(sicknessClassification2);
+        SaCategory sicknessCategory2 = new com.groupa.ssi.model.domain.saClassification.SaCategory();
+        sicknessCategory2.setCategory(EnumSaCategory.REMAINED_AT_WORK.getCode());
+        sicknessCategory2.setDescription("this category is follow the OSHA documentation");
+        sicknessCategory2.setReference("Formulario OSHA - 300");
+        saCategoryRepository.save(sicknessCategory2);
+
+        SaType sicknessSaType2 = new SaType();
+        sicknessSaType2.setType(EnumSaType.SKIN_DISORDER.getCode());
+        sicknessSaType2.setDescription("this type was includes by osha rules normative");
+        saTypeRepository.save(sicknessSaType2);
 
         //Accident
         Accident accident = new Accident();
@@ -253,7 +276,10 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         accident.setDescription("this is a critical accident that will cost a lot to the enterprise");
         accident.setWhereOccurr("It occurred during the revision under maquinary");
         accident.setStatusRecord(Boolean.TRUE);
-        accident.setSaClassification(accidentClassification);
+        accident.setTotalDaysOutOfWork(2);
+        accident.setTotalDaysRestrictedTransferredWork(0);
+        accident.setSaCategory(accidentCategory);
+        accident.setSaType(saType);
         accident.setEmployee(constEmployee);
         accidentRepository.save(accident);
 
@@ -263,7 +289,10 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         accident2.setDescription("el accidente occurrio cuando el admin no estaba sando proteccion");
         accident2.setWhereOccurr("It occurred during the revision under maquinary");
         accident2.setStatusRecord(Boolean.TRUE);
-        accident2.setSaClassification(accidentClassification2);
+        accident2.setTotalDaysOutOfWork(0);
+        accident2.setTotalDaysRestrictedTransferredWork(5);
+        accident2.setSaCategory(accidentCategory2);
+        accident2.setSaType(saType2);
         accident2.setEmployee(admEmployee);
         accidentRepository.save(accident2);
 
@@ -273,7 +302,10 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         sickness.setDescription("during the night duty shift and with inadequate clothing is that the employee has a cold, and due to negligence");
         sickness.setWhereOccurr("this happened on guard night shift");
         sickness.setStatusRecord(Boolean.TRUE);
-        sickness.setSaClassification(sicknessClassification);
+        sickness.setTotalDaysOutOfWork(3);
+        sickness.setTotalDaysRestrictedTransferredWork(5);
+        sickness.setSaCategory(sicknessCategory);
+        sickness.setSaType(sicknessSaType);
         sickness.setEmployee(admEmployee);
         sicknessRepository.save(sickness);
 
@@ -282,7 +314,10 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         sicknessAdmin.setDescription("problema de salud por la noche, duranto turno de guardia");
         sicknessAdmin.setWhereOccurr("en la empresa");
         sicknessAdmin.setStatusRecord(Boolean.TRUE);
-        sicknessAdmin.setSaClassification(sicknessClassification2);
+        sicknessAdmin.setTotalDaysOutOfWork(2);
+        sicknessAdmin.setTotalDaysRestrictedTransferredWork(8);
+        sicknessAdmin.setSaCategory(sicknessCategory2);
+        sicknessAdmin.setSaType(sicknessSaType2);
         sicknessAdmin.setEmployee(constEmployee);
         sicknessRepository.save(sicknessAdmin);
 
