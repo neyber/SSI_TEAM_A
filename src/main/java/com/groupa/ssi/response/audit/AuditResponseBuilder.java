@@ -15,6 +15,7 @@ public final class AuditResponseBuilder {
     private String auditScope;
     private String auditObjective;
     private String auditCriteria;
+    private String periodicity;
 
     private AuditResponseBuilder() {
 
@@ -29,6 +30,7 @@ public final class AuditResponseBuilder {
         auditResponse.setAuditScope(auditScope);
         auditResponse.setAuditObjective(auditObjective);
         auditResponse.setAuditCriteria(auditCriteria);
+        auditResponse.setPeriodicity(periodicity);
 
         return auditResponse;
     }
@@ -42,6 +44,7 @@ public final class AuditResponseBuilder {
         auditResponseBuilder.setAuditScope(audit.getAuditScope());
         auditResponseBuilder.setAuditCriteria(audit.getAuditCriteria());
         auditResponseBuilder.setAuditObjective(audit.getAuditObjective());
+        auditResponseBuilder.setPeriodicity(audit.getPeriodicity());
 
         return auditResponseBuilder;
 
@@ -79,6 +82,11 @@ public final class AuditResponseBuilder {
 
     public AuditResponseBuilder setAuditCriteria(String auditCriteria) {
         this.auditCriteria = auditCriteria;
+        return this;
+    }
+
+    public AuditResponseBuilder setPeriodicity(String periodicity) {
+        this.periodicity = periodicity;
         return this;
     }
 }

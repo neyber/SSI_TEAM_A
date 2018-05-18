@@ -41,6 +41,7 @@ public class AuditUpdateCmd extends AbstractCommand {
         audit.setAuditScope(auditRequest.getAuditScope());
         audit.setAuditObjective(auditRequest.getAuditObjective());
         audit.setAuditCriteria(auditRequest.getAuditCriteria());
+        audit.setPeriodicity(auditRequest.getPeriodicity());
 
         return audit;
     }

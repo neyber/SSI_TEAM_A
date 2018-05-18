@@ -200,7 +200,9 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         audit.setAuditScope("Some scope");
         audit.setAuditCriteria("Some criteria");
         audit.setAuditObjective("Some objectives");
+        audit.setPeriodicity("Anual");
         audit.setEmployee(constEmployee);
+        audit.setDepartment(constDepartment);
         auditRepository.save(audit);
 
         // Existing work item

@@ -36,8 +36,11 @@ public class SafetyRuleCreateCmd extends AbstractCommand {
 
     private SafetyRule ComposeSafetyRule(SafetyRuleRequest safetyRuleRequest, Audit audit) {
         SafetyRule safetyRule = new SafetyRule();
-        safetyRule.setRuleName(safetyRuleRequest.getRuleName());
-        safetyRule.setAccomplishment(safetyRuleRequest.getAccomplishment());
+        safetyRule.setPolicyCode(safetyRuleRequest.getPolicyCode());
+        safetyRule.setPolicyName(safetyRuleRequest.getPolicyName());
+        safetyRule.setComplianceParameter(safetyRuleRequest.getComplianceParameter());
+        safetyRule.setComplianceMetric(safetyRuleRequest.getComplianceMetric());
+        safetyRule.setAccomplishment(accomplishmentByCompliance(safetyRuleRequest));
         safetyRule.setAudit(audit);
 
         return safetyRule;
@@ -45,5 +48,13 @@ public class SafetyRuleCreateCmd extends AbstractCommand {
 
     public void setSafetyRuleRequest(SafetyRuleRequest safetyRuleRequest) {
         this.safetyRuleRequest = safetyRuleRequest;
+    }
+
+    private Boolean accomplishmentByCompliance(SafetyRuleRequest safetyRuleRequest) {
+        if (safetyRuleRequest.getComplianceMetric() >= safetyRuleRequest.getComplianceParameter()) {
+            return true;
+        }
+
+        return false;
     }
 }

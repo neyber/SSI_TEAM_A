@@ -1,6 +1,7 @@
 package com.groupa.ssi.model.domain.audit;
 
 import com.groupa.ssi.model.domain.ModelBase;
+import com.groupa.ssi.model.domain.personnel.Department;
 import com.groupa.ssi.model.domain.personnel.Employee;
 
 import javax.persistence.Column;
@@ -25,8 +26,12 @@ public class Audit extends ModelBase {
     private String auditObjective;
     @Column
     private String auditCriteria;
+    @Column
+    private String periodicity;
     @ManyToOne
     private Employee employee;
+    @ManyToOne
+    private Department department;
 
     public String getAuditName() {
         return auditName;
@@ -76,11 +81,27 @@ public class Audit extends ModelBase {
         this.auditCriteria = auditCriteria;
     }
 
+    public String getPeriodicity() {
+        return periodicity;
+    }
+
+    public void setPeriodicity(String periodicity) {
+        this.periodicity = periodicity;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

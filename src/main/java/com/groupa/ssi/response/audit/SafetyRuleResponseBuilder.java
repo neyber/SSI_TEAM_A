@@ -9,7 +9,10 @@ import com.groupa.ssi.model.domain.audit.SafetyRule;
 public final class SafetyRuleResponseBuilder {
 
     private Integer safetyRuleId;
-    private String ruleName;
+    private String policyCode;
+    private String policyName;
+    private Integer complianceParameter;
+    private Integer complianceMetric;
     private Boolean accomplishment;
 
     public SafetyRuleResponseBuilder() {
@@ -19,7 +22,10 @@ public final class SafetyRuleResponseBuilder {
     public SafetyRuleResponse build() {
         SafetyRuleResponse safetyRuleResponse = new SafetyRuleResponse();
         safetyRuleResponse.setSafetyRuleId(safetyRuleId);
-        safetyRuleResponse.setRuleName(ruleName);
+        safetyRuleResponse.setPolicyCode(policyCode);
+        safetyRuleResponse.setPolicyName(policyName);
+        safetyRuleResponse.setComplianceParameter(complianceParameter);
+        safetyRuleResponse.setComplianceMetric(complianceMetric);
         safetyRuleResponse.setAccomplishment(accomplishment);
 
         return safetyRuleResponse;
@@ -28,7 +34,10 @@ public final class SafetyRuleResponseBuilder {
     public static SafetyRuleResponseBuilder getInstance(SafetyRule safetyRule) {
         SafetyRuleResponseBuilder safetyRuleResponseBuilder = new SafetyRuleResponseBuilder();
         safetyRuleResponseBuilder.setSafetyRuleId(safetyRule.getId());
-        safetyRuleResponseBuilder.setRuleName(safetyRule.getRuleName());
+        safetyRuleResponseBuilder.setPolicyCode(safetyRule.getPolicyCode());
+        safetyRuleResponseBuilder.setPolicyName(safetyRule.getPolicyName());
+        safetyRuleResponseBuilder.setComplianceParameter(safetyRule.getComplianceParameter());
+        safetyRuleResponseBuilder.setComplianceMetric(safetyRule.getComplianceMetric());
         safetyRuleResponseBuilder.setAccomplishment(safetyRule.getAccomplishment());
 
         return safetyRuleResponseBuilder;
@@ -39,8 +48,23 @@ public final class SafetyRuleResponseBuilder {
         return this;
     }
 
-    public SafetyRuleResponseBuilder setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public SafetyRuleResponseBuilder setPolicyCode(String policyCode) {
+        this.policyCode = policyCode;
+        return this;
+    }
+
+    public SafetyRuleResponseBuilder setPolicyName(String policyName) {
+        this.policyName = policyName;
+        return this;
+    }
+
+    public SafetyRuleResponseBuilder setComplianceParameter(Integer complianceParameter) {
+        this.complianceParameter = complianceParameter;
+        return this;
+    }
+
+    public SafetyRuleResponseBuilder setComplianceMetric(Integer complianceMetric) {
+        this.complianceMetric = complianceMetric;
         return this;
     }
 
