@@ -31,7 +31,7 @@ public class SaTypeUpdateController extends SaTypeAbstractController {
     )
     public SuccessRestResponse updateSaType(@PathVariable Integer saTypeId,
                                             @RequestBody SaTypeRequest saTypeRequest,
-                                            @RequestParam(value = "userId") Integer userId) {
+                                            @RequestParam(value = "userId", required = false) Integer userId) {
         cmd.setSaTypeId(saTypeId);
         cmd.setSaTypeRequest(saTypeRequest);
         cmd.execute();

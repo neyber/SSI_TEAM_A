@@ -273,13 +273,6 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         saTypeRepository.save(sicknessSaType2);
 
 
-        /*SaClassification sicknessClassification2 = new SaClassification();
-        sicknessClassification2.setCategory(EnumSaCategory.RESTRICTED_TRANSFERRED_WORK.getCode());
-        sicknessClassification2.setTotalDaysOutOfWork(1);
-        sicknessClassification2.setTotalDaysRestrictedTransferredWork(0);
-        sicknessClassification2.setType(EnumSaType.OTHER_DISEASES.getCode());
-        saClassificationRepository.save(sicknessClassification2);*/
-
         //Accident
         Accident accident = new Accident();
         accident.setDateAccident(new Date());
