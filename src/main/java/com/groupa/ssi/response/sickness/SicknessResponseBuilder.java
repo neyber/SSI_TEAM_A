@@ -4,9 +4,6 @@
 package com.groupa.ssi.response.sickness;
 
 import com.groupa.ssi.model.domain.sickness.Sickness;
-import com.groupa.ssi.response.accident.AccidentResponseBuilder;
-import com.groupa.ssi.response.catalog.SaClassificationResponse;
-import com.groupa.ssi.response.catalog.SaClassificationResponseBuilder;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
 import com.groupa.ssi.response.saClassification.SaCategoryResponse;

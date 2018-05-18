@@ -3,9 +3,6 @@
 */
 package com.groupa.ssi.response.accident;
 
-import com.groupa.ssi.model.domain.saClassification.SaCategory;
-import com.groupa.ssi.model.domain.saClassification.SaType;
-import com.groupa.ssi.response.catalog.SaClassificationResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
 import com.groupa.ssi.response.saClassification.SaCategoryResponse;
 import com.groupa.ssi.response.saClassification.SaTypeResponse;

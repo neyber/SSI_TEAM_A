@@ -3,7 +3,6 @@
 */
 package com.groupa.ssi.response.sickness;
 
-import com.groupa.ssi.response.catalog.SaClassificationResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
 import com.groupa.ssi.response.saClassification.SaCategoryResponse;
 import com.groupa.ssi.response.saClassification.SaTypeResponse;
