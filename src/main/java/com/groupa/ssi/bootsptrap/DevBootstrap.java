@@ -8,7 +8,6 @@ import com.groupa.ssi.common.constant.EnumSaCategory;
 import com.groupa.ssi.common.constant.EnumSaType;
 import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.model.domain.saClassification.SaCategory;
-import com.groupa.ssi.model.domain.saClassification.SaClassification;
 import com.groupa.ssi.model.domain.catalog.WorkItemClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
@@ -27,7 +26,6 @@ import com.groupa.ssi.model.domain.accident.Accident;
 import com.groupa.ssi.model.domain.personnel.Role;
 import com.groupa.ssi.model.domain.functionmanual.FunctionManual;
 import com.groupa.ssi.model.domain.sickness.Sickness;
-import com.groupa.ssi.model.repository.catalog.SaClassificationRepository;
 import com.groupa.ssi.model.repository.catalog.WorkItemClassificationRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeAssignedRepository;
 import com.groupa.ssi.model.repository.personalprotectionequipment.ExistingPpeRepository;
@@ -77,8 +75,6 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private AuditRepository auditRepository;
     @Autowired
     private SafetyRuleRepository safetyRuleRepository;
-    @Autowired
-    private SaClassificationRepository saClassificationRepository;
     @Autowired
     private WorkItemClassificationRepository workItemClassificationRepository;
     @Autowired
@@ -273,14 +269,6 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         sicknessSaType2.setType(EnumSaType.SKIN_DISORDER.getCode());
         sicknessSaType2.setDescription("this type was includes by osha rules normative");
         saTypeRepository.save(sicknessSaType2);
-
-
-        /*SaClassification sicknessClassification2 = new SaClassification();
-        sicknessClassification2.setCategory(EnumSaCategory.RESTRICTED_TRANSFERRED_WORK.getCode());
-        sicknessClassification2.setTotalDaysOutOfWork(1);
-        sicknessClassification2.setTotalDaysRestrictedTransferredWork(0);
-        sicknessClassification2.setType(EnumSaType.OTHER_DISEASES.getCode());
-        saClassificationRepository.save(sicknessClassification2);*/
 
         //Accident
         Accident accident = new Accident();
