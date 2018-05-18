@@ -30,7 +30,7 @@ public class SaCategoryUpdateController extends SaCategoryAbstractController {
     )
     public SuccessRestResponse updateSaCategory(@PathVariable Integer saCategoryId,
                                                 @RequestBody SaCategoryRequest saCategoryRequest,
-                                                @RequestParam(value = "userId") Integer userId) {
+                                                @RequestParam(value = "userId", required = false) Integer userId) {
         cmd.setSaCategoryId(saCategoryId);
         cmd.setSaCategoryRequest(saCategoryRequest);
         cmd.execute();
