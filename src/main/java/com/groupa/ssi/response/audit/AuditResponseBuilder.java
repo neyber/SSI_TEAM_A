@@ -6,6 +6,8 @@ import com.groupa.ssi.response.personnel.DepartmentResponseBuilder;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
 
+import java.util.Date;
+
 /**
  * @author Neyber Rojas Zapata
  */
@@ -19,6 +21,7 @@ public final class AuditResponseBuilder {
     private String auditObjective;
     private String auditCriteria;
     private String periodicity;
+    private Date createdDate;
     private EmployeeResponse employee;
     private DepartmentResponse department;
 
@@ -36,6 +39,7 @@ public final class AuditResponseBuilder {
         auditResponse.setAuditObjective(auditObjective);
         auditResponse.setAuditCriteria(auditCriteria);
         auditResponse.setPeriodicity(periodicity);
+        auditResponse.setCreatedDate(createdDate);
         auditResponse.setEmployee(employee);
         auditResponse.setDepartment(department);
 
@@ -52,6 +56,7 @@ public final class AuditResponseBuilder {
         auditResponseBuilder.setAuditCriteria(audit.getAuditCriteria());
         auditResponseBuilder.setAuditObjective(audit.getAuditObjective());
         auditResponseBuilder.setPeriodicity(audit.getPeriodicity());
+        auditResponseBuilder.setCreatedDate(audit.getCreatedOn());
 
         if(null != audit.getEmployee()) {
             auditResponseBuilder.setEmployee(EmployeeResponseBuilder.getInstance(audit.getEmployee()).build());
@@ -102,6 +107,11 @@ public final class AuditResponseBuilder {
 
     public AuditResponseBuilder setPeriodicity(String periodicity) {
         this.periodicity = periodicity;
+        return this;
+    }
+
+    public AuditResponseBuilder setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
         return this;
     }
 

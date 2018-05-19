@@ -3,6 +3,8 @@ package com.groupa.ssi.response.audit;
 import com.groupa.ssi.response.personnel.DepartmentResponse;
 import com.groupa.ssi.response.personnel.EmployeeResponse;
 
+import java.util.Date;
+
 /**
  * @author Neyber Rojas Zapata
  */
@@ -16,6 +18,7 @@ public class AuditResponse {
     private String auditObjective;
     private String auditCriteria;
     private String periodicity;
+    private Date createdDate;
     private EmployeeResponse employee;
     private DepartmentResponse department;
 
@@ -81,6 +84,14 @@ public class AuditResponse {
 
     public void setPeriodicity(String periodicity) {
         this.periodicity = periodicity;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public EmployeeResponse getEmployee() {

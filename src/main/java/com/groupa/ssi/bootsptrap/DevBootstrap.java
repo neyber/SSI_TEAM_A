@@ -7,6 +7,7 @@ package com.groupa.ssi.bootsptrap;
 import com.groupa.ssi.common.constant.EnumSaCategory;
 import com.groupa.ssi.common.constant.EnumSaType;
 import com.groupa.ssi.model.domain.audit.Audit;
+import com.groupa.ssi.model.domain.audit.SafetyRule;
 import com.groupa.ssi.model.domain.saClassification.SaCategory;
 import com.groupa.ssi.model.domain.catalog.WorkItemClassification;
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpe;
@@ -192,14 +193,33 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         Audit audit = new Audit();
         audit.setAuditName("Auditoria Test 1");
         audit.setAuditCode("AUD-INT-001");
-        audit.setAuditType("INTERNA");
+        audit.setAuditType("INTERNAL");
         audit.setAuditScope("Some scope");
         audit.setAuditCriteria("Some criteria");
         audit.setAuditObjective("Some objectives");
-        audit.setPeriodicity("Anual");
+        audit.setPeriodicity("ANNUAL");
         audit.setEmployee(constEmployee);
         audit.setDepartment(constDepartment);
         auditRepository.save(audit);
+
+        // Safety Rule
+        SafetyRule safetyRule = new SafetyRule();
+        safetyRule.setAudit(audit);
+        safetyRule.setPolicyCode("POLICY-SSI-001");
+        safetyRule.setPolicyName("Seguridad en los lugares de trabajo");
+        safetyRule.setComplianceParameter(60);
+        safetyRule.setComplianceMetric(70);
+        safetyRule.setAccomplishment(true);
+        safetyRuleRepository.save(safetyRule);
+
+        SafetyRule safetyRule1 = new SafetyRule();
+        safetyRule1.setAudit(audit);
+        safetyRule1.setPolicyCode("POLICY-SSI-002");
+        safetyRule1.setPolicyName("Trabajos de demolición");
+        safetyRule1.setComplianceParameter(80);
+        safetyRule1.setComplianceMetric(70);
+        safetyRule1.setAccomplishment(false);
+        safetyRuleRepository.save(safetyRule1);
 
         // Existing work item
         ExistingWorkItem existingWorkItem = new ExistingWorkItem();

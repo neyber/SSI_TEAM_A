@@ -28,9 +28,9 @@ public class Audit extends ModelBase {
     private String auditCriteria;
     @Column
     private String periodicity;
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Employee employee;
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Department department;
 
     public String getAuditName() {
