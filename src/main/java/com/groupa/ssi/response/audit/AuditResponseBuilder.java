@@ -1,7 +1,10 @@
 package com.groupa.ssi.response.audit;
 
 import com.groupa.ssi.model.domain.audit.Audit;
-import com.groupa.ssi.model.domain.personnel.Employee;
+import com.groupa.ssi.response.personnel.DepartmentResponse;
+import com.groupa.ssi.response.personnel.DepartmentResponseBuilder;
+import com.groupa.ssi.response.personnel.EmployeeResponse;
+import com.groupa.ssi.response.personnel.EmployeeResponseBuilder;
 
 /**
  * @author Neyber Rojas Zapata
@@ -16,6 +19,8 @@ public final class AuditResponseBuilder {
     private String auditObjective;
     private String auditCriteria;
     private String periodicity;
+    private EmployeeResponse employee;
+    private DepartmentResponse department;
 
     private AuditResponseBuilder() {
 
@@ -31,6 +36,8 @@ public final class AuditResponseBuilder {
         auditResponse.setAuditObjective(auditObjective);
         auditResponse.setAuditCriteria(auditCriteria);
         auditResponse.setPeriodicity(periodicity);
+        auditResponse.setEmployee(employee);
+        auditResponse.setDepartment(department);
 
         return auditResponse;
     }
@@ -45,6 +52,14 @@ public final class AuditResponseBuilder {
         auditResponseBuilder.setAuditCriteria(audit.getAuditCriteria());
         auditResponseBuilder.setAuditObjective(audit.getAuditObjective());
         auditResponseBuilder.setPeriodicity(audit.getPeriodicity());
+
+        if(null != audit.getEmployee()) {
+            auditResponseBuilder.setEmployee(EmployeeResponseBuilder.getInstance(audit.getEmployee()).build());
+        }
+
+        if(null != audit.getDepartment()) {
+            auditResponseBuilder.setDepartment(DepartmentResponseBuilder.getInstance(audit.getDepartment()).build());
+        }
 
         return auditResponseBuilder;
 
@@ -87,6 +102,16 @@ public final class AuditResponseBuilder {
 
     public AuditResponseBuilder setPeriodicity(String periodicity) {
         this.periodicity = periodicity;
+        return this;
+    }
+
+    public AuditResponseBuilder setEmployee(EmployeeResponse employee) {
+        this.employee = employee;
+        return this;
+    }
+
+    public AuditResponseBuilder setDepartment(DepartmentResponse department) {
+        this.department = department;
         return this;
     }
 }

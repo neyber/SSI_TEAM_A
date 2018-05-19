@@ -22,7 +22,7 @@ public class SafetyRule extends ModelBase {
     private Integer complianceMetric;
     @Column
     private Boolean accomplishment;
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Audit audit;
 
     public String getPolicyCode() {

@@ -1,7 +1,5 @@
 package com.groupa.ssi.response.audit;
 
-import com.groupa.ssi.model.domain.audit.Audit;
-
 /**
  * @author Neyber Rojas Zapata
  */
@@ -13,7 +11,7 @@ public class SafetyRuleResponse {
     private Integer complianceParameter;
     private Integer complianceMetric;
     private Boolean accomplishment;
-    private Audit audit;
+    private AuditResponse audit;
 
     public Integer getSafetyRuleId() {
         return safetyRuleId;
@@ -63,11 +61,11 @@ public class SafetyRuleResponse {
         this.accomplishment = accomplishment;
     }
 
-    public Audit getAudit() {
+    public AuditResponse getAudit() {
         return audit;
     }
 
-    public void setAudit(Audit audit) {
+    public void setAudit(AuditResponse audit) {
         this.audit = audit;
     }
 }
