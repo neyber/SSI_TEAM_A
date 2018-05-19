@@ -1,6 +1,5 @@
 package com.groupa.ssi.response.audit;
 
-import com.groupa.ssi.model.domain.audit.Audit;
 import com.groupa.ssi.model.domain.audit.SafetyRule;
 
 /**
@@ -14,6 +13,7 @@ public final class SafetyRuleResponseBuilder {
     private Integer complianceParameter;
     private Integer complianceMetric;
     private Boolean accomplishment;
+    private AuditResponse audit;
 
     public SafetyRuleResponseBuilder() {
 
@@ -27,6 +27,7 @@ public final class SafetyRuleResponseBuilder {
         safetyRuleResponse.setComplianceParameter(complianceParameter);
         safetyRuleResponse.setComplianceMetric(complianceMetric);
         safetyRuleResponse.setAccomplishment(accomplishment);
+        safetyRuleResponse.setAudit(audit);
 
         return safetyRuleResponse;
     }
@@ -39,6 +40,10 @@ public final class SafetyRuleResponseBuilder {
         safetyRuleResponseBuilder.setComplianceParameter(safetyRule.getComplianceParameter());
         safetyRuleResponseBuilder.setComplianceMetric(safetyRule.getComplianceMetric());
         safetyRuleResponseBuilder.setAccomplishment(safetyRule.getAccomplishment());
+
+        if(null != safetyRule.getAudit()) {
+            safetyRuleResponseBuilder.setAudit(AuditResponseBuilder.getInstance(safetyRule.getAudit()).build());
+        }
 
         return safetyRuleResponseBuilder;
     }
@@ -70,6 +75,11 @@ public final class SafetyRuleResponseBuilder {
 
     public SafetyRuleResponseBuilder setAccomplishment(Boolean accomplishment) {
         this.accomplishment = accomplishment;
+        return this;
+    }
+
+    public SafetyRuleResponseBuilder setAudit(AuditResponse audit) {
+        this.audit = audit;
         return this;
     }
 }
