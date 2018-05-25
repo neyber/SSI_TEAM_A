@@ -797,6 +797,19 @@ GO
 ALTER TABLE [dbo].[ExistingPpeAssigned] CHECK
        CONSTRAINT [FK_ExistingPpe_ExistingPpeAssigned]
 
+
+-- Define the relationship between ExistingPpeAssigned and Employee.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_Employee_ExistingPpeAssigned]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[ExistingPpeAssigned]'))
+ALTER TABLE [dbo].[ExistingPpeAssigned]  WITH CHECK ADD
+       CONSTRAINT [FK_Employee_ExistingPpeAssigned] FOREIGN KEY([employeeId])
+REFERENCES [dbo].[Employee] ([Id])
+GO
+ALTER TABLE [dbo].[ExistingPpeAssigned] CHECK
+       CONSTRAINT [FK_Employee_ExistingPpeAssigned]
+
+
 /******* WorkItem ****/
 -- Define the relationship between WorkItem and WorkItemClassification.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
@@ -804,7 +817,7 @@ IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        AND parent_object_id = OBJECT_ID(N'[dbo].[WorkItem]'))
 ALTER TABLE [dbo].[WorkItem]  WITH CHECK ADD
        CONSTRAINT [FK_WorkItemClassification_WorkItem] FOREIGN KEY([workItemClassificationId])
-REFERENCES [dbo].[ExistingPpeAssigned] ([Id])
+REFERENCES [dbo].[WorkItemClassification] ([Id])
 GO
 ALTER TABLE [dbo].[WorkItem] CHECK
        CONSTRAINT [FK_WorkItemClassification_WorkItem]
