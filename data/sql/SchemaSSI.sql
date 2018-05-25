@@ -629,8 +629,6 @@ CREATE TABLE ExistingWorkItemAssigned (Id INT IDENTITY(1,1) NOT NULL
 					          , assignedDate DATETIME NOT NULL
 					          , returnNotes VARCHAR(200) NOT NULL
 							, returnDate DATETIME NOT NULL
-							, existingPpeId INT
-							, employeeId INT
 							, createdOn DATETIME NOT NULL
 							, updatedOn DATETIME NOT NULL
 							, isDeleted BIT
