@@ -6,6 +6,255 @@
 **
 **  Date: 05/24/2018
 *******************************************************************************/
+/******************************************************************************
+**  Name: schema team A
+**  Desc: add sentences to create tables for all tables for our system
+**
+**  Modified: Marcelo Loayza
+**  Added: Department, Role, Employee, Function Manual, Audit, SafetyRule, FileDocument
+**  Date: 05/24/2018
+*******************************************************************************/
+
+-- Create Department
+
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.Department')
+)
+BEGIN
+	CREATE TABLE Department(Id INT IDENTITY(1,1) NOT NULL
+					,createdOn DATETIME NOT NULL
+					,updatedOn DATETIME NOT NULL
+					,isDeleted BIT
+					,version BIGINT
+					,description VARCHAR(100) NOT NULL
+
+					CONSTRAINT PK_DepartmentId PRIMARY KEY (Id)
+	);
+	ALTER TABLE [dbo].[Department] ADD CONSTRAINT [DF_Department_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [CreatedOn];
+	ALTER TABLE [dbo].[Department] ADD CONSTRAINT [DF_Department_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [UpdatedOn];
+  ALTER TABLE [dbo].[Department] ADD CONSTRAINT [DF_Department_IsDeleted]  DEFAULT (0) FOR [IsDeleted]
+
+	PRINT 'Table Department created!';
+END
+ELSE
+ BEGIN
+  PRINT 'Table Department already exists into the database';
+ END
+GO
+
+-- Create Role
+
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.Role')
+)
+BEGIN
+	CREATE TABLE Role(Id INT IDENTITY(1,1) NOT NULL
+				,createdOn DATETIME NOT NULL
+				,updatedOn DATETIME NOT NULL
+                ,isDeleted BIT
+                ,version BIGINT
+				,description VARCHAR(100) NOT NULL
+				,name VARCHAR(50) NOT NULL
+
+	CONSTRAINT PK_RoleId PRIMARY KEY (Id)
+	);
+	ALTER TABLE [dbo].[Role] ADD CONSTRAINT [DF_Role_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [CreatedOn];
+	ALTER TABLE [dbo].[Role] ADD CONSTRAINT [DF_Role_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [UpdatedOn];
+  ALTER TABLE [dbo].[Role] ADD CONSTRAINT [DF_Role_IsDeleted]  DEFAULT (0) FOR [IsDeleted]
+
+	PRINT 'Table Role created!';
+END
+ELSE
+ BEGIN
+  PRINT 'Table Role already exists into the database';
+ END
+GO
+
+
+-- Create Employee
+
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.Employee')
+)
+BEGIN
+	CREATE TABLE Employee(Id INT IDENTITY(1,1) NOT NULL
+					,createdOn DATETIME NOT NULL
+					,updatedOn DATETIME NOT NULL
+					,isDeleted BIT
+					,version BIGINT
+					,dateOfBirt DATE NOT NULL
+					,firstName VARCHAR(50) NOT NULL
+					,gender VARCHAR(50) NOT NULL
+					,healthConditionStartingAtCompany VARCHAR(100) NOT NULL
+					,indentificationNumber INT NOT NULL
+					,lastName VARCHAR(50) NOT NULL
+					,startDateInCompany VARCHAR(50) NOT NULL
+					,departmentEmployeeId INT NOT NULL
+					,photoFileDocumentId INT NOT NULL
+					,RoleEmployeeId INT NOT NULL
+					,SupervisorId INT NOT NULL
+
+					CONSTRAINT PK_EmployeeId PRIMARY KEY (Id)
+	);
+	 ALTER TABLE [dbo].[Employee] ADD CONSTRAINT [DF_Employee_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [CreatedOn];
+   ALTER TABLE [dbo].[Employee] ADD CONSTRAINT [DF_Employee_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [UpdatedOn];
+   ALTER TABLE [dbo].[Employee] ADD CONSTRAINT [DF_Employee_IsDeleted]  DEFAULT (0) FOR [IsDeleted]
+
+	PRINT 'Table SaCategory created!';
+END
+ELSE
+ BEGIN
+  PRINT 'Table SaCategory already exists into the database';
+ END
+GO
+
+
+-- Create Audit
+
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.Audit')
+)
+BEGIN
+	CREATE TABLE Audit(Id INT IDENTITY(1,1) NOT NULL
+				,createdOn DATETIME NOT NULL
+				,updatedOn DATETIME NOT NULL
+                ,isDeleted BIT
+                ,version BIGINT
+				,auditCode INT NOT NULL
+				,auditCriteria VARCHAR(100) NOT NULL
+				,auditName VARCHAR(50) NOT NULL
+				,auditObjective VARCHAR(100) NOT NULL
+				,auditScope VARCHAR(100) NOT NULL
+				,auditType VARCHAR(50) NOT NULL
+				,employeeId INT NOT NULL
+				,periodicity VARCHAR(50) NOT NULL
+				,DepartmentId INT NOT NULL
+
+				CONSTRAINT PK_AuditId PRIMARY KEY (Id)
+	);
+	ALTER TABLE [dbo].[Audit] ADD CONSTRAINT [DF_Audit_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [CreatedOn];
+	ALTER TABLE [dbo].[Audit] ADD CONSTRAINT [DF_Audit_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [UpdatedOn];
+  ALTER TABLE [dbo].[Audit] ADD CONSTRAINT [DF_Audit_IsDeleted]  DEFAULT (0) FOR [IsDeleted]
+
+	PRINT 'Table Audit created!';
+END
+ELSE
+ BEGIN
+  PRINT 'Table Audit already exists into the database';
+ END
+GO
+
+
+-- Create SafetyRule
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.SafetyRule')
+)
+BEGIN
+	CREATE TABLE SafetyRule(Id INT IDENTITY(1,1) NOT NULL
+						,createdOn DATETIME NOT NULL
+						,updatedOn DATETIME NOT NULL
+						,isDeleted BIT
+						,version BIGINT
+						,accomplishment VARCHAR(50) NOT NULL
+						,auditId VARCHAR(50) NOT NULL
+						,complianceMetric VARCHAR(50) NOT NULL
+						,complianceParameter VARCHAR(50) NOT NULL
+						,policyCode VARCHAR(50) NOT NULL
+						,policyName VARCHAR(50) NOT NULL
+
+						CONSTRAINT PK_SafetyRuleId PRIMARY KEY (Id)
+	);
+	ALTER TABLE [dbo].[SafetyRule] ADD CONSTRAINT [DF_SafetyRule_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [CreatedOn];
+	ALTER TABLE [dbo].[SafetyRule] ADD CONSTRAINT [DF_SafetyRule_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [UpdatedOn];
+  ALTER TABLE [dbo].[SafetyRule] ADD CONSTRAINT [DF_SafetyRule_IsDeleted]  DEFAULT (0) FOR [IsDeleted]
+
+	PRINT 'Table SafetyRule created!';
+END
+ELSE
+ BEGIN
+  PRINT 'Table SafetyRule already exists into the database';
+ END
+GO
+
+
+-- Create Function Manual
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.FunctionManual')
+)
+BEGIN
+	CREATE TABLE FunctionManual(Id INT IDENTITY(1,1) NOT NULL
+							,createdOn DATETIME NOT NULL
+							,updatedOn DATETIME NOT NULL
+							,isDeleted BIT
+							,version BIGINT
+							,dependentPersonal VARCHAR(200) NOT NULL
+							,externalRelation VARCHAR(200) NOT NULL
+							,generalActivity VARCHAR(100) NOT NULL
+							,hierarchicalLevel VARCHAR(50) NOT NULL
+							,internalRelation VARCHAR(200) NOT NULL
+							,name VARCHAR(50) NOT NULL
+							,position VARCHAR(50) NOT NULL
+							,principalFunction VARCHAR(100) NOT NULL
+							,superiorBoss VARCHAR(50) NOT NULL
+							,roleFunctionId INT NOT NULL
+
+							CONSTRAINT PK_FunctionManualId PRIMARY KEY (Id)
+	);
+	ALTER TABLE [dbo].[FunctionManual] ADD CONSTRAINT [DF_FunctionManual_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [CreatedOn];
+	ALTER TABLE [dbo].[FunctionManual] ADD CONSTRAINT [DF_FunctionManual_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [UpdatedOn];
+    ALTER TABLE [dbo].[FunctionManual] ADD CONSTRAINT [DF_FunctionManual_IsDeleted]  DEFAULT (0) FOR [IsDeleted]
+
+	PRINT 'Table FunctionManual created!';
+END
+ELSE
+ BEGIN
+  PRINT 'Table FunctionManual already exists into the database';
+ END
+GO
+
+-- Create File Document
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.FileDocument')
+)
+BEGIN
+	CREATE TABLE FileDocument(Id INT IDENTITY(1,1) NOT NULL
+						,createdOn DATETIME NOT NULL
+						,updatedOn DATETIME NOT NULL
+						,isDeleted BIT
+						,version BIGINT
+						,contentType VARCHAR(50) NOT NULL
+						,data VARCHAR(250) NOT NULL
+						,fileName VARCHAR(50) NOT NULL
+						,size VARCHAR(50) NOT NULL
+
+						CONSTRAINT PK_FileDocumentId PRIMARY KEY (Id)
+	);
+	ALTER TABLE [dbo].[FileDocument] ADD CONSTRAINT [DF_FileDocument_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [CreatedOn];
+	ALTER TABLE [dbo].[FileDocument] ADD CONSTRAINT [DF_FileDocument_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [UpdatedOn];
+  ALTER TABLE [dbo].[FileDocument] ADD CONSTRAINT [DF_FileDocument_IsDeleted]  DEFAULT (0) FOR [IsDeleted]
+
+	PRINT 'Table FileDocument created!';
+END
+ELSE
+ BEGIN
+  PRINT 'Table FileDocument already exists into the database';
+ END
+GO
+
 
 --Create table SaCategory
 
@@ -367,6 +616,81 @@ ELSE
 	END
 GO
 
+
+/******* Department ****/
+-- Define the relationship between Employee and Department.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_Employee_Department]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Department]'))
+	ALTER TABLE [dbo].[Employee]  WITH CHECK ADD CONSTRAINT [FK_Employee_Department] FOREIGN KEY(ID)
+	REFERENCES [dbo].[Department] (ID)
+GO
+	ALTER TABLE [dbo].[Employee] CHECK CONSTRAINT [FK_Employee_Department]
+GO
+
+-- Define the relationship between Audit and Department.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_Audit_Department]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Department]'))
+	ALTER TABLE [dbo].[Audit]  WITH CHECK ADD CONSTRAINT [FK_Audit_Department] FOREIGN KEY(ID)
+	REFERENCES [dbo].[Department] (ID)
+GO
+	ALTER TABLE [dbo].[Audit] CHECK CONSTRAINT [FK_Audit_Department]
+GO
+
+/******* Role ****/
+-- Define the relationship between Employee and Role.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_Employee_Role]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Role]'))
+	ALTER TABLE [dbo].[Employee]  WITH CHECK ADD CONSTRAINT [FK_Employee_Role] FOREIGN KEY(ID)
+	REFERENCES [dbo].[Role] (ID)
+GO
+	ALTER TABLE [dbo].[Employee] CHECK CONSTRAINT [FK_Employee_Role]
+GO
+
+-- Define the relationship between FunctionManual and Role.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_FunctionManual_Role]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Role]'))
+	ALTER TABLE [dbo].[FunctionManual]  WITH CHECK ADD CONSTRAINT [FK_FunctionManual_Role] FOREIGN KEY(ID)
+	REFERENCES [dbo].[Role] (ID)
+GO
+	ALTER TABLE [dbo].[FunctionManual] CHECK CONSTRAINT [FK_FunctionManual_Role]
+GO
+
+/******* Audit ****/
+-- Define the relationship between SafetyRule and Audit.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_SafetyRule_Audit]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Audit]'))
+	ALTER TABLE [dbo].[SafetyRule]  WITH CHECK ADD CONSTRAINT [FK_SafetyRule_Audit] FOREIGN KEY(ID)
+	REFERENCES [dbo].[Audit] (ID)
+GO
+	ALTER TABLE [dbo].[SafetyRule] CHECK CONSTRAINT [FK_SafetyRule_Audit]
+GO
+
+/******* Employee ****/
+-- Define the relationship between Audit and Employee.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_Audit_Employee]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Employee]'))
+	ALTER TABLE [dbo].[Audit]  WITH CHECK ADD CONSTRAINT [FK_Audit_Employee] FOREIGN KEY(ID)
+	REFERENCES [dbo].[Employee] (ID)
+GO
+	ALTER TABLE [dbo].[Audit] CHECK CONSTRAINT [FK_Audit_Employee]
+GO
+
+/******* FileDocument ****/
+-- Define the relationship between Employee and FileDocument.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_Employee_FileDocument]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[FileDocument]'))
+	ALTER TABLE [dbo].[Employee]  WITH CHECK ADD CONSTRAINT [FK_Employee_FileDocument] FOREIGN KEY(ID)
+	REFERENCES [dbo].[FileDocument] (ID)
+GO
+	ALTER TABLE [dbo].[Employee] CHECK CONSTRAINT [FK_Employee_FileDocument]
+GO
 
 
 /******* ACCIDENT FOREIGN KEYS ********/
