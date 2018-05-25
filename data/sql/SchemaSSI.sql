@@ -11,7 +11,7 @@
 **  Desc: add sentences to create tables for all tables for our system
 **
 **  Modified: Marcelo Loayza
-**  Added: Department, Role, Employee, Function Manual, Audit, SafetyRule, FileDocument
+**  Added: Department, Role, Employee, Function Manual, Audit, SafetyRule, FileDocument, ExistingWorkItemAssigned
 **  Date: 05/24/2018
 *******************************************************************************/
 
@@ -616,6 +616,44 @@ ELSE
 	END
 GO
 
+--Create table ExistingWorkItemAssigned
+
+IF NOT EXISTS (SELECT *
+   FROM sys.[objects]
+   WHERE Type = 'U'
+   AND object_id = OBJECT_ID('dbo.ExistingWorkItemAssigned')
+)
+BEGIN
+CREATE TABLE ExistingWorkItemAssigned (Id INT IDENTITY(1,1) NOT NULL
+					          , assignedNotes VARCHAR(200) NOT NULL
+					          , assignedDate DATETIME NOT NULL
+					          , returnNotes VARCHAR(200) NOT NULL
+							, returnDate DATETIME NOT NULL
+							, existingPpeId INT
+							, employeeId INT
+							, createdOn DATETIME NOT NULL
+							, updatedOn DATETIME NOT NULL
+							, isDeleted BIT
+							, version BIGINT
+							, employeeId INT NOT NULL
+							, existingWorkItemId INT NOT NULL
+							CONSTRAINT PK_ExistingWorkItemAssignedId PRIMARY KEY(
+								[Id]
+                    ));
+
+                    ALTER TABLE [dbo].[ExistingWorkItemAssigned] ADD CONSTRAINT [DF_ExistingWorkItemAssigned_CreatedOn]  DEFAULT (GETUTCDATE()) FOR [createdOn];
+		            ALTER TABLE [dbo].[ExistingWorkItemAssigned] ADD CONSTRAINT [DF_ExistingWorkItemAssigned_UpdatedOn]  DEFAULT (GETUTCDATE()) FOR [updatedOn];
+                    ALTER TABLE [dbo].[ExistingWorkItemAssigned] ADD CONSTRAINT [DF_ExistingWorkItemAssigned_IsDeleted]  DEFAULT (0) FOR [isDeleted]
+
+					PRINT 'Table ExistingWorkItemAssigned created!';
+END
+ELSE
+	BEGIN
+		PRINT 'Table ExistingWorkItemAssigned already exists into the database';
+	END
+GO
+
+
 
 /******* Department ****/
 -- Define the relationship between Employee and Department.
@@ -833,3 +871,25 @@ REFERENCES [dbo].[WorkItem] ([Id])
 GO
 ALTER TABLE [dbo].[ExistingWorkItem] CHECK
        CONSTRAINT [FK_WorkItem_ExistingWorkItem]
+
+/******* ExistingWorkItemAssigned ****/
+-- Define the relationship between ExistingWorkItemAssigned and Employee.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_ExistingWorkItemAssigned_Employee]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Employee]'))
+	ALTER TABLE [dbo].[ExistingWorkItemAssigned]  WITH CHECK ADD CONSTRAINT [FK_ExistingWorkItemAssigned_Employee] FOREIGN KEY(ID)
+	REFERENCES [dbo].[Employee] (ID)
+GO
+	ALTER TABLE [dbo].[ExistingWorkItemAssigned] CHECK CONSTRAINT [FK_ExistingWorkItemAssigned_Employee]
+GO
+
+-- Define the relationship between ExistingWorkItemAssigned and ExistingWorkItem.
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys
+       WHERE object_id = OBJECT_ID(N'[dbo].[FK_ExistingWorkItemAssigned_ExistingWorkItem]')
+       AND parent_object_id = OBJECT_ID(N'[dbo].[ExistingWorkItem]'))
+	ALTER TABLE [dbo].[ExistingWorkItemAssigned]  WITH CHECK ADD CONSTRAINT [FK_ExistingWorkItemAssigned_ExistingWorkItem] FOREIGN KEY(ID)
+	REFERENCES [dbo].[ExistingWorkItem] (ID)
+GO
+	ALTER TABLE [dbo].[ExistingWorkItemAssigned] CHECK CONSTRAINT [FK_ExistingWorkItemAssigned_ExistingWorkItem]
+GO
+
