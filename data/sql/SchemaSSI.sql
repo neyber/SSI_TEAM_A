@@ -27,7 +27,7 @@ BEGIN
 					,createdOn DATETIME NOT NULL
 					,updatedOn DATETIME NOT NULL
 					,isDeleted BIT
-					,version BIGINT
+					, version BIGINT DEFAULT 1
 					,description VARCHAR(100) NOT NULL
 
 					CONSTRAINT PK_DepartmentId PRIMARY KEY (Id)
@@ -376,7 +376,7 @@ CREATE TABLE Sickness (Id INT IDENTITY(1,1) NOT NULL
                     , createdOn DATETIME NOT NULL
 					          , updatedOn DATETIME NOT NULL
                     , isDeleted BIT
-                    , version BIGINT
+                    , version BIGINT DEFAULT 1
                     CONSTRAINT PK_Sickness PRIMARY KEY(
                         [Id]
                     ));
