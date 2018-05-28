@@ -5,6 +5,7 @@ import com.groupa.ssi.model.domain.catalog.PpeClassification;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -25,6 +26,7 @@ public class Ppe extends ModelBase {
     //private Byte[] image;
 
     @ManyToOne
+    @JoinColumn(name = "ppeClassificationId")
     private PpeClassification ppeClassification;
 
     public String getName() {

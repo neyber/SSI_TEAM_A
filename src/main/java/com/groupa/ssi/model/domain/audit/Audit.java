@@ -6,6 +6,7 @@ import com.groupa.ssi.model.domain.personnel.Employee;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -29,8 +30,10 @@ public class Audit extends ModelBase {
     @Column
     private String periodicity;
     @ManyToOne
+    @JoinColumn(name = "employeeId")
     private Employee employee;
     @ManyToOne
+    @JoinColumn(name = "departmentId")
     private Department department;
 
     public String getAuditName() {
