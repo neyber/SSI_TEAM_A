@@ -8,18 +8,12 @@ import java.util.Date;
  * @author Miguel Rojas
  * @Modified : Linet Torrico
  */
-@Entity
 public class Report {
 
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ReportId;
 
-    @Column
     private String name;
 
-    @Column
     private String description;
 
     public Integer getReportId() {

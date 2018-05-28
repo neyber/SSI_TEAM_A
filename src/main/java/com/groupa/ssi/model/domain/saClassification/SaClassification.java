@@ -8,7 +8,7 @@ import com.groupa.ssi.model.domain.ModelBase;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class SaClassification extends ModelBase {
 
     @Column
