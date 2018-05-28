@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Walker Colina
  */
 
-public interface WorkItemClassificationRepository extends JpaRepository<WorkItemClassification, Integer> {
+public interface WorkItemClassificationRepository extends JpaRepository<WorkItemClassification, Integer>, WorkItemClassificationProcedureRepository {
 }

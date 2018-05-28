@@ -23,6 +23,10 @@ public class WorkItemClassificationListCmd extends AbstractCommand {
     @Override
     protected void run() {
         workItemClassificationList = service.findAll();
+
+        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" + service.getAll());
     }
 
     public List<WorkItemClassification> getWorkItemClassificationList() {
