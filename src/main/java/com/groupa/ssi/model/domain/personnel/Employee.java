@@ -3,10 +3,7 @@ package com.groupa.ssi.model.domain.personnel;
 import com.groupa.ssi.model.domain.ModelBase;
 import com.groupa.ssi.model.domain.common.FileDocument;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -28,15 +25,19 @@ public class Employee extends ModelBase {
     @Column
     private Date startDateInCompany;
     @ManyToOne(optional = false)
+    @JoinColumn(name = "roleEmployeeId")
     private Role roleEmployee;
     @ManyToOne
+    @JoinColumn(name = "supervisorId")
     private Employee supervisor;
     @ManyToOne
+    @JoinColumn(name = "departmentEmployeeId")
     private Department departmentEmployee;
     @Column
     private String healthConditionStartingAtCompany;
 
     @ManyToOne
+    @JoinColumn(name = "photoFileDocumentId")
     private FileDocument photoFileDocument;
 
     public Long getIdentificationNumber() {

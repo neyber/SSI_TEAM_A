@@ -8,10 +8,7 @@ import com.groupa.ssi.model.domain.personnel.Employee;
 import com.groupa.ssi.model.domain.saClassification.SaCategory;
 import com.groupa.ssi.model.domain.saClassification.SaType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -36,12 +33,15 @@ public class Accident extends ModelBase {
     private Integer totalDaysRestrictedTransferredWork;
 
     @OneToOne
+    @JoinColumn(name = "saCategoryId")
     private SaCategory saCategory;
 
     @OneToOne
+    @JoinColumn(name = "saTypeId")
     private SaType saType;
 
     @ManyToOne
+    @JoinColumn(name = "employeeId")
     private Employee employee;
 
     public String getDescription() {

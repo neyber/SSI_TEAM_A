@@ -5,6 +5,7 @@ import com.groupa.ssi.model.domain.catalog.PpeClassification;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
@@ -29,6 +30,7 @@ public class ExistingPpe extends ModelBase {
     private int currentLifeTimeDays;
 
     @ManyToOne
+    @JoinColumn(name = "ppeId")
     private Ppe ppe;
 
     public String getDetail() {
