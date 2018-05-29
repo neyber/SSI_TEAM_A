@@ -4,6 +4,8 @@ import com.groupa.ssi.model.domain.ModelBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 
 /**
  * This class is top represent the catalog for classification of work item
@@ -11,6 +13,11 @@ import javax.persistence.Entity;
  * @author Walker Colina
  */
 @Entity
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "getAllWorkItemClassification",
+                procedureName = "proGetAllWorkItemClassification",
+                resultClasses = WorkItemClassification.class)
+})
 public class WorkItemClassification extends ModelBase {
 
     @Column

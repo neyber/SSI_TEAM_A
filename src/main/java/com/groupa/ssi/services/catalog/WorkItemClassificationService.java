@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created on May 1, 2018
  * @author Walker Colina
@@ -19,5 +21,9 @@ public class WorkItemClassificationService extends GenericService<WorkItemClassi
     @Override
     protected JpaRepository<WorkItemClassification, Integer> getRepository() {
         return repository;
+    }
+
+    public List<WorkItemClassification> getAll() {
+        return repository.getAll();
     }
 }
