@@ -24,7 +24,6 @@ public class WorkItemClassificationListCmd extends AbstractCommand {
     protected void run() {
         workItemClassificationList = service.findAll();
 
-/*
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" + service.getAll());
@@ -36,7 +35,8 @@ public class WorkItemClassificationListCmd extends AbstractCommand {
             System.out.println("ZZZZZZZZZZZZZZ: "+ workItemClassification.getCreatedOn());
             System.out.println("---------------------------------------------------");
         }
-*/
+
+
 
     }
 

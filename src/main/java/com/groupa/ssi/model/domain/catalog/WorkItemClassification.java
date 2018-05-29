@@ -1,6 +1,7 @@
 package com.groupa.ssi.model.domain.catalog;
 
 import com.groupa.ssi.model.domain.ModelBase;
+import com.groupa.ssi.model.repository.storedprocedures.util.WorkItemClassificationProcedures;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.NamedStoredProcedureQuery;
  */
 @Entity
 @NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(name = "getAllWorkItemClassification",
+        @NamedStoredProcedureQuery(name = WorkItemClassificationProcedures.ALL_NAME,
                 procedureName = "proGetAllWorkItemClassification",
                 resultClasses = WorkItemClassification.class)
 })
