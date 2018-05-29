@@ -671,7 +671,7 @@ GO
 -- Define the relationship between Employee and Department.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_Employee_Department]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[Department]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Employee]'))
 	ALTER TABLE [dbo].[Employee]  WITH CHECK ADD CONSTRAINT [FK_Employee_Department] FOREIGN KEY(departmentEmployeeId)
 	REFERENCES [dbo].[Department] (id)
 GO
@@ -681,7 +681,7 @@ GO
 -- Define the relationship between Audit and Department.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_Audit_Department]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[Department]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Audit]'))
 	ALTER TABLE [dbo].[Audit]  WITH CHECK ADD CONSTRAINT [FK_Audit_Department] FOREIGN KEY(departmentId)
 	REFERENCES [dbo].[Department] (id)
 GO
@@ -692,7 +692,7 @@ GO
 -- Define the relationship between Employee and Role.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_Employee_Role]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[Role]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Employee]'))
 	ALTER TABLE [dbo].[Employee]  WITH CHECK ADD CONSTRAINT [FK_Employee_Role] FOREIGN KEY(roleEmployeeId)
 	REFERENCES [dbo].[Role] (id)
 GO
@@ -702,7 +702,7 @@ GO
 -- Define the relationship between FunctionManual and Role.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_FunctionManual_Role]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[Role]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[FunctionManual]'))
 	ALTER TABLE [dbo].[FunctionManual]  WITH CHECK ADD CONSTRAINT [FK_FunctionManual_Role] FOREIGN KEY(roleFunctionId)
 	REFERENCES [dbo].[Role] (id)
 GO
@@ -713,7 +713,7 @@ GO
 -- Define the relationship between SafetyRule and Audit.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_SafetyRule_Audit]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[Audit]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[SafetyRule]'))
 	ALTER TABLE [dbo].[SafetyRule]  WITH CHECK ADD CONSTRAINT [FK_SafetyRule_Audit] FOREIGN KEY(auditId)
 	REFERENCES [dbo].[Audit] (id)
 GO
@@ -724,7 +724,7 @@ GO
 -- Define the relationship between Audit and Employee.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_Audit_Employee]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[Employee]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Audit]'))
 	ALTER TABLE [dbo].[Audit]  WITH CHECK ADD CONSTRAINT [FK_Audit_Employee] FOREIGN KEY(employeeId)
 	REFERENCES [dbo].[Employee] (id)
 GO
@@ -735,7 +735,7 @@ GO
 -- Define the relationship between Employee and FileDocument.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_Employee_FileDocument]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[FileDocument]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[Employee]'))
 	ALTER TABLE [dbo].[Employee]  WITH CHECK ADD CONSTRAINT [FK_Employee_FileDocument] FOREIGN KEY(photoFileDocumentId)
 	REFERENCES [dbo].[FileDocument] (id)
 GO
@@ -899,7 +899,7 @@ ALTER TABLE [dbo].[ExistingWorkItem] CHECK
 -- Define the relationship between ExistingWorkItemAssigned and Employee.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_ExistingWorkItemAssigned_Employee]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[Employee]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[ExistingWorkItemAssigned]'))
 	ALTER TABLE [dbo].[ExistingWorkItemAssigned]  WITH CHECK ADD CONSTRAINT [FK_ExistingWorkItemAssigned_Employee] FOREIGN KEY(employeeId)
 	REFERENCES [dbo].[Employee] (id)
 GO
@@ -909,7 +909,7 @@ GO
 -- Define the relationship between ExistingWorkItemAssigned and ExistingWorkItem.
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys
        WHERE object_id = OBJECT_ID(N'[dbo].[FK_ExistingWorkItemAssigned_ExistingWorkItem]')
-       AND parent_object_id = OBJECT_ID(N'[dbo].[ExistingWorkItem]'))
+       AND parent_object_id = OBJECT_ID(N'[dbo].[ExistingWorkItemAssigned]'))
 	ALTER TABLE [dbo].[ExistingWorkItemAssigned]  WITH CHECK ADD CONSTRAINT [FK_ExistingWorkItemAssigned_ExistingWorkItem] FOREIGN KEY(existingWorkItemId)
 	REFERENCES [dbo].[ExistingWorkItem] (id)
 GO
