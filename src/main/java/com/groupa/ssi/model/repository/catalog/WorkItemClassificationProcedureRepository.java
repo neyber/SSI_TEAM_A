@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface WorkItemClassificationProcedureRepository {
 
+
     public List<WorkItemClassification> getAll();
 }

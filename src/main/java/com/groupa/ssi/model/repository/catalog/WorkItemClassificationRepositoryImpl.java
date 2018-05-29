@@ -18,6 +18,7 @@ public class WorkItemClassificationRepositoryImpl implements WorkItemClassificat
     public List<WorkItemClassification> getAll() {
         StoredProcedureQuery findByYearProcedure = em.createNamedStoredProcedureQuery("getAllWorkItemClassification");
 
+
         System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQ" + findByYearProcedure.getResultList());
         for (int i = 0; i < findByYearProcedure.getResultList().size(); i++) {
             Object o = findByYearProcedure.getResultList().get(i);
