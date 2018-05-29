@@ -33,6 +33,12 @@ public class ModelBase {
     @Column
     private Date updatedOn;
 
+    @Column
+    private Integer createdBy = 0;  //default value because it is not null and we not support user management
+
+    @Column
+    private Integer updatedBy;
+
     @Version
     @Column(nullable = false)
     private long version;
@@ -67,6 +73,22 @@ public class ModelBase {
 
     public void setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public Integer getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Integer getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Integer updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     public long getVersion() {
