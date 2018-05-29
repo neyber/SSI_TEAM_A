@@ -8,7 +8,16 @@ import com.groupa.ssi.model.repository.storedprocedures.util.WorkItemClassificat
  * @author Miguel Rojas
  */
 public class WorkItemClassificationRepositoryProcedureImpl
-        extends GenericRepositoryProcedureImpl<WorkItemClassification>
+        extends GenericRepositoryProcedureImpl<WorkItemClassification, WorkItemClassificationProcedures>
         implements WorkItemClassificationRepositoryProcedure {
 
+    @Override
+    public void execProcedureCreate(WorkItemClassification entity, WorkItemClassificationProcedures procedureNames) {
+        throw new UnsupportedOperationException("procedure to execute create is pending");
+    }
+
+    @Override
+    public void execProcedureUpdate(WorkItemClassification entity, WorkItemClassificationProcedures procedureNames) {
+        throw new UnsupportedOperationException("procedure to execute update is pending");
+    }
 }

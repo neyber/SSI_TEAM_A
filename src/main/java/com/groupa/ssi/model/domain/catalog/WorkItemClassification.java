@@ -3,21 +3,33 @@ package com.groupa.ssi.model.domain.catalog;
 import com.groupa.ssi.model.domain.ModelBase;
 import com.groupa.ssi.model.repository.storedprocedures.util.WorkItemClassificationProcedures;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.NamedStoredProcedureQueries;
-import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.*;
 
 /**
  * This class is top represent the catalog for classification of work item
  * Created on May 1, 2018
+ *
  * @author Walker Colina
  */
 @Entity
 @NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(name = WorkItemClassificationProcedures.ALL_NAME,
-                procedureName = "proGetAllWorkItemClassification",
-                resultClasses = WorkItemClassification.class)
+        @NamedStoredProcedureQuery(
+                name = WorkItemClassificationProcedures.ALL_NAME,
+                procedureName = WorkItemClassificationProcedures.ALL_NAME,
+                resultClasses = WorkItemClassification.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = WorkItemClassificationProcedures.READ_NAME,
+                procedureName = WorkItemClassificationProcedures.READ_NAME,
+                resultClasses = WorkItemClassification.class,
+                parameters = {
+                        @StoredProcedureParameter(
+                                name = "id",
+                                mode = ParameterMode.IN,
+                                type = Integer.class
+                        )
+                }
+        )
 })
 public class WorkItemClassification extends ModelBase {
 

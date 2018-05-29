@@ -5,8 +5,8 @@ package com.groupa.ssi.model.repository.storedprocedures.util;
  */
 public class WorkItemClassificationProcedures implements GenericProcedureNames {
 
-    public static final String ALL_NAME = "getAllWorkItemClassification";
-    public static final String READ_NAME = "";
+    public static final String ALL_NAME = "proGetAllWorkItemClassification";
+    public static final String READ_NAME = "proGetWorkItemClassification";
     public static final String INSERT_NAME = "";
     public static final String UPDATE_NAME = "";
     public static final String DELETE_NAME = "";

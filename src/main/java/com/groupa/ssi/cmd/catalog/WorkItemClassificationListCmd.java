@@ -22,22 +22,7 @@ public class WorkItemClassificationListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        workItemClassificationList = service.findAll();
-
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" + service.getAll());
-
-        for (WorkItemClassification workItemClassification : service.getAll()) {
-            System.out.println("ZZZZZZZZZZZZZZ: "+ workItemClassification.getId());
-            System.out.println("ZZZZZZZZZZZZZZ: "+ workItemClassification.getName());
-            System.out.println("ZZZZZZZZZZZZZZ: "+ workItemClassification.getDescription());
-            System.out.println("ZZZZZZZZZZZZZZ: "+ workItemClassification.getCreatedOn());
-            System.out.println("---------------------------------------------------");
-        }
-
-
-
+        workItemClassificationList = service.procedureFindAll();
     }
 
     public List<WorkItemClassification> getWorkItemClassificationList() {
