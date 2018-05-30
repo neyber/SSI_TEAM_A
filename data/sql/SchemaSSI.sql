@@ -38,7 +38,7 @@ BEGIN
 					,version BIGINT DEFAULT 1
 					, createdBy INT DEFAULT 0 NOT NULL
 					, updatedBy INT
-					,description VARCHAR(200) NOT NULL
+					,description VARCHAR(1000) NOT NULL
 
 					CONSTRAINT PK_DepartmentId PRIMARY KEY (id)
 	);
@@ -69,7 +69,7 @@ BEGIN
                 ,version BIGINT DEFAULT 1
                 , createdBy INT DEFAULT 0 NOT NULL
 					      , updatedBy INT
-				,description VARCHAR(200) NOT NULL
+				,description VARCHAR(1000) NOT NULL
 				,name VARCHAR(50) NOT NULL
 
 	CONSTRAINT PK_RoleId PRIMARY KEY (id)
@@ -288,8 +288,8 @@ IF NOT EXISTS (SELECT *
 BEGIN
 CREATE TABLE SaCategory (id INT IDENTITY(1,1) NOT NULL
                     , category VARCHAR(50) CONSTRAINT NN_Category NOT NULL
-					          , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
-                    , reference VARCHAR(200)
+					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
+                    , reference VARCHAR(1000)
                     , createdOn DATETIME NOT NULL
 					          , updatedOn DATETIME NOT NULL
                     , isDeleted BIT
@@ -321,7 +321,7 @@ IF NOT EXISTS (SELECT *
 BEGIN
 CREATE TABLE SaType (id INT IDENTITY(1,1) NOT NULL
                     , type VARCHAR(200) CONSTRAINT NN_Type NOT NULL
-					          , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
+					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
                     , createdOn DATETIME NOT NULL
 					          , updatedOn DATETIME NOT NULL
                     , isDeleted BIT
@@ -352,7 +352,7 @@ IF NOT EXISTS (SELECT *
 )
 BEGIN
 CREATE TABLE Accident (id INT IDENTITY(1,1) NOT NULL
-					          , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
+					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
 					          , dateAccident DATETIME CONSTRAINT NN_DateAccident NOT NULL
                     , statusRecord BIT CONSTRAINT NN_StatusRecrod DEFAULT 0 NOT NULL
 					          , whereOccurr VARCHAR(100) CONSTRAINT NN_WhereOccurr NOT NULL
@@ -392,7 +392,7 @@ IF NOT EXISTS (SELECT *
 )
 BEGIN
 CREATE TABLE Sickness (id INT IDENTITY(1,1) NOT NULL
-					          , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
+					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
 					          , dateSickness DATETIME CONSTRAINT NN_DateSickness NOT NULL
                     , statusRecord BIT CONSTRAINT NN_SicknessStatusRecrod DEFAULT 0 NOT NULL
 					          , whereOccurr VARCHAR(100) CONSTRAINT NN_WhereOcurr NOT NULL
@@ -433,7 +433,7 @@ IF NOT EXISTS (SELECT *
 BEGIN
 CREATE TABLE PpeClassification (id INT IDENTITY(1,1) NOT NULL
 					          , name VARCHAR(100) CONSTRAINT NN_Name NOT NULL
-					          , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
+					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
                     , createdOn DATETIME NOT NULL
 					          , updatedOn DATETIME NOT NULL
                     , isDeleted BIT
@@ -465,7 +465,7 @@ IF NOT EXISTS (SELECT *
 BEGIN
 CREATE TABLE Ppe (id INT IDENTITY(1,1) NOT NULL
 					          , name VARCHAR(100) CONSTRAINT NN_Name NOT NULL
-					          , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
+					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
                     , ppeClassificationId INT
                     , createdOn DATETIME NOT NULL
 					          , updatedOn DATETIME NOT NULL
@@ -497,7 +497,7 @@ IF NOT EXISTS (SELECT *
 )
 BEGIN
 CREATE TABLE ExistingPpe (id INT IDENTITY(1,1) NOT NULL
-					          , detail VARCHAR(200) CONSTRAINT NN_Detail NOT NULL
+					          , detail VARCHAR(1000) CONSTRAINT NN_Detail NOT NULL
 					          , purchaseDate DATETIME CONSTRAINT NN_PurchaseDate NOT NULL
                     , lifeTimeDays INT CONSTRAINT NN_LifeTimeDays NOT NULL
                     , currentLifeTimeDays INT CONSTRAINT NN_CurrentLifeTimeDays NOT NULL
@@ -534,7 +534,7 @@ BEGIN
 CREATE TABLE ExistingPpeAssigned (id INT IDENTITY(1,1) NOT NULL
 					          , assignedNotes VARCHAR(200) CONSTRAINT NN_AssignedNotes NOT NULL
 					          , assignedDate DATETIME CONSTRAINT NN_AssignedDate NOT NULL
-					          , returnNotes VARCHAR(200) CONSTRAINT NN_ReturnNotes NOT NULL
+					          , returnNotes VARCHAR(1000) CONSTRAINT NN_ReturnNotes NOT NULL
                     , returnDate DATETIME
                     , existingPpeId INT
                     , employeeId INT
@@ -571,7 +571,7 @@ IF NOT EXISTS (SELECT *
 BEGIN
 CREATE TABLE WorkItemClassification (id INT IDENTITY(1,1) NOT NULL
 					          , name VARCHAR(100) CONSTRAINT NN_Name NOT NULL
-                    , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
+                    , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
                     , createdOn DATETIME NOT NULL
 					          , updatedOn DATETIME NOT NULL
                     , isDeleted BIT
@@ -603,7 +603,7 @@ IF NOT EXISTS (SELECT *
 BEGIN
 CREATE TABLE WorkItem (id INT IDENTITY(1,1) NOT NULL
 					          , name VARCHAR(100) CONSTRAINT NN_Name NOT NULL
-                    , description VARCHAR(200) CONSTRAINT NN_Description NOT NULL
+                    , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
                     , workItemClassificationId INT
                     , createdOn DATETIME NOT NULL
 					          , updatedOn DATETIME NOT NULL
@@ -669,9 +669,9 @@ IF NOT EXISTS (SELECT *
 )
 BEGIN
 CREATE TABLE ExistingWorkItemAssigned (id INT IDENTITY(1,1) NOT NULL
-					          , assignedNotes VARCHAR(200) NOT NULL
+					          , assignedNotes VARCHAR(1000) NOT NULL
 					          , assignedDate DATETIME NOT NULL
-					          , returnNotes VARCHAR(200) NOT NULL
+					          , returnNotes VARCHAR(1000) NOT NULL
 							, returnDate DATETIME
 							, createdOn DATETIME NOT NULL
 							, updatedOn DATETIME NOT NULL
