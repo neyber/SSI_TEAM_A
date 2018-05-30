@@ -151,14 +151,6 @@ BEGIN
         , description = @description
         , updatedBy = @updatedBy
     WHERE id = @id;
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SELECT name
-			, description
-		    , updatedBy
-        FROM dbo.Department
-        where id = @id;
-    END
 END
 GO
 
@@ -347,14 +339,6 @@ BEGIN
         , description = @description
         , updatedBy = @updatedBy
     WHERE id = @id;
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SELECT name
-			, description
-		    , updatedBy
-        FROM dbo.Role
-        where id = @id;
-    END
 END
 GO
 
@@ -422,8 +406,9 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT dependentPersonal
-          , externalRelation
+	 SELECT id
+	    , dependentPersonal
+      , externalRelation
 		  , generalActivity
 		  , hierarchicalLever
 		  , internalRelation
@@ -464,8 +449,9 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT dependentPersonal
-          , externalRelation
+	 SELECT id
+	    , dependentPersonal
+      , externalRelation
 		  , generalActivity
 		  , hierarchicalLever
 		  , internalRelation
@@ -597,22 +583,6 @@ BEGIN
 		, roleFunctionId = @roleFunctionId
 		, updatedBy = @updatedBy
     WHERE id = @id;
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SELECT dependentPersonal
-			, externalRelation
-			, generalActivity
-			, hierarchicalLever
-			, internalRelation
-			, name
-			, position
-			, principalFunction
-			, superiorBoss
-			, roleFunctionId
-			, createdBy
-        FROM dbo.FunctionManual
-        where id = @id;
-    END
 END
 GO
 
@@ -676,7 +646,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT dateOfBirth
+	 SELECT id
+	    , dateOfBirth
 			, firstName
 			, gender
 			, healthConditionStartingAtCompany
@@ -716,7 +687,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT dateOfBirth
+	 SELECT id
+	    , dateOfBirth
 			, firstName
 			, gender
 			, healthConditionStartingAtCompany
@@ -851,22 +823,6 @@ BEGIN
 		, supervisorId = @supervisorId
 		, updatedBy = @updatedBy
     WHERE id = @id;
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SELECT dateOfBirth
-			, firstName
-			, gender
-			, healthConditionStartingAtCompany
-			, identificationNumber
-			, lastName
-			, startDateInCompany
-			, departmentEmployeeId
-			, roleEmployeeId
-			, supervisorId
-			, updatedBy
-        FROM dbo.Employee
-        where id = @id;
-    END
 END
 GO
 
@@ -932,7 +888,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT auditCode
+	 SELECT id
+	    , auditCode
 			, auditCriteria
 			, auditName
 			, auditObjective
@@ -972,7 +929,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT auditCode
+	 SELECT id
+	    , auditCode
 			, auditCriteria
 			, auditName
 			, auditObjective
@@ -1101,21 +1059,6 @@ BEGIN
 		, DepartmentId = @DepartmentId
 		, updatedBy = @updatedBy
     WHERE id = @id;
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SELECT auditCode
-			, auditCriteria
-			, auditName
-			, auditObjective
-			, auditScope
-			, auditType
-			, employeeId
-			, periodicity
-			, DepartmentId
-			, updatedBy
-        FROM dbo.Audit
-        where id = @id;
-    END
 END
 GO
 
@@ -1181,7 +1124,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT accomplishment
+	 SELECT id
+	    , accomplishment
 			, auditId
 			, complianceMetric
 			, complianceParameter
@@ -1219,7 +1163,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT accomplishment
+	 SELECT id
+	    , accomplishment
 			, auditId
 			, complianceMetric
 			, complianceParameter
@@ -1328,18 +1273,6 @@ BEGIN
 		, policyName = @policyName
 		, updatedBy = @updatedBy
     WHERE id = @id;
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SELECT accomplishment
-			, auditId
-			, complianceMetric
-			, complianceParameter
-			, policyCode
-			, policyName
-			, updatedBy
-        FROM dbo.SafetyRule
-        where id = @id;
-    END
 END
 GO
 

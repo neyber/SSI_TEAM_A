@@ -516,7 +516,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT detail
+	 SELECT   id
+	          , detail
             , purchaseDate
             , serieNo
             , workItemId
@@ -744,7 +745,8 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
-	 SELECT assignedNotes
+	 SELECT id
+	    , assignedNotes
 			, assignedDate
 			, returnNotes
 			, returnDate
@@ -769,42 +771,27 @@ END
  05/29/2018    Marcelo Loayza       - Initial version
 ******************************************************************************/
 -- Create proGetAllExistingWorkItemAssigned stored procedure.
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proGetAllDepartments]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[proGetAllDepartments]
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proGetAllExistingWorkItemAssigneds]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[proGetAllExistingWorkItemAssigneds]
 GO
 
-CREATE PROCEDURE [dbo].[proGetAllDepartments]
-AS
-SET XACT_ABORT ON;
-SET NOCOUNT ON;
-BEGIN
-	SELECT  id
-			, name
-			, description
-
-        FROM dbo.Department
-END
-
-GO
--- Get all Roles
-
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proGetAllRoles]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[proGetAllRoles]
-GO
-
-CREATE PROCEDURE [dbo].[proGetAllRoles]
+CREATE PROCEDURE [dbo].[proGetAllExistingWorkItemAssigneds]
 AS
 SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 
 	 SELECT id
-			, name
-			, description
+	    , assignedNotes
+			, assignedDate
+			, returnNotes
+			, returnDate
+			, employeeId
+			, existingWorkItemId
 
-        FROM dbo.Role
+        FROM dbo.ExistingWorkItemAssigned
 END
-
 GO
 /******************************************************************************
 **  Name: SP proInsertExistingWorkItem
@@ -906,18 +893,7 @@ BEGIN
 		, existingWorkItemId = @existingWorkItemId
 		, updatedBy = @updatedBy
     WHERE id = @id;
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SELECT assignedNotes
-			, assignedDate
-			, returnNotes
-			, returnDate
-			, employeeId
-			, existingWorkItemId
-			, updatedBy
-        FROM dbo.ExistingWorkItemAssigned
-        where id = @id;
-    END
+
 END
 
 GO
