@@ -487,6 +487,229 @@ GO
 
 -- start henry
 
+/******************************************************************************
+**  Name: SP proGetExistingWorkItem
+**  Desc: this script is to read one record by id from ExistingWorkItem Table
+**
+**  Author: Henry Bustamante
+**
+**  Date: 05/29/2018
+*******************************************************************************
+*                            Change History
+******************************************************************************
+*  Fecha:         Autor:                                 Descripcion:
+ --------      -----------               ---------------------------------------------------
+ 05/29/2018    Henry Bustamante C.       - Initial version
+******************************************************************************/
+-- Create proGetExistingWorkItem stored procedure.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proGetExistingWorkItem]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[proGetExistingWorkItem]
+GO
+
+CREATE PROCEDURE [dbo].[proGetExistingWorkItem]
+(
+    @id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	 SELECT detail
+            , purchaseDate
+            , serieNo
+            , workItemId
+        FROM dbo.ExistingWorkItem
+        where id = @id;
+
+ PRINT 'Executed proGetExistingWorkItem..';
+
+END
+
+PRINT 'Procedure dbo.proGetExistingWorkItem created';
+
+
+/******************************************************************************
+**  Name: SP proGetAllExistingWorkItem
+**  Desc: this script is to get all records of ExistingWorkItem Table
+**
+**  Author: Henry Bustamante
+**
+**  Date: 05/29/2018
+*******************************************************************************
+*                            Change History
+******************************************************************************
+*  Fecha:         Autor:                                 Descripcion:
+ --------      -----------               ---------------------------------------------------
+ 05/29/2018    Henry Bustamante C.       - Initial version
+******************************************************************************/
+-- Create proGetAllExistingWorkItem stored procedure.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proGetAllExistingWorkItem]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[proGetAllExistingWorkItem]
+GO
+
+CREATE PROCEDURE [dbo].[proGetAllExistingWorkItem]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	 SELECT id
+            , detail
+            , purchaseDate
+            , serieNo
+            , workItemId
+        FROM dbo.ExistingWorkItem
+
+ PRINT 'Executed proGetAllExistingWorkItem..';
+
+END
+
+PRINT 'Procedure dbo.proGetAllExistingWorkItem created';
+
+
+/******************************************************************************
+**  Name: SP proInsertExistingWorkItem
+**  Desc: this script is to insert new record into ExistingWorkItem Table
+**
+**  Author: Henry Bustamante
+**
+**  Date: 05/29/2018
+*******************************************************************************
+*                            Change History
+******************************************************************************
+*  Fecha:         Autor:                                 Descripcion:
+ --------      -----------               ---------------------------------------------------
+ 05/29/2018    Henry Bustamante C.       - Initial version
+******************************************************************************/
+-- Create proInsertExistingWorkItem stored procedure.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proInsertExistingWorkItem]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[proInsertExistingWorkItem]
+GO
+
+CREATE PROCEDURE [dbo].[proInsertExistingWorkItem]
+(
+     @detail VARCHAR(100)
+	  , @purchaseDate DATETIME
+    , @serieNo VARCHAR(50)
+    , @workItemId INT
+    , @createdBy INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	INSERT INTO dbo.ExistingWorkItem(detail
+                            , purchaseDate
+                            , serieNo
+                            , workItemId
+                            , createdBy)
+	VALUES (@detail
+			      , @purchaseDate
+			      , @serieNo
+            , @workItemId
+            , @createdBy);
+
+	SELECT @@IDENTITY AS NewExistingWorkItemID;
+
+ PRINT 'Executed proInsertExistingWorkItem..';
+
+END
+
+PRINT 'Procedure dbo.proInsertExistingWorkItem created';
+
+
+/******************************************************************************
+**  Name: SP proUpdateExistingWorkItem
+**  Desc: this script is to update new record into ExistingWorkItem Table
+**
+**  Author: Henry Bustamante
+**
+**  Date: 05/29/2018
+*******************************************************************************
+*                            Change History
+******************************************************************************
+*  Fecha:         Autor:                                 Descripcion:
+ --------      -----------               ---------------------------------------------------
+ 05/29/2018    Henry Bustamante C.       - Initial version
+******************************************************************************/
+-- Create proUpdateExistingWorkItem stored procedure.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proUpdateExistingWorkItem]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[proUpdateExistingWorkItem]
+GO
+
+CREATE PROCEDURE [dbo].[proUpdateExistingWorkItem]
+(
+    @id INT
+    , @detail VARCHAR(100)
+	  , @purchaseDate DATETIME
+    , @serieNo VARCHAR(50)
+    , @workItemId INT
+    , @updatedBy INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	UPDATE dbo.ExistingWorkItem
+    SET detail = @detail
+        , purchaseDate = @purchaseDate
+        , serieNo = @serieNo
+        , workItemId = @workItemId
+        , updatedBy = @updatedBy
+    WHERE id = @id;
+
+
+ PRINT 'Executed proUpdateExistingWorkItem..';
+
+END
+
+PRINT 'Procedure dbo.proUpdateExistingWorkItem created';
+
+
+/******************************************************************************
+**  Name: SP proDeleteExistingWorkItem
+**  Desc: this script is to delete a record from ExistingWorkItem Table
+**
+**  Author: Henry Bustamante
+**
+**  Date: 05/29/2018
+*******************************************************************************
+*                            Change History
+******************************************************************************
+*  Fecha:         Autor:                                 Descripcion:
+ --------      -----------               ---------------------------------------------------
+ 05/29/2018    Henry Bustamante C.       - Initial version
+******************************************************************************/
+-- Create proDeleteExistingWorkItem stored procedure.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[proDeleteExistingWorkItem]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[proDeleteExistingWorkItem]
+GO
+
+CREATE PROCEDURE [dbo].[proDeleteExistingWorkItem]
+(
+    @id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	DELETE FROM dbo.ExistingWorkItem
+	WHERE id = @id;
+ PRINT 'Executed proDeleteExistingWorkItem..';
+
+END
+
+PRINT 'Procedure dbo.proDeleteExistingWorkItem created';
+
+
+
 -- end henry
 
 

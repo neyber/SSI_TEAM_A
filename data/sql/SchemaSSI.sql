@@ -355,7 +355,7 @@ CREATE TABLE Accident (id INT IDENTITY(1,1) NOT NULL
 					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
 					          , dateAccident DATETIME CONSTRAINT NN_DateAccident NOT NULL
                     , statusRecord BIT CONSTRAINT NN_StatusRecrod DEFAULT 0 NOT NULL
-					          , whereOccurr VARCHAR(100) CONSTRAINT NN_WhereOccurr NOT NULL
+					          , whereOccurr VARCHAR(1000) CONSTRAINT NN_WhereOccurr NOT NULL
 					          , totalDaysOutOfWork INT CONSTRAINT NN_TotalDaysOutOfWork NOT NULL
 					          , totalDaysRestrictedTransferredWork INT CONSTRAINT NN_TotalDaysRestrictedTrasnferredWork NOT NULL
                     , employeeId INT
@@ -395,7 +395,7 @@ CREATE TABLE Sickness (id INT IDENTITY(1,1) NOT NULL
 					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
 					          , dateSickness DATETIME CONSTRAINT NN_DateSickness NOT NULL
                     , statusRecord BIT CONSTRAINT NN_SicknessStatusRecrod DEFAULT 0 NOT NULL
-					          , whereOccurr VARCHAR(100) CONSTRAINT NN_WhereOcurr NOT NULL
+					          , whereOccurr VARCHAR(1000) CONSTRAINT NN_WhereOcurr NOT NULL
 					          , totalDaysOutOfWork INT CONSTRAINT NN_TotalDaysOutOfWork NOT NULL
 					          , totalDaysRestrictedTransferredWork INT CONSTRAINT NN_TotalDaysRestrictedTransferredWork NOT NULL
                     , employeeId INT
