@@ -756,6 +756,7 @@ BEGIN
         FROM dbo.ExistingWorkItemAssigned
         where id = @id;
 END
+GO
 /******************************************************************************
 **  Name: SP proGetAllExistingWorkItemAssigned
 **  Desc: this script is to get all a record from ExistingWorkItemAssigned Table
