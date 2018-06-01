@@ -22,12 +22,7 @@ public class WorkItemClassificationReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        workItemClassification = service.findById(workIemClassificationId);
-
-        //todo: implement pending
-        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRR:" + service.procedureFindById(workIemClassificationId));
-        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRR:" );
-
+        workItemClassification = service.procedureFindById(workIemClassificationId);
     }
 
     public void setWorkItemClassificationId(Integer workIemClassificationId) {

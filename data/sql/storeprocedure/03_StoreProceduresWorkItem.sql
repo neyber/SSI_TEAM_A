@@ -39,6 +39,12 @@ BEGIN
 	SELECT id
 		  ,name
 		  ,description
+		  ,createdBy
+		  ,createdOn
+		  ,updatedBy
+		  ,updatedOn
+		  ,isDeleted
+		  ,version
     FROM dbo.WorkItemClassification
 	WHERE id = @id;
 
@@ -82,6 +88,12 @@ BEGIN
 	SELECT id
 		  ,name
 		  ,description
+		  ,createdBy
+		  ,createdOn
+		  ,updatedBy
+		  ,updatedOn
+		  ,isDeleted
+		  ,version
     FROM dbo.WorkItemClassification;
 
 	PRINT 'Executed proGetAllWorkItemClassification..';

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
@@ -30,30 +31,38 @@ public abstract class GenericRepositoryProcedureImpl<T, K extends GenericProcedu
     @Override
     public T execProcedureFindById(Integer id, K procedureNames) {
         log.debug("Executing execProcedureFindById procedure.... " + procedureNames.readProcedureName());
+        T entity = null;
 
         // Dynamic stored procedure definition by index parameter.
-        StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery(procedureNames.readProcedureName());
+        StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery(procedureNames.readProcedureName(), getGenericTypeClass());
         procedureQuery.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
-
-        // Setting stored procedure parameters.
         procedureQuery.setParameter(1, id);
 
         // Stored procedure call
-        return (T) procedureQuery.getSingleResult();
+        entity = (T) procedureQuery.getSingleResult();
+        return entity;
     }
 
     @Override
     public void execProcedureDeleteById(Integer id, K procedureNames) {
         log.debug("Executing execProcedureDeleteById procedure.... " + procedureNames.deleteProcedureName());
 
-        // Dynamic stored procedure definition by index parameter.
         StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery(procedureNames.deleteProcedureName());
         procedureQuery.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
-
-        // Setting stored procedure parameters.
         procedureQuery.setParameter(1, id);
 
         // Stored procedure call for delete
         procedureQuery.executeUpdate();
     }
+
+    private Class<T> getGenericTypeClass() {
+        try {
+            String className = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0].getTypeName();
+            Class<?> clazz = Class.forName(className);
+            return (Class<T>) clazz;
+        } catch (Exception e) {
+            throw new IllegalStateException("Repository Class is not parametrized with generic type!!! Please use extends <>");
+        }
+    }
+
 }
