@@ -29,6 +29,17 @@ import javax.persistence.*;
                                 type = Integer.class
                         )
                 }
+        ),
+        @NamedStoredProcedureQuery(
+                name = WorkItemClassificationProcedures.DELETE_NAME,
+                procedureName = WorkItemClassificationProcedures.DELETE_NAME,
+                parameters = {
+                        @StoredProcedureParameter(
+                                name = "id",
+                                mode = ParameterMode.IN,
+                                type = Integer.class
+                        )
+                }
         )
 })
 public class WorkItemClassification extends ModelBase {

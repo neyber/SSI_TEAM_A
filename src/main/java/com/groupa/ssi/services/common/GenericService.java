@@ -73,4 +73,8 @@ public abstract class GenericService<T> {
         return (T) getProcedureRepository().execProcedureFindById(id, getProcedureNames());
     }
 
+    public void procedureDeleteById(Integer id) {
+        getProcedureRepository().execProcedureDeleteById(id, getProcedureNames());
+    }
+
 }
