@@ -2,8 +2,6 @@ package com.groupa.ssi.services.catalog;
 
 import com.groupa.ssi.model.domain.catalog.WorkItemClassification;
 import com.groupa.ssi.model.repository.catalog.WorkItemClassificationRepository;
-import com.groupa.ssi.model.repository.storedprocedures.util.GenericProcedureNames;
-import com.groupa.ssi.model.repository.storedprocedures.util.WorkItemClassificationProcedures;
 import com.groupa.ssi.services.common.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,8 +21,4 @@ public class WorkItemClassificationService extends GenericService<WorkItemClassi
         return repository;
     }
 
-    @Override
-    protected GenericProcedureNames getProcedureNames() {
-        return new WorkItemClassificationProcedures();
-    }
 }

@@ -58,23 +58,19 @@ public abstract class GenericService<T> {
         if (getRepository() instanceof GenericRepositoryProcedure) {
             return (GenericRepositoryProcedure) getRepository();
         }
-        throw new UnsupportedOperationException("This repository not implement procedure repository..." + getRepository());
-    }
-
-    protected GenericProcedureNames getProcedureNames() {
-        throw new UnsupportedOperationException("Service not implement getProcedureNames() to.. " + getGenericTypeClass());
+        throw new UnsupportedOperationException("This repository not implement procedure repository for... " + getGenericTypeClass());
     }
 
     public List<T> procedureFindAll() {
-        return getProcedureRepository().execProcedureFindAll(getProcedureNames());
+        return getProcedureRepository().execProcedureFindAll();
     }
 
     public T procedureFindById(Integer id) {
-        return (T) getProcedureRepository().execProcedureFindById(id, getProcedureNames());
+        return (T) getProcedureRepository().execProcedureFindById(id);
     }
 
     public void procedureDeleteById(Integer id) {
-        getProcedureRepository().execProcedureDeleteById(id, getProcedureNames());
+        getProcedureRepository().execProcedureDeleteById(id);
     }
 
 }

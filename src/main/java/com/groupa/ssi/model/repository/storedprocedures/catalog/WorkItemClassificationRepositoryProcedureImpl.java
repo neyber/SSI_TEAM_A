@@ -12,12 +12,17 @@ public class WorkItemClassificationRepositoryProcedureImpl
         implements WorkItemClassificationRepositoryProcedure {
 
     @Override
-    public void execProcedureCreate(WorkItemClassification entity, WorkItemClassificationProcedures procedureNames) {
+    public WorkItemClassificationProcedures getProcedureNames() {
+        return new WorkItemClassificationProcedures();
+    }
+
+    @Override
+    public void execProcedureCreate(WorkItemClassification entity) {
         throw new UnsupportedOperationException("procedure to execute create is pending");
     }
 
     @Override
-    public void execProcedureUpdate(WorkItemClassification entity, WorkItemClassificationProcedures procedureNames) {
+    public void execProcedureUpdate(WorkItemClassification entity) {
         throw new UnsupportedOperationException("procedure to execute update is pending");
     }
 }

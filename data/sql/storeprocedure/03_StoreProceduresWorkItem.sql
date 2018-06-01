@@ -288,6 +288,12 @@ BEGIN
 		  ,name
 		  ,description
 		  ,workItemClassificationId
+		  ,createdBy
+		  ,createdOn
+		  ,updatedBy
+		  ,updatedOn
+		  ,isDeleted
+		  ,version
     FROM dbo.WorkItem
 	WHERE id = @id;
 
@@ -332,6 +338,12 @@ BEGIN
 		  ,name
 		  ,description
 		  ,workItemClassificationId
+		  ,createdBy
+		  ,createdOn
+		  ,updatedBy
+		  ,updatedOn
+		  ,isDeleted
+		  ,version
     FROM dbo.WorkItem;
 
 	PRINT 'Executed proGetAllWorkItem..';

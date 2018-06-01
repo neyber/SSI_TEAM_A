@@ -9,14 +9,16 @@ import java.util.List;
  */
 public interface GenericRepositoryProcedure<T, K extends GenericProcedureNames> {
 
-    public List<T> execProcedureFindAll(K procedureNames);
+    public List<T> execProcedureFindAll();
 
-    public T execProcedureFindById(Integer id, K procedureNames);
+    public T execProcedureFindById(Integer id);
 
-    public void execProcedureCreate(T entity, K procedureNames);
+    public void execProcedureCreate(T entity);
 
-    public void execProcedureUpdate(T entity, K procedureNames);
+    public void execProcedureUpdate(T entity);
 
-    public void execProcedureDeleteById(Integer id, K procedureNames);
+    public void execProcedureDeleteById(Integer id);
+
+    public K getProcedureNames();
 
 }

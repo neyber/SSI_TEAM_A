@@ -1,9 +1,9 @@
 package com.groupa.ssi.model.domain.catalog;
 
 import com.groupa.ssi.model.domain.ModelBase;
-import com.groupa.ssi.model.repository.storedprocedures.util.WorkItemClassificationProcedures;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  * This class is top represent the catalog for classification of work item
@@ -12,36 +12,6 @@ import javax.persistence.*;
  * @author Walker Colina
  */
 @Entity
-@NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(
-                name = WorkItemClassificationProcedures.ALL_NAME,
-                procedureName = WorkItemClassificationProcedures.ALL_NAME,
-                resultClasses = WorkItemClassification.class
-        ),
-        @NamedStoredProcedureQuery(
-                name = WorkItemClassificationProcedures.READ_NAME,
-                procedureName = WorkItemClassificationProcedures.READ_NAME,
-                resultClasses = WorkItemClassification.class,
-                parameters = {
-                        @StoredProcedureParameter(
-                                name = "id",
-                                mode = ParameterMode.IN,
-                                type = Integer.class
-                        )
-                }
-        ),
-        @NamedStoredProcedureQuery(
-                name = WorkItemClassificationProcedures.DELETE_NAME,
-                procedureName = WorkItemClassificationProcedures.DELETE_NAME,
-                parameters = {
-                        @StoredProcedureParameter(
-                                name = "id",
-                                mode = ParameterMode.IN,
-                                type = Integer.class
-                        )
-                }
-        )
-})
 public class WorkItemClassification extends ModelBase {
 
     @Column
