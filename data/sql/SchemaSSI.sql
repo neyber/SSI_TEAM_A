@@ -16,15 +16,10 @@
                                          - fixed properties: field names, field definitions, invalid constraints, field NULL values
  05/28/2018    Henry Bustamante C.       - I have updated schema in order to add audit columns as createdBy and mofidiedBy and only createdBy will have a default value as 0
 ******************************************************************************/
-IF EXISTS(SELECT * FROM DBO.SYSDATABASES WHERE NAME = N'ssiA')
-    BEGIN
-             USE MASTER;
-             DROP DATABASE ssiA;
-    END
-   CREATE DATABASE ssiA;
-
-
-USE ssiA;
+IF db_id('ssiA') IS NULL 
+    CREATE DATABASE ssiA
+GO
+use ssiA
 GO
 
 -- Create Department
