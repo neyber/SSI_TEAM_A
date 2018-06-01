@@ -24,7 +24,7 @@ public class WorkItemListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        workItemList = service.findAll();
+        workItemList = service.procedureFindAll();
     }
 
     public List<WorkItem> getWorkItemList() {

@@ -21,15 +21,17 @@ public abstract class GenericRepositoryProcedureImpl<T, K extends GenericProcedu
     private EntityManager em;
 
     @Override
-    public List<T> execProcedureFindAll(K procedureNames) {
+    public List<T> execProcedureFindAll() {
+        K procedureNames = getProcedureNames();
         log.debug("Executing execProcedureFindAll procedure.... " + procedureNames.allProcedureName());
 
-        StoredProcedureQuery procedureQuery = em.createNamedStoredProcedureQuery(procedureNames.allProcedureName());
+        StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery(procedureNames.allProcedureName(), getGenericTypeClass());
         return  procedureQuery.getResultList();
     }
 
     @Override
-    public T execProcedureFindById(Integer id, K procedureNames) {
+    public T execProcedureFindById(Integer id) {
+        K procedureNames = getProcedureNames();
         log.debug("Executing execProcedureFindById procedure.... " + procedureNames.readProcedureName());
         T entity = null;
 
@@ -44,7 +46,8 @@ public abstract class GenericRepositoryProcedureImpl<T, K extends GenericProcedu
     }
 
     @Override
-    public void execProcedureDeleteById(Integer id, K procedureNames) {
+    public void execProcedureDeleteById(Integer id) {
+        K procedureNames = getProcedureNames();
         log.debug("Executing execProcedureDeleteById procedure.... " + procedureNames.deleteProcedureName());
 
         StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery(procedureNames.deleteProcedureName());

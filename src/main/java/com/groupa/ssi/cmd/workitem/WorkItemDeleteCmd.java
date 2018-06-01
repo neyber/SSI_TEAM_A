@@ -21,7 +21,7 @@ public class WorkItemDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        service.deleteById(workItemId);
+        service.procedureDeleteById(workItemId);
     }
 
     public void setWorkItemId(Integer workItemId) {
