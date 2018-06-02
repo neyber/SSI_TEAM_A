@@ -545,6 +545,12 @@ BEGIN
             , purchaseDate
             , serieNo
             , workItemId
+            , createdBy
+            , createdOn
+            , updatedBy
+            , updatedOn
+            , isDeleted
+            , version
         FROM dbo.ExistingWorkItem
         where id = @id;
 
@@ -585,6 +591,12 @@ BEGIN
             , purchaseDate
             , serieNo
             , workItemId
+            , createdBy
+            , createdOn
+            , updatedBy
+            , updatedOn
+            , isDeleted
+            , version
         FROM dbo.ExistingWorkItem
 
  PRINT 'Executed proGetAllExistingWorkItem..';

@@ -145,7 +145,7 @@ VALUES ('Other diseases', 'this type was includes by osha rules normative');
 PRINT 'SaType table done...';
 
 PRINT 'Insert data into the Sickness table....';
---SET IDENTITY_INSERT dbo.REPLACEMENT ON
+
 INSERT INTO [dbo].[Sickness] ([description],[dateSickness],[statusRecord],[whereOccurr],[totalDaysOutOfWork],[totalDaysRestrictedTransferredWork],[employeeId],[saCategoryId],[saTypeId])
 VALUES ('during the night duty shift and with inadequate clothing is that the employee has a cold, and due to negligence', '2018-05-05 14:05:03', 1, 'this happened on guard night shift', 3, 4, 1, 1, 2);
 INSERT INTO [dbo].[Sickness] ([description],[dateSickness],[statusRecord],[whereOccurr],[totalDaysOutOfWork],[totalDaysRestrictedTransferredWork],[employeeId],[saCategoryId],[saTypeId])
@@ -158,7 +158,7 @@ INSERT INTO [dbo].[Sickness] ([description],[dateSickness],[statusRecord],[where
 VALUES ('More than 4 years working with the material download caused damage to the shoulders and now needs physiotherapy', '2017-06-07 14:05:03', 1, 'During jornal work, in the new building', 3, 4, 3, 2, 1);
 INSERT INTO [dbo].[Sickness] ([description],[dateSickness],[statusRecord],[whereOccurr],[totalDaysOutOfWork],[totalDaysRestrictedTransferredWork],[employeeId],[saCategoryId],[saTypeId])
 VALUES ('got sick and now has vision problems', '2017-08-10 14:05:03', 1, 'During jornal work, in the new building', 3, 4, 1, 1, 1);
--- SET IDENTITY_INSERT dbo.REPLACEMENT OFF;
+
 PRINT 'Sickness table done...';
 
 PRINT 'Insert data into the Accident table....';
