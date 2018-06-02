@@ -37,14 +37,14 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 	SELECT id
-		  ,name
-		  ,description
-		  ,createdBy
-		  ,createdOn
-		  ,updatedBy
-		  ,updatedOn
-		  ,isDeleted
-		  ,version
+            , name
+            , description
+            , createdBy
+            , createdOn
+            , updatedBy
+            , updatedOn
+            , isDeleted
+            , version
     FROM dbo.WorkItemClassification
 	WHERE id = @id;
 
@@ -86,14 +86,14 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 	SELECT id
-		  ,name
-		  ,description
-		  ,createdBy
-		  ,createdOn
-		  ,updatedBy
-		  ,updatedOn
-		  ,isDeleted
-		  ,version
+            , name
+            , description
+            , createdBy
+            , createdOn
+            , updatedBy
+            , updatedOn
+            , isDeleted
+            , version
     FROM dbo.WorkItemClassification;
 
 	PRINT 'Executed proGetAllWorkItemClassification..';
@@ -285,15 +285,15 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 	SELECT id
-		  ,name
-		  ,description
-		  ,workItemClassificationId
-		  ,createdBy
-		  ,createdOn
-		  ,updatedBy
-		  ,updatedOn
-		  ,isDeleted
-		  ,version
+            , name
+            , description
+            , workItemClassificationId
+            , createdBy
+            , createdOn
+            , updatedBy
+            , updatedOn
+            , isDeleted
+            , version
     FROM dbo.WorkItem
 	WHERE id = @id;
 
@@ -335,15 +335,15 @@ SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
 	SELECT id
-		  ,name
-		  ,description
-		  ,workItemClassificationId
-		  ,createdBy
-		  ,createdOn
-		  ,updatedBy
-		  ,updatedOn
-		  ,isDeleted
-		  ,version
+            , name
+            , description
+            , workItemClassificationId
+            , createdBy
+            , createdOn
+            , updatedBy
+            , updatedOn
+            , isDeleted
+            , version
     FROM dbo.WorkItem;
 
 	PRINT 'Executed proGetAllWorkItem..';
@@ -649,8 +649,6 @@ BEGIN
 			      , @serieNo
             , @workItemId
             , @createdBy);
-
-	SELECT @@IDENTITY AS NewExistingWorkItemID;
 
  PRINT 'Executed proInsertExistingWorkItem..';
 END
