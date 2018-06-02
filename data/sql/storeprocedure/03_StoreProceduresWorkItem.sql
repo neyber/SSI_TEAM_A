@@ -131,7 +131,8 @@ GO
 *******************************************************************************/
 CREATE PROCEDURE dbo.proInsertWorkItemClassification
 (
-	  @name VARCHAR(100)
+    @newId INT OUTPUT
+	 ,@name VARCHAR(100)
 	 ,@description VARCHAR(200)
 	 ,@createdBy INT
 )
@@ -149,6 +150,8 @@ BEGIN
 			,@description
 			,@createdBy
 			);
+
+	SET @newId = SCOPE_IDENTITY();
 
 	PRINT 'Executed proInsertWorkItemClassification..';
 END
@@ -188,6 +191,8 @@ CREATE PROCEDURE dbo.proUpdateWorkItemClassification
 	 ,@name VARCHAR(100)
 	 ,@description VARCHAR(200)
 	 ,@updatedBy INT
+	 ,@updatedOn DATETIME
+	 ,@version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -197,6 +202,8 @@ BEGIN
 	SET  name		 = @name
 		,description = @description
 		,updatedBy	 = @updatedBy
+		,updatedOn   = @updatedOn
+		,version   = @version
 	WHERE id = @id;
 
 	PRINT 'Executed proUpdateWorkItemClassification..';
@@ -381,7 +388,8 @@ GO
 *******************************************************************************/
 CREATE PROCEDURE dbo.proInsertWorkItem
 (
-	  @name VARCHAR(100)
+    @newId INT OUTPUT
+	 ,@name VARCHAR(100)
 	 ,@description VARCHAR(200)
 	 ,@workItemClassificationId INT
 	 ,@createdBy INT
@@ -402,6 +410,8 @@ BEGIN
 			,@workItemClassificationId
 			,@createdBy
 			);
+
+	SET @newId = SCOPE_IDENTITY();
 
 	PRINT 'Executed proInsertWorkItem..';
 END
@@ -442,6 +452,8 @@ CREATE PROCEDURE dbo.proUpdateWorkItem
 	 ,@description VARCHAR(200)
 	 ,@workItemClassificationId INT
 	 ,@updatedBy INT
+ 	 ,@updatedOn DATETIME
+	 ,@version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -452,6 +464,8 @@ BEGIN
 		,description = @description
 		,workItemClassificationId = @workItemClassificationId
 		,updatedBy = @updatedBy
+		,updatedOn = @updatedOn
+		,version = @version
 	WHERE id = @id;
 
 	PRINT 'Executed proUpdateWorkItem..';

@@ -33,7 +33,7 @@ public class WorkItemCreateCmd extends AbstractCommand {
             workItemClassification = workItemClassificationService.findById(workItemRequest.getWorkItemClassificationId());
         }
         WorkItem workItem = composeWorkItem(workItemRequest, workItemClassification);
-        workItemService.save(workItem);
+        workItemService.procedureCreate(workItem);
     }
 
     public void setWorkItemRequest(WorkItemRequest workItemRequest) {

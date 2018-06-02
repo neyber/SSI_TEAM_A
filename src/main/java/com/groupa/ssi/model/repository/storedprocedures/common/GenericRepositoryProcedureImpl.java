@@ -1,5 +1,7 @@
 package com.groupa.ssi.model.repository.storedprocedures.common;
 
+import com.groupa.ssi.common.utils.Constants;
+import com.groupa.ssi.model.domain.ModelBase;
 import com.groupa.ssi.model.repository.storedprocedures.util.GenericProcedureNames;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +11,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.lang.reflect.ParameterizedType;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ public abstract class GenericRepositoryProcedureImpl<T, K extends GenericProcedu
     private static Logger log = LoggerFactory.getLogger(GenericRepositoryProcedureImpl.class);
 
     @PersistenceContext
-    private EntityManager em;
+    protected EntityManager em;
 
     @Override
     public List<T> execProcedureFindAll() {
@@ -66,6 +69,27 @@ public abstract class GenericRepositoryProcedureImpl<T, K extends GenericProcedu
         } catch (Exception e) {
             throw new IllegalStateException("Repository Class is not parametrized with generic type!!! Please use extends <>");
         }
+    }
+
+    protected void addCreateCommonParameters(StoredProcedureQuery procedureQuery) {
+        procedureQuery.registerStoredProcedureParameter("newId", Integer.class, ParameterMode.OUT);
+        procedureQuery.registerStoredProcedureParameter("createdBy", Integer.class, ParameterMode.IN);
+        procedureQuery.setParameter("createdBy", Constants.USER_ID);
+    }
+
+    protected Integer getNewIdAsOutPutParameter(StoredProcedureQuery procedureQuery) {
+        return (Integer) procedureQuery.getOutputParameterValue("newId");
+    }
+
+    protected void addUpdateCommonParameters(StoredProcedureQuery procedureQuery, ModelBase entity) {
+        procedureQuery.registerStoredProcedureParameter("updatedBy", Integer.class, ParameterMode.IN);
+        procedureQuery.registerStoredProcedureParameter("updatedOn", Date.class, ParameterMode.IN);
+        procedureQuery.registerStoredProcedureParameter("version", Long.class, ParameterMode.IN);
+
+        procedureQuery.setParameter("updatedBy", Constants.USER_ID);
+        procedureQuery.setParameter("updatedOn", new Date());
+        procedureQuery.setParameter("version", entity.getVersion());
+        //procedureQuery.setParameter("version", (entity.getVersion() != null ? entity.getVersion() + 1 : 1));
     }
 
 }

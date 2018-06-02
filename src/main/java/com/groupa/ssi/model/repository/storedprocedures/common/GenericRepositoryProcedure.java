@@ -13,9 +13,9 @@ public interface GenericRepositoryProcedure<T, K extends GenericProcedureNames> 
 
     public T execProcedureFindById(Integer id);
 
-    public void execProcedureCreate(T entity);
+    public T execProcedureCreate(T entity);
 
-    public void execProcedureUpdate(T entity);
+    public T execProcedureUpdate(T entity);
 
     public void execProcedureDeleteById(Integer id);
 
