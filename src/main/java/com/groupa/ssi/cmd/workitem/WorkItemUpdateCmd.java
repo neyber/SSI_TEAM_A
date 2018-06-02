@@ -34,7 +34,7 @@ public class WorkItemUpdateCmd extends AbstractCommand {
             workItemClassification = workItemClassificationService.findById(workItemRequest.getWorkItemClassificationId());
         }
         WorkItem workItem = composeWorkItem(workItemId, workItemRequest, workItemClassification);
-        workItemService.save(workItem);
+        workItemService.procedureUpdate(workItem);
     }
 
     public void setWorkItemId(Integer workItemId) {

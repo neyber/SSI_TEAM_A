@@ -25,7 +25,7 @@ public class WorkItemClassificationUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         WorkItemClassification workItemClassification = composeWorkItemClassification(workItemClassificationId, workItemClassificationRequest);
-        service.save(workItemClassification);
+        service.procedureUpdate(workItemClassification);
     }
 
     public void setWorkItemClassificationId(Integer workItemClassificationId) {

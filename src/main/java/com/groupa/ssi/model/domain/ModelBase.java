@@ -41,7 +41,7 @@ public class ModelBase {
 
     @Version
     @Column(nullable = false)
-    private long version;
+    private Long version;
 
     public Integer getId() {
         return id;
@@ -91,11 +91,11 @@ public class ModelBase {
         this.updatedBy = updatedBy;
     }
 
-    public long getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(long version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 }
