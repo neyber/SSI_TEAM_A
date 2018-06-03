@@ -36,7 +36,7 @@ public class ExistingWorkItemUpdateCmd extends AbstractCommand {
             workItem = workItemService.findById(existingWorkItemRequest.getWorkItemId());
         }
         ExistingWorkItem existingWorkItem = composeExistingWorkItem(existingWorkItemId, existingWorkItemRequest, workItem);
-        existingWorkItemService.save(existingWorkItem);
+        existingWorkItemService.procedureUpdate(existingWorkItem);
     }
 
     public void setExistingWorkItemId(Integer existingWorkItemId) {
