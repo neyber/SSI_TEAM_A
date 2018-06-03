@@ -642,7 +642,8 @@ GO
 
 CREATE PROCEDURE [dbo].[proInsertExistingWorkItem]
 (
-     @detail VARCHAR(100)
+      @newId INT OUTPUT
+    , @detail VARCHAR(100)
 	  , @purchaseDate DATETIME
     , @serieNo VARCHAR(50)
     , @workItemId INT
@@ -663,6 +664,8 @@ BEGIN
 			      , @serieNo
             , @workItemId
             , @createdBy);
+
+  SET @newId = SCOPE_IDENTITY();
 
  PRINT 'Executed proInsertExistingWorkItem..';
 END
@@ -699,6 +702,8 @@ CREATE PROCEDURE [dbo].[proUpdateExistingWorkItem]
     , @serieNo VARCHAR(50)
     , @workItemId INT
     , @updatedBy INT
+  	, @updatedOn DATETIME
+	  , @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -711,6 +716,8 @@ BEGIN
         , serieNo = @serieNo
         , workItemId = @workItemId
         , updatedBy = @updatedBy
+     		, updatedOn   = @updatedOn
+    		, version   = @version
     WHERE id = @id;
 
 
