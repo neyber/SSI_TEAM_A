@@ -44,6 +44,8 @@ BEGIN
         FROM dbo.Department
         where id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proGetDepartment created';
 GO
 /******************************************************************************
@@ -82,6 +84,8 @@ BEGIN
 
         FROM dbo.Department
 END
+GO
+
 PRINT 'Procedure dbo.proGetAllDepartment created';
 GO
 
@@ -128,6 +132,8 @@ BEGIN
 
 	PRINT 'Executed proInsertDepartment..';
 END
+GO
+
 PRINT 'Procedure dbo.proInsertDepartment created';
 GO
 
@@ -171,6 +177,8 @@ BEGIN
         , updatedBy = @updatedBy
     WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proUpdateDepartment created';
 GO
 
@@ -205,6 +213,8 @@ BEGIN
 	DELETE FROM dbo.Department
 	WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proDeleteDepartment created';
 GO
 
@@ -250,6 +260,8 @@ BEGIN
         FROM dbo.Role
         where id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proGetRole created';
 GO
 
@@ -291,6 +303,8 @@ BEGIN
 
         FROM dbo.Role
 END
+GO
+
 PRINT 'Procedure dbo.proGetAllRole created';
 GO
 
@@ -334,6 +348,8 @@ BEGIN
 
 	SET @newId = SCOPE_IDENTITY();
 END
+GO
+
 PRINT 'Procedure dbo.proInsertRole created';
 GO
 
@@ -377,6 +393,8 @@ BEGIN
         , updatedBy = @updatedBy
     WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proUpdateRole created';
 GO
 
@@ -412,6 +430,8 @@ BEGIN
 	DELETE FROM dbo.Role
 	WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proDeleteRole created';
 GO
 
@@ -466,6 +486,8 @@ BEGIN
         FROM dbo.FunctionManual
         where id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proGetFunctionManual created';
 GO
 
@@ -515,6 +537,8 @@ BEGIN
 
         FROM dbo.FunctionManual
 END
+GO
+
 PRINT 'Procedure dbo.proGetAllFunctionManual created';
 GO
 
@@ -583,6 +607,8 @@ BEGIN
 
 	SET @newId = SCOPE_IDENTITY();
 END
+GO
+
 PRINT 'Procedure dbo.proInsertFunctionManual created';
 GO
 
@@ -639,6 +665,8 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proUpdateFunctionManual created';
 GO
 
@@ -673,6 +701,8 @@ BEGIN
 	DELETE FROM dbo.FunctionManual
 	WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proDeleteFunctionManual created';
 GO
 /******************************************************************************
@@ -724,6 +754,8 @@ BEGIN
         FROM dbo.Employee
         where id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proGetEmployee created';
 GO
 /******************************************************************************
@@ -771,6 +803,8 @@ BEGIN
 
         FROM dbo.Employee
 END
+GO
+
 PRINT 'Procedure dbo.proGetAllEmployee created';
 GO
 
@@ -840,6 +874,8 @@ BEGIN
 
 	SET @newId = SCOPE_IDENTITY();
 END
+GO
+
 PRINT 'Procedure dbo.proInsertEmployee created';
 GO
 
@@ -897,6 +933,8 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proUpdatetEmployee created';
 GO
 
@@ -930,6 +968,8 @@ BEGIN
 	DELETE FROM dbo.Employee
 	WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proDeleteEmployee created';
 GO
 
@@ -983,6 +1023,8 @@ BEGIN
         FROM dbo.Audit
         where id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proGetAudit created';
 GO
 
@@ -1030,6 +1072,8 @@ BEGIN
 
         FROM dbo.Audit
 END
+GO
+
 PRINT 'Procedure dbo.proGetAllAudit created';
 GO
 
@@ -1095,6 +1139,8 @@ BEGIN
 
 	SET @newId = SCOPE_IDENTITY();
 END
+GO
+
 PRINT 'Procedure dbo.proInsertAudit created';
 GO
 
@@ -1151,6 +1197,8 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proUpdateAudit created';
 GO
 
@@ -1185,6 +1233,8 @@ BEGIN
 	DELETE FROM dbo.Audit
 	WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proDeleteAudit created';
 GO
 
@@ -1234,6 +1284,8 @@ BEGIN
         FROM dbo.SafetyRule
         where id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proGetSafetyRule created';
 GO
 
@@ -1279,6 +1331,8 @@ BEGIN
 
         FROM dbo.SafetyRule
 END
+GO
+
 PRINT 'Procedure dbo.proGetAllSafetyRule created';
 GO
 
@@ -1334,6 +1388,8 @@ BEGIN
 
 	SET @newId = SCOPE_IDENTITY();
 END
+GO
+
 PRINT 'Procedure dbo.proInsertSafetyRule created';
 GO
 
@@ -1383,6 +1439,8 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proUpdateSafetyRule created';
 GO
 
@@ -1417,6 +1475,8 @@ BEGIN
 	DELETE FROM dbo.SafetyRule
 	WHERE id = @id;
 END
+GO
+
 PRINT 'Procedure dbo.proDeleteSafetyRule created';
 GO
 
