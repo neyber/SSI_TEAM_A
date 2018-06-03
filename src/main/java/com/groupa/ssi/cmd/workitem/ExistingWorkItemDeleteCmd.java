@@ -22,7 +22,7 @@ public class ExistingWorkItemDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        service.deleteById(existingWorkItemId);
+        service.procedureDeleteById(existingWorkItemId);
     }
 
     public void setExistingWorkItemId(Integer existingWorkItemId) {

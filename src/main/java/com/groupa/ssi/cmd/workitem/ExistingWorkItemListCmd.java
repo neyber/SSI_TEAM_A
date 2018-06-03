@@ -25,7 +25,7 @@ public class ExistingWorkItemListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        existingWorkItemList = service.findAll();
+        existingWorkItemList = service.procedureFindAll();
     }
 
     public List<ExistingWorkItem> getExistingWorkItemList() {
