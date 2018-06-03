@@ -34,10 +34,17 @@ BEGIN
 	 SELECT id
 			, name
 			, description
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.Department
         where id = @id;
 END
+PRINT 'Procedure dbo.proGetDepartment created';
 GO
 /******************************************************************************
 **  Name: SP proGetAllDepartment
@@ -66,9 +73,16 @@ BEGIN
 	SELECT  id
 			, name
 			, description
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.Department
 END
+PRINT 'Procedure dbo.proGetAllDepartment created';
 GO
 
 /******************************************************************************
@@ -93,9 +107,10 @@ GO
 
 CREATE PROCEDURE [dbo].[proInsertDepartment]
 (
-      @name VARCHAR(100)
+    @name VARCHAR(100)
 	, @description varchar(200)
-    , @createdBy INT
+  , @createdBy INT
+  , @newId INT OUTPUT
 )
 AS
 SET XACT_ABORT ON;
@@ -109,9 +124,13 @@ BEGIN
 			, @description
             , @createdBy);
 
-	SELECT @@IDENTITY AS NewDepartmentID;
+	SET @newId = SCOPE_IDENTITY();
+
+	PRINT 'Executed proInsertDepartment..';
 END
+PRINT 'Procedure dbo.proInsertDepartment created';
 GO
+
 
 
 /******************************************************************************
@@ -152,6 +171,7 @@ BEGIN
         , updatedBy = @updatedBy
     WHERE id = @id;
 END
+PRINT 'Procedure dbo.proUpdateDepartment created';
 GO
 
 /******************************************************************************
@@ -185,6 +205,7 @@ BEGIN
 	DELETE FROM dbo.Department
 	WHERE id = @id;
 END
+PRINT 'Procedure dbo.proDeleteDepartment created';
 GO
 
 /******************************************************************************
@@ -219,10 +240,17 @@ BEGIN
 	 SELECT id
 			, name
 			, description
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.Role
         where id = @id;
 END
+PRINT 'Procedure dbo.proGetRole created';
 GO
 
 /******************************************************************************
@@ -254,9 +282,16 @@ BEGIN
 	 SELECT id
 			, name
 			, description
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.Role
 END
+PRINT 'Procedure dbo.proGetAllRole created';
 GO
 
 /******************************************************************************
@@ -298,6 +333,7 @@ BEGIN
 
 	SELECT @@IDENTITY AS NewRoleID;
 END
+PRINT 'Procedure dbo.proInsertRole created';
 GO
 
 
@@ -340,6 +376,7 @@ BEGIN
         , updatedBy = @updatedBy
     WHERE id = @id;
 END
+PRINT 'Procedure dbo.proUpdateRole created';
 GO
 
 /******************************************************************************
@@ -374,6 +411,7 @@ BEGIN
 	DELETE FROM dbo.Role
 	WHERE id = @id;
 END
+PRINT 'Procedure dbo.proDeleteRole created';
 GO
 
 /******************************************************************************
@@ -417,10 +455,17 @@ BEGIN
 		  , principalFunction
 		  , superiorBoss
 		  , roleFunctionId
+		  , createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.FunctionManual
         where id = @id;
 END
+PRINT 'Procedure dbo.proGetFunctionManual created';
 GO
 
 /******************************************************************************
@@ -460,9 +505,16 @@ BEGIN
 		  , principalFunction
 		  , superiorBoss
 		  , roleFunctionId
+		  , createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.FunctionManual
 END
+PRINT 'Procedure dbo.proGetAllFunctionManual created';
 GO
 
 /******************************************************************************
@@ -529,6 +581,7 @@ BEGIN
 
 	SELECT @@IDENTITY AS NewFuntionManualID;
 END
+PRINT 'Procedure dbo.proInsertFunctionManual created';
 GO
 
 /******************************************************************************
@@ -584,6 +637,7 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+PRINT 'Procedure dbo.proUpdateFunctionManual created';
 GO
 
 /******************************************************************************
@@ -617,6 +671,7 @@ BEGIN
 	DELETE FROM dbo.FunctionManual
 	WHERE id = @id;
 END
+PRINT 'Procedure dbo.proDeleteFunctionManual created';
 GO
 /******************************************************************************
 **  Name: SP proGetEmplyoee
@@ -657,10 +712,17 @@ BEGIN
 			, departmentEmployeeId
 			, roleEmployeeId
 			, supervisorId
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.Employee
         where id = @id;
 END
+PRINT 'Procedure dbo.proGetEmployee created';
 GO
 /******************************************************************************
 **  Name: SP proGetAllEmplyoee
@@ -698,9 +760,16 @@ BEGIN
 			, departmentEmployeeId
 			, roleEmployeeId
 			, supervisorId
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.Employee
 END
+PRINT 'Procedure dbo.proGetAllEmployee created';
 GO
 
 /******************************************************************************
@@ -768,6 +837,7 @@ BEGIN
 
 	SELECT @@IDENTITY AS NewEmployeeID;
 END
+PRINT 'Procedure dbo.proInsertEmployee created';
 GO
 
 
@@ -824,6 +894,7 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+PRINT 'Procedure dbo.proUpdatetEmployee created';
 GO
 
 /******************************************************************************
@@ -856,6 +927,7 @@ BEGIN
 	DELETE FROM dbo.Employee
 	WHERE id = @id;
 END
+PRINT 'Procedure dbo.proDeleteEmployee created';
 GO
 
 
@@ -898,10 +970,17 @@ BEGIN
 			, employeeId
 			, periodicity
 			, DepartmentId
+			,createdBy
+      ,createdOn
+      ,updatedBy
+      ,updatedOn
+      ,isDeleted
+      ,version
 
         FROM dbo.Audit
         where id = @id;
 END
+PRINT 'Procedure dbo.proGetAudit created';
 GO
 
 /******************************************************************************
@@ -939,9 +1018,16 @@ BEGIN
 			, employeeId
 			, periodicity
 			, DepartmentId
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.Audit
 END
+PRINT 'Procedure dbo.proGetAllAudit created';
 GO
 
 /******************************************************************************
@@ -1005,6 +1091,7 @@ BEGIN
 
 	SELECT @@IDENTITY AS NewAuditID;
 END
+PRINT 'Procedure dbo.proInsertAudit created';
 GO
 
 
@@ -1060,6 +1147,7 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+PRINT 'Procedure dbo.proUpdateAudit created';
 GO
 
 /******************************************************************************
@@ -1093,6 +1181,7 @@ BEGIN
 	DELETE FROM dbo.Audit
 	WHERE id = @id;
 END
+PRINT 'Procedure dbo.proDeleteAudit created';
 GO
 
 /******************************************************************************
@@ -1131,10 +1220,17 @@ BEGIN
 			, complianceParameter
 			, policyCode
 			, policyName
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.SafetyRule
         where id = @id;
 END
+PRINT 'Procedure dbo.proGetSafetyRule created';
 GO
 
 /******************************************************************************
@@ -1170,9 +1266,16 @@ BEGIN
 			, complianceParameter
 			, policyCode
 			, policyName
+			, createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
 
         FROM dbo.SafetyRule
 END
+PRINT 'Procedure dbo.proGetAllSafetyRule created';
 GO
 
 /******************************************************************************
@@ -1226,6 +1329,7 @@ BEGIN
 
 	SELECT @@IDENTITY AS NewSafetyRuleID;
 END
+PRINT 'Procedure dbo.proInsertSafetyRule created';
 GO
 
 /******************************************************************************
@@ -1274,6 +1378,7 @@ BEGIN
 		, updatedBy = @updatedBy
     WHERE id = @id;
 END
+PRINT 'Procedure dbo.proUpdateSafetyRule created';
 GO
 
 /******************************************************************************
@@ -1307,6 +1412,7 @@ BEGIN
 	DELETE FROM dbo.SafetyRule
 	WHERE id = @id;
 END
+PRINT 'Procedure dbo.proDeleteSafetyRule created';
 GO
 
 -- End Marcelo
