@@ -315,9 +315,10 @@ GO
 
 CREATE PROCEDURE [dbo].[proInsertRole]
 (
-      @name VARCHAR(100)
+    @name VARCHAR(100)
 	, @description varchar(200)
-    , @createdBy INT
+  , @createdBy INT
+  , @newId INT OUTPUT
 )
 AS
 SET XACT_ABORT ON;
@@ -331,7 +332,7 @@ BEGIN
 			, @description
             , @createdBy);
 
-	SELECT @@IDENTITY AS NewRoleID;
+	SET @newId = SCOPE_IDENTITY();
 END
 PRINT 'Procedure dbo.proInsertRole created';
 GO
@@ -544,12 +545,13 @@ CREATE PROCEDURE [dbo].[proInsertFunctionManual]
 	, @generalActivity VARCHAR(200)
 	, @hierarchicalLever VARCHAR(50)
 	, @internalRelation VARCHAR(200)
-    , @name VARCHAR(50)
+  , @name VARCHAR(50)
 	, @position VARCHAR(50)
 	, @principalFunction VARCHAR(100)
 	, @superiorBoss VARCHAR(50)
-    , @roleFunctionId INT
+  , @roleFunctionId INT
 	, @createdBy INT
+	, @newId INT OUTPUT
 )
 AS
 SET XACT_ABORT ON;
@@ -579,7 +581,7 @@ BEGIN
 			, @roleFunctionId
 			, @createdBy);
 
-	SELECT @@IDENTITY AS NewFuntionManualID;
+	SET @newId = SCOPE_IDENTITY();
 END
 PRINT 'Procedure dbo.proInsertFunctionManual created';
 GO
@@ -800,12 +802,13 @@ CREATE PROCEDURE [dbo].[proInsertEmployee]
 	, @gender CHAR(1)
 	, @healthConditionStartingAtCompany VARCHAR(100)
 	, @identificationNumber BIGINT
-    , @lastName VARCHAR(50)
+  , @lastName VARCHAR(50)
 	, @startDateInCompany DATE
 	, @departmentEmployeeId INT
 	, @roleEmployeeId INT
-    , @supervisorId INT
+  , @supervisorId INT
 	, @createdBy INT
+	, @newId INT OUTPUT
 )
 AS
 SET XACT_ABORT ON;
@@ -835,7 +838,7 @@ BEGIN
 			, @supervisorId
 			, @createdBy);
 
-	SELECT @@IDENTITY AS NewEmployeeID;
+	SET @newId = SCOPE_IDENTITY();
 END
 PRINT 'Procedure dbo.proInsertEmployee created';
 GO
@@ -1061,7 +1064,8 @@ CREATE PROCEDURE [dbo].[proInsertAudit]
       , @employeeId INT
       , @periodicity VARCHAR(50)
       , @DepartmentId INT
-	  , @createdBy INT
+	    , @createdBy INT
+	    , @newId INT OUTPUT
 )
 AS
 SET XACT_ABORT ON;
@@ -1089,7 +1093,7 @@ BEGIN
 		    , @DepartmentId
 		    , @createdBy);
 
-	SELECT @@IDENTITY AS NewAuditID;
+	SET @newId = SCOPE_IDENTITY();
 END
 PRINT 'Procedure dbo.proInsertAudit created';
 GO
@@ -1299,13 +1303,14 @@ GO
 
 CREATE PROCEDURE [dbo].[proInsertSafetyRule]
 (
-		@accomplishment BIT
+		  @accomplishment BIT
       , @auditId INT
       , @complianceMetric INT
       , @complianceParameter INT
       , @policyCode VARCHAR(100)
       , @policyName VARCHAR(100)
-	  , @createdBy INT
+	    , @createdBy INT
+	    , @newId INT OUTPUT
 )
 AS
 SET XACT_ABORT ON;
@@ -1327,7 +1332,7 @@ BEGIN
 			, @policyName
 			, @createdBy);
 
-	SELECT @@IDENTITY AS NewSafetyRuleID;
+	SET @newId = SCOPE_IDENTITY();
 END
 PRINT 'Procedure dbo.proInsertSafetyRule created';
 GO
