@@ -807,7 +807,12 @@ BEGIN
 			, returnDate
 			, employeeId
 			, existingWorkItemId
-
+      , createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
         FROM dbo.ExistingWorkItemAssigned
         where id = @id;
 END
@@ -845,7 +850,12 @@ BEGIN
 			, returnDate
 			, employeeId
 			, existingWorkItemId
-
+      , createdBy
+      , createdOn
+      , updatedBy
+      , updatedOn
+      , isDeleted
+      , version
         FROM dbo.ExistingWorkItemAssigned
 END
 GO
@@ -872,9 +882,10 @@ GO
 
 CREATE PROCEDURE [dbo].[proInsertExistingWorkItemAssigned]
 (
-		  @assignedNotes VARCHAR(200)
+    @newId INT OUTPUT
+		, @assignedNotes VARCHAR(1000)
 		, @assignedDate DATETIME
-		, @returnNotes VARCHAR(200)
+		, @returnNotes VARCHAR(1000)
 		, @returnDate DATETIME
 		, @employeeId INT
 		, @existingWorkItemId INT
@@ -900,7 +911,7 @@ BEGIN
 			, @existingWorkItemId
 			, @createdBy);
 
-	SELECT @@IDENTITY AS NewExistingWorkItemAssignedID;
+  SET @newId = SCOPE_IDENTITY();
 END
 
 GO
@@ -926,14 +937,16 @@ GO
 
 CREATE PROCEDURE [dbo].[proUpdateExistingWorkItemAssigned]
 (
-      @id INT
-    , @assignedNotes VARCHAR(200)
+    @id INT
+  , @assignedNotes VARCHAR(1000)
 	, @assignedDate DATETIME
-	, @returnNotes VARCHAR(200)
+	, @returnNotes VARCHAR(1000)
 	, @returnDate DATETIME
 	, @employeeId INT
 	, @existingWorkItemId INT
 	, @updatedBy INT
+  , @updatedOn DATETIME
+	, @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -942,12 +955,14 @@ BEGIN
 
 	UPDATE dbo.ExistingWorkItemAssigned
     SET assignedNotes = @assignedNotes
-        , assignedDate = @assignedDate
+    , assignedDate = @assignedDate
 		, returnNotes = @returnNotes
 		, returnDate = @returnDate
 		, employeeId = @employeeId
 		, existingWorkItemId = @existingWorkItemId
 		, updatedBy = @updatedBy
+		, updatedOn = @updatedOn
+		, version   = @version
     WHERE id = @id;
 
 END
