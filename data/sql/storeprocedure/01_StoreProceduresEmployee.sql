@@ -648,12 +648,14 @@ CREATE PROCEDURE [dbo].[proUpdateFunctionManual]
 	, @generalActivity VARCHAR(200)
 	, @hierarchicalLever VARCHAR(50)
 	, @internalRelation VARCHAR(200)
-    , @name VARCHAR(50)
+  , @name VARCHAR(50)
 	, @position VARCHAR(50)
 	, @principalFunction VARCHAR(100)
 	, @superiorBoss VARCHAR(50)
-    , @roleFunctionId INT
+  , @roleFunctionId INT
 	, @updatedBy INT
+	, @updatedOn DATETIME
+  , @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -672,6 +674,8 @@ BEGIN
 		, superiorBoss = @superiorBoss
 		, roleFunctionId = @roleFunctionId
 		, updatedBy = @updatedBy
+		, updatedOn = @UpdatedOn
+		, version = @version
     WHERE id = @id;
 END
 GO
@@ -916,12 +920,14 @@ CREATE PROCEDURE [dbo].[proUpdateEmployee]
 	, @gender CHAR(1)
 	, @healthConditionStartingAtCompany VARCHAR(100)
 	, @identificationNumber BIGINT
-    , @lastName VARCHAR(50)
+  , @lastName VARCHAR(50)
 	, @startDateInCompany DATE
 	, @departmentEmployeeId INT
 	, @roleEmployeeId INT
-    , @supervisorId INT
+  , @supervisorId INT
 	, @updatedBy INT
+	, @updatedOn DATETIME
+	, @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -940,6 +946,8 @@ BEGIN
 		, roleEmployeeId = @roleEmployeeId
 		, supervisorId = @supervisorId
 		, updatedBy = @updatedBy
+		, updatedOn = @updatedOn
+		, version = @version
     WHERE id = @id;
 END
 GO
@@ -1186,7 +1194,9 @@ CREATE PROCEDURE [dbo].[proUpdateAudit]
     , @employeeId INT
     , @periodicity VARCHAR(50)
     , @DepartmentId INT
-	, @updatedBy INT
+	  , @updatedBy INT
+	  , @updatedOn DATETIME
+	  , @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -1204,6 +1214,8 @@ BEGIN
 		, periodicity = @periodicity
 		, DepartmentId = @DepartmentId
 		, updatedBy = @updatedBy
+		, updatedOn = @updatedOn
+		, version = @version
     WHERE id = @id;
 END
 GO
@@ -1431,7 +1443,9 @@ CREATE PROCEDURE [dbo].[proUpdateSafetyRule]
     , @complianceParameter INT
     , @policyCode VARCHAR(100)
     , @policyName VARCHAR(100)
-	, @updatedBy INT
+	  , @updatedBy INT
+	  , @updatedOn DATETIME
+	  , @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -1446,6 +1460,8 @@ BEGIN
 		, policyCode = @policyCode
 		, policyName = @policyName
 		, updatedBy = @updatedBy
+		, updatedOn = @updatedOn
+		, version = @version
     WHERE id = @id;
 END
 GO
