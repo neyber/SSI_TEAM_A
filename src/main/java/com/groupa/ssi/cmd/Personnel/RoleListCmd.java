@@ -22,7 +22,7 @@ public class RoleListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        rolesList = roleService.findAll();
+        rolesList = roleService.procedureFindAll();
     }
 
     public List<Role> getRolesList() {

@@ -23,7 +23,7 @@ public class RoleUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         Role role = composeRole(roleId, roleRequest);
-        roleService.save(role);
+        roleService.procedureUpdate(role);
     }
 
     private Role composeRole(Integer roleId, RoleRequest roleRequest) {

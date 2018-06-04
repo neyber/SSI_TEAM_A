@@ -21,7 +21,7 @@ public class RoleCreateCmd extends AbstractCommand {
     @Override
     protected void run() {
         Role role = ComposeRole(roleRequest);
-        roleService.save(role);
+        roleService.procedureCreate(role);
     }
 
     private Role ComposeRole(RoleRequest roleRequest) {

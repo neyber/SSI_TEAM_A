@@ -21,7 +21,7 @@ public class RoleReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        role = roleService.findById(roleId);
+        role = roleService.procedureFindById(roleId);
     }
 
     public void setRoleId(Integer roleId) {

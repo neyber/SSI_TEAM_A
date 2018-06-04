@@ -21,7 +21,7 @@ public class DepartmentReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        department = departmentService.findById(departmentId);
+        department = departmentService.procedureFindById(departmentId);
     }
 
     public void setDepartmentId(Integer departmentId) {

@@ -119,10 +119,10 @@ BEGIN
 
 	INSERT INTO dbo.Department(name
                             , description
-							, createdBy)
+							              , createdBy)
 	VALUES (@name
-			, @description
-            , @createdBy);
+			  , @description
+        , @createdBy);
 
 	SET @newId = SCOPE_IDENTITY();
 
@@ -157,8 +157,10 @@ CREATE PROCEDURE [dbo].[proUpdateDepartment]
 (
       @id INT
     , @name VARCHAR(100)
-	, @description varchar(200)
+	  , @description varchar(200)
     , @updatedBy INT
+    , @updatedOn DATETIME
+    , @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -169,6 +171,8 @@ BEGIN
     SET name = @name
         , description = @description
         , updatedBy = @updatedBy
+        , updatedOn   = @updatedOn
+		    , version   = @version
     WHERE id = @id;
 END
 PRINT 'Procedure dbo.proUpdateDepartment created';
@@ -316,8 +320,9 @@ GO
 CREATE PROCEDURE [dbo].[proInsertRole]
 (
       @name VARCHAR(100)
-	, @description varchar(200)
+	  , @description varchar(200)
     , @createdBy INT
+    , @newId INT OUTPUT
 )
 AS
 SET XACT_ABORT ON;
@@ -329,9 +334,9 @@ BEGIN
 							, createdBy)
 	VALUES (@name
 			, @description
-            , @createdBy);
+      , @createdBy);
 
-	SELECT @@IDENTITY AS NewRoleID;
+	SET @newId = SCOPE_IDENTITY();
 END
 PRINT 'Procedure dbo.proInsertRole created';
 GO
@@ -362,8 +367,10 @@ CREATE PROCEDURE [dbo].[proUpdateRole]
 (
       @id INT
     , @name VARCHAR(100)
-	, @description varchar(200)
+	  , @description varchar(200)
     , @updatedBy INT
+    , @updatedOn DATETIME
+    , @version BIGINT
 )
 AS
 SET XACT_ABORT ON;
@@ -374,6 +381,8 @@ BEGIN
     SET name = @name
         , description = @description
         , updatedBy = @updatedBy
+        , updatedOn = @updatedOn
+        , version = @version
     WHERE id = @id;
 END
 PRINT 'Procedure dbo.proUpdateRole created';
