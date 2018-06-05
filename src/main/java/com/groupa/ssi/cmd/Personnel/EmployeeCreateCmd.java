@@ -61,7 +61,7 @@ public class EmployeeCreateCmd extends AbstractCommand {
 
         Employee employee = ComposeEmployee(employeeRequest, roleEmployee, department, supervisor, photoFileDocument);
 
-        employeeService.save(employee);
+        employeeService.procedureCreate(employee);
     }
 
     private Employee ComposeEmployee(EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, FileDocument photoFileDocument) {

@@ -18,7 +18,7 @@ public class EmployeeDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        employeeService.deleteById(employeeId);
+        employeeService.procedureDeleteById(employeeId);
     }
 
     public void setEmployeeId(Integer employeeId) {
