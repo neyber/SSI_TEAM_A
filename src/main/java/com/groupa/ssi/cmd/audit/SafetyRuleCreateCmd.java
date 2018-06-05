@@ -31,7 +31,7 @@ public class SafetyRuleCreateCmd extends AbstractCommand {
         }
 
         SafetyRule safetyRule = ComposeSafetyRule(safetyRuleRequest, audit);
-        safetyRuleService.save(safetyRule);
+        safetyRuleService.procedureCreate(safetyRule);
     }
 
     private SafetyRule ComposeSafetyRule(SafetyRuleRequest safetyRuleRequest, Audit audit) {

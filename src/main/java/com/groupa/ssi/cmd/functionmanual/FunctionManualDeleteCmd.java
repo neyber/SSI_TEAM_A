@@ -18,7 +18,7 @@ public class FunctionManualDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        service.deleteById(FunctionManulId);
+        service.procedureDeleteById(FunctionManulId);
     }
 
     public void setFunctionManulIdId(Integer FunctionManulId) {

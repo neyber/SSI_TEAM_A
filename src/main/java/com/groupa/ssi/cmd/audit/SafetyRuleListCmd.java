@@ -21,7 +21,7 @@ public class SafetyRuleListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        safetyRuleList = safetyRuleService.findAll();
+        safetyRuleList = safetyRuleService.procedureFindAll();
     }
 
     public List<SafetyRule> getSafetyRuleList() {

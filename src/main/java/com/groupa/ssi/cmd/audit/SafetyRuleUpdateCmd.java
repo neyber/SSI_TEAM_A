@@ -22,7 +22,7 @@ public class SafetyRuleUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         SafetyRule safetyRule = composeSafetyRule(safetyRuleId, safetyRuleRequest);
-        safetyRuleService.save(safetyRule);
+        safetyRuleService.procedureUpdate(safetyRule);
     }
 
     public void setSafetyRuleId(Integer safetyRuleId) {

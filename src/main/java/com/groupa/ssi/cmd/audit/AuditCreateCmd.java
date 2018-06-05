@@ -39,7 +39,7 @@ public class AuditCreateCmd extends AbstractCommand {
         }
 
         Audit audit = ComposeAudit(auditRequest, employee, department);
-        auditService.save(audit);
+        auditService.procedureCreate(audit);
     }
 
     private Audit ComposeAudit(AuditRequest auditRequest,  Employee employee, Department department) {

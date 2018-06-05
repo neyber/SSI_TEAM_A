@@ -21,7 +21,7 @@ public class AuditReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        audit = auditService.findById(auditId);
+        audit = auditService.procedureFindById(auditId);
     }
 
     public void setAuditId(Integer auditId) {

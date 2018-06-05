@@ -21,7 +21,7 @@ public class SafetyRuleReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        safetyRule = safetyRuleService.findById(safetyRuleId);
+        safetyRule = safetyRuleService.procedureFindById(safetyRuleId);
     }
 
     public void setSafetyRuleId(Integer safetyRuleId) {
