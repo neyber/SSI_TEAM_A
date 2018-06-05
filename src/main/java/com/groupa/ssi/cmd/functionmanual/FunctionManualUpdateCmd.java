@@ -31,7 +31,7 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
             roleFunction = roleService.findById(functionManualRequest.getRoleFunction());
         }
         FunctionManual functionManual = composeFunctionManual(functionManualId, functionManualRequest, roleFunction);
-        service.save(functionManual);
+        service.procedureUpdate(functionManual);
     }
 
     public void setFunctionManualId(Integer functionManualId) {

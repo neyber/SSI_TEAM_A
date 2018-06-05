@@ -32,7 +32,7 @@ public class FunctionManualCreateCmd extends AbstractCommand {
         }
 
         FunctionManual functionManual = composeFunctionManual(functionManualRequest, roleFunction);
-        service.save(functionManual);
+        service.procedureCreate(functionManual);
     }
 
     public void setFunctionManualRequest(FunctionManualRequest functionManualRequest) {

@@ -18,7 +18,7 @@ public class SafetyRuleDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        safetyRuleService.deleteById(safetyRuleId);
+        safetyRuleService.procedureDeleteById(safetyRuleId);
     }
 
     public void setSafetyRuleId(Integer safetyRuleId) {

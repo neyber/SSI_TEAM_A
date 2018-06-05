@@ -18,7 +18,7 @@ public class AuditDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        auditService.deleteById(auditId);
+        auditService.procedureDeleteById(auditId);
     }
 
     public void setAuditId(Integer auditId) {

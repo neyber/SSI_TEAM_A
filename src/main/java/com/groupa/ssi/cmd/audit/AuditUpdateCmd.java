@@ -22,7 +22,7 @@ public class AuditUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         Audit audit = composeAudit(auditId, auditRequest);
-        auditService.save(audit);
+        auditService.procedureUpdate(audit);
     }
 
     public void setAuditId(Integer auditId) {
