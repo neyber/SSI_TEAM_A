@@ -16,7 +16,7 @@
                                          - fixed properties: field names, field definitions, invalid constraints, field NULL values
  05/28/2018    Henry Bustamante C.       - I have updated schema in order to add audit columns as createdBy and mofidiedBy and only createdBy will have a default value as 0
 ******************************************************************************/
-IF db_id('ssiA') IS NULL 
+IF db_id('ssiA') IS NULL
     CREATE DATABASE ssiA
 GO
 use ssiA
@@ -355,13 +355,13 @@ BEGIN
 CREATE TABLE Accident (id INT IDENTITY(1,1) NOT NULL
 					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
 					          , dateAccident DATETIME CONSTRAINT NN_DateAccident NOT NULL
-                    , statusRecord BIT CONSTRAINT NN_StatusRecrod DEFAULT 0 NOT NULL
 					          , whereOccurr VARCHAR(1000) CONSTRAINT NN_WhereOccurr NOT NULL
+					          , statusRecord BIT CONSTRAINT NN_StatusRecrod DEFAULT 0 NOT NULL
 					          , totalDaysOutOfWork INT CONSTRAINT NN_TotalDaysOutOfWork NOT NULL
 					          , totalDaysRestrictedTransferredWork INT CONSTRAINT NN_TotalDaysRestrictedTrasnferredWork NOT NULL
-                    , employeeId INT
                     , saCategoryId INT
                     , saTypeId INT
+                    , employeeId INT
 					          , createdBy INT DEFAULT 0 NOT NULL
                     , createdOn DATETIME NOT NULL
                     , updatedBy INT
@@ -395,13 +395,13 @@ BEGIN
 CREATE TABLE Sickness (id INT IDENTITY(1,1) NOT NULL
 					          , description VARCHAR(1000) CONSTRAINT NN_Description NOT NULL
 					          , dateSickness DATETIME CONSTRAINT NN_DateSickness NOT NULL
-                    , statusRecord BIT CONSTRAINT NN_SicknessStatusRecrod DEFAULT 0 NOT NULL
 					          , whereOccurr VARCHAR(1000) CONSTRAINT NN_WhereOcurr NOT NULL
+					          , statusRecord BIT CONSTRAINT NN_SicknessStatusRecrod DEFAULT 0 NOT NULL
 					          , totalDaysOutOfWork INT CONSTRAINT NN_TotalDaysOutOfWork NOT NULL
 					          , totalDaysRestrictedTransferredWork INT CONSTRAINT NN_TotalDaysRestrictedTransferredWork NOT NULL
-                    , employeeId INT
                     , saCategoryId INT
                     , saTypeId INT
+                    , employeeId INT
                     , createdBy INT DEFAULT 0 NOT NULL
                     , createdOn DATETIME NOT NULL
                     , updatedBy INT
@@ -536,7 +536,7 @@ CREATE TABLE ExistingPpeAssigned (id INT IDENTITY(1,1) NOT NULL
 					          , assignedNotes VARCHAR(200) CONSTRAINT NN_AssignedNotes NOT NULL
 					          , assignedDate DATETIME CONSTRAINT NN_AssignedDate NOT NULL
 					          , returnNotes VARCHAR(1000) CONSTRAINT NN_ReturnNotes NOT NULL
-                    , returnDate DATETIME
+                    , returnDate DATETIME DEFAULT NULL
                     , existingPpeId INT
                     , employeeId INT
                     , createdBy INT DEFAULT 0 NOT NULL

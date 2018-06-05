@@ -18,7 +18,7 @@ public class AccidentDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run(){
-        service.deleteById(accidentId);
+        service.procedureDeleteById(accidentId);
     }
 
     public void setAccidentId(Integer accidentId){

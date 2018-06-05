@@ -21,7 +21,7 @@ public class SicknessReadCmd extends AbstractCommand {
 
     @Override
     protected void run(){
-        sickness = service.findById(sicknessId);
+        sickness = service.procedureFindById(sicknessId);
     }
 
     public void setSicknessId(Integer sicknessId) {

@@ -21,7 +21,7 @@ public class SaTypeListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        saTypeList = service.findAll();
+        saTypeList = service.procedureFindAll();
     }
 
     public List<SaType> getSaTypeList() {

@@ -23,7 +23,7 @@ public class SaCategoryUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         SaCategory saCategory = composeSaCategory(saCategoryRequest);
-        service.save(saCategory);
+        service.procedureUpdate(saCategory);
     }
 
     public void setSaCategoryId(Integer saCategoryId) {

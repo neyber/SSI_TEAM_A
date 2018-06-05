@@ -22,7 +22,7 @@ public class PpeClassificationCreateCmd extends AbstractCommand {
     @Override
     protected void run() {
         PpeClassification ppeClassification = composePpeClassification(ppeClassificationRequest);
-        service.save(ppeClassification);
+        service.procedureCreate(ppeClassification);
     }
 
     public void setPpeClassificationRequest(PpeClassificationRequest ppeClassificationRequest) {

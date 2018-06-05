@@ -51,7 +51,7 @@ public class SicknessUpdateCmd extends AbstractCommand {
             employee = employeeService.findById(sicknessRequest.getEmployeeId());
         }
         Sickness sickness = composeSickness(sicknessRequest, saCategory, saType,  employee);
-        service.save(sickness);
+        service.procedureUpdate(sickness);
     }
 
     public void setSicknessId(Integer sicknessId) {

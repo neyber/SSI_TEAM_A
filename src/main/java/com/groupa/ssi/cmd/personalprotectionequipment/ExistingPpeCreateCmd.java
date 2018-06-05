@@ -31,7 +31,7 @@ public class ExistingPpeCreateCmd extends AbstractCommand {
             ppe = ppeService.findById(existingPpeRequest.getPpeId());
         }
         ExistingPpe existingPpe = composeExistingPpe(existingPpeRequest, ppe);
-        existingPpeService.save(existingPpe);
+        existingPpeService.procedureCreate(existingPpe);
     }
 
     public void setExistingPpeRequest(ExistingPpeRequest existingPpeRequest) {

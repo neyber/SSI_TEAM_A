@@ -51,7 +51,7 @@ public class AccidentCreateCmd extends AbstractCommand {
         }
 
         Accident accident = composeAccident(accidentRequest, saCategory, saType, employee);
-        accidentService.save(accident);
+        accidentService.procedureCreate(accident);
     }
 
     public void setAccidentRequest(AccidentRequest accidentRequest) {

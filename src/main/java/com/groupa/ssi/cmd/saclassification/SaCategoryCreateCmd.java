@@ -22,7 +22,7 @@ public class SaCategoryCreateCmd extends AbstractCommand {
     @Override
     protected void run(){
         SaCategory saCategory = this.composeSaCategory(saCategoryRequest);
-        saCategoryService.save(saCategory);
+        saCategoryService.procedureCreate(saCategory);
     }
 
     public void setSaCategoryRequest(SaCategoryRequest saCategoryRequest) {

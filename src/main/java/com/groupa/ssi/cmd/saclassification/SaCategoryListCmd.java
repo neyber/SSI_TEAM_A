@@ -22,7 +22,7 @@ public class SaCategoryListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        saCategoryList = service.findAll();
+        saCategoryList = service.procedureFindAll();
     }
 
     public List<SaCategory> getSaCategoryList() {

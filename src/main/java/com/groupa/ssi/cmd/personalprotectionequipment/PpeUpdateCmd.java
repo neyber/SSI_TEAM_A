@@ -32,7 +32,7 @@ public class PpeUpdateCmd extends AbstractCommand {
             ppeClassification = ppeClassificationService.findById(ppeRequest.getPpeClassificationId());
         }
         Ppe ppe = composePpe(ppeId, ppeRequest, ppeClassification);
-        ppeService.save(ppe);
+        ppeService.procedureUpdate(ppe);
     }
 
     public void setPpeId(Integer ppeId) {

@@ -23,7 +23,7 @@ public class SaTypeUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         SaType saType = composeSaType(saTypeRequest);
-        service.save(saType);
+        service.procedureUpdate(saType);
     }
 
     public void setSaTypeId(Integer saTypeId) {

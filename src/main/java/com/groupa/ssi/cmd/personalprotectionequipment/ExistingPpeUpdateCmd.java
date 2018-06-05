@@ -32,7 +32,7 @@ public class ExistingPpeUpdateCmd extends AbstractCommand {
             ppe = ppeService.findById(existingPpeRequest.getPpeId());
         }
         ExistingPpe existingPpe = composeExistingPpe(existingPpeId, existingPpeRequest, ppe);
-        existingPpeService.save(existingPpe);
+        existingPpeService.procedureUpdate(existingPpe);
     }
 
     public void setExistingPpeId(Integer existingPpeId) {

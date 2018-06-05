@@ -19,7 +19,7 @@ public class SaCategoryDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run(){
-        service.deleteById(saCategoryId);
+        service.procedureDeleteById(saCategoryId);
     }
 
     public void setSaCategoryId(Integer saCategoryId) {

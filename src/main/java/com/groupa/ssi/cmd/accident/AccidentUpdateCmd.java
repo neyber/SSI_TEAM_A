@@ -53,7 +53,7 @@ public class AccidentUpdateCmd extends AbstractCommand {
         }
 
         Accident accident = composeAccident(accidentRequest, saCategory, saType, employee);
-        service.save(accident);
+        service.procedureUpdate(accident);
     }
 
     public void setAccidentId(Integer accidentId) {

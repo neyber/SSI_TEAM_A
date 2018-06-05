@@ -31,7 +31,7 @@ public class PpeCreateCmd extends AbstractCommand {
             ppeClassification = ppeClassificationService.findById(ppeRequest.getPpeClassificationId());
         }
         Ppe ppe = composePpe(ppeRequest, ppeClassification);
-        ppeService.save(ppe);
+        ppeService.procedureCreate(ppe);
     }
 
     public void setPpeRequest(PpeRequest ppeRequest) {

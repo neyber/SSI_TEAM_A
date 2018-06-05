@@ -1,6 +1,7 @@
 package com.groupa.ssi.model.repository.personalprotectionequipment;
 
 import com.groupa.ssi.model.domain.personalprotectionequipment.ExistingPpeAssigned;
+import com.groupa.ssi.model.repository.storedprocedures.personalprotectionequipment.ExistingPpeAssignedRepositoryProcedure;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Walker Colina
  */
 
-public interface ExistingPpeAssignedRepository extends JpaRepository<ExistingPpeAssigned, Integer> {
+public interface ExistingPpeAssignedRepository extends JpaRepository<ExistingPpeAssigned, Integer>, ExistingPpeAssignedRepositoryProcedure {
 }

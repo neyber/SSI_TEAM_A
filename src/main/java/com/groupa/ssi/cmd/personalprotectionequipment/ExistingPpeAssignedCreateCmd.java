@@ -42,7 +42,7 @@ public class ExistingPpeAssignedCreateCmd extends AbstractCommand {
         }
 
         ExistingPpeAssigned existingPpeAssigned = composeExistingPpeAssigned(existingPpeAssignedRequest, existingPpe, employee);
-        existingPpeAssignedService.save(existingPpeAssigned);
+        existingPpeAssignedService.procedureCreate(existingPpeAssigned);
     }
 
     public void setExistingPpeAssignedRequest(ExistingPpeAssignedRequest existingPpeAssignedRequest) {

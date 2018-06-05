@@ -23,7 +23,7 @@ public class PpeClassificationUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         PpeClassification ppeClassification = composePpeClassification(ppeClassificationId, ppeClassificationRequest);
-        service.save(ppeClassification);
+        service.procedureUpdate(ppeClassification);
     }
 
     public void setPpeClassificationId(Integer ppeClassificationId) {
