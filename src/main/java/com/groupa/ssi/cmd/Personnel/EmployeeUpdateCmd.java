@@ -61,7 +61,7 @@ public class EmployeeUpdateCmd extends AbstractCommand {
 
 
         Employee employee = composeEmployee(employeeId, employeeRequest, roleEmployee, department, supervisor, photoFileDocument);
-        employeeService.save(employee);
+        employeeService.procedureUpdate(employee);
     }
 
     private Employee composeEmployee(Integer employeeId, EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, FileDocument photoFileDocument) {
