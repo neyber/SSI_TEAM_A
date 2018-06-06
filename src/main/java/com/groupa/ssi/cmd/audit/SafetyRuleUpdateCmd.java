@@ -34,7 +34,7 @@ public class SafetyRuleUpdateCmd extends AbstractCommand {
     }
 
     private SafetyRule composeSafetyRule(Integer safetyRuleId, SafetyRuleRequest safetyRuleRequest) {
-        SafetyRule safetyRule = safetyRuleService.findById(safetyRuleId);
+        SafetyRule safetyRule = safetyRuleService.procedureFindById(safetyRuleId);
         safetyRule.setPolicyCode(safetyRuleRequest.getPolicyCode());
         safetyRule.setPolicyName(safetyRuleRequest.getPolicyName());
         safetyRule.setComplianceParameter(safetyRuleRequest.getComplianceParameter());

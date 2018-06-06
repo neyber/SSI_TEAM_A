@@ -33,12 +33,12 @@ public class ExistingPpeAssignedCreateCmd extends AbstractCommand {
     protected void run() {
         ExistingPpe existingPpe = null;
         if(existingPpeAssignedRequest.getExistingPpeId() != null){
-            existingPpe = existingPpeService.findById(existingPpeAssignedRequest.getExistingPpeId());
+            existingPpe = existingPpeService.procedureFindById(existingPpeAssignedRequest.getExistingPpeId());
         }
 
         Employee employee = null;
         if(existingPpeAssignedRequest.getEmployeeId() != null){
-            employee = employeeService.findById(existingPpeAssignedRequest.getEmployeeId());
+            employee = employeeService.procedureFindById(existingPpeAssignedRequest.getEmployeeId());
         }
 
         ExistingPpeAssigned existingPpeAssigned = composeExistingPpeAssigned(existingPpeAssignedRequest, existingPpe, employee);

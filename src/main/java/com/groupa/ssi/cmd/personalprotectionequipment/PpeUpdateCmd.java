@@ -29,7 +29,7 @@ public class PpeUpdateCmd extends AbstractCommand {
     protected void run() {
         PpeClassification ppeClassification = null;
         if(ppeRequest.getPpeClassificationId() != null){
-            ppeClassification = ppeClassificationService.findById(ppeRequest.getPpeClassificationId());
+            ppeClassification = ppeClassificationService.procedureFindById(ppeRequest.getPpeClassificationId());
         }
         Ppe ppe = composePpe(ppeId, ppeRequest, ppeClassification);
         ppeService.procedureUpdate(ppe);
@@ -44,7 +44,7 @@ public class PpeUpdateCmd extends AbstractCommand {
     }
 
     private Ppe composePpe(Integer ppeId, PpeRequest ppeRequest, PpeClassification ppeClassification) {
-        Ppe ppe = ppeService.findById(ppeId);
+        Ppe ppe = ppeService.procedureFindById(ppeId);
         ppe.setName(ppeRequest.getName());
         ppe.setDescription(ppeRequest.getDescription());
         //ppe.setImage(ppeRequest.getImage());

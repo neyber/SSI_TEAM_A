@@ -28,7 +28,7 @@ public class FunctionManualCreateCmd extends AbstractCommand {
         Role roleFunction = null;
 
         if(functionManualRequest.getRoleFunction() != null){
-            roleFunction = roleService.findById(functionManualRequest.getRoleFunction());
+            roleFunction = roleService.procedureFindById(functionManualRequest.getRoleFunction());
         }
 
         FunctionManual functionManual = composeFunctionManual(functionManualRequest, roleFunction);
