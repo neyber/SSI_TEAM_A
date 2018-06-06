@@ -35,7 +35,7 @@ public class SaTypeUpdateCmd extends AbstractCommand {
     }
 
     private SaType composeSaType(SaTypeRequest saTypeRequest) {
-        SaType saType = service.findById(saTypeId);
+        SaType saType = service.procedureFindById(saTypeId);
         saType.setType(saTypeRequest.getType());
         saType.setDescription(saTypeRequest.getDescription());
 

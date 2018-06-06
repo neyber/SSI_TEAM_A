@@ -34,12 +34,12 @@ public class ExistingPpeAssignedUpdateCmd extends AbstractCommand {
     protected void run() {
         ExistingPpe existingPpe = null;
         if(existingPpeAssignedRequest.getExistingPpeId() != null){
-            existingPpe = existingPpeService.findById(existingPpeAssignedRequest.getExistingPpeId());
+            existingPpe = existingPpeService.procedureFindById(existingPpeAssignedRequest.getExistingPpeId());
         }
 
         Employee employee = null;
         if(existingPpeAssignedRequest.getEmployeeId() != null){
-            employee = employeeService.findById(existingPpeAssignedRequest.getEmployeeId());
+            employee = employeeService.procedureFindById(existingPpeAssignedRequest.getEmployeeId());
         }
 
         ExistingPpeAssigned existingPpeAssigned = composeExistingPpeAssigned(existingPpeAssignedId, existingPpeAssignedRequest, existingPpe, employee);
@@ -55,7 +55,7 @@ public class ExistingPpeAssignedUpdateCmd extends AbstractCommand {
     }
 
     private ExistingPpeAssigned composeExistingPpeAssigned(Integer existingPpeAssignedId, ExistingPpeAssignedRequest existingPpeAssignedRequest, ExistingPpe existingPpe, Employee employee){
-        ExistingPpeAssigned existingPpeAssigned = existingPpeAssignedService.findById(existingPpeAssignedId);
+        ExistingPpeAssigned existingPpeAssigned = existingPpeAssignedService.procedureFindById(existingPpeAssignedId);
         existingPpeAssigned.setAssignedNotes(existingPpeAssignedRequest.getAssignedNotes());
         existingPpeAssigned.setAssignedDate(existingPpeAssignedRequest.getAssignedDate());
         existingPpeAssigned.setReturnNotes(existingPpeAssignedRequest.getReturnNotes());

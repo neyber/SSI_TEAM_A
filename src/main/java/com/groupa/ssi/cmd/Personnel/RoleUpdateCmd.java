@@ -27,7 +27,7 @@ public class RoleUpdateCmd extends AbstractCommand {
     }
 
     private Role composeRole(Integer roleId, RoleRequest roleRequest) {
-        Role role = roleService.findById(roleId);
+        Role role = roleService.procedureFindById(roleId);
         role.setName(roleRequest.getName());
         role.setDescription(roleRequest.getDescription());
 

@@ -30,7 +30,7 @@ public class WorkItemCreateCmd extends AbstractCommand {
     protected void run() {
         WorkItemClassification workItemClassification = null;
         if(workItemRequest.getWorkItemClassificationId() != null){
-            workItemClassification = workItemClassificationService.findById(workItemRequest.getWorkItemClassificationId());
+            workItemClassification = workItemClassificationService.procedureFindById(workItemRequest.getWorkItemClassificationId());
         }
         WorkItem workItem = composeWorkItem(workItemRequest, workItemClassification);
         workItemService.procedureCreate(workItem);

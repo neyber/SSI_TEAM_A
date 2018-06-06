@@ -35,7 +35,7 @@ public class SaCategoryUpdateCmd extends AbstractCommand {
     }
 
     private SaCategory composeSaCategory(SaCategoryRequest saCategoryRequest) {
-        SaCategory saCategory = service.findById(saCategoryId);
+        SaCategory saCategory = service.procedureFindById(saCategoryId);
         saCategory.setCategory(saCategoryRequest.getCategory());
         saCategory.setDescription(saCategoryRequest.getDescription());
         saCategory.setReference(saCategoryRequest.getReference());
