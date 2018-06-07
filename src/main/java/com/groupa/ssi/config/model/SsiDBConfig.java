@@ -58,7 +58,7 @@ public class SsiDBConfig {
 
     private Map hibernateProperties() {
         Map map = new HashMap();
-        map.put("hibernate.hbm2ddl.auto", "create-drop");  //values:  validate, create-drop
+        map.put("hibernate.hbm2ddl.auto", "validate");  //values:  create, create-drop, validate, and update
 
         return map;
     }
