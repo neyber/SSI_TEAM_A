@@ -3,7 +3,6 @@ package com.groupa.ssi.model.repository.storedprocedures.sickness;
 import com.groupa.ssi.model.domain.sickness.Sickness;
 import com.groupa.ssi.model.repository.storedprocedures.common.GenericRepositoryProcedureImpl;
 import com.groupa.ssi.model.repository.storedprocedures.util.SicknessProcedures;
-import com.groupa.ssi.model.repository.storedprocedures.util.WorkItemProcedures;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,9 +51,6 @@ public class SicknessRepositoryProcedureImpl
         procedureQuery.setParameter("saTypeId", null != entity.getSaType() ? entity.getSaType().getId() : null);
         procedureQuery.setParameter("employeeId", null != entity.getEmployee() ? entity.getEmployee().getId() : null);
 
-        System.out.println("HENRY STARTING HERE");
-        System.out.println(procedureQuery.getParameter("statusRecord").getPosition() +" 1 "+entity.getStatusRecord());
-        System.out.println(procedureQuery.getParameter("totalDaysOutOfWork").getPosition() +" 2 "+entity.getTotalDaysOutOfWork());
         addCreateCommonParameters(procedureQuery);
 
         procedureQuery.execute();
