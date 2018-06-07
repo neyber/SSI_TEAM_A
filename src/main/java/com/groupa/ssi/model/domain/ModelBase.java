@@ -1,5 +1,6 @@
 package com.groupa.ssi.model.domain;
 
+import com.groupa.ssi.common.utils.Constants;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -34,7 +35,7 @@ public class ModelBase {
     private Date updatedOn;
 
     @Column
-    private Integer createdBy = 0;  //default value because it is not null and we not support user management
+    private Integer createdBy = Constants.USER_ID;  //default value because it is not null and we not support user management
 
     @Column
     private Integer updatedBy;
