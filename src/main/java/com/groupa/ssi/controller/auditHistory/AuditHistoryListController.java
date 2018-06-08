@@ -23,8 +23,7 @@ import java.util.stream.Collectors;
 @Api(tags = AuditHistoryAbstractController.TAG_NAME, description = AuditHistoryAbstractController.DESCRIPTION)
 @RestController
 @RequestScope
-
-public class AuditHistoryListController {
+public class AuditHistoryListController extends AuditHistoryAbstractController {
 
     @Autowired
     private AuditHistoryListCmd auditHistoryListCmd;

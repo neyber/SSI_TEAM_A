@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @RequestMapping(value = AuditHistoryAbstractController.PATH)
-public class AuditHistoryAbstractController {
+public abstract class AuditHistoryAbstractController {
     public static final String PATH = Constants.SSI_BASE_PATH + "/auditHistory";
 
     public static final String TAG_NAME = "Audit History";
