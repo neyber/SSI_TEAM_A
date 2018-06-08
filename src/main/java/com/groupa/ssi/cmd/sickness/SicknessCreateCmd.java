@@ -39,18 +39,18 @@ public class SicknessCreateCmd extends AbstractCommand {
         SaType saType = null;
         Employee employee = null;
         if (null != sicknessRequest.getSaCategoryId()){
-            saCategory = saCategoryService.findById(sicknessRequest.getSaCategoryId());
+            saCategory = saCategoryService.procedureFindById(sicknessRequest.getSaCategoryId());
         }
 
         if (null != sicknessRequest.getSaTypeId()){
-            saType = saTypeService.findById(sicknessRequest.getSaTypeId());
+            saType = saTypeService.procedureFindById(sicknessRequest.getSaTypeId());
         }
 
         if (null != sicknessRequest.getEmployeeId()) {
-            employee = employeeService.findById(sicknessRequest.getEmployeeId());
+            employee = employeeService.procedureFindById(sicknessRequest.getEmployeeId());
         }
         Sickness sickness = composeSickness(sicknessRequest, saCategory, saType,  employee);
-        service.save(sickness);
+        service.procedureCreate(sickness);
     }
 
     public void setSicknessRequest(SicknessRequest sicknessRequest) {

@@ -757,6 +757,7 @@ BEGIN
 			, departmentEmployeeId
 			, roleEmployeeId
 			, supervisorId
+			, photoFileDocumentId
 			, createdBy
       , createdOn
       , updatedBy
@@ -807,6 +808,7 @@ BEGIN
 			, departmentEmployeeId
 			, roleEmployeeId
 			, supervisorId
+			, photoFileDocumentId
 			, createdBy
       , createdOn
       , updatedBy
@@ -854,6 +856,7 @@ CREATE PROCEDURE [dbo].[proInsertEmployee]
 	, @departmentEmployeeId INT
 	, @roleEmployeeId INT
   , @supervisorId INT
+  , @photoFileDocumentId INT
 	, @createdBy INT
 	, @newId INT OUTPUT
 )
@@ -872,6 +875,7 @@ BEGIN
 						   , departmentEmployeeId
 						   , RoleEmployeeId
 						   , SupervisorId
+						   , photoFileDocumentId
 						   , createdBy)
 	VALUES (  @dateOfBirth
 			, @firstName
@@ -883,6 +887,7 @@ BEGIN
 			, @departmentEmployeeId
 			, @roleEmployeeId
 			, @supervisorId
+			, @photoFileDocumentId
 			, @createdBy);
 
 	SET @newId = SCOPE_IDENTITY();
@@ -925,6 +930,7 @@ CREATE PROCEDURE [dbo].[proUpdateEmployee]
 	, @departmentEmployeeId INT
 	, @roleEmployeeId INT
   , @supervisorId INT
+  , @photoFileDocumentId INT
 	, @updatedBy INT
 	, @updatedOn DATETIME
 	, @version BIGINT
@@ -945,6 +951,7 @@ BEGIN
 		, departmentEmployeeId = @departmentEmployeeId
 		, roleEmployeeId = @roleEmployeeId
 		, supervisorId = @supervisorId
+		, photoFileDocumentId = @photoFileDocumentId
 		, updatedBy = @updatedBy
 		, updatedOn = @updatedOn
 		, version = @version

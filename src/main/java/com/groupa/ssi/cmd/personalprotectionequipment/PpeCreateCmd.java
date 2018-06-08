@@ -28,10 +28,10 @@ public class PpeCreateCmd extends AbstractCommand {
     protected void run() {
         PpeClassification ppeClassification = null;
         if(ppeRequest.getPpeClassificationId() != null){
-            ppeClassification = ppeClassificationService.findById(ppeRequest.getPpeClassificationId());
+            ppeClassification = ppeClassificationService.procedureFindById(ppeRequest.getPpeClassificationId());
         }
         Ppe ppe = composePpe(ppeRequest, ppeClassification);
-        ppeService.save(ppe);
+        ppeService.procedureCreate(ppe);
     }
 
     public void setPpeRequest(PpeRequest ppeRequest) {

@@ -1,6 +1,7 @@
 package com.groupa.ssi.model.repository.catalog;
 
 import com.groupa.ssi.model.domain.catalog.PpeClassification;
+import com.groupa.ssi.model.repository.storedprocedures.catalog.PpeClassificationRepositoryProcedure;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Walker Colina
  */
 
-public interface PpeClassificationRepository extends JpaRepository<PpeClassification, Integer> {
+public interface PpeClassificationRepository extends JpaRepository<PpeClassification, Integer>, PpeClassificationRepositoryProcedure {
 }

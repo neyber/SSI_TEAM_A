@@ -19,7 +19,7 @@ public class ExistingPpeDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        service.deleteById(existingPpeId);
+        service.procedureDeleteById(existingPpeId);
     }
 
     public void setExistingPpeId(Integer existingPpeId) {

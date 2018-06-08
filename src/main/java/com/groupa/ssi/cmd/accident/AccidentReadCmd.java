@@ -21,7 +21,7 @@ public class AccidentReadCmd extends AbstractCommand {
 
     @Override
     protected void run(){
-        accident = service.findById(accidentId);
+        accident = service.procedureFindById(accidentId);
     }
 
     public void setAccidentId(Integer accidentId) {

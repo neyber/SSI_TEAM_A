@@ -22,7 +22,7 @@ public class PpeClassificationListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        ppeClassificationList = service.findAll();
+        ppeClassificationList = service.procedureFindAll();
     }
 
     public List<PpeClassification> getPpeClassificationList() {

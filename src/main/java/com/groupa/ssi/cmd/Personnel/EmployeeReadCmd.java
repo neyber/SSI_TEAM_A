@@ -21,7 +21,7 @@ public class EmployeeReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        employee = employeeService.findById(employeeId);
+        employee = employeeService.procedureFindById(employeeId);
     }
 
     public Employee getEmployee() {

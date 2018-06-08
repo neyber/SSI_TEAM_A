@@ -23,7 +23,7 @@ public class SaCategoryUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         SaCategory saCategory = composeSaCategory(saCategoryRequest);
-        service.save(saCategory);
+        service.procedureUpdate(saCategory);
     }
 
     public void setSaCategoryId(Integer saCategoryId) {
@@ -35,7 +35,7 @@ public class SaCategoryUpdateCmd extends AbstractCommand {
     }
 
     private SaCategory composeSaCategory(SaCategoryRequest saCategoryRequest) {
-        SaCategory saCategory = service.findById(saCategoryId);
+        SaCategory saCategory = service.procedureFindById(saCategoryId);
         saCategory.setCategory(saCategoryRequest.getCategory());
         saCategory.setDescription(saCategoryRequest.getDescription());
         saCategory.setReference(saCategoryRequest.getReference());

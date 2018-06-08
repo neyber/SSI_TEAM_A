@@ -82,14 +82,15 @@ public abstract class GenericRepositoryProcedureImpl<T, K extends GenericProcedu
     }
 
     protected void addUpdateCommonParameters(StoredProcedureQuery procedureQuery, ModelBase entity) {
+        entity.setUpdatedBy(Constants.USER_ID);  //this because entity is managed by jpa and not is detached
+
         procedureQuery.registerStoredProcedureParameter("updatedBy", Integer.class, ParameterMode.IN);
         procedureQuery.registerStoredProcedureParameter("updatedOn", Date.class, ParameterMode.IN);
         procedureQuery.registerStoredProcedureParameter("version", Long.class, ParameterMode.IN);
 
-        procedureQuery.setParameter("updatedBy", Constants.USER_ID);
+        procedureQuery.setParameter("updatedBy", entity.getUpdatedBy());
         procedureQuery.setParameter("updatedOn", new Date());
         procedureQuery.setParameter("version", entity.getVersion());
-        //procedureQuery.setParameter("version", (entity.getVersion() != null ? entity.getVersion() + 1 : 1));
     }
 
 }

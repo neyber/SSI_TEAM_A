@@ -1,6 +1,7 @@
 package com.groupa.ssi.model.repository.personalprotectionequipment;
 
 import com.groupa.ssi.model.domain.personalprotectionequipment.Ppe;
+import com.groupa.ssi.model.repository.storedprocedures.personalprotectionequipment.PpeRepositoryProcedure;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Walker Colina
  */
 
-public interface PpeRepository extends JpaRepository<Ppe, Integer> {
+public interface PpeRepository extends JpaRepository<Ppe, Integer>, PpeRepositoryProcedure {
 }

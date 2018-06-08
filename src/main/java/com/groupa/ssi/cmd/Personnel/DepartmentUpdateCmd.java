@@ -27,7 +27,7 @@ public class DepartmentUpdateCmd extends AbstractCommand {
     }
 
     private Department composeDepartment(Integer departmentId, DepartmentRequest departmentRequest) {
-        Department department = departmentService.findById(departmentId);
+        Department department = departmentService.procedureFindById(departmentId);
         department.setName(departmentRequest.getName());
         department.setDescription(departmentRequest.getDescription());
 

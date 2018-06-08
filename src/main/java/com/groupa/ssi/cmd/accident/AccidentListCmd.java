@@ -21,7 +21,7 @@ public class AccidentListCmd extends AbstractCommand {
 
     @Override
     protected void run(){
-        accidentList = service.findAll();
+        accidentList = service.procedureFindAll();
     }
 
     public List<Accident> getAccidentList(){

@@ -5,37 +5,27 @@ package com.groupa.ssi.services.accident;
 
 import com.groupa.ssi.exception.DomainEntityNotFoundException;
 import com.groupa.ssi.model.domain.accident.Accident;
+import com.groupa.ssi.model.domain.saClassification.SaCategory;
 import com.groupa.ssi.model.repository.accident.AccidentRepository;
+import com.groupa.ssi.model.repository.saclassification.SaCategoryRepository;
+import com.groupa.ssi.services.common.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AccidentService {
+public class AccidentService extends GenericService<Accident> {
 
+    @Autowired
     private AccidentRepository repository;
 
-    public AccidentService(AccidentRepository repository) {
-        this.repository = repository;
+    @Override
+    protected JpaRepository<Accident, Integer> getRepository() {
+        return repository;
     }
 
-    public List<Accident> findAll() {
-        List<Accident> results = new ArrayList<>();
-        repository.findAll().forEach(results::add);
-        return results;
-    }
-
-    public Accident findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new DomainEntityNotFoundException(Accident.class));
-    }
-
-    public Accident save(Accident accident) {
-        return repository.save(accident);
-    }
-
-    public void deleteById(Integer id) {
-        repository.deleteById(id);
-    }
 
 }

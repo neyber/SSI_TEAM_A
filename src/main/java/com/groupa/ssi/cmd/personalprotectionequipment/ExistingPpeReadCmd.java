@@ -22,7 +22,7 @@ public class ExistingPpeReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        existingPpe = service.findById(existingPpeId);
+        existingPpe = service.procedureFindById(existingPpeId);
     }
 
     public void setExistingPpeId(Integer existingPpeId) {
