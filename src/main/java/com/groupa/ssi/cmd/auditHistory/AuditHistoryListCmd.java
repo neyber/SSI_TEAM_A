@@ -22,7 +22,7 @@ public class AuditHistoryListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        auditHistorySSIList = auditHistoryService.procedureFindAll();
+        auditHistorySSIList = auditHistoryService.findAll();
     }
 
     public List<AuditHistory_SSI> getAuditHistorySSIList() {
