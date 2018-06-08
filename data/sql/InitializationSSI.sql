@@ -102,7 +102,7 @@ BEGIN
         INSERT INTO [dbo].[Role]([createdOn],[updatedOn],[isDeleted],[version],[description],[name])
         VALUES ('2005-08-11', '2005-09-04', 0, 1, 'Sales man','Sales' );
         INSERT INTO [dbo].[Role]([createdOn],[updatedOn],[isDeleted],[version],[description],[name])
-        VALUES ('2005-08-11', '2005-09-04', 0, 1, 'Sales man','Sales' );
+        VALUES ('2005-08-11', '2005-09-04', 0, 1, 'Supervises the construction','Work supervisor' );
         --SET IDENTITY_INSERT dbo.Role OFF;
         PRINT 'Role table done...';
     END
