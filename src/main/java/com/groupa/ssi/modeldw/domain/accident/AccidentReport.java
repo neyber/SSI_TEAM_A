@@ -1,5 +1,7 @@
 package com.groupa.ssi.modeldw.domain.accident;
 
+import java.util.Date;
+
 public class AccidentReport {
     private String fullName;
     private String gender;
@@ -7,6 +9,7 @@ public class AccidentReport {
     private int  year;
     private String month;
     private int day;
+    private Date fullDate;
     private int quantity;
 
     public String getFullName() {
@@ -55,6 +58,14 @@ public class AccidentReport {
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public Date getFullDate() {
+        return fullDate;
+    }
+
+    public void setFullDate(Date fullDate) {
+        this.fullDate = fullDate;
     }
 
     public int getQuantity() {
