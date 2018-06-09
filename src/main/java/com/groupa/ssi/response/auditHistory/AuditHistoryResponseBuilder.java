@@ -43,7 +43,7 @@ public class AuditHistoryResponseBuilder {
         AuditHistoryResponseBuilder auditHistoryResponseBuilder = new AuditHistoryResponseBuilder();
         auditHistoryResponseBuilder.setIdAuditHistory(auditHistorySSI.getIdAuditHistory());
         auditHistoryResponseBuilder.setTableName(auditHistorySSI.getTableName());
-        auditHistoryResponseBuilder.setColumnName(auditHistorySSI.getTableName());
+        auditHistoryResponseBuilder.setColumnName(auditHistorySSI.getColumnName());
         auditHistoryResponseBuilder.setIdFeature(auditHistorySSI.getIdFeature());
         auditHistoryResponseBuilder.setOldValue(auditHistorySSI.getOldValue());
         auditHistoryResponseBuilder.setNewValue(auditHistorySSI.getNewValue());
