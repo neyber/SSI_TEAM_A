@@ -13,13 +13,13 @@ public class AuditHistory_SSI {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int idAuditHistory;
+    private Integer idAuditHistory;
     @Column
     private String tableName;
     @Column
     private String columnName;
     @Column
-    private int idFeature;
+    private Integer idFeature;
     @Column
     private String oldValue;
     @Column
@@ -27,17 +27,17 @@ public class AuditHistory_SSI {
     @Column
     private Date createdDate;
     @Column
-    private int createdBy;
+    private Integer createdBy;
     @Column
     private Date modifiedDate;
     @Column
-    private int modifiedBy;
+    private Integer modifiedBy;
 
-    public int getIdAuditHistory() {
+    public Integer getIdAuditHistory() {
         return idAuditHistory;
     }
 
-    public void setIdAuditHistory(int idAuditHistory) {
+    public void setIdAuditHistory(Integer idAuditHistory) {
         this.idAuditHistory = idAuditHistory;
     }
 
@@ -57,11 +57,11 @@ public class AuditHistory_SSI {
         this.columnName = columnName;
     }
 
-    public int getIdFeature() {
+    public Integer getIdFeature() {
         return idFeature;
     }
 
-    public void setIdFeature(int idFeature) {
+    public void setIdFeature(Integer idFeature) {
         this.idFeature = idFeature;
     }
 
@@ -89,11 +89,11 @@ public class AuditHistory_SSI {
         this.createdDate = createdDate;
     }
 
-    public int getCreatedBy() {
+    public Integer getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -105,11 +105,11 @@ public class AuditHistory_SSI {
         this.modifiedDate = modifiedDate;
     }
 
-    public int getModifiedBy() {
+    public Integer getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(int modifiedBy) {
+    public void setModifiedBy(Integer modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 }

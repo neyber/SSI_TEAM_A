@@ -8,22 +8,22 @@ import java.util.Date;
 
 public class AuditHistoryResponse {
 
-    private int idAuditHistory;
+    private Integer idAuditHistory;
     private String tableName;
     private String columnName;
-    private int idFeature;
+    private Integer idFeature;
     private String oldValue;
     private String newValue;
     private Date createdDate;
-    private int createdBy;
+    private Integer createdBy;
     private Date modifiedDate;
-    private int modifiedBy;
+    private Integer modifiedBy;
 
-    public int getIdAuditHistory() {
+    public Integer getIdAuditHistory() {
         return idAuditHistory;
     }
 
-    public void setIdAuditHistory(int idAuditHistory) {
+    public void setIdAuditHistory(Integer idAuditHistory) {
         this.idAuditHistory = idAuditHistory;
     }
 
@@ -43,11 +43,11 @@ public class AuditHistoryResponse {
         this.columnName = columnName;
     }
 
-    public int getIdFeature() {
+    public Integer getIdFeature() {
         return idFeature;
     }
 
-    public void setIdFeature(int idFeature) {
+    public void setIdFeature(Integer idFeature) {
         this.idFeature = idFeature;
     }
 
@@ -75,11 +75,11 @@ public class AuditHistoryResponse {
         this.createdDate = createdDate;
     }
 
-    public int getCreatedBy() {
+    public Integer getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -91,11 +91,11 @@ public class AuditHistoryResponse {
         this.modifiedDate = modifiedDate;
     }
 
-    public int getModifiedBy() {
+    public Integer getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(int modifiedBy) {
+    public void setModifiedBy(Integer modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 }

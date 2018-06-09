@@ -10,16 +10,16 @@ import java.util.Date;
 
 public class AuditHistoryResponseBuilder {
 
-    private int idAuditHistory;
+    private Integer idAuditHistory;
     private String tableName;
     private String columnName;
-    private int idFeature;
+    private Integer idFeature;
     private String oldValue;
     private String newValue;
     private Date createdDate;
-    private int createdBy;
+    private Integer createdBy;
     private Date modifiedDate;
-    private int modifiedBy;
+    private Integer modifiedBy;
 
     public AuditHistoryResponseBuilder() {
     }
@@ -54,7 +54,7 @@ public class AuditHistoryResponseBuilder {
         return auditHistoryResponseBuilder;
     }
 
-    public AuditHistoryResponseBuilder setIdAuditHistory(int idAuditHistory) {
+    public AuditHistoryResponseBuilder setIdAuditHistory(Integer idAuditHistory) {
         this.idAuditHistory = idAuditHistory;
         return this;
     }
@@ -69,7 +69,7 @@ public class AuditHistoryResponseBuilder {
         return this;
     }
 
-    public AuditHistoryResponseBuilder setIdFeature(int idFeature) {
+    public AuditHistoryResponseBuilder setIdFeature(Integer idFeature) {
         this.idFeature = idFeature;
         return this;
     }
@@ -89,7 +89,7 @@ public class AuditHistoryResponseBuilder {
         return this;
     }
 
-    public AuditHistoryResponseBuilder setCreatedBy(int createdBy) {
+    public AuditHistoryResponseBuilder setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
         return this;
     }
@@ -99,7 +99,7 @@ public class AuditHistoryResponseBuilder {
         return this;
     }
 
-    public AuditHistoryResponseBuilder setModifiedBy(int modifiedBy) {
+    public AuditHistoryResponseBuilder setModifiedBy(Integer modifiedBy) {
         this.modifiedBy = modifiedBy;
         return this;
     }
