@@ -51,6 +51,7 @@ public class AccidentReportService {
                 accidentReport.setYear(rs.getInt("year"));
                 accidentReport.setMonth(rs.getString("month"));
                 accidentReport.setDay(rs.getInt("day"));
+                accidentReport.setFullDate(rs.getDate("fullDate"));
                 accidentReport.setQuantity(rs.getInt("quantity"));
 
                 results.add(accidentReport);
