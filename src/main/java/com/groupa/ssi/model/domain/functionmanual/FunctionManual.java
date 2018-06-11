@@ -5,6 +5,7 @@ import com.groupa.ssi.model.domain.personnel.Role;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
@@ -33,6 +34,7 @@ public class FunctionManual extends ModelBase {
     @Column
     private String principalFunction;
     @OneToOne
+    @JoinColumn(name = "roleFunctionId")
     private Role roleFunction;
 
 

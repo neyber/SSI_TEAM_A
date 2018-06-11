@@ -23,11 +23,11 @@ public class DepartmentUpdateCmd extends AbstractCommand {
     @Override
     protected void run() {
         Department department = composeDepartment(departmentId, departmentRequest);
-        departmentService.save(department);
+        departmentService.procedureUpdate(department);
     }
 
     private Department composeDepartment(Integer departmentId, DepartmentRequest departmentRequest) {
-        Department department = departmentService.findById(departmentId);
+        Department department = departmentService.procedureFindById(departmentId);
         department.setName(departmentRequest.getName());
         department.setDescription(departmentRequest.getDescription());
 

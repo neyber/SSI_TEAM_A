@@ -33,10 +33,10 @@ public class ExistingWorkItemUpdateCmd extends AbstractCommand {
     protected void run() {
         WorkItem workItem = null;
         if(existingWorkItemRequest.getWorkItemId() != null){
-            workItem = workItemService.findById(existingWorkItemRequest.getWorkItemId());
+            workItem = workItemService.procedureFindById(existingWorkItemRequest.getWorkItemId());
         }
         ExistingWorkItem existingWorkItem = composeExistingWorkItem(existingWorkItemId, existingWorkItemRequest, workItem);
-        existingWorkItemService.save(existingWorkItem);
+        existingWorkItemService.procedureUpdate(existingWorkItem);
     }
 
     public void setExistingWorkItemId(Integer existingWorkItemId) {
@@ -48,7 +48,7 @@ public class ExistingWorkItemUpdateCmd extends AbstractCommand {
     }
 
     private ExistingWorkItem composeExistingWorkItem(Integer existingPpeId, ExistingWorkItemRequest existingWorkItemRequest, WorkItem workItem){
-        ExistingWorkItem existingWorkItem = existingWorkItemService.findById(existingPpeId);
+        ExistingWorkItem existingWorkItem = existingWorkItemService.procedureFindById(existingPpeId);
         existingWorkItem.setDetail(existingWorkItemRequest.getDetail());
         existingWorkItem.setPurchaseDate(existingWorkItemRequest.getPurchaseDate());
         existingWorkItem.setSerieNo(existingWorkItemRequest.getSerieNo());

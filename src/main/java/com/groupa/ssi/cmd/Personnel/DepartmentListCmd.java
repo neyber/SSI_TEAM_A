@@ -22,7 +22,7 @@ public class DepartmentListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        departmentsList = departmentService.findAll();
+        departmentsList = departmentService.procedureFindAll();
     }
 
     public List<Department> getDepartmentsList() {

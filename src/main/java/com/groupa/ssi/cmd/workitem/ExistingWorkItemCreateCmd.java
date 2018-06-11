@@ -31,10 +31,10 @@ public class ExistingWorkItemCreateCmd extends AbstractCommand {
     protected void run() {
         WorkItem workItem = null;
         if(existingWorkItemRequest.getWorkItemId() != null){
-            workItem = workItemService.findById(existingWorkItemRequest.getWorkItemId());
+            workItem = workItemService.procedureFindById(existingWorkItemRequest.getWorkItemId());
         }
         ExistingWorkItem existingWorkItem = composeExistingWorkItem(existingWorkItemRequest, workItem);
-        existingWorkItemService.save(existingWorkItem);
+        existingWorkItemService.procedureCreate(existingWorkItem);
     }
 
     public void setExistingWorkItemRequest(ExistingWorkItemRequest existingWorkItemRequest) {

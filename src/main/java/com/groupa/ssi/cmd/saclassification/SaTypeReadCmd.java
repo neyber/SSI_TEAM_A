@@ -21,7 +21,7 @@ public class SaTypeReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        saType = service.findById(saTypeId);
+        saType = service.procedureFindById(saTypeId);
     }
 
     public void setSaTypeId(Integer saTypeId) {

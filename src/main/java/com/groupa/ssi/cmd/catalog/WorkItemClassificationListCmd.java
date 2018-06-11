@@ -22,7 +22,7 @@ public class WorkItemClassificationListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        workItemClassificationList = service.findAll();
+        workItemClassificationList = service.procedureFindAll();
     }
 
     public List<WorkItemClassification> getWorkItemClassificationList() {

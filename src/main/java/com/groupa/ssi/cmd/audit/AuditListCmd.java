@@ -21,7 +21,7 @@ public class AuditListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        auditList = auditService.findAll();
+        auditList = auditService.procedureFindAll();
     }
 
     public List<Audit> getAuditList() {

@@ -39,19 +39,19 @@ public class AccidentCreateCmd extends AbstractCommand {
         SaType saType = null;
         Employee employee = null;
         if (null != accidentRequest.getSaCategoryId()) {
-            saCategory = saCategoryService.findById(accidentRequest.getSaCategoryId());
+            saCategory = saCategoryService.procedureFindById(accidentRequest.getSaCategoryId());
         }
 
         if (null != accidentRequest.getSaTypeId()) {
-            saType = saTypeService.findById(accidentRequest.getSaTypeId());
+            saType = saTypeService.procedureFindById(accidentRequest.getSaTypeId());
         }
 
         if (null != accidentRequest.getEmployeeId()) {
-            employee = employeeService.findById(accidentRequest.getEmployeeId());
+            employee = employeeService.procedureFindById(accidentRequest.getEmployeeId());
         }
 
         Accident accident = composeAccident(accidentRequest, saCategory, saType, employee);
-        accidentService.save(accident);
+        accidentService.procedureCreate(accident);
     }
 
     public void setAccidentRequest(AccidentRequest accidentRequest) {

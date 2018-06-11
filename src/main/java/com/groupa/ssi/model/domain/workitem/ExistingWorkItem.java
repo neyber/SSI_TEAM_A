@@ -4,6 +4,7 @@ import com.groupa.ssi.model.domain.ModelBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
@@ -25,6 +26,7 @@ public class ExistingWorkItem extends ModelBase {
     private String serieNo;
 
     @ManyToOne
+    @JoinColumn(name = "workItemId")
     private WorkItem workItem;
 
     public String getDetail() {

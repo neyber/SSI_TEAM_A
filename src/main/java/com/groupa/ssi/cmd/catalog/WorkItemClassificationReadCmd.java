@@ -22,7 +22,7 @@ public class WorkItemClassificationReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        workItemClassification = service.findById(workIemClassificationId);
+        workItemClassification = service.procedureFindById(workIemClassificationId);
     }
 
     public void setWorkItemClassificationId(Integer workIemClassificationId) {

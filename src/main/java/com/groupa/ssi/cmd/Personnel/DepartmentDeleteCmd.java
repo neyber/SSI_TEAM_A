@@ -18,7 +18,7 @@ public class DepartmentDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        departmentService.deleteById(departmentId);
+        departmentService.procedureDeleteById(departmentId);
     }
 
     public void setDepartmentId(Integer departmentId) {

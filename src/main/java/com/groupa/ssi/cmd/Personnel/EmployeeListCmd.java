@@ -22,7 +22,7 @@ public class EmployeeListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        employeesList = employeeService.findAll();
+        employeesList = employeeService.procedureFindAll();
     }
 
     public List<Employee> getEmployeesList() {

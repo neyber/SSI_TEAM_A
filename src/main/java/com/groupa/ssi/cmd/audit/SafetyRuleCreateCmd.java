@@ -27,11 +27,11 @@ public class SafetyRuleCreateCmd extends AbstractCommand {
         Audit audit = null;
 
         if (safetyRuleRequest.getAuditId() != null) {
-            audit = auditService.findById(safetyRuleRequest.getAuditId());
+            audit = auditService.procedureFindById(safetyRuleRequest.getAuditId());
         }
 
         SafetyRule safetyRule = ComposeSafetyRule(safetyRuleRequest, audit);
-        safetyRuleService.save(safetyRule);
+        safetyRuleService.procedureCreate(safetyRule);
     }
 
     private SafetyRule ComposeSafetyRule(SafetyRuleRequest safetyRuleRequest, Audit audit) {

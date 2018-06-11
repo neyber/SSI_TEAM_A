@@ -4,6 +4,7 @@ import com.groupa.ssi.model.domain.ModelBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -23,6 +24,7 @@ public class SafetyRule extends ModelBase {
     @Column
     private Boolean accomplishment;
     @ManyToOne
+    @JoinColumn(name = "auditId")
     private Audit audit;
 
     public String getPolicyCode() {

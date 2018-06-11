@@ -21,7 +21,7 @@ public class FunctionManualReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        functionManual = service.findById(FunctionManualId);
+        functionManual = service.procedureFindById(FunctionManualId);
     }
 
     public void setFunctionManualId(Integer FunctionManualId) {

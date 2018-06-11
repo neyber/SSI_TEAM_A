@@ -20,4 +20,5 @@ public class WorkItemClassificationService extends GenericService<WorkItemClassi
     protected JpaRepository<WorkItemClassification, Integer> getRepository() {
         return repository;
     }
+
 }

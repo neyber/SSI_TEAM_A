@@ -2,6 +2,8 @@ package com.groupa.ssi.services.common;
 
 import com.groupa.ssi.exception.DeleteEntityNotFoundException;
 import com.groupa.ssi.exception.DomainEntityNotFoundException;
+import com.groupa.ssi.model.repository.storedprocedures.common.GenericRepositoryProcedure;
+import com.groupa.ssi.model.repository.storedprocedures.util.GenericProcedureNames;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -50,4 +52,33 @@ public abstract class GenericService<T> {
             throw new IllegalStateException("Class is not parametrized with generic type!!! Please use extends <>");
         }
     }
+
+    /*************Generic operations for procedures*****/
+    private GenericRepositoryProcedure getProcedureRepository() {
+        if (getRepository() instanceof GenericRepositoryProcedure) {
+            return (GenericRepositoryProcedure) getRepository();
+        }
+        throw new UnsupportedOperationException("This repository not implement procedure repository for... " + getGenericTypeClass());
+    }
+
+    public List<T> procedureFindAll() {
+        return getProcedureRepository().execProcedureFindAll();
+    }
+
+    public T procedureFindById(Integer id) {
+        return (T) getProcedureRepository().execProcedureFindById(id);
+    }
+
+    public T procedureCreate(T entity) {
+        return (T) getProcedureRepository().execProcedureCreate(entity);
+    }
+
+    public T procedureUpdate(T entity) {
+        return (T) getProcedureRepository().execProcedureUpdate(entity);
+    }
+
+    public void procedureDeleteById(Integer id) {
+        getProcedureRepository().execProcedureDeleteById(id);
+    }
+
 }

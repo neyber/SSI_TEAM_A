@@ -21,7 +21,7 @@ public class FunctionManualListCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        functionManualList = service.findAll();
+        functionManualList = service.procedureFindAll();
     }
 
     public List<FunctionManual> getFunctionManualList() {

@@ -29,10 +29,10 @@ public class ExistingPpeUpdateCmd extends AbstractCommand {
     protected void run() {
         Ppe ppe = null;
         if(existingPpeRequest.getPpeId() != null){
-            ppe = ppeService.findById(existingPpeRequest.getPpeId());
+            ppe = ppeService.procedureFindById(existingPpeRequest.getPpeId());
         }
         ExistingPpe existingPpe = composeExistingPpe(existingPpeId, existingPpeRequest, ppe);
-        existingPpeService.save(existingPpe);
+        existingPpeService.procedureUpdate(existingPpe);
     }
 
     public void setExistingPpeId(Integer existingPpeId) {
@@ -44,7 +44,7 @@ public class ExistingPpeUpdateCmd extends AbstractCommand {
     }
 
     private ExistingPpe composeExistingPpe(Integer existingPpeId, ExistingPpeRequest existingPpeRequest, Ppe ppe){
-        ExistingPpe existingPpe = existingPpeService.findById(existingPpeId);
+        ExistingPpe existingPpe = existingPpeService.procedureFindById(existingPpeId);
         existingPpe.setDetail(existingPpeRequest.getDetail());
         existingPpe.setPurchaseDate(existingPpeRequest.getPurchaseDate());
         existingPpe.setLifeTimeDays(existingPpeRequest.getLifeTimeDays());

@@ -28,10 +28,10 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
         Role roleFunction = null;
 
         if(functionManualRequest.getRoleFunction() != null){
-            roleFunction = roleService.findById(functionManualRequest.getRoleFunction());
+            roleFunction = roleService.procedureFindById(functionManualRequest.getRoleFunction());
         }
         FunctionManual functionManual = composeFunctionManual(functionManualId, functionManualRequest, roleFunction);
-        service.save(functionManual);
+        service.procedureUpdate(functionManual);
     }
 
     public void setFunctionManualId(Integer functionManualId) {
@@ -41,7 +41,7 @@ public class FunctionManualUpdateCmd extends AbstractCommand {
     public void setWorkItemRequest(FunctionManualRequest functionManualRequest) { this.functionManualRequest = functionManualRequest; }
 
     private FunctionManual composeFunctionManual(Integer functionManualId, FunctionManualRequest functionManualRequest, Role roleFunction) {
-        FunctionManual functionManual = service.findById(functionManualId);
+        FunctionManual functionManual = service.procedureFindById(functionManualId);
         functionManual.setId(functionManualId);
         functionManual.setName(functionManualRequest.getName());
         functionManual.setPosition(functionManualRequest.getPosition());

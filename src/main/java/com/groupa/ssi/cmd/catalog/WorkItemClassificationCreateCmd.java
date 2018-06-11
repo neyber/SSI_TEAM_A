@@ -22,7 +22,7 @@ public class WorkItemClassificationCreateCmd extends AbstractCommand {
     @Override
     protected void run() {
         WorkItemClassification workItemClassification = composeWorkItemClassification(workItemClassificationRequest);
-        service.save(workItemClassification);
+        service.procedureCreate(workItemClassification);
     }
 
     public void setWorkItemClassificationRequest(WorkItemClassificationRequest workItemClassificationRequest) {

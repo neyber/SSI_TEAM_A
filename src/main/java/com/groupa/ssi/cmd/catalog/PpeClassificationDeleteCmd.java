@@ -19,7 +19,7 @@ public class PpeClassificationDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        service.deleteById(ppeClassificationId);
+        service.procedureDeleteById(ppeClassificationId);
     }
 
     public void setPpeClassificationId(Integer ppeClassificationId) {

@@ -25,7 +25,7 @@ public class ExistingWorkItemReadCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        existingWorkItem = service.findById(existingWorkItemId);
+        existingWorkItem = service.procedureFindById(existingWorkItemId);
     }
 
     public void setExistingWorkItemId(Integer existingWorkItemId) {

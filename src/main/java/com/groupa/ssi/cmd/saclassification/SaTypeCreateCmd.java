@@ -22,7 +22,7 @@ public class SaTypeCreateCmd extends AbstractCommand {
     @Override
     protected void run() {
         SaType saType = this.composeSaType(saTypeRequest);
-        saTypeService.save(saType);
+        saTypeService.procedureCreate(saType);
     }
 
     public void setSaTypeRequest(SaTypeRequest saTypeRequest) {

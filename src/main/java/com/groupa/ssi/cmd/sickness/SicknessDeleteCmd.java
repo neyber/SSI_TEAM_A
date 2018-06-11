@@ -18,7 +18,7 @@ public class SicknessDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run(){
-        service.deleteById(sicknessId);
+        service.procedureDeleteById(sicknessId);
     }
 
     public void setSicknessId(Integer sicknessId) {

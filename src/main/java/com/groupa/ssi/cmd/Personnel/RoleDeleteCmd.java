@@ -18,7 +18,7 @@ public class RoleDeleteCmd extends AbstractCommand {
 
     @Override
     protected void run() {
-        roleService.deleteById(roleId);
+        roleService.procedureDeleteById(roleId);
     }
 
     public void setRoleId(Integer roleId) {

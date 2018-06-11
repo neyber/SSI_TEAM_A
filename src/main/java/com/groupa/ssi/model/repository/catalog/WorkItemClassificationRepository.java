@@ -1,6 +1,7 @@
 package com.groupa.ssi.model.repository.catalog;
 
 import com.groupa.ssi.model.domain.catalog.WorkItemClassification;
+import com.groupa.ssi.model.repository.storedprocedures.catalog.WorkItemClassificationRepositoryProcedure;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Walker Colina
  */
 
-public interface WorkItemClassificationRepository extends JpaRepository<WorkItemClassification, Integer> {
+public interface WorkItemClassificationRepository extends JpaRepository<WorkItemClassification, Integer>, WorkItemClassificationRepositoryProcedure {
 }

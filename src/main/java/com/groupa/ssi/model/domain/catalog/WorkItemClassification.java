@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 /**
  * This class is top represent the catalog for classification of work item
  * Created on May 1, 2018
+ *
  * @author Walker Colina
  */
 @Entity

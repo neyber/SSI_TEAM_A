@@ -92,7 +92,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent applicationEvent) {
-        initData();
+        //todo: uncomment to enable initialization data from application
+        //initData();
     }
 
     private void initData() {

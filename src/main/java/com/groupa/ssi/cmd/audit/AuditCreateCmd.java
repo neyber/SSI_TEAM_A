@@ -32,14 +32,14 @@ public class AuditCreateCmd extends AbstractCommand {
         Department department = null;
 
         if (auditRequest.getEmployeeId() != null) {
-            employee = employeeService.findById(auditRequest.getEmployeeId());
+            employee = employeeService.procedureFindById(auditRequest.getEmployeeId());
         }
         if (auditRequest.getDepartmentId() != null) {
-            department = departmentService.findById(auditRequest.getDepartmentId());
+            department = departmentService.procedureFindById(auditRequest.getDepartmentId());
         }
 
         Audit audit = ComposeAudit(auditRequest, employee, department);
-        auditService.save(audit);
+        auditService.procedureCreate(audit);
     }
 
     private Audit ComposeAudit(AuditRequest auditRequest,  Employee employee, Department department) {

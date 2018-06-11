@@ -28,10 +28,10 @@ public class ExistingPpeCreateCmd extends AbstractCommand {
     protected void run() {
         Ppe ppe = null;
         if(existingPpeRequest.getPpeId() != null){
-            ppe = ppeService.findById(existingPpeRequest.getPpeId());
+            ppe = ppeService.procedureFindById(existingPpeRequest.getPpeId());
         }
         ExistingPpe existingPpe = composeExistingPpe(existingPpeRequest, ppe);
-        existingPpeService.save(existingPpe);
+        existingPpeService.procedureCreate(existingPpe);
     }
 
     public void setExistingPpeRequest(ExistingPpeRequest existingPpeRequest) {

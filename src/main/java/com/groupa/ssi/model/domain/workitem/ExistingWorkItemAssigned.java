@@ -5,6 +5,7 @@ import com.groupa.ssi.model.domain.personnel.Employee;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
@@ -29,9 +30,11 @@ public class ExistingWorkItemAssigned extends ModelBase {
     private Date returnDate;
 
     @ManyToOne
+    @JoinColumn(name = "existingWorkItemId")
     private ExistingWorkItem existingWorkItem;
 
     @ManyToOne
+    @JoinColumn(name = "employeeId")
     private Employee employee;
 
     public String getAssignedNotes() {

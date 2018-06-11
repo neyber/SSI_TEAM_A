@@ -47,13 +47,13 @@ public class EmployeeCreateCmd extends AbstractCommand {
         FileDocument photoFileDocument = null;
 
         if(employeeRequest.getRoleId() != null) {
-            roleEmployee = roleService.findById(employeeRequest.getRoleId());
+            roleEmployee = roleService.procedureFindById(employeeRequest.getRoleId());
         }
         if(employeeRequest.getDepartmentId() != null) {
-            department = departmentService.findById(employeeRequest.getDepartmentId());
+            department = departmentService.procedureFindById(employeeRequest.getDepartmentId());
         }
         if (employeeRequest.getSupervisorId() != null){
-            supervisor = employeeService.findById(employeeRequest.getSupervisorId());
+            supervisor = employeeService.procedureFindById(employeeRequest.getSupervisorId());
         }
         if (employeeRequest.getPhotoFileDocumentId() != null) {
             photoFileDocument = fileDocumentService.findById(employeeRequest.getPhotoFileDocumentId());
@@ -61,7 +61,7 @@ public class EmployeeCreateCmd extends AbstractCommand {
 
         Employee employee = ComposeEmployee(employeeRequest, roleEmployee, department, supervisor, photoFileDocument);
 
-        employeeService.save(employee);
+        employeeService.procedureCreate(employee);
     }
 
     private Employee ComposeEmployee(EmployeeRequest employeeRequest, Role role, Department department, Employee supervisor, FileDocument photoFileDocument) {
